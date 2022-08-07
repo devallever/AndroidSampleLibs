@@ -1,0 +1,25 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://s01.oss.sonatype.org/content/groups/public" }
+        maven { url 'https://jitpack.io' }
+        jcenter()
+    }
+}
+rootProject.name = "AndroidSampleLibs"
+include ':app', ':common', ':stickytop'
+
+
+include ':core'
+project(':core').projectDir = new File(settingsDir, '../../allever-projects/AndroidBaseLibs/core')
+
+include ':widget'
+project(':widget').projectDir = new File(settingsDir, '../../allever-projects/AndroidBaseLibs/widget')
+
+include ':mvvm'
+project(':mvvm').projectDir = new File(settingsDir, '../../allever-projects/AndroidBaseLibs/mvvm')
+
+include ':imageloader-glide'
+project(':imageloader-glide').projectDir = new File(settingsDir, '../../allever-projects/AndroidBaseLibs/imageloader-glide')
