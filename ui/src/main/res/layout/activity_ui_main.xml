@@ -79,6 +79,15 @@
                 android:layout_height="60dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
+
+            <TextView
+                style="@style/uiItemTitleStyle"
+                android:text="标签文本自动换行效果" />
+
+            <TextView
+                android:id="@+id/tvTagAutoChangeLine"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

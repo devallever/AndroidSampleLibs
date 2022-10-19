@@ -9,6 +9,7 @@ import app.allever.android.lib.demo.BR
 import app.allever.android.lib.demo.R
 import app.allever.android.lib.demo.databinding.ActivityUiMainBinding
 import app.allever.android.lib.demo.databinding.RvItemTextBinding
+import app.allever.android.lib.demo.util.TextAndPictureUtil
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.mvvm.base.MvvmConfig
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -33,6 +34,8 @@ class UIMainActivity : BaseActivity<ActivityUiMainBinding, UIMainViewModel>() {
             ActivityHelper.startActivity<BlurActivity>()
         }
 
+
+        //自动滚动的RecyclerView
         val listData = mutableListOf<String>()
         for(i in 0..10) {
             listData.add("主播你好啵${i+1}")
@@ -43,6 +46,16 @@ class UIMainActivity : BaseActivity<ActivityUiMainBinding, UIMainViewModel>() {
         autoScrollAdapter.data = listData
         binding.autoScrollRecyclerView.setScrollOffset(DisplayHelper.dip2px(48))
         binding.autoScrollRecyclerView.start()
+
+        //标签换行TextView
+        val text = TextAndPictureUtil.getText(
+            this,
+            "面对同事的请求从来不拒绝，自己却总是在夜晚懊悔,为什么现在的年轻,人都不愿意社交了？",
+            R.drawable.default_tag,
+            DisplayHelper.dip2px(26),
+            DisplayHelper.dip2px(15)
+        )
+        binding.tvTagAutoChangeLine.text = text
     }
 
     override fun onDestroy() {
