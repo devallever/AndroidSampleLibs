@@ -1,4 +1,4 @@
-package app.allever.android.lib.demo.ui
+package app.allever.android.lib.demo.ui.sticktop
 
 import app.allever.android.lib.common.BaseActivity
 import app.allever.android.lib.demo.BR

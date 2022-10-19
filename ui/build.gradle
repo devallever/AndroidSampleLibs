@@ -39,4 +39,7 @@ android {
 
 dependencies {
     api project(path: ':common')
+
+    api blurView
+    api shapeBlurView
 }

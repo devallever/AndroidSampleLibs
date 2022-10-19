@@ -4,20 +4,24 @@
 
     <application>
         <activity
-            android:name=".ui.StickyTopMainActivity"
+            android:name=".ui.sticktop.StickyTopMainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".DemoMainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".ui.BaseTwoViewStickyTopActivity"
+            android:name=".ui.sticktop.BaseTwoViewStickyTopActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".ui.RemoveAddViewStickyTopActivity"
+        <activity android:name=".ui.sticktop.RemoveAddViewStickyTopActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
-            android:name=".ui.RecyclerViewHeaderStickyTopActivity"
+            android:name=".ui.sticktop.RecyclerViewHeaderStickyTopActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".ui.CoordinatorStickyTopActivity"
+        <activity android:name=".ui.sticktop.CoordinatorStickyTopActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".ui.UIMainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".ui.BlurActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 </manifest>

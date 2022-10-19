@@ -1,4 +1,4 @@
-package app.allever.android.lib.demo.ui
+package app.allever.android.lib.demo.ui.sticktop
 
 import android.os.Build
 import androidx.annotation.RequiresApi

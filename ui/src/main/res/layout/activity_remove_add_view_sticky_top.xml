@@ -6,7 +6,7 @@
 
         <variable
             name="removeAddViewStickyTopVM"
-            type="app.allever.android.lib.demo.ui.RemoveAddViewStickyTopViewModel" />
+            type="app.allever.android.lib.demo.ui.sticktop.RemoveAddViewStickyTopViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -23,11 +23,24 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+
+                <Button
+                    android:id="@+id/btnUI"
+                    style="@style/uiItemTitleStyle"
+                    android:text="UI效果" />
+
                 <Button
                     android:id="@+id/btnStickyTop"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    style="@style/uiItemTitleStyle"
                     android:text="吸顶效果" />
+
+                <Button
+                    style="@style/uiItemTitleStyle"
+                    android:text="毛玻璃效果" />
+
+                <Button
+                    style="@style/uiItemTitleStyle"
+                    android:text="自动滚动RecyclerView" />
 
 
             </LinearLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+
+        <variable
+            name="uiMainVM"
+            type="app.allever.android.lib.demo.ui.UIMainViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                style="@style/uiItemTitleStyle"
+                android:text="点赞效果" />
+
+            <app.allever.android.lib.demo.ui.widget.PressLikeView
+                android:id="@+id/pressLikeView"
+                android:layout_width="70dp"
+                android:layout_height="200dp"/>
+
+            <TextView
+                style="@style/uiItemTitleStyle"
+                android:text="毛玻璃效果" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/blurBg"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/default_img"
+                    android:scaleType="centerCrop" />
+
+                <eightbitlab.com.blurview.BlurView
+                    android:background="@drawable/blur_round_bg"
+                    android:id="@+id/blurView"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp">
+
+                </eightbitlab.com.blurview.BlurView>
+
+                <net.center.blurview.ShapeBlurView
+                    app:layout_constraintTop_toBottomOf="@+id/blurView"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    app:blur_corner_radius="45dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

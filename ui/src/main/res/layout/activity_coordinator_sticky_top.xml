@@ -6,7 +6,7 @@
 
         <variable
             name="coordinatorStickyTopVM"
-            type="app.allever.android.lib.demo.ui.CoordinatorStickyTopViewModel" />
+            type="app.allever.android.lib.demo.ui.sticktop.CoordinatorStickyTopViewModel" />
     </data>
 
 

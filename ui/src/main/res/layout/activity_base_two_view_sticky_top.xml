@@ -6,7 +6,7 @@
 
         <variable
             name="baseTwoViewStickyTopVM"
-            type="app.allever.android.lib.demo.ui.BaseTwoViewStickyTopActivity" />
+            type="app.allever.android.lib.demo.ui.sticktop.BaseTwoViewStickyTopActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

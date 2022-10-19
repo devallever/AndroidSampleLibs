@@ -6,7 +6,7 @@
 
         <variable
             name="recyclerViewHeaderStickyTopVM"
-            type="app.allever.android.lib.demo.ui.RecyclerViewHeaderStickyTopViewModel" />
+            type="app.allever.android.lib.demo.ui.sticktop.RecyclerViewHeaderStickyTopViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

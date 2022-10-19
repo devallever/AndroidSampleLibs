@@ -207,6 +207,10 @@ ext {
 
     //鲁班图片压缩
     luban = "top.zibin:Luban:1.1.8"
+
+    blurView =  "com.github.Dimezis:BlurView:version-2.0.2"
+
+    shapeBlurView = "com.github.centerzx:ShapeBlurView:1.0.5"
 //Other---------------------------------------------------------------------------------------------
 }
 
