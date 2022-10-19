@@ -69,6 +69,16 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <TextView
+                style="@style/uiItemTitleStyle"
+                android:text="自动滚动RecyclerView效果" />
+
+            <app.allever.android.lib.demo.ui.widget.AutoScrollRecyclerView
+                android:id="@+id/autoScrollRecyclerView"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
