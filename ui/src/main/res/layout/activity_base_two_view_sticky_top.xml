@@ -5,19 +5,19 @@
     <data>
 
         <variable
-            name="removeAddViewStickyTopVM"
-            type="app.allever.android.lib.demo.stickytop.RemoveAddViewStickyTopViewModel" />
+            name="baseTwoViewStickyTopVM"
+            type="app.allever.android.lib.demo.ui.BaseTwoViewStickyTopActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/outsideLayout"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,27 +31,13 @@
                     android:background="#80ff0000"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:id="@+id/insideLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintTop_toBottomOf="@+id/firstView">
-
-                    <TextView
-                        android:id="@+id/tvStickyTopView"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:background="@color/white"
-                        android:gravity="center"
-                        android:text="吸顶View" />
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/view"
+                <TextView
+                    android:id="@+id/tvStickyTopView"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:text="吸顶View"
                     app:layout_constraintTop_toBottomOf="@+id/firstView" />
 
                 <TextView
@@ -59,21 +45,21 @@
                     android:layout_height="1500dp"
                     android:gravity="center_horizontal"
                     android:text="hhh"
-                    app:layout_constraintTop_toBottomOf="@+id/view" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvStickyTopView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
 
-        <LinearLayout
-            android:id="@+id/outsideLayout"
+        <TextView
+            android:id="@+id/tvStickyTopViewFirst"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintRight_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </LinearLayout>
+            android:layout_height="48dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="吸顶View"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

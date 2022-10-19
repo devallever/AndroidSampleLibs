@@ -9,7 +9,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "AndroidSampleLibs"
-include ':app', ':common', ':stickytop'
+include ':app', ':common', ':ui'
 
 
 include ':core'

@@ -4,20 +4,20 @@
 
     <application>
         <activity
-            android:name=".stickytop.StickyTopMainActivity"
+            android:name=".ui.StickyTopMainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".DemoMainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".stickytop.BaseTwoViewStickyTopActivity"
+            android:name=".ui.BaseTwoViewStickyTopActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".stickytop.RemoveAddViewStickyTopActivity"
+        <activity android:name=".ui.RemoveAddViewStickyTopActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
-            android:name=".stickytop.RecyclerViewHeaderStickyTopActivity"
+            android:name=".ui.RecyclerViewHeaderStickyTopActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".stickytop.CoordinatorStickyTopActivity"
+        <activity android:name=".ui.CoordinatorStickyTopActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 </manifest>

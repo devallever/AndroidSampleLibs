@@ -3,7 +3,7 @@ package app.allever.android.lib.demo
 import app.allever.android.lib.common.BaseActivity
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.databinding.ActivityDemoMainBinding
-import app.allever.android.lib.demo.stickytop.StickyTopMainActivity
+import app.allever.android.lib.demo.ui.StickyTopMainActivity
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.mvvm.base.MvvmConfig
 
