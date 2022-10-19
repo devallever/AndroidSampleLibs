@@ -12,7 +12,7 @@ class DemoMainActivity : BaseActivity<ActivityDemoMainBinding, DemoMainViewModel
         MvvmConfig(R.layout.activity_demo_main, BR.demoMainVM)
 
     override fun init() {
-        initTopBar("Android Demo")
+        initTopBar("UI交互")
         binding.btnStickyTop.setOnClickListener {
             ActivityHelper.startActivity<StickyTopMainActivity>()
         }

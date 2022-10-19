@@ -28,8 +28,8 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:text="吸顶Sample"
-                    android:id="@+id/btnStickyTop"
+                    android:text="UI交互效果"
+                    android:id="@+id/btnUI"
                     style="@style/main_menu_item_style" />
             </LinearLayout>
 
