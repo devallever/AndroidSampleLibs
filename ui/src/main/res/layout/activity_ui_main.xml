@@ -88,6 +88,15 @@
                 android:id="@+id/tvTagAutoChangeLine"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"/>
+
+            <TextView
+                style="@style/uiItemTitleStyle"
+                android:text="折叠RecyclerView Item" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

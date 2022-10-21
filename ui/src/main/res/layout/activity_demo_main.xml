@@ -35,12 +35,9 @@
                     android:text="吸顶效果" />
 
                 <Button
+                    android:id="@+id/btnUserCenter"
                     style="@style/uiItemTitleStyle"
-                    android:text="毛玻璃效果" />
-
-                <Button
-                    style="@style/uiItemTitleStyle"
-                    android:text="自动滚动RecyclerView" />
+                    android:text="个人主页折叠效果" />
 
 
             </LinearLayout>

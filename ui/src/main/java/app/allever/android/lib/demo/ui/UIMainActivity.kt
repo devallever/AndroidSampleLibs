@@ -9,11 +9,13 @@ import app.allever.android.lib.demo.BR
 import app.allever.android.lib.demo.R
 import app.allever.android.lib.demo.databinding.ActivityUiMainBinding
 import app.allever.android.lib.demo.databinding.RvItemTextBinding
+import app.allever.android.lib.demo.ui.widget.OverlapManager
 import app.allever.android.lib.demo.util.TextAndPictureUtil
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.mvvm.base.MvvmConfig
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import eightbitlab.com.blurview.RenderScriptBlur
 
 class UIMainActivity : BaseActivity<ActivityUiMainBinding, UIMainViewModel>() {
@@ -56,6 +58,14 @@ class UIMainActivity : BaseActivity<ActivityUiMainBinding, UIMainViewModel>() {
             DisplayHelper.dip2px(15)
         )
         binding.tvTagAutoChangeLine.text = text
+
+        //折叠RecyclerViewItem
+        binding.recyclerView2.layoutManager = OverlapManager()
+        binding.recyclerView2.adapter = object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.rv_image, listData) {
+            override fun convert(holder: BaseViewHolder, item: String) {}
+        }
+
+
     }
 
     override fun onDestroy() {

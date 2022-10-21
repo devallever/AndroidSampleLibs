@@ -23,6 +23,10 @@ class DemoMainActivity : BaseActivity<ActivityDemoMainBinding, DemoMainViewModel
             ActivityHelper.startActivity<StickyTopMainActivity>()
         }
 
+        binding.btnUserCenter.setOnClickListener {
+            ActivityHelper.startActivity<UserCenterActivity>()
+        }
+
 
     }
 }
