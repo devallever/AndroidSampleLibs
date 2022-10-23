@@ -9,6 +9,9 @@ import app.allever.android.lib.demo.ui.widget.VerticalImageSpan;
 
 /**
  * 标签和换行
+ * textview 垂直居中_在Textview左边或右边添加图标 ，换行不错位
+ * https://blog.csdn.net/weixin_39645041/article/details/111109697
+ *
  */
 public class TextAndPictureUtil {
     private TextAndPictureUtil mTextAndPictureUtil;
