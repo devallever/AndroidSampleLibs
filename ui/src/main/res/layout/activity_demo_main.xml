@@ -9,40 +9,39 @@
             type="app.allever.android.lib.demo.DemoMainViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <app.allever.android.lib.widget.DampingReboundNestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
-                <Button
-                    android:id="@+id/btnUI"
-                    style="@style/uiItemTitleStyle"
-                    android:text="UI效果" />
+            <Button
+                android:id="@+id/btnUI"
+                style="@style/uiItemTitleStyle"
+                android:text="UI效果" />
 
-                <Button
-                    android:id="@+id/btnStickyTop"
-                    style="@style/uiItemTitleStyle"
-                    android:text="吸顶效果" />
+            <Button
+                android:id="@+id/btnStickyTop"
+                style="@style/uiItemTitleStyle"
+                android:text="吸顶效果" />
 
-                <Button
-                    android:id="@+id/btnUserCenter"
-                    style="@style/uiItemTitleStyle"
-                    android:text="个人主页折叠效果" />
+            <Button
+                android:id="@+id/btnUserCenter"
+                style="@style/uiItemTitleStyle"
+                android:text="个人主页折叠效果" />
+
+            <Button
+                android:id="@+id/btnFlingScroll"
+                style="@style/uiItemTitleStyle"
+                android:text="回弹效果" />
 
 
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </app.allever.android.lib.widget.DampingReboundNestedScrollView>
 
 </layout>

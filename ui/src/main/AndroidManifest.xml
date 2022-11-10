@@ -24,5 +24,9 @@
         <activity android:name=".ui.BlurActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity android:name=".UserCenterActivity" />
+        <activity android:name=".ui.FlingScrollTabActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".base.TabActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 </manifest>

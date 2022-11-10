@@ -10,7 +10,7 @@
             type="app.allever.android.lib.demo.ui.UIMainViewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <app.allever.android.lib.widget.DampingReboundNestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -97,8 +97,18 @@
                 android:id="@+id/recyclerView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+            <TextView
+                style="@style/uiItemTitleStyle"
+                android:text="我的水波球体进度" />
+
+            <app.allever.android.lib.demo.ui.widget.MyWaterWaveProgressView
+                android:id="@+id/myWaterWaveProgressView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginBottom="10dp"/>
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </app.allever.android.lib.widget.DampingReboundNestedScrollView>
 
 </layout>
