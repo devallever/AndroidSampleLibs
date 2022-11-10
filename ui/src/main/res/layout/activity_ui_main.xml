@@ -10,7 +10,7 @@
             type="app.allever.android.lib.demo.ui.UIMainViewModel" />
     </data>
 
-    <app.allever.android.lib.widget.DampingReboundNestedScrollView
+    <app.allever.android.lib.widget.ReboundNestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -109,6 +109,6 @@
                 android:layout_marginBottom="10dp"/>
         </LinearLayout>
 
-    </app.allever.android.lib.widget.DampingReboundNestedScrollView>
+    </app.allever.android.lib.widget.ReboundNestedScrollView>
 
 </layout>
