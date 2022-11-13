@@ -23,3 +23,7 @@ project(':mvvm').projectDir = new File(settingsDir, '../../allever-projects/Andr
 
 include ':imageloader-glide'
 project(':imageloader-glide').projectDir = new File(settingsDir, '../../allever-projects/AndroidBaseLibs/imageloader-glide')
+
+
+include ':network'
+project(':network').projectDir = new File(settingsDir, '../../allever-projects/AndroidBaseLibs/network')
