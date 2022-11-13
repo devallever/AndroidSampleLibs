@@ -2,16 +2,14 @@ package app.allever.android.lib.demo
 
 import app.allever.android.lib.common.BaseActivity
 import app.allever.android.lib.core.helper.ActivityHelper
-import app.allever.android.lib.demo.base.TabViewModel
 import app.allever.android.lib.demo.databinding.ActivityDemoMainBinding
-import app.allever.android.lib.demo.databinding.ActivityTabBinding
 import app.allever.android.lib.demo.ui.FlingScrollTabActivity
 import app.allever.android.lib.demo.ui.UIMainActivity
 import app.allever.android.lib.demo.ui.sticktop.StickyTopMainActivity
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.mvvm.base.MvvmConfig
 
-class DemoMainActivity : BaseActivity<ActivityDemoMainBinding, DemoMainViewModel>() {
+class UIMainActivity : BaseActivity<ActivityDemoMainBinding, DemoMainViewModel>() {
     override fun getContentMvvmConfig(): MvvmConfig =
         MvvmConfig(R.layout.activity_demo_main, BR.demoMainVM)
 

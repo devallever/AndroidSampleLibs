@@ -6,7 +6,7 @@
 
         <variable
             name="tabViewModel"
-            type="app.allever.android.lib.demo.base.TabViewModel" />
+            type="app.allever.android.lib.common.TabViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

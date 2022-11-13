@@ -28,9 +28,14 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:text="UI交互效果"
                     android:id="@+id/btnUI"
-                    style="@style/main_menu_item_style" />
+                    style="@style/main_menu_item_style"
+                    android:text="UI交互效果" />
+
+                <TextView
+                    android:id="@+id/btnJetpack"
+                    style="@style/main_menu_item_style"
+                    android:text="JetPack" />
             </LinearLayout>
 
         </ScrollView>
