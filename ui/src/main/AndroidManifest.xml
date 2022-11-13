@@ -3,33 +3,15 @@
     package="app.allever.android.lib.demo">
 
     <application>
-        <activity
-            android:name=".ui.sticktop.StickyTopMainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".UIMainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".ui.sticktop.BaseTwoViewStickyTopActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".ui.sticktop.RemoveAddViewStickyTopActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".ui.sticktop.RecyclerViewHeaderStickyTopActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".ui.sticktop.CoordinatorStickyTopActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".ui.UIMainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".ui.BlurActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".ui.sticktop.StickyTopMainActivity" />
+        <activity android:name=".UIMainActivity" />
+        <activity android:name=".ui.sticktop.BaseTwoViewStickyTopActivity" />
+        <activity android:name=".ui.sticktop.RemoveAddViewStickyTopActivity" />
+        <activity android:name=".ui.sticktop.RecyclerViewHeaderStickyTopActivity" />
+        <activity android:name=".ui.sticktop.CoordinatorStickyTopActivity" />
+        <activity android:name=".ui.UIMainActivity" />
+        <activity android:name=".ui.BlurActivity" />
         <activity android:name=".UserCenterActivity" />
-        <activity
-            android:name=".ui.FlingScrollTabActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".ui.FlingScrollTabActivity" />
     </application>
 </manifest>

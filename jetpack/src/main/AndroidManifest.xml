@@ -3,7 +3,6 @@
     package="app.allever.android.sample.jetpack">
 
     <application>
-        <activity android:name=".JetpackMainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".JetpackMainActivity" />
     </application>
 </manifest>
