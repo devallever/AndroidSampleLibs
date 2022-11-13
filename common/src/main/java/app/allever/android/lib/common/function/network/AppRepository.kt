@@ -1,10 +1,9 @@
 package app.allever.android.lib.common.function.network
 
-import android.nfc.tech.MifareUltralight.PAGE_SIZE
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import app.allever.android.lib.common.function.network.reponse.ArticleData
+import androidx.paging.PagingSource
 import app.allever.android.lib.common.function.network.reponse.BannerData
 import app.allever.android.lib.core.function.network.HttpHelper
 import app.allever.android.lib.core.function.network.ResponseCallback
@@ -79,5 +78,4 @@ object AppRepository {
     suspend fun getHomePageArticleList(page: Int) = HttpHelper.request {
         wanAndroidApi.getHomePageList(page)
     }
-
 }

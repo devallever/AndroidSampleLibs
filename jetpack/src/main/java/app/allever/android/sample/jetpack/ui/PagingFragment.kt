@@ -7,14 +7,19 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
-import androidx.paging.*
+import androidx.paging.LoadState
+import androidx.paging.PagingData
+import androidx.paging.PagingDataAdapter
+import androidx.paging.cachedIn
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.allever.android.lib.common.function.network.AppRepository
 import app.allever.android.lib.common.function.network.reponse.ArticleData
-import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.ext.toast
+import app.allever.android.lib.core.function.paging.AbstractPagingSource
+import app.allever.android.lib.core.function.paging.PagingHelper
+import app.allever.android.lib.core.function.paging.PagingHelper.createPagingDiffCallback
 import app.allever.android.lib.core.util.TimeUtils
 import app.allever.android.lib.mvvm.base.BaseMvvmFragment
 import app.allever.android.lib.mvvm.base.BaseViewModel
@@ -67,51 +72,21 @@ class PagingViewModel : BaseViewModel() {
     }
 
     fun getPagingData(): Flow<PagingData<ArticleData>> {
-        return PagingDataRepo.getHomePageArticleListPagingData().cachedIn(viewModelScope)
+        return PagingHelper.getPager(ArticlePagingSource()).cachedIn(viewModelScope)
     }
 }
 
-class ArticlePagingSource : PagingSource<Int, ArticleData>() {
-    override fun getRefreshKey(state: PagingState<Int, ArticleData>): Int? = null
-
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ArticleData> {
-        return try {
-            val page = params.key ?: 1 // set page 1 as default
-            log("加载第${page}页")
-            val prevKey = if (page > 1) page - 1 else null
-            val repoResponse = AppRepository.getHomePageArticleList(page)
-            val repoItems =
-                repoResponse.data?.datas ?: return LoadResult.Page(listOf(), prevKey, null)
-            val nextKey = if (repoItems.isNotEmpty()) page + 1 else null
-            LoadResult.Page(repoItems, prevKey, nextKey)
-        } catch (e: Exception) {
-            LoadResult.Error(e)
-        }
+class ArticlePagingSource : AbstractPagingSource<ArticleData>() {
+    override suspend fun getData(currentPage: Int): MutableList<ArticleData> {
+        return (AppRepository.getHomePageArticleList(currentPage).data?.datas
+            ?: mutableListOf()) as MutableList<ArticleData>
     }
 }
 
-object PagingDataRepo {
-    fun getHomePageArticleListPagingData(): Flow<PagingData<ArticleData>> {
-        return Pager(
-            config = PagingConfig(pageSize = 20),
-            pagingSourceFactory = { ArticlePagingSource() }
-        ).flow
-    }
-}
-
-class ArticleAdapter : PagingDataAdapter<ArticleData, ArticleAdapter.ViewHolder>(COMPARATOR) {
-
-    companion object {
-        private val COMPARATOR = object : DiffUtil.ItemCallback<ArticleData>() {
-            override fun areItemsTheSame(oldItem: ArticleData, newItem: ArticleData): Boolean {
-                return oldItem.id == newItem.id
-            }
-
-            override fun areContentsTheSame(oldItem: ArticleData, newItem: ArticleData): Boolean {
-                return oldItem == newItem
-            }
-        }
-    }
+class ArticleAdapter :
+    PagingDataAdapter<ArticleData, ArticleAdapter.ViewHolder>(createPagingDiffCallback { old, new ->
+        old.id == new.id
+    }) {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
