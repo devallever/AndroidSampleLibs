@@ -12,11 +12,12 @@ import app.allever.android.lib.core.util.TimeUtils
 import app.allever.android.lib.mvvm.base.BaseMvvmFragment
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.mvvm.base.MvvmConfig
-import app.allever.android.lib.widget.recycler.BasePagingAdapter
-import app.allever.android.lib.widget.recycler.BaseViewHolder
+import app.allever.android.lib.widget.recycler.binding.BaseBindingViewHolder
+import app.allever.android.lib.widget.recycler.binding.BasePagingBindingAdapter
 import app.allever.android.sample.jetpack.BR
 import app.allever.android.sample.jetpack.R
 import app.allever.android.sample.jetpack.databinding.FragmentPagingBinding
+import app.allever.android.sample.jetpack.databinding.RvArticleItemBinding
 import kotlinx.coroutines.launch
 
 /**
@@ -26,7 +27,7 @@ import kotlinx.coroutines.launch
  */
 class PagingFragment : BaseMvvmFragment<FragmentPagingBinding, PagingViewModel>() {
 
-    private val articleAdapter = ArticleAdapter()
+    private val articleAdapter = ArticleBindingAdapter()
 
     override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_paging, BR.pagingVM)
 
@@ -68,30 +69,31 @@ class ArticlePagingSource : BasePagingSource<ArticleData>() {
     }
 }
 
-class ArticleAdapter : BasePagingAdapter<ArticleData>(
-    R.layout.rv_article_item,
-    createPagingDiffCallback { old, new ->
-        old.id == new.id
-    }) {
-    override fun bindHolder(holder: BaseViewHolder, position: Int, data: ArticleData) {
-        holder.setText(R.id.tvTitle, data.title)
-        holder.setText(
-            R.id.tvTime,
-            TimeUtils.formatTime(data.publishTime, TimeUtils.FORMAT_yyyy_MM_dd)
-        )
-        holder.setText(R.id.tvSort, "${data.superChapterName} - ${data.chapterName}")
-        holder.setText(
-            R.id.tvUser, when {
-                data.author.isNotEmpty() -> {
-                    data.author
-                }
-                data.shareUser.isNotEmpty() -> {
-                    data.shareUser
-                }
-                else -> {
-                    ""
-                }
+class ArticleBindingAdapter :
+    BasePagingBindingAdapter<ArticleData, RvArticleItemBinding>(
+        R.layout.rv_article_item,
+        createPagingDiffCallback { old, new ->
+            old.id == new.id
+        }) {
+    override fun convert(
+        holder: BaseBindingViewHolder<RvArticleItemBinding>,
+        position: Int,
+        item: ArticleData
+    ) {
+        holder.binding.tvTitle.text = item.title
+        holder.binding.tvTime.text =
+            TimeUtils.formatTime(item.publishTime, TimeUtils.FORMAT_yyyy_MM_dd)
+        holder.binding.tvSort.text = "${item.superChapterName} - ${item.chapterName}"
+        holder.binding.tvUser.text = when {
+            item.author.isNotEmpty() -> {
+                item.author
             }
-        )
+            item.shareUser.isNotEmpty() -> {
+                item.shareUser
+            }
+            else -> {
+                ""
+            }
+        }
     }
 }
