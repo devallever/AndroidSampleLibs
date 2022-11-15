@@ -1,4 +1,4 @@
-package app.allever.android.learning.audiovideo
+package app.allever.android.sample.project
 
 import app.allever.android.lib.common.function.network.reponse.BaseResponse
 import app.allever.android.lib.core.app.App

@@ -6,7 +6,7 @@
 
         <variable
             name="mainVM"
-            type="app.allever.android.learning.audiovideo.MainViewModel" />
+            type="app.allever.android.sample.project.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -36,6 +36,11 @@
                     android:id="@+id/btnJetpack"
                     style="@style/main_menu_item_style"
                     android:text="JetPack" />
+
+                <TextView
+                    android:id="@+id/btnFunction"
+                    style="@style/main_menu_item_style"
+                    android:text="功能实现" />
             </LinearLayout>
 
         </ScrollView>
