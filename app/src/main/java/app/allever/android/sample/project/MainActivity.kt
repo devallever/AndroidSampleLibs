@@ -8,6 +8,7 @@ import app.allever.android.lib.demo.UIMainActivity
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.mvvm.base.MvvmConfig
 import app.allever.android.lib.widget.ripple.RippleHelper
+import app.allever.android.sample.function.FunctionMainActivity
 import app.allever.android.sample.jetpack.JetpackMainActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
@@ -28,7 +29,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         }
 
         binding.btnFunction.setOnClickListener {
-            ActivityHelper.startActivity<JetpackMainActivity> {  }
+            ActivityHelper.startActivity<FunctionMainActivity> {  }
         }
     }
 

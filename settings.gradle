@@ -9,7 +9,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "AndroidSampleLibs"
-include ':app', ':common', ':ui', 'jetpack'
+include ':app', ':common', ':ui', 'jetpack', ':function'
 
 
 include ':core'
