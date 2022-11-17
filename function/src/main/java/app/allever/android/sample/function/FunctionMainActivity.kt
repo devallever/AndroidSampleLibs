@@ -5,6 +5,7 @@ import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.mvvm.base.MvvmConfig
 import app.allever.android.sample.function.databinding.ActivityFunctionMainBinding
+import app.allever.android.sample.function.im.IMMainActivity
 import app.allever.android.sample.function.theme.ThemeMainActivity
 
 class FunctionMainActivity : BaseActivity<ActivityFunctionMainBinding, FunctionMainViewModel>() {
@@ -12,6 +13,10 @@ class FunctionMainActivity : BaseActivity<ActivityFunctionMainBinding, FunctionM
         initTopBar("功能列表")
         binding.btnTheme.setOnClickListener {
             ActivityHelper.startActivity<ThemeMainActivity> { }
+        }
+
+        binding.btnIM.setOnClickListener {
+            ActivityHelper.startActivity<IMMainActivity> { }
         }
     }
 

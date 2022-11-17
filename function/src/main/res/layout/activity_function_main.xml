@@ -13,13 +13,19 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/btnTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="主题" />
+            <Button
+                android:id="@+id/btnIM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="IM" />
         </LinearLayout>
     </app.allever.android.lib.widget.ReboundNestedScrollView>
 

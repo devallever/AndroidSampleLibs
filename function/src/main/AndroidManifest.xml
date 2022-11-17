@@ -5,5 +5,6 @@
     <application>
         <activity android:name=".FunctionMainActivity" />
         <activity android:name=".theme.ThemeMainActivity" />
+        <activity android:name=".im.IMMainActivity" />
     </application>
 </manifest>

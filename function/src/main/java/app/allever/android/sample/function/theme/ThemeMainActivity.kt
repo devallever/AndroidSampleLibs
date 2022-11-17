@@ -9,7 +9,7 @@ import app.allever.android.lib.common.databinding.ActivityTabBinding
 
 
 class ThemeMainActivity : TabActivity<ActivityTabBinding, TabViewModel>() {
-    override fun getPageTitle() = "主题相关"
+    override fun getPageTitle() = "主题"
 
     override fun getTabTitles() = mutableListOf("更改主题")
 
