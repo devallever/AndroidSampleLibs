@@ -16,10 +16,10 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/btnChangeTheme"
+                android:id="@+id/btnTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="更改主题" />
+                android:text="主题" />
         </LinearLayout>
     </app.allever.android.lib.widget.ReboundNestedScrollView>
 
