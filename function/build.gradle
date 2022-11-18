@@ -42,4 +42,10 @@ dependencies {
 
     api 'skin.support:skin-support:4.0.5'                   // skin-support
     api 'skin.support:skin-support-appcompat:4.0.5'         // skin-support 基础控件支持
+
+    // https://github.com/vanniktech/Emoji
+    api "com.vanniktech:emoji-ios:0.8.0"
+
+    // https://github.com/vdurmont/emoji-java
+    api "com.vdurmont:emoji-java:5.1.1"
 }

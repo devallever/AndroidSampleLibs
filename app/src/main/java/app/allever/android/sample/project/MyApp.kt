@@ -9,6 +9,8 @@ import app.allever.android.lib.core.function.permission.PermissionHelper
 import app.allever.android.lib.imageloader.glide.GlideLoader
 import app.allever.android.lib.network.ApiService
 import app.allever.android.lib.widget.Widget
+import app.allever.android.sample.function.im.function.MyEmojiProvider
+import com.vanniktech.emoji.EmojiManager
 import skin.support.SkinCompatManager
 import skin.support.app.SkinAppCompatViewInflater
 
@@ -22,6 +24,8 @@ class MyApp : App() {
             .header("Sample", "Hello")
             .init(ApiService)
         initSkin()
+
+        EmojiManager.install(MyEmojiProvider())
     }
 
     private fun initSkin() {
