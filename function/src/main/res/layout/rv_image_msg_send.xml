@@ -124,6 +124,7 @@
                 android:id="@+id/ivWidthImg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="centerCrop"
                 android:src="@drawable/bottom_input_emo" />
 
         </FrameLayout>
@@ -139,7 +140,6 @@
             android:minWidth="40dp"
             android:minHeight="40dp"
             android:padding="10dp"
-            android:scaleType="centerCrop"
             android:src="@drawable/ic_input_panel_emoji">
 
             <androidx.appcompat.widget.AppCompatImageView

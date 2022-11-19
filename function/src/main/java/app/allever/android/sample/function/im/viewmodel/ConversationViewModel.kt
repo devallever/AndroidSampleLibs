@@ -35,7 +35,7 @@ class ConversationViewModel : BaseViewModel() {
 
     private fun initTestData() {
         userMe.avatar =
-            "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2F1112%2F030919135303%2F1Z309135303-1-1200.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1671294148&t=d7b7ce51004c24fc155d1fed6b6d84bd"
+            "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2019-05-28%2F5cecf6fe1ce3b.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1671440223&t=fc84daf5543856c1686bd29b9f2dbadc"
         userMe.nickname = "小猫咪666"
         userOther.avatar =
             "https://img2.baidu.com/it/u=1801140900,2951304091&fm=253&fmt=auto&app=120&f=JPEG?w=1280&h=800"
