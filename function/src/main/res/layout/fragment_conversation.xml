@@ -20,12 +20,22 @@
             android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scaleY="-1"
             app:layout_constraintBottom_toTopOf="@+id/inputViewContainer"
             app:layout_constraintTop_toTopOf="parent"
             app:srlEnableAutoLoadMore="false"
             app:srlEnableNestedScrolling="false"
             app:srlEnableRefresh="false">
+            <com.scwang.smart.refresh.header.ClassicsHeader
+                android:id="@+id/headerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srlTextPulling=""
+                app:srlDrawableArrowSize="0dp"
+                app:srlEnableLastTime="false"
+                app:srlTextRefreshing="正在加载"
+                app:srlTextFinish="完成"
+                app:srlTextRelease="加载更多"
+                app:srlTextLoading=""/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -34,17 +44,9 @@
                 android:fadeScrollbars="false"
                 android:overScrollMode="never"
                 android:paddingHorizontal="14dp"
-                android:scaleY="-1"
                 android:scrollbars="none"
                 tools:itemCount="3"
                 tools:listitem="@layout/rv_text_msg_receive" />
-
-            <com.scwang.smart.refresh.footer.ClassicsFooter
-                android:id="@+id/footerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleY="-1"
-                app:srlTextPulling="下拉加载更多" />
 
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 

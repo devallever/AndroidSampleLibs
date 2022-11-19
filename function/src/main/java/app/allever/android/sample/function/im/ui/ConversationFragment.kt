@@ -31,17 +31,20 @@ class ConversationFragment :
     }
 
     private fun initRecyclerView() {
-        mBinding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        val layoutManager = LinearLayoutManager(requireActivity())
+        layoutManager.stackFromEnd = true
+        layoutManager.reverseLayout = true
+        mBinding.recyclerView.layoutManager = layoutManager
         mBinding.recyclerView.adapter = mViewModel.messageAdapter
 
-        val arrow: View = mBinding.footerView.findViewById(ClassicsFooter.ID_IMAGE_ARROW)
-        arrow.scaleY = -1f //必须设置
-        mBinding.recyclerView.scaleY = -1f//必须设置
-        mBinding.refreshLayout.setEnableRefresh(false) //必须关闭
-        mBinding.refreshLayout.setEnableAutoLoadMore(true) //必须关闭
-        mBinding.refreshLayout.setEnableNestedScroll(false) //必须关闭
-        mBinding.refreshLayout.setEnableScrollContentWhenLoaded(true) //必须关闭
-        mBinding.refreshLayout.layout.scaleY = -1f //必须设置
+//        val arrow: View = mBinding.footerView.findViewById(ClassicsFooter.ID_IMAGE_ARROW)
+//        arrow.scaleY = -1f //必须设置
+//        mBinding.recyclerView.scaleY = -1f//必须设置
+        mBinding.refreshLayout.setEnableRefresh(true) //必须关闭
+        mBinding.refreshLayout.setEnableAutoLoadMore(false) //必须关闭
+//        mBinding.refreshLayout.setEnableNestedScroll(false) //必须关闭
+//        mBinding.refreshLayout.setEnableScrollContentWhenLoaded(true) //必须关闭
+//        mBinding.refreshLayout.layout.scaleY = -1f //必须设置
 
         mBinding.refreshLayout.setScrollBoundaryDecider(object : ScrollBoundaryDeciderAdapter() {
             override fun canLoadMore(content: View?): Boolean {
