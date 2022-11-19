@@ -94,8 +94,8 @@ class ConversationFragment :
         mEmojiPopup = EmojiPopup.Builder
             .fromRootView(mBinding.root)
             .setKeyboardAnimationStyle(R.style.emoji_fade_animation_style)
-            .setOnEmojiPopupShownListener { mBinding.ivEmoji.setImageResource(R.drawable.ic_keybroad) }
-            .setOnEmojiPopupDismissListener { mBinding.ivEmoji.setImageResource(R.drawable.bottom_input_emo) }
+            .setOnEmojiPopupShownListener { mBinding.ivEmoji.setImageResource(R.drawable.ic_input_panel_keyboard) }
+            .setOnEmojiPopupDismissListener { mBinding.ivEmoji.setImageResource(R.drawable.ic_input_panel_emoji) }
             .setOnSoftKeyboardCloseListener {  }
             .build(mBinding.etInput)
 

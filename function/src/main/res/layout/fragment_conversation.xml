@@ -102,8 +102,8 @@
                         android:layout_height="40dp"
                         android:layout_alignEnd="@id/etInput"
                         android:layout_centerVertical="true"
-                        android:padding="8dp"
-                        android:src="@drawable/bottom_input_emo" />
+                        android:padding="4dp"
+                        android:src="@drawable/ic_input_panel_emoji" />
                 </RelativeLayout>
 
                 <LinearLayout
