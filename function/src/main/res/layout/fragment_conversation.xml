@@ -25,17 +25,18 @@
             app:srlEnableAutoLoadMore="false"
             app:srlEnableNestedScrolling="false"
             app:srlEnableRefresh="false">
+
             <com.scwang.smart.refresh.header.ClassicsHeader
                 android:id="@+id/headerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srlTextPulling=""
                 app:srlDrawableArrowSize="0dp"
                 app:srlEnableLastTime="false"
-                app:srlTextRefreshing="正在加载"
                 app:srlTextFinish="完成"
-                app:srlTextRelease="加载更多"
-                app:srlTextLoading=""/>
+                app:srlTextLoading=""
+                app:srlTextPulling=""
+                app:srlTextRefreshing="正在加载"
+                app:srlTextRelease="加载更多" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -65,9 +66,9 @@
                 android:orientation="horizontal"
                 android:paddingHorizontal="10dp"
                 android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/expandContainer"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintRight_toRightOf="parent">
 
                 <RelativeLayout
                     android:layout_width="0dp"
@@ -96,7 +97,7 @@
                         android:textSize="15sp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/tvEmo"
+                        android:id="@+id/ivEmoji"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_alignEnd="@id/etInput"
@@ -134,8 +135,33 @@
 
                 </LinearLayout>
 
-
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:visibility="gone"
+                android:id="@+id/expandContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <!-- 扩展功能 -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvExpand"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="#50ff0000"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <FrameLayout
+                    android:visibility="gone"
+                    android:background="#50ffff00"
+                    android:id="@+id/emojiContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

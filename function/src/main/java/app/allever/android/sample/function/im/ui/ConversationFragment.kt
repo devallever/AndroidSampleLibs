@@ -1,11 +1,15 @@
 package app.allever.android.sample.function.im.ui
 
+import android.annotation.SuppressLint
 import android.text.TextUtils
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.allever.android.lib.core.function.permission.PermissionHelper
 import app.allever.android.lib.core.function.permission.PermissionListener
+import app.allever.android.lib.core.helper.ViewHelper
+import app.allever.android.lib.core.util.KeyboardUtils
 import app.allever.android.lib.core.util.SoftKeyboardUtils
 import app.allever.android.lib.mvvm.base.BaseMvvmFragment
 import app.allever.android.lib.mvvm.base.MvvmConfig
@@ -35,9 +39,15 @@ class ConversationFragment :
         layoutManager.reverseLayout = true
         mBinding.recyclerView.layoutManager = layoutManager
         mBinding.recyclerView.adapter = mViewModel.messageAdapter
+        mViewModel.messageAdapter.setOnItemClickListener { adapter, view, position ->
+            if (SoftKeyboardUtils.isShown(context)) {
+                KeyboardUtils.hideInput(activity)
+            }
+            mBinding.expandContainer.isVisible = false
+        }
 
         mBinding.refreshLayout.setEnableRefresh(true)
-        mBinding.refreshLayout.setEnableAutoLoadMore(false)
+        mBinding.refreshLayout.setEnableLoadMore(false)
 
         mBinding.refreshLayout.setScrollBoundaryDecider(object : ScrollBoundaryDeciderAdapter() {
             override fun canLoadMore(content: View?): Boolean {
@@ -51,18 +61,47 @@ class ConversationFragment :
                 mBinding.refreshLayout.finishLoadMore(true)
             }, 800)
         }
+
+        mBinding.etInput.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                if (mBinding.expandContainer.isVisible) {
+                    mBinding.expandContainer.isVisible = false
+                }
+            }
+        }
     }
 
+    var hideSoftInput = true
+
+    @SuppressLint("ClickableViewAccessibility")
     private fun initListener() {
         mBinding.tvSend.setOnClickListener {
             mViewModel.sendMessage(mBinding.etInput.text?.toString() ?: return@setOnClickListener)
             mBinding.etInput.setText("")
-            mBinding.recyclerView.scrollToPosition(mViewModel.messageAdapter.data.lastIndex)
-            SoftKeyboardUtils.hideSoftKeyboard(mBinding.etInput)
+            mBinding.recyclerView.scrollToPosition(0)
         }
 
         mBinding.etInput.addTextChangedListener {
             setVisibility(mBinding.tvSend, !TextUtils.isEmpty(it?.toString()))
+            setVisibility(mBinding.ivAdd, TextUtils.isEmpty(it?.toString()))
+        }
+
+        mBinding.ivAdd.setOnClickListener {
+            val showing = mBinding.expandContainer.isVisible
+            if (showing) {
+                if (mBinding.rvExpand.isVisible) {
+                    ViewHelper.setVisible(mBinding.expandContainer, !showing)
+                } else {
+                    showFunction()
+                }
+            } else {
+                ViewHelper.setVisible(mBinding.expandContainer, !showing)
+            }
+            KeyboardUtils.hideInput(activity)
+        }
+
+        mBinding.ivEmoji.setOnClickListener {
+            showEmoji()
         }
 
 //        mBinding.tvInput.setOnClickListener {
@@ -71,6 +110,20 @@ class ConversationFragment :
 //        mBinding.tvEmo.setOnClickListener {
 //            showInputDialog(true)
 //        }
+    }
+
+    private fun showFunction() {
+        mBinding.rvExpand.isVisible = true
+        mBinding.expandContainer.isVisible = true
+        mBinding.emojiContainer.isVisible = false
+        KeyboardUtils.hideInput(activity)
+    }
+
+    private fun showEmoji() {
+        mBinding.emojiContainer.isVisible = true
+        mBinding.expandContainer.isVisible = true
+        mBinding.rvExpand.isVisible = false
+        KeyboardUtils.hideInput(activity)
     }
 
     private fun showInputDialog(showEmo: Boolean) {
