@@ -16,7 +16,6 @@ import app.allever.android.sample.function.im.ui.adapter.ScrollBoundaryDeciderAd
 import app.allever.android.sample.function.im.ui.widget.InputBar
 import app.allever.android.sample.function.im.ui.widget.InputBarDialog
 import app.allever.android.sample.function.im.viewmodel.ConversationViewModel
-import com.scwang.smart.refresh.footer.ClassicsFooter
 
 class ConversationFragment :
     BaseMvvmFragment<FragmentConversationBinding, ConversationViewModel>() {
@@ -37,14 +36,8 @@ class ConversationFragment :
         mBinding.recyclerView.layoutManager = layoutManager
         mBinding.recyclerView.adapter = mViewModel.messageAdapter
 
-//        val arrow: View = mBinding.footerView.findViewById(ClassicsFooter.ID_IMAGE_ARROW)
-//        arrow.scaleY = -1f //必须设置
-//        mBinding.recyclerView.scaleY = -1f//必须设置
-        mBinding.refreshLayout.setEnableRefresh(true) //必须关闭
-        mBinding.refreshLayout.setEnableAutoLoadMore(false) //必须关闭
-//        mBinding.refreshLayout.setEnableNestedScroll(false) //必须关闭
-//        mBinding.refreshLayout.setEnableScrollContentWhenLoaded(true) //必须关闭
-//        mBinding.refreshLayout.layout.scaleY = -1f //必须设置
+        mBinding.refreshLayout.setEnableRefresh(true)
+        mBinding.refreshLayout.setEnableAutoLoadMore(false)
 
         mBinding.refreshLayout.setScrollBoundaryDecider(object : ScrollBoundaryDeciderAdapter() {
             override fun canLoadMore(content: View?): Boolean {
@@ -61,13 +54,6 @@ class ConversationFragment :
     }
 
     private fun initListener() {
-//        requireActivity().window.decorView.viewTreeObserver.addOnGlobalLayoutListener {
-//            if (SoftKeyboardUtils.isShown(context)) {
-//                mBinding.recyclerView.scrollToPosition(mViewModel.messageAdapter.data.lastIndex)
-//                mBinding.recyclerView.requestFocus()
-//            }
-//        }
-
         mBinding.tvSend.setOnClickListener {
             mViewModel.sendMessage(mBinding.etInput.text?.toString() ?: return@setOnClickListener)
             mBinding.etInput.setText("")
