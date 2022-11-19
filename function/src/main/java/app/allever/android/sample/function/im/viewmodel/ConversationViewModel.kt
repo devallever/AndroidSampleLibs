@@ -1,5 +1,7 @@
 package app.allever.android.sample.function.im.viewmodel
 
+import app.allever.android.lib.core.function.media.MediaBean
+import app.allever.android.lib.core.function.mediapicker.MediaPickerHelper
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.sample.function.R
 import app.allever.android.sample.function.im.constant.ActionType
@@ -123,11 +125,41 @@ class ConversationViewModel : BaseViewModel() {
         messageAdapter.setList(messageList)
     }
 
-    fun sendMessage(content: String) {
+    fun sendTextMessage(content: String) {
         val message = TextMessage()
         message.user = userMe
         message.actionType = ActionType.SEND
         message.content = content
+        messageAdapter.addData(0, message)
+    }
+
+    fun sendMediaMessage(media: MediaBean, mediaType: String) {
+        when (mediaType) {
+            MediaPickerHelper.TYPE_IMAGE ->  sendImageMessage(media)
+            MediaPickerHelper.TYPE_VIDEO ->  sendVideoMessage(media)
+        }
+    }
+
+    fun sendImageMessage(media: MediaBean) {
+        val message = ImageMessage()
+        message.user = userMe
+        message.actionType = ActionType.SEND
+        message.path = media.path
+        message.url = media.path
+        message.width = media.width
+        message.height = media.height
+        messageAdapter.addData(0, message)
+    }
+
+    fun sendVideoMessage(media: MediaBean) {
+        val message = VideoMessage()
+        message.user = userMe
+        message.actionType = ActionType.SEND
+        message.path = media.path
+        message.cover = media.path
+        message.url = media.path
+        message.width = media.width
+        message.height = media.height
         messageAdapter.addData(0, message)
     }
 

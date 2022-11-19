@@ -5,8 +5,8 @@ package app.allever.android.sample.function.im.message
  */
 open class MediaMessage : BaseMessage() {
     var url = ""
-    val cachePath = ""
-    val path = ""
+    var cachePath = ""
+    var path = ""
     var width = 0
     var height = 0
     var duration = 0L

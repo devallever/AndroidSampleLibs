@@ -5,9 +5,11 @@ import android.text.TextUtils
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.allever.android.lib.core.ext.toast
+import app.allever.android.lib.core.function.mediapicker.MediaPickerHelper
 import app.allever.android.lib.core.function.permission.PermissionHelper
 import app.allever.android.lib.core.function.permission.PermissionListener
 import app.allever.android.lib.core.helper.ViewHelper
@@ -24,6 +26,7 @@ import app.allever.android.sample.function.im.ui.widget.InputBar
 import app.allever.android.sample.function.im.ui.widget.InputBarDialog
 import app.allever.android.sample.function.im.viewmodel.ConversationViewModel
 import com.vanniktech.emoji.EmojiPopup
+import kotlinx.coroutines.launch
 
 class ConversationFragment :
     BaseMvvmFragment<FragmentConversationBinding, ConversationViewModel>() {
@@ -96,7 +99,7 @@ class ConversationFragment :
             .setKeyboardAnimationStyle(R.style.emoji_fade_animation_style)
             .setOnEmojiPopupShownListener { mBinding.ivEmoji.setImageResource(R.drawable.ic_input_panel_keyboard) }
             .setOnEmojiPopupDismissListener { mBinding.ivEmoji.setImageResource(R.drawable.ic_input_panel_emoji) }
-            .setOnSoftKeyboardCloseListener {  }
+            .setOnSoftKeyboardCloseListener { }
             .build(mBinding.etInput)
 
         mBinding.etInput.setOnClickListener {
@@ -107,10 +110,10 @@ class ConversationFragment :
     private fun handleExpFunClick(expandItem: ExpandItem) {
         when (expandItem.type) {
             ExpandItem.TYPE_IMAGE -> {
-                toast("图片")
+                chooseMedia(MediaPickerHelper.TYPE_IMAGE)
             }
             ExpandItem.TYPE_VIDEO -> {
-                toast("视频")
+                chooseMedia(MediaPickerHelper.TYPE_VIDEO)
             }
             ExpandItem.TYPE_AUDIO_CALL -> {
                 toast("语音通话")
@@ -129,7 +132,9 @@ class ConversationFragment :
 
     private fun initInputPanel() {
         mBinding.tvSend.setOnClickListener {
-            mViewModel.sendMessage(mBinding.etInput.text?.toString() ?: return@setOnClickListener)
+            mViewModel.sendTextMessage(
+                mBinding.etInput.text?.toString() ?: return@setOnClickListener
+            )
             mBinding.etInput.setText("")
             mBinding.recyclerView.scrollToPosition(0)
         }
@@ -165,6 +170,19 @@ class ConversationFragment :
 
     }
 
+    private fun chooseMedia(mediaType: String) {
+        lifecycleScope.launch {
+            val result = MediaPickerHelper.launchPicker(
+                context ?: return@launch,
+                mediaType
+            )
+            result.list.map {
+                mViewModel.sendMediaMessage(it, mediaType)
+            }
+            mBinding.recyclerView.scrollToPosition(0)
+        }
+    }
+
     private fun showFunction() {
         mBinding.rvExpand.isVisible = true
         mBinding.expandContainer.isVisible = true
@@ -187,7 +205,7 @@ class ConversationFragment :
             mBinding.etInput.text.toString().trim(),
             object : InputBar.InputBarListener {
                 override fun onClickSend(message: String) {
-                    mViewModel.sendMessage(message)
+                    mViewModel.sendTextMessage(message)
                 }
 
                 override fun onClickAdd() {

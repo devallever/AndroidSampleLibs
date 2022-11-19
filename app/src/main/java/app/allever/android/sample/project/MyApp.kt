@@ -3,12 +3,14 @@ package app.allever.android.sample.project
 import app.allever.android.lib.common.function.network.reponse.BaseResponse
 import app.allever.android.lib.core.app.App
 import app.allever.android.lib.core.function.imageloader.ImageLoader
+import app.allever.android.lib.core.function.mediapicker.MediaPickerHelper
 import app.allever.android.lib.core.function.network.HttpConfig
 import app.allever.android.lib.core.function.permission.DefaultPermissionEngine
 import app.allever.android.lib.core.function.permission.PermissionHelper
 import app.allever.android.lib.imageloader.glide.GlideLoader
 import app.allever.android.lib.network.ApiService
 import app.allever.android.lib.widget.Widget
+import app.allever.android.lib.widget.mediapicker.MediaPicker
 import app.allever.android.sample.function.im.function.MyEmojiProvider
 import com.vanniktech.emoji.EmojiManager
 import skin.support.SkinCompatManager
@@ -26,6 +28,8 @@ class MyApp : App() {
         initSkin()
 
         EmojiManager.install(MyEmojiProvider())
+
+        MediaPickerHelper.init(MediaPicker)
     }
 
     private fun initSkin() {
