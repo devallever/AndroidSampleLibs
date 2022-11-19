@@ -4,6 +4,7 @@ import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.sample.function.R
 import app.allever.android.sample.function.im.constant.ActionType
 import app.allever.android.sample.function.im.message.BaseMessage
+import app.allever.android.sample.function.im.message.ImageMessage
 import app.allever.android.sample.function.im.message.TextMessage
 import app.allever.android.sample.function.im.ui.adapter.ExpandAdapter
 import app.allever.android.sample.function.im.ui.adapter.ExpandItem
@@ -43,27 +44,54 @@ class ConversationViewModel : BaseViewModel() {
         msg1.actionType = ActionType.RECEIVE
         msg1.user = userOther
         msg1.content = "你好美女，能交个朋友吗？"
-        messageList.add(msg1)
+        messageList.add(0, msg1)
 
         val msg2 = TextMessage()
         msg2.user = userMe
         msg2.actionType = ActionType.SEND
         msg2.content = "可以的呀，你是哪里人？"
-        messageList.add(msg2)
+        messageList.add(0, msg2)
 
         val msg3 = TextMessage()
         msg3.user = userOther
         msg3.actionType = ActionType.RECEIVE
-        msg3.content = "广州的，你呢？"
-        messageList.add(msg3)
-//        messageList.add(msg3)
-//        messageList.add(msg3)
-//        messageList.add(msg3)
+        msg3.content = "广州的"
+        messageList.add(0, msg3)
+
+        val msg4 = ImageMessage()
+        msg4.user = userMe
+        msg4.url = userMe.avatar
+        msg4.width = 1
+        messageList.add(0, msg4)
+
+        val msg6 = TextMessage()
+        msg6.user = userMe
+        msg6.actionType = ActionType.SEND
+        msg6.content = "这是我，好看么？可以看看你的照片吗？"
+        messageList.add(0, msg6)
+
+        val msg7 = TextMessage()
+        msg7.user = userOther
+        msg7.actionType = ActionType.RECEIVE
+        msg7.content = "当然可以呀"
+        messageList.add(0, msg7)
+
+        val msg8 = ImageMessage()
+        msg8.user = userOther
+        msg8.actionType = ActionType.RECEIVE
+        msg8.url = userOther.avatar
+        msg8.height = 1
+        messageList.add(0, msg8)
+
+
+//        messageList.add(0, msg3)
+//        messageList.add(0, msg3)
+//        messageList.add(0, msg3)
 //
-//        messageList.add(msg3)
-//        messageList.add(msg3)
-//        messageList.add(msg3)
-//        messageList.add(msg3)
+//        messageList.add(0, msg3)
+//        messageList.add(0, msg3)
+//        messageList.add(0, msg3)
+//        messageList.add(0, msg3)
 
         messageAdapter.setList(messageList)
     }

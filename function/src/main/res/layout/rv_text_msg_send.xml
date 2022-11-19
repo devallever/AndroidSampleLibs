@@ -98,7 +98,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/relContentView"
+        android:id="@+id/contentView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
