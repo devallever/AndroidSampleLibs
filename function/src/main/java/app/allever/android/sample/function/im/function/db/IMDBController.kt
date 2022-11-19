@@ -1,0 +1,37 @@
+package app.allever.android.sample.function.im.function.db
+
+import app.allever.android.sample.function.im.user.UserInfo
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+
+object IMDBController {
+    private val userDao by lazy {
+        IMDB.getIns().userDao()
+    }
+
+    suspend fun getUserById(id: Long) = withContext(Dispatchers.IO) {
+        val result = userDao.getUserById(id)
+        if (result.isEmpty()) {
+            null
+        } else {
+            result[0]
+        }
+    }
+
+    suspend fun getAllUser(): MutableList<UserInfo> = withContext(Dispatchers.IO) {
+        userDao.getAllUser() as MutableList<UserInfo>
+    }
+
+    suspend fun addUser(userInfo: UserInfo) = withContext(Dispatchers.IO) {
+        val result = userDao.addUser(userInfo)
+        result > 0
+    }
+
+    suspend fun updateUser(userInfo: UserInfo) = withContext(Dispatchers.IO) {
+        userDao.updateUser(userInfo)
+    }
+
+    suspend fun deleteUser(userInfo: UserInfo)= withContext(Dispatchers.IO) {
+        userDao.deleteUser(userInfo)
+    }
+}

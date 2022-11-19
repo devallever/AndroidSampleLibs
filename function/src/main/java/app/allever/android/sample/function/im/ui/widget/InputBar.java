@@ -82,7 +82,7 @@ public class InputBar extends LinearLayout {
             }
         });
         ivAdd.setOnClickListener(view -> {
-            KeyboardUtil.openKeyboard(getContext(),etInput);
+            KeyboardUtil.openKeyboard(getContext(), etInput);
             if (inputBarListener != null) {
                 inputBarListener.onClickAdd();
             }
@@ -123,7 +123,7 @@ public class InputBar extends LinearLayout {
 //                    ivAdd.setVisibility(View.VISIBLE);
                 }
                 if (inputBarListener != null) {
-                    inputBarListener.inputTextChanged(editable.length()>0?editable.toString():"");
+                    inputBarListener.inputTextChanged(editable.length() > 0 ? editable.toString() : "");
                 }
             }
         });
@@ -147,10 +147,10 @@ public class InputBar extends LinearLayout {
 
     public void showInputBar(boolean showEmo) {
         this.setVisibility(VISIBLE);
-        if (showEmo){
+        if (showEmo) {
             ivEmoji.postDelayed(() -> {
                 ivEmoji.performClick();
-            },200);
+            }, 200);
         } else {
             etInput.requestFocus();
             SoftKeyboardUtils.showSoftKeyboard(etInput, 200);
@@ -172,6 +172,12 @@ public class InputBar extends LinearLayout {
         this.inputBarListener = inputBarListener;
     }
 
+    //关闭软键盘
+    public void closeKeybord(EditText editText, Context context) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+    }
+
     public interface InputBarListener {
 
         void onClickSend(String message);
@@ -181,12 +187,6 @@ public class InputBar extends LinearLayout {
         boolean onClickEmoji();
 
         void inputTextChanged(String content);
-    }
-
-    //关闭软键盘
-    public void closeKeybord(EditText editText, Context context) {
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
     }
 
 

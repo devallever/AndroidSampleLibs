@@ -6,7 +6,6 @@ import androidx.core.view.isVisible
 import app.allever.android.lib.core.function.imageloader.load
 import app.allever.android.sample.function.R
 import app.allever.android.sample.function.im.message.BaseMessage
-import app.allever.android.sample.function.im.message.ImageMessage
 import app.allever.android.sample.function.im.message.VideoMessage
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 

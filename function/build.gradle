@@ -48,4 +48,8 @@ dependencies {
 
     // https://github.com/vdurmont/emoji-java
     api "com.vdurmont:emoji-java:5.1.1"
+
+    //Room
+    api "androidx.room:room-runtime:2.4.3"
+    kapt "androidx.room:room-compiler:2.4.3"
 }

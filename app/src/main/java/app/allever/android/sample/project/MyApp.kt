@@ -2,6 +2,8 @@ package app.allever.android.sample.project
 
 import app.allever.android.lib.common.function.network.reponse.BaseResponse
 import app.allever.android.lib.core.app.App
+import app.allever.android.lib.core.function.datastore.DataStore
+import app.allever.android.lib.core.function.datastore.DefaultStore
 import app.allever.android.lib.core.function.imageloader.ImageLoader
 import app.allever.android.lib.core.function.mediapicker.MediaPickerHelper
 import app.allever.android.lib.core.function.network.HttpConfig
@@ -12,6 +14,8 @@ import app.allever.android.lib.network.ApiService
 import app.allever.android.lib.widget.Widget
 import app.allever.android.lib.widget.mediapicker.MediaPicker
 import app.allever.android.sample.function.im.function.MyEmojiProvider
+import app.allever.android.sample.function.im.function.db.IMDB
+import com.tencent.mmkv.MMKV
 import com.vanniktech.emoji.EmojiManager
 import skin.support.SkinCompatManager
 import skin.support.app.SkinAppCompatViewInflater
@@ -30,6 +34,10 @@ class MyApp : App() {
         EmojiManager.install(MyEmojiProvider())
 
         MediaPickerHelper.init(MediaPicker)
+
+        IMDB.init(this)
+
+        DataStore.init(DefaultStore())
     }
 
     private fun initSkin() {

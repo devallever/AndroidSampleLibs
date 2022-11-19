@@ -15,6 +15,7 @@ class MessageAdapter : BaseProviderMultiAdapter<BaseMessage>() {
         addItemProvider(VideoMsgSendProvider())
         addItemProvider(VideoMsgReceiveProvider())
     }
+
     override fun getItemType(data: List<BaseMessage>, position: Int): Int {
         return when (val item = data[position]) {
             is TextMessage -> {
