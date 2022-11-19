@@ -1,9 +1,12 @@
 package app.allever.android.sample.function.im.ui
 
+import android.text.TextUtils
 import android.view.View
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.allever.android.lib.core.function.permission.PermissionHelper
 import app.allever.android.lib.core.function.permission.PermissionListener
+import app.allever.android.lib.core.util.SoftKeyboardUtils
 import app.allever.android.lib.mvvm.base.BaseMvvmFragment
 import app.allever.android.lib.mvvm.base.MvvmConfig
 import app.allever.android.sample.function.BR
@@ -55,43 +58,65 @@ class ConversationFragment :
     }
 
     private fun initListener() {
+//        requireActivity().window.decorView.viewTreeObserver.addOnGlobalLayoutListener {
+//            if (SoftKeyboardUtils.isShown(context)) {
+//                mBinding.recyclerView.scrollToPosition(mViewModel.messageAdapter.data.lastIndex)
+//                mBinding.recyclerView.requestFocus()
+//            }
+//        }
 
-        mBinding.tvInput.setOnClickListener {
-            showInputDialog(false)
+        mBinding.tvSend.setOnClickListener {
+            mViewModel.sendMessage(mBinding.etInput.text?.toString() ?: return@setOnClickListener)
+            mBinding.etInput.setText("")
+            mBinding.recyclerView.scrollToPosition(mViewModel.messageAdapter.data.lastIndex)
+            SoftKeyboardUtils.hideSoftKeyboard(mBinding.etInput)
         }
-        mBinding.tvEmo.setOnClickListener {
-            showInputDialog(true)
+
+        mBinding.etInput.addTextChangedListener {
+            setVisibility(mBinding.tvSend, !TextUtils.isEmpty(it?.toString()))
         }
+
+//        mBinding.tvInput.setOnClickListener {
+//            showInputDialog(false)
+//        }
+//        mBinding.tvEmo.setOnClickListener {
+//            showInputDialog(true)
+//        }
     }
 
-    private fun showInputDialog(showEmo:Boolean){
-        inputBarDialog = InputBarDialog(context,showEmo, mBinding.tvInput.text.toString().trim(), object : InputBar.InputBarListener {
-            override fun onClickSend(message: String) {
-                mViewModel.sendMessage(message)
-            }
+    private fun showInputDialog(showEmo: Boolean) {
+        inputBarDialog = InputBarDialog(
+            context,
+            showEmo,
+            mBinding.etInput.text.toString().trim(),
+            object : InputBar.InputBarListener {
+                override fun onClickSend(message: String) {
+                    mViewModel.sendMessage(message)
+                }
 
-            override fun onClickAdd() {
-                PermissionHelper.requestPermission(
-                    object : PermissionListener {
-                        override fun onAllGranted() {
+                override fun onClickAdd() {
+                    PermissionHelper.requestPermission(
+                        object : PermissionListener {
+                            override fun onAllGranted() {
 //                            chooseImageFormPicture()
-                        }
-                    },
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                    android.Manifest.permission.CAMERA
-                )
-            }
+                            }
+                        },
+                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                        android.Manifest.permission.CAMERA
+                    )
+                }
 
-            override fun onClickEmoji(): Boolean {
-                return false
-            }
+                override fun onClickEmoji(): Boolean {
+                    return false
+                }
 
-            override fun inputTextChanged(content: String) {
-                mBinding.tvInput.setText(content)
-                mBinding.tvSend.visibility = if (content.isNotEmpty()) View.VISIBLE else View.GONE
-            }
-        })
+                override fun inputTextChanged(content: String) {
+                    mBinding.etInput.setText(content)
+                    mBinding.tvSend.visibility =
+                        if (content.isNotEmpty()) View.VISIBLE else View.GONE
+                }
+            })
         inputBarDialog?.show()
     }
 

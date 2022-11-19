@@ -40,6 +40,14 @@ class ConversationViewModel : BaseViewModel() {
         msg3.actionType = ActionType.RECEIVE
         msg3.content = "广州的，你呢？"
         messageList.add(msg3)
+        messageList.add(msg3)
+        messageList.add(msg3)
+        messageList.add(msg3)
+
+        messageList.add(msg3)
+        messageList.add(msg3)
+        messageList.add(msg3)
+        messageList.add(msg3)
 
         messageAdapter.setList(messageList)
     }

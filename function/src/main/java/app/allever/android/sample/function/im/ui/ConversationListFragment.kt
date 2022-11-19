@@ -1,5 +1,6 @@
 package app.allever.android.sample.function.im.ui
 
+import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.mvvm.base.BaseMvvmFragment
 import app.allever.android.lib.mvvm.base.MvvmConfig
 import app.allever.android.sample.function.BR
@@ -13,5 +14,8 @@ class ConversationListFragment :
         MvvmConfig(R.layout.fragment_conversation_list, BR.conversationListVM)
 
     override fun init() {
+        mBinding.root.setOnClickListener {
+            ActivityHelper.startActivity<ConversationActivity> { }
+        }
     }
 }

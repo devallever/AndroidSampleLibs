@@ -6,6 +6,7 @@ import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.mvvm.base.MvvmConfig
 import app.allever.android.sample.function.databinding.ActivityFunctionMainBinding
 import app.allever.android.sample.function.im.IMMainActivity
+import app.allever.android.sample.function.im.ui.ConversationActivity
 import app.allever.android.sample.function.theme.ThemeMainActivity
 
 class FunctionMainActivity : BaseActivity<ActivityFunctionMainBinding, FunctionMainViewModel>() {
