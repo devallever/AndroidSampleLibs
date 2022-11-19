@@ -23,11 +23,17 @@ import app.allever.android.sample.function.im.ui.adapter.ScrollBoundaryDeciderAd
 import app.allever.android.sample.function.im.ui.widget.InputBar
 import app.allever.android.sample.function.im.ui.widget.InputBarDialog
 import app.allever.android.sample.function.im.viewmodel.ConversationViewModel
+import com.vanniktech.emoji.EmojiPopup
 
 class ConversationFragment :
     BaseMvvmFragment<FragmentConversationBinding, ConversationViewModel>() {
 
     private var inputBarDialog: InputBarDialog? = null
+
+    /**
+     * emoji选择框
+     */
+    private var mEmojiPopup: EmojiPopup? = null
 
     override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_conversation, BR.conversationVM)
 
@@ -83,6 +89,18 @@ class ConversationFragment :
         mBinding.rvExpand.adapter = mViewModel.expandAdapter
         mViewModel.expandAdapter.setOnItemClickListener { adapter, view, position ->
             handleExpFunClick(mViewModel.expandAdapter.data[position])
+        }
+
+        mEmojiPopup = EmojiPopup.Builder
+            .fromRootView(mBinding.root)
+            .setKeyboardAnimationStyle(R.style.emoji_fade_animation_style)
+            .setOnEmojiPopupShownListener { mBinding.ivEmoji.setImageResource(R.drawable.ic_keybroad) }
+            .setOnEmojiPopupDismissListener { mBinding.ivEmoji.setImageResource(R.drawable.bottom_input_emo) }
+            .setOnSoftKeyboardCloseListener {  }
+            .build(mBinding.etInput)
+
+        mBinding.etInput.setOnClickListener {
+            mBinding.expandContainer.isVisible = false
         }
     }
 
@@ -155,10 +173,11 @@ class ConversationFragment :
     }
 
     private fun showEmoji() {
-        mBinding.emojiContainer.isVisible = true
+//        mBinding.emojiContainer.isVisible = true
         mBinding.expandContainer.isVisible = true
         mBinding.rvExpand.isVisible = false
         KeyboardUtils.hideInput(activity)
+        mEmojiPopup?.toggle()
     }
 
     private fun showInputDialog(showEmo: Boolean) {
