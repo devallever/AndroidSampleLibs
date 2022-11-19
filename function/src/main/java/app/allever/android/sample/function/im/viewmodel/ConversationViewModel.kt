@@ -6,6 +6,7 @@ import app.allever.android.sample.function.im.constant.ActionType
 import app.allever.android.sample.function.im.message.BaseMessage
 import app.allever.android.sample.function.im.message.ImageMessage
 import app.allever.android.sample.function.im.message.TextMessage
+import app.allever.android.sample.function.im.message.VideoMessage
 import app.allever.android.sample.function.im.ui.adapter.ExpandAdapter
 import app.allever.android.sample.function.im.ui.adapter.ExpandItem
 import app.allever.android.sample.function.im.ui.adapter.MessageAdapter
@@ -82,6 +83,32 @@ class ConversationViewModel : BaseViewModel() {
         msg8.url = userOther.avatar
         msg8.height = 1
         messageList.add(0, msg8)
+
+        val msg9 = TextMessage()
+        msg9.user = userMe
+        msg9.actionType = ActionType.SEND
+        msg9.content = "这是我拍的视频？好看吗？点个赞呗"
+        messageList.add(0, msg9)
+
+        val msg10 = VideoMessage()
+        msg10.user = userMe
+        msg10.actionType = ActionType.SEND
+        msg10.url = userMe.avatar
+        msg10.height = 1
+        messageList.add(0, msg10)
+
+        val msg11 = TextMessage()
+        msg11.user = userOther
+        msg11.actionType = ActionType.RECEIVE
+        msg11.content = "这也太好看了吧，我也拍了一个，给你看看"
+        messageList.add(0, msg11)
+
+        val msg12 = VideoMessage()
+        msg12.user = userOther
+        msg12.actionType = ActionType.RECEIVE
+        msg12.url = userOther.avatar
+        msg12.width = 1
+        messageList.add(0, msg12)
 
 
 //        messageList.add(0, msg3)

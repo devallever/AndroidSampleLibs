@@ -3,10 +3,7 @@ package app.allever.android.sample.function.im.ui.adapter
 import app.allever.android.sample.function.im.constant.ActionType
 import app.allever.android.sample.function.im.constant.MessageType
 import app.allever.android.sample.function.im.message.*
-import app.allever.android.sample.function.im.ui.adapter.provider.ImageMsgReceiveProvider
-import app.allever.android.sample.function.im.ui.adapter.provider.ImageMsgSendProvider
-import app.allever.android.sample.function.im.ui.adapter.provider.TextMsgReceiveProvider
-import app.allever.android.sample.function.im.ui.adapter.provider.TextMsgSendProvider
+import app.allever.android.sample.function.im.ui.adapter.provider.*
 import com.chad.library.adapter.base.BaseProviderMultiAdapter
 
 class MessageAdapter : BaseProviderMultiAdapter<BaseMessage>() {
@@ -15,6 +12,8 @@ class MessageAdapter : BaseProviderMultiAdapter<BaseMessage>() {
         addItemProvider(TextMsgReceiveProvider())
         addItemProvider(ImageMsgSendProvider())
         addItemProvider(ImageMsgReceiveProvider())
+        addItemProvider(VideoMsgSendProvider())
+        addItemProvider(VideoMsgReceiveProvider())
     }
     override fun getItemType(data: List<BaseMessage>, position: Int): Int {
         return when (val item = data[position]) {
