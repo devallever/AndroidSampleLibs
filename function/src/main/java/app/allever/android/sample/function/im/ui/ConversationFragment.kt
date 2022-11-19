@@ -5,7 +5,9 @@ import android.text.TextUtils
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.function.permission.PermissionHelper
 import app.allever.android.lib.core.function.permission.PermissionListener
 import app.allever.android.lib.core.helper.ViewHelper
@@ -16,6 +18,7 @@ import app.allever.android.lib.mvvm.base.MvvmConfig
 import app.allever.android.sample.function.BR
 import app.allever.android.sample.function.R
 import app.allever.android.sample.function.databinding.FragmentConversationBinding
+import app.allever.android.sample.function.im.ui.adapter.ExpandItem
 import app.allever.android.sample.function.im.ui.adapter.ScrollBoundaryDeciderAdapter
 import app.allever.android.sample.function.im.ui.widget.InputBar
 import app.allever.android.sample.function.im.ui.widget.InputBarDialog
@@ -29,11 +32,14 @@ class ConversationFragment :
     override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_conversation, BR.conversationVM)
 
     override fun init() {
-        initRecyclerView()
+        initMessageList()
+        initInputPanel()
+        initExpand()
+        mViewModel.initExpandFunData()
         initListener()
     }
 
-    private fun initRecyclerView() {
+    private fun initMessageList() {
         val layoutManager = LinearLayoutManager(requireActivity())
         layoutManager.stackFromEnd = true
         layoutManager.reverseLayout = true
@@ -71,10 +77,39 @@ class ConversationFragment :
         }
     }
 
-    var hideSoftInput = true
+    private fun initExpand() {
+        val layoutManager = GridLayoutManager(activity, 3)
+        mBinding.rvExpand.layoutManager = layoutManager
+        mBinding.rvExpand.adapter = mViewModel.expandAdapter
+        mViewModel.expandAdapter.setOnItemClickListener { adapter, view, position ->
+            handleExpFunClick(mViewModel.expandAdapter.data[position])
+        }
+    }
 
-    @SuppressLint("ClickableViewAccessibility")
-    private fun initListener() {
+    private fun handleExpFunClick(expandItem: ExpandItem) {
+        when (expandItem.type) {
+            ExpandItem.TYPE_IMAGE -> {
+                toast("图片")
+            }
+            ExpandItem.TYPE_VIDEO -> {
+                toast("视频")
+            }
+            ExpandItem.TYPE_AUDIO_CALL -> {
+                toast("语音通话")
+            }
+            ExpandItem.TYPE_VIDEO_CALL -> {
+                toast("视频通话")
+            }
+            ExpandItem.TYPE_LOCATION -> {
+                toast("位置")
+            }
+            else -> {
+
+            }
+        }
+    }
+
+    private fun initInputPanel() {
         mBinding.tvSend.setOnClickListener {
             mViewModel.sendMessage(mBinding.etInput.text?.toString() ?: return@setOnClickListener)
             mBinding.etInput.setText("")
@@ -103,13 +138,13 @@ class ConversationFragment :
         mBinding.ivEmoji.setOnClickListener {
             showEmoji()
         }
+    }
 
-//        mBinding.tvInput.setOnClickListener {
-//            showInputDialog(false)
-//        }
-//        mBinding.tvEmo.setOnClickListener {
-//            showInputDialog(true)
-//        }
+    var hideSoftInput = true
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun initListener() {
+
     }
 
     private fun showFunction() {

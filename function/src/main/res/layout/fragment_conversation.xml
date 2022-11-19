@@ -138,10 +138,10 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:visibility="gone"
                 android:id="@+id/expandContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <!-- 扩展功能 -->
@@ -149,15 +149,16 @@
                     android:id="@+id/rvExpand"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:background="#50ff0000"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:spanCount="3" />
 
                 <FrameLayout
-                    android:visibility="gone"
-                    android:background="#50ffff00"
                     android:id="@+id/emojiContainer"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
+                    android:background="#50ffff00"
+                    android:visibility="gone"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

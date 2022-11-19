@@ -1,9 +1,12 @@
 package app.allever.android.sample.function.im.viewmodel
 
 import app.allever.android.lib.mvvm.base.BaseViewModel
+import app.allever.android.sample.function.R
 import app.allever.android.sample.function.im.constant.ActionType
 import app.allever.android.sample.function.im.message.BaseMessage
 import app.allever.android.sample.function.im.message.TextMessage
+import app.allever.android.sample.function.im.ui.adapter.ExpandAdapter
+import app.allever.android.sample.function.im.ui.adapter.ExpandItem
 import app.allever.android.sample.function.im.ui.adapter.MessageAdapter
 import app.allever.android.sample.function.im.user.UserInfo
 
@@ -13,15 +16,28 @@ class ConversationViewModel : BaseViewModel() {
 
     val messageAdapter = MessageAdapter()
     val messageList = mutableListOf<BaseMessage>()
+    val expandAdapter = ExpandAdapter()
 
     override fun init() {
         initTestData()
     }
 
+    fun initExpandFunData() {
+        val list = mutableListOf<ExpandItem>()
+        list.add(ExpandItem(R.drawable.bottom_input_emo, "图片", ExpandItem.TYPE_IMAGE))
+        list.add(ExpandItem(R.drawable.bottom_input_emo, "视频", ExpandItem.TYPE_VIDEO))
+        list.add(ExpandItem(R.drawable.bottom_input_emo, "语音通话", ExpandItem.TYPE_AUDIO_CALL))
+        list.add(ExpandItem(R.drawable.bottom_input_emo, "视频通话", ExpandItem.TYPE_VIDEO_CALL))
+        list.add(ExpandItem(R.drawable.bottom_input_emo, "位置", ExpandItem.TYPE_LOCATION))
+        expandAdapter.setList(list)
+    }
+
     private fun initTestData() {
-        userMe.avatar = "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2F1112%2F030919135303%2F1Z309135303-1-1200.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1671294148&t=d7b7ce51004c24fc155d1fed6b6d84bd"
+        userMe.avatar =
+            "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2F1112%2F030919135303%2F1Z309135303-1-1200.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1671294148&t=d7b7ce51004c24fc155d1fed6b6d84bd"
         userMe.nickname = "小猫咪666"
-        userOther.avatar = "https://img2.baidu.com/it/u=1801140900,2951304091&fm=253&fmt=auto&app=120&f=JPEG?w=1280&h=800"
+        userOther.avatar =
+            "https://img2.baidu.com/it/u=1801140900,2951304091&fm=253&fmt=auto&app=120&f=JPEG?w=1280&h=800"
         userOther.nickname = "倾国倾城"
         val msg1 = TextMessage()
         msg1.actionType = ActionType.RECEIVE
