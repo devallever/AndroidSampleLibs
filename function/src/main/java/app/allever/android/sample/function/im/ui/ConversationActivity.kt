@@ -9,9 +9,14 @@ import app.allever.android.sample.function.databinding.ActivityConversationBindi
 
 class ConversationActivity : BaseMvvmActivity<ActivityConversationBinding, BaseViewModel>() {
 
+    companion object {
+        const val EXTRA_OTHER_USER_ID = "other_user_id"
+    }
+
     override fun init() {
+        val otherUserId = intent?.getLongExtra(EXTRA_OTHER_USER_ID, 0L) ?: 0L
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, ConversationFragment())
+            .replace(R.id.fragmentContainer, ConversationFragment.newInstance(otherUserId))
             .commit()
     }
 

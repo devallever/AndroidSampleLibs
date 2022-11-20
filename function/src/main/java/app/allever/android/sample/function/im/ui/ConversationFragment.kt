@@ -1,6 +1,7 @@
 package app.allever.android.sample.function.im.ui
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import androidx.core.view.isVisible
@@ -31,6 +32,16 @@ import kotlinx.coroutines.launch
 class ConversationFragment :
     BaseMvvmFragment<FragmentConversationBinding, ConversationViewModel>() {
 
+    companion object {
+        fun newInstance(otherUserId: Long):  ConversationFragment{
+            val fragment = ConversationFragment()
+            val bundle = Bundle()
+            bundle.putLong(ConversationActivity.EXTRA_OTHER_USER_ID, otherUserId)
+            fragment.arguments = bundle
+            return fragment
+        }
+    }
+
     private var inputBarDialog: InputBarDialog? = null
 
     /**
@@ -41,6 +52,7 @@ class ConversationFragment :
     override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_conversation, BR.conversationVM)
 
     override fun init() {
+        mViewModel.initExtra(requireActivity().intent)
         initMessageList()
         initInputPanel()
         initExpand()

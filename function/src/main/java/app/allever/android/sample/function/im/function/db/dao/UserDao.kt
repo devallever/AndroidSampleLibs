@@ -21,8 +21,8 @@ interface UserDao {
     fun updateUser(user: UserInfo)
 
     @Query("select * from userinfo")
-    fun getAllUser(): List<UserInfo>
+    fun getAllUser(): MutableList<UserInfo>
 
     @Query("select * from userinfo where id = :id")
-    fun getUserById(id: Long): List<UserInfo>
+    fun getUserById(id: Long): MutableList<UserInfo>
 }

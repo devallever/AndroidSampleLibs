@@ -1,9 +1,13 @@
 package app.allever.android.sample.function.im.function.db
 
 import app.allever.android.lib.core.ext.log
+import app.allever.android.lib.core.ext.removeItemIf
 import app.allever.android.lib.core.helper.GsonHelper
 import app.allever.android.sample.function.im.function.db.entity.MessageEntity
+import app.allever.android.sample.function.im.message.BaseMessage
+import app.allever.android.sample.function.im.message.TextMessage
 import app.allever.android.sample.function.im.user.UserInfo
+import app.allever.android.sample.function.im.viewmodel.IMViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -58,5 +62,28 @@ object IMDBController {
         result.map {
             log("消息：${GsonHelper.toJson(it)}")
         }
+    }
+
+    suspend fun getVirtualConversationList() = withContext(Dispatchers.IO) {
+        val result = userDao.getAllUser()
+        result.removeItemIf {
+            return@removeItemIf it.id == IMViewModel.loginUserId
+        }
+
+        val messageList = mutableListOf<BaseMessage>()
+        result.map {
+            val msg = TextMessage()
+            msg.user = it
+            messageList.add(msg)
+        }
+        messageList
+    }
+
+    suspend fun getContactsList() = withContext(Dispatchers.IO) {
+        val result = userDao.getAllUser()
+        result.removeItemIf {
+            return@removeItemIf it.id == IMViewModel.loginUserId
+        }
+        result
     }
 }

@@ -16,7 +16,7 @@ class UserAdapter :
     ) {
         val binding = holder.dataBinding ?: return
         binding.ivAvatar.load(item.avatar)
-        binding.tvNickName.text = item.nickname
+        binding.tvNickName.text =  "${item.id}.${item.nickname}"
         binding.userView.isVisible = false
     }
 }
