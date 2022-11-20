@@ -1,11 +1,14 @@
 package app.allever.android.sample.function.im.viewmodel
 
-import android.text.TextUtils
+import androidx.lifecycle.viewModelScope
+import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.function.media.MediaBean
 import app.allever.android.lib.core.function.mediapicker.MediaPickerHelper
+import app.allever.android.lib.core.helper.GsonHelper
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.sample.function.R
 import app.allever.android.sample.function.im.constant.ActionType
+import app.allever.android.sample.function.im.function.db.IMDBController
 import app.allever.android.sample.function.im.message.BaseMessage
 import app.allever.android.sample.function.im.message.ImageMessage
 import app.allever.android.sample.function.im.message.TextMessage
@@ -14,17 +17,28 @@ import app.allever.android.sample.function.im.ui.adapter.ExpandAdapter
 import app.allever.android.sample.function.im.ui.adapter.ExpandItem
 import app.allever.android.sample.function.im.ui.adapter.MessageAdapter
 import app.allever.android.sample.function.im.user.UserInfo
+import kotlinx.coroutines.launch
 
 class ConversationViewModel : BaseViewModel() {
     val userMe = IMViewModel.loginUser?: UserInfo()
-    val userOther = UserInfo()
+    var userOther : UserInfo = UserInfo()
 
     val messageAdapter = MessageAdapter()
     val messageList = mutableListOf<BaseMessage>()
     val expandAdapter = ExpandAdapter()
 
     override fun init() {
-        initTestData()
+        viewModelScope.launch {
+            if (userMe.id == 0L) {
+                userMe.avatar =
+                    "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2019-05-28%2F5cecf6fe1ce3b.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1671440223&t=fc84daf5543856c1686bd29b9f2dbadc"
+                userMe.nickname = "小猫咪666"
+            }
+
+            userOther = IMDBController.getUserById(2L)?: UserInfo()
+            log("otherUser = ${GsonHelper.toJson(userOther)}")
+            initTestData()
+        }
     }
 
     fun initExpandFunData() {
@@ -37,15 +51,20 @@ class ConversationViewModel : BaseViewModel() {
         expandAdapter.setList(list)
     }
 
-    private fun initTestData() {
-        if (userMe.id == 0L) {
-            userMe.avatar =
-                "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2019-05-28%2F5cecf6fe1ce3b.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1671440223&t=fc84daf5543856c1686bd29b9f2dbadc"
-            userMe.nickname = "小猫咪666"
+    fun getMessageList() {
+        viewModelScope.launch {
+//            val result = IMDBController.getMessageList()
         }
-        userOther.avatar =
-            "https://img2.baidu.com/it/u=1801140900,2951304091&fm=253&fmt=auto&app=120&f=JPEG?w=1280&h=800"
-        userOther.nickname = "倾国倾城"
+    }
+
+    private fun initTestData() {
+
+//        userOther.avatar =
+//            "https://img2.baidu.com/it/u=1801140900,2951304091&fm=253&fmt=auto&app=120&f=JPEG?w=1280&h=800"
+//        userOther.nickname = "倾国倾城"
+//        userOther.id = 2
+
+//        return
         val msg1 = TextMessage()
         msg1.actionType = ActionType.RECEIVE
         msg1.user = userOther
@@ -135,7 +154,16 @@ class ConversationViewModel : BaseViewModel() {
         message.user = userMe
         message.actionType = ActionType.SEND
         message.content = content
+        message.fromUserId = userMe.id
+        message.toUserId = userOther.id
+        message.time = System.currentTimeMillis()
         messageAdapter.addData(0, message)
+
+//        val messageEntity  = message.createMessageEntity(ActionType.SEND)
+//        viewModelScope.launch {
+//            IMDBController.insertMessage(messageEntity)
+//            IMDBController.printAllMessage()
+//        }
     }
 
     fun sendMediaMessage(media: MediaBean, mediaType: String) {

@@ -2,15 +2,20 @@ package app.allever.android.sample.function.im.function.db
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Messenger
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import app.allever.android.sample.function.im.function.db.dao.MessageDao
+import app.allever.android.sample.function.im.function.db.dao.UserDao
+import app.allever.android.sample.function.im.function.db.entity.MessageEntity
 import app.allever.android.sample.function.im.user.UserInfo
 
 @SuppressLint("StaticFieldLeak")
-@Database(entities = [UserInfo::class], version = 1)
+@Database(entities = [UserInfo::class, MessageEntity::class], version = 1)
 abstract class IMDB : RoomDatabase() {
     abstract fun userDao(): UserDao
+    abstract fun messageDao(): MessageDao
 
     companion object {
         private var INS: IMDB? = null

@@ -1,4 +1,4 @@
-package app.allever.android.sample.function.im.function.db
+package app.allever.android.sample.function.im.function.db.dao
 
 import androidx.room.*
 import app.allever.android.sample.function.im.user.UserInfo
