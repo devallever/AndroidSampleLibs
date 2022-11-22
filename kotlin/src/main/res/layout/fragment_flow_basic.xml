@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <data>
+
+        <variable
+            name="flowBasicVM"
+            type="app.allever.android.sample.kotlin.function.flow.FlowBasicViewModel" />
+    </data>
+
+    <app.allever.android.lib.widget.ReboundNestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="5sp"
+                android:text="基础"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="1. flow{}创建 -> emit()推送数据 -> collect{}接受数据" />
+
+            <TextView
+                android:id="@+id/tvCounter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="计数器：" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="2.collectLatest{} : collectLatest函数只接收处理最新的数据。如果有新数据到来了而前一个数据还没有处理完，则会将前一个数据剩余的处理逻辑全部取消" />
+
+
+            <TextView
+                android:id="@+id/tvCounter2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="5dp"
+                android:text="计数器2：" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </app.allever.android.lib.widget.ReboundNestedScrollView>
+
+</layout>

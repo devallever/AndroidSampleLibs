@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <data>
+
+        <variable
+            name="flowOperatorVM"
+            type="app.allever.android.sample.kotlin.function.flow.FlowOperatorViewModel" />
+    </data>
+
+    <app.allever.android.lib.widget.ReboundNestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="5sp"
+                android:text="基础操作符"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5sp"
+                android:text="1.转换类操作符：map/trans/filter" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#eeeeee"
+                android:padding="5dp"
+                android:text="1.1 map: map就是用于将一个值映射成另一个值，具体映射的规则我们则可以在map函数中自行定义。" />
+
+
+            <TextView
+                android:id="@+id/tvFlow1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Int -> String: " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#eeeeee"
+                android:padding="5dp"
+                android:text="1.2 filter: 用来过滤掉一些数据的" />
+
+            <TextView
+                android:id="@+id/tvFlow2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Filter: " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="2.onEach{} 就是用来遍历每一条数据的"/>
+
+            <TextView
+                android:id="@+id/tvFlow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="onEach: " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:padding="5sp"
+                android:text="高级操作符"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </app.allever.android.lib.widget.ReboundNestedScrollView>
+
+</layout>
