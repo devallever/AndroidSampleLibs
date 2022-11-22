@@ -10,6 +10,7 @@ import app.allever.android.lib.mvvm.base.MvvmConfig
 import app.allever.android.lib.widget.ripple.RippleHelper
 import app.allever.android.sample.function.FunctionMainActivity
 import app.allever.android.sample.jetpack.JetpackMainActivity
+import app.allever.android.sample.kotlin.KotlinMainActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
@@ -18,6 +19,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
         RippleHelper.addRippleView(binding.btnUI)
         RippleHelper.addRippleView(binding.btnJetpack)
+        RippleHelper.addRippleView(binding.btnKotlin)
         RippleHelper.addRippleView(binding.btnFunction)
 
         binding.btnUI.setOnClickListener {
@@ -26,6 +28,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
         binding.btnJetpack.setOnClickListener {
             ActivityHelper.startActivity<JetpackMainActivity> {  }
+        }
+
+        binding.btnKotlin.setOnClickListener {
+            ActivityHelper.startActivity<KotlinMainActivity> {  }
         }
 
         binding.btnFunction.setOnClickListener {

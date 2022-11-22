@@ -38,6 +38,11 @@
                     android:text="JetPack" />
 
                 <TextView
+                    android:id="@+id/btnKotlin"
+                    style="@style/main_menu_item_style"
+                    android:text="Kotlin" />
+
+                <TextView
                     android:id="@+id/btnFunction"
                     style="@style/main_menu_item_style"
                     android:text="功能实现" />
