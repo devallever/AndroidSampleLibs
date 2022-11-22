@@ -5,6 +5,7 @@ import app.allever.android.lib.common.TabActivity
 import app.allever.android.lib.common.TabViewModel
 import app.allever.android.lib.common.databinding.ActivityTabBinding
 import app.allever.android.lib.widget.fragment.EmptyFragment
+import app.allever.android.sample.kotlin.ui.FlowFragment
 
 class KotlinMainActivity : TabActivity<ActivityTabBinding, TabViewModel>() {
     override fun getPageTitle() = "Kotlin"
@@ -13,7 +14,7 @@ class KotlinMainActivity : TabActivity<ActivityTabBinding, TabViewModel>() {
 
     override fun getFragments(): MutableList<Fragment> =
         mutableListOf(
-            EmptyFragment("Flow"),
+            FlowFragment(),
             EmptyFragment("Coroutine"),
             EmptyFragment("Higher Function")
         )

@@ -4,5 +4,6 @@
 
     <application>
         <activity android:name=".KotlinMainActivity" />
+        <activity android:name=".function.flow.FlowMainActivity" />
     </application>
 </manifest>
