@@ -30,8 +30,7 @@
                 android:layout_width="160dp"
                 android:layout_height="90dp"
                 android:scaleType="centerCrop"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="5dp" />
+                android:layout_gravity="center_horizontal" />
 
         </LinearLayout>
     </app.allever.android.lib.widget.ReboundNestedScrollView>
