@@ -24,6 +24,7 @@
                 android:layout_gravity="center_horizontal"
                 android:padding="5sp"
                 android:text="基础操作符"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <TextView
@@ -66,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="2.onEach{} 就是用来遍历每一条数据的"/>
+                android:text="2.onEach{} 就是用来遍历每一条数据的" />
 
             <TextView
                 android:id="@+id/tvFlow3"
@@ -81,7 +82,90 @@
                 android:layout_gravity="center_horizontal"
                 android:padding="5sp"
                 android:text="高级操作符"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="1.debounce() : debounce函数可以用来确保flow的各项数据之间存在一定的时间间隔，如果是时间点过于临近的数据只会保留最后一条。" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="使用场景：输入框输入完毕后显示搜索结果" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="2.sample(): sample是采样的意思，也就是说，它可以从flow的数据流当中按照一定的时间间隔来采样某一条数据。这个函数在某些源数据量很大，但我们又只需展示少量数据的时候比较有用。" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="3.终端操作符" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="3.1.reduce{}: reduce函数会通过参数给我们一个Flow的累积值和一个Flow的当前值，我们可以在函数体中对它们进行一定的运算，运算的结果会作为下一个累积值继续传递到reduce函数当中。" />
+
+            <TextView
+                android:id="@+id/tvReduceResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="reduce: " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="3.2.fold{}: fold函数需要传入一个初始值，这个初始值会作为首个累积值被传递到fold的函数体当中。" />
+
+            <TextView
+                android:id="@+id/tvFoldResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="fold: " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="4.flatMap系列: flatMapConcat、flatMapMerge和flatMapLatest" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="4.1 flatMapConcat: 连接上一个flow数据" />
+
+            <TextView
+                android:id="@+id/tvFlatMapConcat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="flatMapContact: " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="场景：比如查用户信息，先获取token（两个网络请求有先后顺序）" />
+
+            <TextView
+                android:id="@+id/tvFlatMapConcatScene"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="用户信息: " />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -19,22 +19,22 @@ class FlowBasicFragment : BaseMvvmFragment<FragmentFlowBasicBinding, FlowBasicVi
     override fun init() {
         lifecycleScope.launch {
             launch {
-                mViewModel.basicFlow.collect {
-                    val content = "计数器：$it"
-                    log(content)
-                    mBinding.tvCounter.text = content
-                }
+//                mViewModel.basicFlow.collect {
+//                    val content = "计数器：$it"
+//                    log(content)
+//                    mBinding.tvCounter.text = content
+//                }
             }
 
 
             launch {
                 delay(2000)
-                mViewModel.basicFlow.collectLatest {
-                    val content = "计数器2：$it"
-                    log(content)
-                    mBinding.tvCounter2.text = content
-                    delay(3000)
-                }
+//                mViewModel.basicFlow.collectLatest {
+//                    val content = "计数器2：$it"
+//                    log(content)
+//                    mBinding.tvCounter2.text = content
+//                    delay(3000)
+//                }
             }
         }
     }
