@@ -28,3 +28,4 @@ project(':imageloader-glide').projectDir = new File(settingsDir, '../../allever-
 include ':network'
 project(':network').projectDir = new File(settingsDir, '../../allever-projects/AndroidBaseLibs/network')
 include ':kotlin'
+include ':thirtypart'

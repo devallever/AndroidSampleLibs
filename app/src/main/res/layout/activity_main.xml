@@ -43,6 +43,11 @@
                     android:text="Kotlin" />
 
                 <TextView
+                    android:id="@+id/btnThirtyPart"
+                    style="@style/main_menu_item_style"
+                    android:text="ThirtyPart" />
+
+                <TextView
                     android:id="@+id/btnFunction"
                     style="@style/main_menu_item_style"
                     android:text="功能实现" />
