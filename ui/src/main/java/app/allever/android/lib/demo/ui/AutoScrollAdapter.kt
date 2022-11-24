@@ -1,5 +1,10 @@
 package app.allever.android.lib.demo.ui
 
+import android.view.View
+import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import androidx.recyclerview.widget.RecyclerView
+import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.demo.R
 import app.allever.android.lib.demo.databinding.RvItemTextBinding
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -10,6 +15,10 @@ class AutoScrollAdapter(private val mLoop: Boolean = true) :
     override fun convert(holder: BaseDataBindingHolder<RvItemTextBinding>, item: String) {
         val binding = holder.dataBinding ?: return
         binding.tvText.text = item
+        log("AutoScrollRecyclerView: position = ${getItemPosition(item)}")
+        log("itemH = ${binding.root.height}")
+
+//        binding.root.animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.example_anims)
     }
 
     override fun getItem(position: Int): String {
@@ -38,4 +47,27 @@ class AutoScrollAdapter(private val mLoop: Boolean = true) :
             data.size
         }
     }
+
+}
+
+fun RecyclerView.Adapter<*>.getRecyclerViewItem(recyclerView: RecyclerView?, position: Int): View? {
+    if (recyclerView == null || recyclerView.layoutManager == null || recyclerView.adapter == null) {
+        return null
+    }
+    if (position > recyclerView.adapter!!.itemCount) {
+        return null
+    }
+    val viewHolder: RecyclerView.ViewHolder = recyclerView.adapter!!.createViewHolder(
+        recyclerView,
+        recyclerView.adapter!!.getItemViewType(position)
+    )
+    recyclerView.adapter!!.onBindViewHolder(viewHolder, position)
+//    viewHolder.itemView.measure(
+//        View.MeasureSpec.makeMeasureSpec(recyclerView.width, View.MeasureSpec.EXACTLY),
+//        View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+//    )
+    val p = viewHolder.itemView.layoutParams
+    p.height = WRAP_CONTENT
+    viewHolder.itemView.layoutParams = p
+    return viewHolder.itemView
 }

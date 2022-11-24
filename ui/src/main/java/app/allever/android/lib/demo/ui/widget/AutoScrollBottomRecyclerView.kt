@@ -3,17 +3,23 @@ package app.allever.android.lib.demo.ui.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
+import androidx.core.view.get
+import androidx.core.view.marginBottom
+import androidx.core.view.marginTop
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.function.work.TimerTask2
 import app.allever.android.lib.core.helper.DisplayHelper
+import app.allever.android.lib.core.helper.ViewHelper
+import app.allever.android.lib.demo.ui.getRecyclerViewItem
+import com.chad.library.adapter.base.BaseQuickAdapter
 
 /**
  * RecyclerView 自动循环滚动
  * https://blog.csdn.net/zhanghuaiwang/article/details/123223178
  */
-class AutoScrollRecyclerView(context: Context, attrs: AttributeSet?) :
+class AutoScrollBottomRecyclerView(context: Context, attrs: AttributeSet?) :
     RecyclerView(context, attrs) {
 
     private var mIsTouching = false
@@ -42,7 +48,7 @@ class AutoScrollRecyclerView(context: Context, attrs: AttributeSet?) :
 
     override fun onTouchEvent(e: MotionEvent?): Boolean {
         val action = e?.action
-        if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_MOVE) {
+        if (action == MotionEvent.ACTION_DOWN) {
             mIsTouching = true
         }
         if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL) {
@@ -90,22 +96,75 @@ class AutoScrollRecyclerView(context: Context, attrs: AttributeSet?) :
 //            val movePosition = position - mFirstVisiblePosition;
         val movePosition = 1
         if (movePosition in 0 until childCount) {
-            val top = getChildAt(movePosition).top
-            if (!mIsTouching) {
-                val itemCount = adapter?.itemCount?:0
+
+//            val lastVisiblePosition = getChildLayoutPosition(getChildAt(childCount-1))
+//            val lastChild = layoutManager?.getChildAt(lastVisiblePosition)
+//            val arr = ViewHelper.getLocation(lastChild!!)
+//            val screenH = DisplayHelper.getScreenHeight()
+//            val offsetY = screenH - (arr?.get(1) ?: screenH)
+
+            //屏幕可见的item数
+            log("childCount = $childCount")
+            //最后一个可见view
+            val lastView = getChildAt(childCount - 1)
+            val childAdapterPosition = getChildAdapterPosition(lastView)
+            log("childAdapterPosition = $childAdapterPosition")
+            val childLayoutPosition = getChildLayoutPosition(lastView)
+            log("childLayoutPosition = $childLayoutPosition")
+            log("lastView.y = ${lastView.y}")
+            log("lastView.top = ${lastView.top}")
+            log("lastView.height = ${lastView.height}")
+            log("lostView.marginBottom = ${lastView.marginBottom}")
+            log("lostView.marginTop = ${lastView.marginTop}")
+            val arr = ViewHelper.getLocation(lastView)
+            log("lastView in Window y = ${arr?.get(1) ?: 0}")
+            log("screenH = ${DisplayHelper.getScreenHeight()}")
+            log("fullScreenH = ${DisplayHelper.getFullScreenHeight(context)}")
+            log("naviBarH = ${DisplayHelper.getNavigationBarHeight(context)}")
+
+
+            var offsetY = lastView.height -
+                (DisplayHelper.getFullScreenHeight(context) - arr?.get(1)!! - DisplayHelper.getNavigationBarHeight(context)) + lastView.marginBottom + 1
+
+            log("offsetY = $offsetY")
+
+            if (offsetY == 0) {
+                    val adapterPosition = getChildAdapterPosition(lastView) + 1
+                val nextView = adapter?.getRecyclerViewItem(this, adapterPosition)
+                nextView?.post {
+                    offsetY = nextView.height
+                    log("next offsetY = $offsetY")
+                    scrollToOffset(offsetY)
+                }
+            }
+
+
+            scrollToOffset(offsetY)
+
+
+        }
+    }
+
+    private fun scrollToOffset(offsetY: Int) {
+//        val top = getChildAt(movePosition).top
+        if (!mIsTouching) {
+            val itemCount = adapter?.itemCount ?: 0
 //                log("测试滚动到底部 itemCount = $itemCount")
 //                log("测试滚动到底部 最后可见Position = ${getLastVisiblePosition()}")
-                if (itemCount <=  getLastVisiblePosition() + 1) {
-                    if (!mIsAlreadyScrollToBottom) {
-                        smoothScrollBy(0, top)
-                    }
-                    mIsAlreadyScrollToBottom = true
-                    return@TimerTask2
+            if (itemCount <= getLastVisiblePosition() + 1) {
+                if (!mIsAlreadyScrollToBottom) {
+                    smoothScrollBy(0, offsetY)
                 }
-                smoothScrollBy(0, top)
-                mIsAlreadyScrollToBottom = false
+                mIsAlreadyScrollToBottom = true
+                return
             }
+            smoothScrollBy(0, offsetY)
+            mIsAlreadyScrollToBottom = false
         }
+    }
+
+    private fun log(msg: String) {
+        log("AutoScrollRecyclerView", msg)
     }
 
     //禁止手动滑动

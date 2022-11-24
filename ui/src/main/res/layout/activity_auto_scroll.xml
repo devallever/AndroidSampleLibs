@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <app.allever.android.lib.demo.ui.widget.AutoScrollRecyclerView
+        <app.allever.android.lib.demo.ui.widget.AutoScrollBottomRecyclerView
             android:id="@+id/autoScrollRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
