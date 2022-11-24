@@ -39,6 +39,11 @@
                 style="@style/uiItemTitleStyle"
                 android:text="回弹效果" />
 
+            <Button
+                android:id="@+id/btnAutoScroll"
+                style="@style/uiItemTitleStyle"
+                android:text="自动滚动效果且随时设置间隔" />
+
 
         </LinearLayout>
 

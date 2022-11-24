@@ -3,6 +3,7 @@ package app.allever.android.lib.demo
 import app.allever.android.lib.common.BaseActivity
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.databinding.ActivityDemoMainBinding
+import app.allever.android.lib.demo.ui.AutoScrollActivity
 import app.allever.android.lib.demo.ui.FlingScrollTabActivity
 import app.allever.android.lib.demo.ui.UIMainActivity
 import app.allever.android.lib.demo.ui.sticktop.StickyTopMainActivity
@@ -30,6 +31,10 @@ class UIMainActivity : BaseActivity<ActivityDemoMainBinding, DemoMainViewModel>(
 
         binding.btnFlingScroll.setOnClickListener {
             ActivityHelper.startActivity<FlingScrollTabActivity>()
+        }
+
+        binding.btnAutoScroll.setOnClickListener {
+            ActivityHelper.startActivity<AutoScrollActivity>()
         }
 
     }

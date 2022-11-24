@@ -82,24 +82,3 @@ class UIMainViewModel : BaseViewModel() {
     }
 }
 
-class AutoScrollAdapter :
-    BaseQuickAdapter<String, BaseDataBindingHolder<RvItemTextBinding>>(R.layout.rv_item_text) {
-    override fun convert(holder: BaseDataBindingHolder<RvItemTextBinding>, item: String) {
-        val binding = holder.dataBinding ?: return
-        binding.tvText.text = item
-    }
-
-    override fun getItem(position: Int): String {
-        val newPosition = position % data.size
-        return data[newPosition]
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        val realPosition = position % data.size
-        return super.getItemViewType(realPosition)
-    }
-
-    override fun getItemCount(): Int {
-        return Integer.MAX_VALUE
-    }
-}
