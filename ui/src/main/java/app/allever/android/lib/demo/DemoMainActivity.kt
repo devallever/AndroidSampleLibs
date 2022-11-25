@@ -5,6 +5,7 @@ import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.databinding.ActivityDemoMainBinding
 import app.allever.android.lib.demo.ui.AutoScrollActivity
 import app.allever.android.lib.demo.ui.FlingScrollTabActivity
+import app.allever.android.lib.demo.ui.TanTanActivity
 import app.allever.android.lib.demo.ui.UIMainActivity
 import app.allever.android.lib.demo.ui.sticktop.StickyTopMainActivity
 import app.allever.android.lib.mvvm.base.BaseViewModel
@@ -37,6 +38,9 @@ class UIMainActivity : BaseActivity<ActivityDemoMainBinding, DemoMainViewModel>(
             ActivityHelper.startActivity<AutoScrollActivity>()
         }
 
+        binding.btnTanTan.setOnClickListener {
+            ActivityHelper.startActivity<TanTanActivity>()
+        }
     }
 }
 

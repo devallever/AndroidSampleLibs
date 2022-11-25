@@ -44,6 +44,11 @@
                 style="@style/uiItemTitleStyle"
                 android:text="自动滚动效果且随时设置间隔" />
 
+            <Button
+                android:id="@+id/btnTanTan"
+                style="@style/uiItemTitleStyle"
+                android:text="探探-交互效果" />
+
 
         </LinearLayout>
 
