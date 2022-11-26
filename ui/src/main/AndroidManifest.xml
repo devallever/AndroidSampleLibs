@@ -15,5 +15,6 @@
         <activity android:name=".ui.FlingScrollTabActivity" />
         <activity android:name=".ui.AutoScrollActivity" />
         <activity android:name=".ui.TanTanActivity" />
+        <activity android:name=".ui.SoulActivity" />
     </application>
 </manifest>

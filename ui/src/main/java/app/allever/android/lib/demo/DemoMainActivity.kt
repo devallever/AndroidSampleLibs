@@ -3,9 +3,7 @@ package app.allever.android.lib.demo
 import app.allever.android.lib.common.BaseActivity
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.databinding.ActivityDemoMainBinding
-import app.allever.android.lib.demo.ui.AutoScrollActivity
-import app.allever.android.lib.demo.ui.FlingScrollTabActivity
-import app.allever.android.lib.demo.ui.TanTanActivity
+import app.allever.android.lib.demo.ui.*
 import app.allever.android.lib.demo.ui.UIMainActivity
 import app.allever.android.lib.demo.ui.sticktop.StickyTopMainActivity
 import app.allever.android.lib.mvvm.base.BaseViewModel
@@ -40,6 +38,10 @@ class UIMainActivity : BaseActivity<ActivityDemoMainBinding, DemoMainViewModel>(
 
         binding.btnTanTan.setOnClickListener {
             ActivityHelper.startActivity<TanTanActivity>()
+        }
+
+        binding.btnSoul.setOnClickListener {
+            ActivityHelper.startActivity<SoulActivity>()
         }
     }
 }
