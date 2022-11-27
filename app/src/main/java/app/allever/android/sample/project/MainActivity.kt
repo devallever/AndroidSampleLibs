@@ -13,8 +13,7 @@ import app.allever.android.sample.function.FunctionMainActivity
 import app.allever.android.sample.jetpack.JetpackMainActivity
 import app.allever.android.sample.kotlin.KotlinMainActivity
 import app.allever.android.sample.project.databinding.ActivityMainBinding
-import app.allever.android.sample.thirtypart.ThirtyPartMainActivity
-import app.allever.android.sample.thirtypart.ui.GlideFragment
+import app.allever.android.sample.thirtypart.ThirtyPartMainFragment
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
@@ -40,8 +39,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         }
 
         binding.btnThirtyPart.setOnClickListener {
-            ActivityHelper.startActivity<ThirtyPartMainActivity> { }
-            FragmentActivity.start<GlideFragment>("Glide")
+//            ActivityHelper.startActivity<ThirtyPartMainActivity> { }
+            FragmentActivity.start<ThirtyPartMainFragment>("ThirtyPart")
         }
 
 
