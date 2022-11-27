@@ -5,6 +5,7 @@
     <application>
         <activity android:name=".TabActivity"
             android:windowSoftInputMode="stateVisible|adjustResize"/>
+        <activity android:name=".FragmentActivity" />
     </application>
 
 </manifest>

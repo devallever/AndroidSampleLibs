@@ -1,6 +1,7 @@
 package app.allever.android.sample.project
 
 import app.allever.android.lib.common.BaseActivity
+import app.allever.android.lib.common.FragmentActivity
 import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.core.util.TimeUtils
@@ -13,6 +14,7 @@ import app.allever.android.sample.jetpack.JetpackMainActivity
 import app.allever.android.sample.kotlin.KotlinMainActivity
 import app.allever.android.sample.project.databinding.ActivityMainBinding
 import app.allever.android.sample.thirtypart.ThirtyPartMainActivity
+import app.allever.android.sample.thirtypart.ui.GlideFragment
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
@@ -39,6 +41,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
         binding.btnThirtyPart.setOnClickListener {
             ActivityHelper.startActivity<ThirtyPartMainActivity> { }
+            FragmentActivity.start<GlideFragment>("Glide")
         }
 
 

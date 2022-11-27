@@ -7,6 +7,7 @@ import app.allever.android.lib.core.base.adapter.Pager2Adapter
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.mvvm.base.MvvmConfig
 import app.allever.android.lib.widget.ext.modifyTouchSlop
+import app.allever.android.lib.widget.fragment.EmptyFragment
 
 abstract class TabActivity<DB, VM> : BaseActivity<ActivityTabBinding, TabViewModel>() {
     abstract fun getPageTitle(): String
