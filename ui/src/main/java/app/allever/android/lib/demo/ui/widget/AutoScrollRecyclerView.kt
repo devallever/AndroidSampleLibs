@@ -10,7 +10,7 @@ import app.allever.android.lib.core.function.work.TimerTask2
 import app.allever.android.lib.core.helper.DisplayHelper
 
 /**
- * RecyclerView 自动循环滚动
+ * RecyclerView 自动循环滚动, 滚动一个item
  * https://blog.csdn.net/zhanghuaiwang/article/details/123223178
  */
 class AutoScrollRecyclerView(context: Context, attrs: AttributeSet?) :

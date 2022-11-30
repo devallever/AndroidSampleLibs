@@ -16,7 +16,7 @@ import app.allever.android.lib.demo.ui.getRecyclerViewItem
 import com.chad.library.adapter.base.BaseQuickAdapter
 
 /**
- * RecyclerView 自动循环滚动
+ * RecyclerView 自动循环滚动， 已底部item为边界
  * https://blog.csdn.net/zhanghuaiwang/article/details/123223178
  */
 class AutoScrollBottomRecyclerView(context: Context, attrs: AttributeSet?) :
