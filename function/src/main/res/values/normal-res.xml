@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="pageBackgroundColor">#F5F5F5</color>
+    <color name="pageBackgroundColor">#ffcc00</color>
     <color name="textViewColor">#000000</color>
 </resources>

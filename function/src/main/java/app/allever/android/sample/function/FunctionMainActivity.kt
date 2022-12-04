@@ -1,4 +1,4 @@
-package app.allever.android.sample.function
+ package app.allever.android.sample.function
 
 import app.allever.android.lib.common.BaseActivity
 import app.allever.android.lib.core.helper.ActivityHelper
