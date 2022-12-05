@@ -1,5 +1,6 @@
 package app.allever.android.lib.demo
 
+import androidx.fragment.app.Fragment
 import app.allever.android.lib.common.FragmentActivity
 import app.allever.android.lib.common.ListFragment
 import app.allever.android.lib.common.ListViewModel
@@ -8,6 +9,7 @@ import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.ui.*
 import app.allever.android.lib.demo.ui.UIMainActivity
+import app.allever.android.lib.demo.ui.autoscroll.AutoScrollMainFragment
 import app.allever.android.lib.demo.ui.sticktop.StickyTopMainFragment
 import com.chad.library.adapter.base.BaseQuickAdapter
 
@@ -40,7 +42,8 @@ class DemoMainListFragment : ListFragment<FragmentListBinding, ListViewModel, St
                 ActivityHelper.startActivity<FlingScrollTabActivity>()
             }
             4 -> {
-                ActivityHelper.startActivity<AutoScrollActivity>()
+                FragmentActivity.start<AutoScrollMainFragment>("自动滚动效果")
+//                ActivityHelper.startActivity<AutoScrollActivity>()
             }
             5 -> {
                 ActivityHelper.startActivity<TanTanActivity>()
