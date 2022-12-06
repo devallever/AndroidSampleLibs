@@ -27,7 +27,7 @@ class ScrollTopRecyclerViewFragment :
 
     private fun initTestData() {
         val list = mutableListOf<String>()
-        for (i in 0..299) {
+        for (i in 0..29) {
             list.add("$i")
         }
         mAdapter.setList(list)
