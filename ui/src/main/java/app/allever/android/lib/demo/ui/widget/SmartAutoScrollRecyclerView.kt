@@ -7,7 +7,6 @@ import androidx.core.view.marginBottom
 import androidx.core.view.marginTop
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
-import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.function.work.TimerTask2
 import app.allever.android.lib.core.helper.DisplayHelper
 import app.allever.android.lib.core.helper.ViewHelper
@@ -48,31 +47,19 @@ class SmartAutoScrollRecyclerView(context: Context, attrs: AttributeSet?) :
                     }
 
                     // 第一个可见位置
-                    val firstItem = getChildLayoutPosition(getChildAt(0))
+                    val firstVisibleItem = getChildLayoutPosition(getChildAt(0))
                     // 最后一个可见位置
-                    val lastItem = getChildLayoutPosition(getChildAt(childCount - 1))
-                    log("第一个可见position = $firstItem Activity: ${context.javaClass.simpleName}")
-                    if (firstItem == 0) {
+                    val lastVisibleItem = getChildLayoutPosition(getChildAt(childCount - 1))
+                    log("第一个可见position = $firstVisibleItem Activity: ${context.javaClass.simpleName}")
+                    if (firstVisibleItem == 0) {
                         lastPageListener?.invoke()
                     }
-                    val lastItemValue = lastItem
+                    val lastItemValue = lastVisibleItem
                     val totalItem = (adapter?.itemCount?:0 - 1)
-                    log("lastItemValue = $lastItem")
-                    log("totalItem = $totalItem")
                     val lastIndex = totalItem - 1
                     if (lastItemValue == lastIndex) {
                         nextPageListener?.invoke()
-//                        toast("下一页")
                     }
-//                    log("最后一个可见position = $lastItem")
-                    //屏幕可见的item数
-                    log("childCount = $childCount")
-                    //最后一个可见view
-                    val lastView = getChildAt(0)
-                    val childAdapterPosition = getChildAdapterPosition(lastView)
-                    log("childAdapterPosition = $childAdapterPosition")
-                    val childLayoutPosition = getChildLayoutPosition(lastView)
-                    log("childLayoutPosition = $childLayoutPosition")
 
                     //计算间隔， 启动下一个
                     try {
@@ -164,20 +151,11 @@ class SmartAutoScrollRecyclerView(context: Context, attrs: AttributeSet?) :
                 //最后一个可见view
                 val lastView = getChildAt(childCount - 1)
                 val childAdapterPosition = getChildAdapterPosition(lastView)
-                log("childAdapterPosition = $childAdapterPosition")
-//            log("json = ${mAdapter?.data?.get(childAdapterPosition)?.message?.content?.toJson()}")
+                log("lastView childAdapterPosition = $childAdapterPosition")
                 val childLayoutPosition = getChildLayoutPosition(lastView)
-                log("childLayoutPosition = $childLayoutPosition")
-                log("lastView.y = ${lastView.y}")
-                log("lastView.top = ${lastView.top}")
-                log("lastView.height = ${lastView.height}")
-                log("lostView.marginBottom = ${lastView.marginBottom}")
-                log("lostView.marginTop = ${lastView.marginTop}")
+                log("lastView childLayoutPosition = $childLayoutPosition")
                 val lastViewOnScreen = ViewHelper.getViewLocationOnScreen(lastView)
                 log("lastView in Window y = ${lastViewOnScreen[1]}")
-//            log("screenH = ${DisplayHelper.getScreenHeight()}")
-                log("fullScreenH = ${DisplayHelper.getFullScreenHeight(context)}")
-                log("naviBarH = ${DisplayHelper.getNavigationBarHeight(context)}")
 
                 val bottomHeight =
                     DisplayHelper.getFullScreenHeight(context) - ViewHelper.getGlobalVisibleRect(
