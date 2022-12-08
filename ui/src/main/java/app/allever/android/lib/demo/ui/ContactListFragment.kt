@@ -3,6 +3,7 @@ package app.allever.android.lib.demo.ui
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.allever.android.lib.common.BaseFragment
+import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.function.imageloader.load
 import app.allever.android.lib.demo.BR
 import app.allever.android.lib.demo.R
@@ -20,6 +21,9 @@ class ContactListFragment : BaseFragment<FragmentContactListBinding, BaseViewMod
     override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_contact_list, BR.contactListVM)
 
     override fun init() {
+        mBinding.sideBar.setTextView(mBinding.tvGroupName)
+        mBinding.sideBar.setOnTouchingLetterChangedListener {
+        }
         mBinding.recyclerView.layoutManager = LinearLayoutManager(context)
         mBinding.recyclerView.adapter = mAdapter
         initContactData()
