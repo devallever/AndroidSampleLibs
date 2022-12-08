@@ -3,9 +3,7 @@
     package="app.allever.android.sample.function">
 
     <application>
-        <activity android:name=".FunctionMainActivity" />
         <activity android:name=".theme.ThemeMainActivity" />
-        <activity android:name=".im.IMMainActivity" />
         <activity android:name=".im.ui.ConversationActivity" />
     </application>
 </manifest>

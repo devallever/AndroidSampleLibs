@@ -7,7 +7,7 @@ import app.allever.android.lib.common.adapter.TextAdapter
 import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.DemoMainListFragment
-import app.allever.android.sample.function.FunctionMainActivity
+import app.allever.android.sample.function.FunctionListFragment
 import app.allever.android.sample.jetpack.JetpackMainActivity
 import app.allever.android.sample.kotlin.KotlinMainActivity
 import app.allever.android.sample.thirtypart.ThirtyPartMainFragment
@@ -34,7 +34,7 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, String
                 FragmentActivity.start<ThirtyPartMainFragment>("ThirtyPart")
             }
             4 -> {
-                ActivityHelper.startActivity<FunctionMainActivity> { }
+                FragmentActivity.start<FunctionListFragment>("功能列表")
             }
             else -> {
 

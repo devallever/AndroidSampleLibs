@@ -24,7 +24,8 @@ class DemoMainListFragment : ListFragment<FragmentListBinding, ListViewModel, St
             "回弹效果",
             "自动滚动效果且随时设置间隔",
             "探探-交互效果",
-            "Soul-交互效果"
+            "Soul-交互效果",
+            "分组联系人列表"
         )
 
     override fun onItemClick(position: Int, item: String) {
@@ -50,6 +51,9 @@ class DemoMainListFragment : ListFragment<FragmentListBinding, ListViewModel, St
             }
             6 -> {
                 ActivityHelper.startActivity<SoulActivity>()
+            }
+            7 -> {
+                FragmentActivity.start<ContactListFragment>("分组联系人列表")
             }
         }
     }
