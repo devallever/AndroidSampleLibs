@@ -27,6 +27,7 @@ class ContactListFragment : BaseFragment<FragmentContactListBinding, BaseViewMod
         mBinding.recyclerView.layoutManager = LinearLayoutManager(context)
         mBinding.recyclerView.adapter = mAdapter
         initContactData()
+        mBinding.sideBar.setData(mutableListOf("A", "B", "C", "D", "E", "F", "G"))
     }
 
     private fun initContactData() {

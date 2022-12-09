@@ -11,6 +11,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import app.allever.android.lib.core.helper.DisplayHelper;
 import app.allever.android.lib.core.helper.VibratorHelper;
 import app.allever.android.lib.demo.R;
@@ -27,7 +31,8 @@ public class ContactSideBar extends View {
     private OnTouchingLetterChangedListener onTouchingLetterChangedListener;
 
     // 26个字母
-    public static String[] data = {
+    private final List<String> data = new ArrayList<>();
+    public static String[] defaultData = {
         "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
         "S", "T", "U", "V", "W", "X", "Y", "Z", "#"
     };
@@ -53,15 +58,33 @@ public class ContactSideBar extends View {
 
     public ContactSideBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
     }
 
     public ContactSideBar(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public ContactSideBar(Context context) {
-        super(context);
+        this(context, null);
     }
+
+    private void init() {
+        data.addAll(Arrays.asList(defaultData));
+    }
+
+    public void setData(List<String> list) {
+        data.clear();
+        data.addAll(list);
+        requestLayout();
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), data.size() * mItemHeight);
+    }
+
     /** 重写的onDraw的方法 */
     @Override
     protected void onDraw(Canvas canvas) {
@@ -69,7 +92,7 @@ public class ContactSideBar extends View {
         int height = getHeight(); // 获取对应的高度
         int width = getWidth(); // 获取对应的宽度
         int singleHeight = mItemHeight; // 获取每一个字母的高度
-        for (int i = 0; i < data.length; i++) {
+        for (int i = 0; i < data.size(); i++) {
             mPaint.setColor(Color.parseColor("#858c94")); // 所有字母的默认颜色 目前为灰色(右侧字体颜色)
             mPaint.setTypeface(Typeface.DEFAULT); // (右侧字体样式)
             mPaint.setAntiAlias(true);
@@ -80,9 +103,9 @@ public class ContactSideBar extends View {
                 mPaint.setFakeBoldText(true); // 设置是否为粗体文字
             }
             // x坐标等于=中间-字符串宽度的一般
-            float xPos = width / 2 - mPaint.measureText(data[i]) / 2;
+            float xPos = width / 2 - mPaint.measureText(data.get(i)) / 2;
             float yPos = singleHeight * i + singleHeight;
-            canvas.drawText(data[i], xPos, yPos, mPaint);
+            canvas.drawText(data.get(i), xPos, yPos, mPaint);
             mPaint.reset(); // 重置画笔
         }
     }
@@ -92,7 +115,7 @@ public class ContactSideBar extends View {
 
         final int action = event.getAction();
         final float y = event.getY(); // 点击y坐标
-        if (y > data.length * mItemHeight) {
+        if (y > data.size() * mItemHeight) {
             if (mTextDialog != null) {
                 mTextDialog.setVisibility(View.INVISIBLE);
             }
@@ -104,7 +127,7 @@ public class ContactSideBar extends View {
 
         final OnTouchingLetterChangedListener listener = onTouchingLetterChangedListener;
 
-        final int c = (int) (y / (data.length * mItemHeight) * data.length); // 点击y坐标所占高度的比例*b数组的长度就等于点击b中的个数
+        final int c = (int) (y / (data.size() * mItemHeight) * data.size()); // 点击y坐标所占高度的比例*b数组的长度就等于点击b中的个数
 
         switch (action) {
             case MotionEvent.ACTION_UP:
@@ -120,13 +143,13 @@ public class ContactSideBar extends View {
             default:
                 setBackgroundResource(R.drawable.seal_sidebar_background); // 点击字母条的背景颜色
                 if (oldChoose != c) {
-                    if (c >= 0 && c < data.length) {
-                        if (listener != null && !mCurrentData.equals(data[c])) {
-                            listener.onTouchingLetterChanged(data[c]);
-                            mCurrentData = data[c];
+                    if (c >= 0 && c < data.size()) {
+                        if (listener != null && !mCurrentData.equals(data.get(c))) {
+                            listener.onTouchingLetterChanged(data.get(c));
+                            mCurrentData = data.get(c);
                         }
                         if (mTextDialog != null) {
-                            mTextDialog.setText(data[c]);
+                            mTextDialog.setText(data.get(c));
                             mTextDialog.setVisibility(View.VISIBLE);
                             VibratorHelper.INSTANCE.start();
                         }
