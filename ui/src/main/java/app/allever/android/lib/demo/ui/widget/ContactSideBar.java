@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import app.allever.android.lib.core.helper.VibratorHelper;
 import app.allever.android.lib.demo.R;
 
 
@@ -35,6 +36,8 @@ public class ContactSideBar extends View {
     private Paint paint = new Paint();
 
     private TextView mTextDialog;
+
+    private String mCurrentData = "";
 
     /**
      * 为SideBar显示字母的TextView
@@ -94,6 +97,7 @@ public class ContactSideBar extends View {
 
         switch (action) {
             case MotionEvent.ACTION_UP:
+                VibratorHelper.INSTANCE.cancel();
                 setBackgroundDrawable(new ColorDrawable(0x00000000)); // 设置背景颜色
                 choose = -1;
                 invalidate();
@@ -106,12 +110,14 @@ public class ContactSideBar extends View {
                 setBackgroundResource(R.drawable.seal_sidebar_background); // 点击字母条的背景颜色
                 if (oldChoose != c) {
                     if (c >= 0 && c < data.length) {
-                        if (listener != null) {
+                        if (listener != null && !mCurrentData.equals(data[c])) {
                             listener.onTouchingLetterChanged(data[c]);
+                            mCurrentData = data[c];
                         }
                         if (mTextDialog != null) {
                             mTextDialog.setText(data[c]);
                             mTextDialog.setVisibility(View.VISIBLE);
+                            VibratorHelper.INSTANCE.start();
                         }
                         choose = c;
                         invalidate();
