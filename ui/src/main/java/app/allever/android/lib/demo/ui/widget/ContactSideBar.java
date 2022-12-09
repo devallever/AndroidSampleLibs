@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import app.allever.android.lib.core.helper.DisplayHelper;
 import app.allever.android.lib.core.helper.VibratorHelper;
 import app.allever.android.lib.demo.R;
 
@@ -39,6 +40,8 @@ public class ContactSideBar extends View {
 
     private String mCurrentData = "";
 
+    private final int mItemHeight = DisplayHelper.INSTANCE.dip2px(25);
+
     /**
      * 为SideBar显示字母的TextView
      *
@@ -65,7 +68,7 @@ public class ContactSideBar extends View {
         super.onDraw(canvas);
         int height = getHeight(); // 获取对应的高度
         int width = getWidth(); // 获取对应的宽度
-        int singleHeight = height / data.length; // 获取每一个字母的高度
+        int singleHeight = mItemHeight; // 获取每一个字母的高度
         for (int i = 0; i < data.length; i++) {
             mPaint.setColor(Color.parseColor("#858c94")); // 所有字母的默认颜色 目前为灰色(右侧字体颜色)
             mPaint.setTypeface(Typeface.DEFAULT); // (右侧字体样式)
@@ -89,11 +92,19 @@ public class ContactSideBar extends View {
 
         final int action = event.getAction();
         final float y = event.getY(); // 点击y坐标
+        if (y > data.length * mItemHeight) {
+            if (mTextDialog != null) {
+                mTextDialog.setVisibility(View.INVISIBLE);
+            }
+            mChoose = -1;
+            invalidate();
+            return true;
+        }
         final int oldChoose = mChoose;
 
         final OnTouchingLetterChangedListener listener = onTouchingLetterChangedListener;
 
-        final int c = (int) (y / getHeight() * data.length); // 点击y坐标所占高度的比例*b数组的长度就等于点击b中的个数
+        final int c = (int) (y / (data.length * mItemHeight) * data.length); // 点击y坐标所占高度的比例*b数组的长度就等于点击b中的个数
 
         switch (action) {
             case MotionEvent.ACTION_UP:
