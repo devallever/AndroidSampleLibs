@@ -31,9 +31,9 @@ public class ContactSideBar extends View {
         "S", "T", "U", "V", "W", "X", "Y", "Z", "#"
     };
     // 选中
-    private int choose = -1;
+    private int mChoose = -1;
 
-    private Paint paint = new Paint();
+    private final Paint mPaint = new Paint();
 
     private TextView mTextDialog;
 
@@ -67,20 +67,20 @@ public class ContactSideBar extends View {
         int width = getWidth(); // 获取对应的宽度
         int singleHeight = height / data.length; // 获取每一个字母的高度
         for (int i = 0; i < data.length; i++) {
-            paint.setColor(Color.parseColor("#858c94")); // 所有字母的默认颜色 目前为灰色(右侧字体颜色)
-            paint.setTypeface(Typeface.DEFAULT); // (右侧字体样式)
-            paint.setAntiAlias(true);
-            paint.setTextSize(30); // (右侧字体大小)
+            mPaint.setColor(Color.parseColor("#858c94")); // 所有字母的默认颜色 目前为灰色(右侧字体颜色)
+            mPaint.setTypeface(Typeface.DEFAULT); // (右侧字体样式)
+            mPaint.setAntiAlias(true);
+            mPaint.setTextSize(30); // (右侧字体大小)
             // 选中的状态
-            if (i == choose) {
-                paint.setColor(Color.parseColor("#FFFFFF")); // 选中字母的颜色 目前为白
-                paint.setFakeBoldText(true); // 设置是否为粗体文字
+            if (i == mChoose) {
+                mPaint.setColor(Color.parseColor("#FFFFFF")); // 选中字母的颜色 目前为白
+                mPaint.setFakeBoldText(true); // 设置是否为粗体文字
             }
             // x坐标等于=中间-字符串宽度的一般
-            float xPos = width / 2 - paint.measureText(data[i]) / 2;
+            float xPos = width / 2 - mPaint.measureText(data[i]) / 2;
             float yPos = singleHeight * i + singleHeight;
-            canvas.drawText(data[i], xPos, yPos, paint);
-            paint.reset(); // 重置画笔
+            canvas.drawText(data[i], xPos, yPos, mPaint);
+            mPaint.reset(); // 重置画笔
         }
     }
 
@@ -89,7 +89,7 @@ public class ContactSideBar extends View {
 
         final int action = event.getAction();
         final float y = event.getY(); // 点击y坐标
-        final int oldChoose = choose;
+        final int oldChoose = mChoose;
 
         final OnTouchingLetterChangedListener listener = onTouchingLetterChangedListener;
 
@@ -99,7 +99,7 @@ public class ContactSideBar extends View {
             case MotionEvent.ACTION_UP:
                 VibratorHelper.INSTANCE.cancel();
                 setBackgroundDrawable(new ColorDrawable(0x00000000)); // 设置背景颜色
-                choose = -1;
+                mChoose = -1;
                 invalidate();
                 if (mTextDialog != null) {
                     mTextDialog.setVisibility(View.INVISIBLE);
@@ -119,7 +119,7 @@ public class ContactSideBar extends View {
                             mTextDialog.setVisibility(View.VISIBLE);
                             VibratorHelper.INSTANCE.start();
                         }
-                        choose = c;
+                        mChoose = c;
                         invalidate();
                     }
                 }
