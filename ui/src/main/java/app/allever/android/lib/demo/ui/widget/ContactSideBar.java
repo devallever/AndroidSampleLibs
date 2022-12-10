@@ -45,7 +45,7 @@ public class ContactSideBar extends View {
 
     private String mCurrentData = "";
 
-    private final int mItemHeight = DisplayHelper.INSTANCE.dip2px(25);
+    private final int mItemHeight = DisplayHelper.INSTANCE.dip2px(20);
 
     /**
      * 为SideBar显示字母的TextView

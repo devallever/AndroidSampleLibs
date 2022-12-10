@@ -29,6 +29,11 @@ import app.allever.android.sample.function.im.viewmodel.ConversationViewModel
 import com.vanniktech.emoji.EmojiPopup
 import kotlinx.coroutines.launch
 
+
+/**
+ * RecycleView设置倒置排序，实现聊天列表界面
+ * https://blog.csdn.net/kongxingxing/article/details/77703892
+ */
 class ConversationFragment :
     BaseMvvmFragment<FragmentConversationBinding, ConversationViewModel>() {
 
