@@ -7,8 +7,8 @@ import app.allever.android.lib.common.adapter.TextAdapter
 import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.DemoMainListFragment
-import app.allever.android.sample.function.FunctionListFragment
-import app.allever.android.sample.jetpack.JetpackMainActivity
+import app.allever.android.sample.function.FunctionMainFragment
+import app.allever.android.sample.jetpack.JetpackMainFragment
 import app.allever.android.sample.kotlin.KotlinMainActivity
 import app.allever.android.sample.thirtypart.ThirtyPartMainFragment
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -25,7 +25,7 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, String
                 FragmentActivity.start<DemoMainListFragment>("UI交互")
             }
             1 -> {
-                ActivityHelper.startActivity<JetpackMainActivity> { }
+                FragmentActivity.start<JetpackMainFragment>("JetPack")
             }
             2 -> {
                 ActivityHelper.startActivity<KotlinMainActivity> { }
@@ -34,7 +34,7 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, String
                 FragmentActivity.start<ThirtyPartMainFragment>("ThirtyPart")
             }
             4 -> {
-                FragmentActivity.start<FunctionListFragment>("功能列表")
+                FragmentActivity.start<FunctionMainFragment>("功能列表")
             }
             else -> {
 

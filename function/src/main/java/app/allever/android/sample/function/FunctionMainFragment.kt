@@ -10,7 +10,7 @@ import app.allever.android.sample.function.im.IMMainFragment
 import app.allever.android.sample.function.theme.ThemeMainActivity
 import com.chad.library.adapter.base.BaseQuickAdapter
 
-class FunctionListFragment : ListFragment<FragmentListBinding, ListViewModel, String>() {
+class FunctionMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>() {
     override fun getAdapter(): BaseQuickAdapter<String, *> = TextAdapter()
 
     override fun getList() = mutableListOf("主题", "IM")
