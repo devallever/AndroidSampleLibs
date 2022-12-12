@@ -5,11 +5,10 @@ import app.allever.android.lib.common.ListFragment
 import app.allever.android.lib.common.ListViewModel
 import app.allever.android.lib.common.adapter.TextAdapter
 import app.allever.android.lib.common.databinding.FragmentListBinding
-import app.allever.android.lib.core.helper.ActivityHelper
-import app.allever.android.lib.demo.DemoMainListFragment
+import app.allever.android.lib.demo.DemoMainFragment
 import app.allever.android.sample.function.FunctionMainFragment
 import app.allever.android.sample.jetpack.JetpackMainFragment
-import app.allever.android.sample.kotlin.KotlinMainActivity
+import app.allever.android.sample.kotlin.KotlinMainFragment
 import app.allever.android.sample.thirtypart.ThirtyPartMainFragment
 import com.chad.library.adapter.base.BaseQuickAdapter
 
@@ -22,13 +21,13 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, String
     override fun onItemClick(position: Int, item: String) {
         when (position) {
             0 -> {
-                FragmentActivity.start<DemoMainListFragment>("UI交互")
+                FragmentActivity.start<DemoMainFragment>("UI交互")
             }
             1 -> {
                 FragmentActivity.start<JetpackMainFragment>("JetPack")
             }
             2 -> {
-                ActivityHelper.startActivity<KotlinMainActivity> { }
+                FragmentActivity.start<KotlinMainFragment>("Kotlin")
             }
             3 -> {
                 FragmentActivity.start<ThirtyPartMainFragment>("ThirtyPart")

@@ -2,6 +2,7 @@ package app.allever.android.sample.project
 
 import app.allever.android.lib.common.BaseActivity
 import app.allever.android.lib.core.ext.log
+import app.allever.android.lib.core.helper.FragmentHelper
 import app.allever.android.lib.core.util.TimeUtils
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.mvvm.base.MvvmConfig
@@ -11,8 +12,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun init() {
         initTopBar(getString(R.string.app_name), showBackIcon = false)
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, MainListFragment()).commit()
+        FragmentHelper.addToContainer(
+            supportFragmentManager,
+            MainListFragment(),
+            R.id.fragmentContainer
+        )
 
         val time1 = "2022-11-25 18:00:00:001"
         val time2 = "2022-11-25 18:00:00:201"

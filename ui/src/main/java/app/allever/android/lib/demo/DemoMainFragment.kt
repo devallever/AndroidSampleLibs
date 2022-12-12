@@ -13,7 +13,7 @@ import app.allever.android.lib.demo.ui.autoscroll.AutoScrollMainFragment
 import app.allever.android.lib.demo.ui.sticktop.StickyTopMainFragment
 import com.chad.library.adapter.base.BaseQuickAdapter
 
-class DemoMainListFragment : ListFragment<FragmentListBinding, ListViewModel, String>() {
+class DemoMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>() {
     override fun getAdapter(): BaseQuickAdapter<String, *> = TextAdapter()
 
     override fun getList() =
