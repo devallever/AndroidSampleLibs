@@ -2,12 +2,12 @@ package app.allever.android.lib.demo.ui
 
 import android.view.ViewOutlineProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import app.allever.android.lib.common.BaseActivity
+import app.allever.android.lib.common.BaseFragment
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.core.helper.DisplayHelper
 import app.allever.android.lib.demo.BR
 import app.allever.android.lib.demo.R
-import app.allever.android.lib.demo.databinding.ActivityUiMainBinding
+import app.allever.android.lib.demo.databinding.FragmentUiBinding
 import app.allever.android.lib.demo.ui.widget.OverlapManager
 import app.allever.android.lib.demo.util.TextAndPictureUtil
 import app.allever.android.lib.mvvm.base.BaseViewModel
@@ -16,21 +16,19 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import eightbitlab.com.blurview.RenderScriptBlur
 
-class UIMainActivity : BaseActivity<ActivityUiMainBinding, UIMainViewModel>() {
+class UIFragment : BaseFragment<FragmentUiBinding, UIViewModel>() {
     override fun init() {
-        initTopBar("UI交互")
-
-        binding.pressLikeView.setOnClickListener {
-            binding.pressLikeView.show()
+        mBinding.pressLikeView.setOnClickListener {
+            mBinding.pressLikeView.show()
         }
 
         //毛玻璃效果
-        binding.blurView.setupWith(binding.blurBg, RenderScriptBlur(this)) // or RenderEffectBlur
+        mBinding.blurView.setupWith(mBinding.blurBg, RenderScriptBlur(context)) // or RenderEffectBlur
             .setBlurRadius(20f)
-        binding.blurView.outlineProvider = ViewOutlineProvider.BACKGROUND
-        binding.blurView.clipToOutline = true
+        mBinding.blurView.outlineProvider = ViewOutlineProvider.BACKGROUND
+        mBinding.blurView.clipToOutline = true
 
-        binding.blurBg.setOnClickListener {
+        mBinding.blurBg.setOnClickListener {
             ActivityHelper.startActivity<BlurActivity>()
         }
 
@@ -41,25 +39,25 @@ class UIMainActivity : BaseActivity<ActivityUiMainBinding, UIMainViewModel>() {
             listData.add("主播你好啵${i+1}")
         }
         val autoScrollAdapter = AutoScrollAdapter()
-        binding.autoScrollRecyclerView.layoutManager = LinearLayoutManager(this)
-        binding.autoScrollRecyclerView.adapter = autoScrollAdapter
+        mBinding.autoScrollRecyclerView.layoutManager = LinearLayoutManager(context)
+        mBinding.autoScrollRecyclerView.adapter = autoScrollAdapter
         autoScrollAdapter.data = listData
-        binding.autoScrollRecyclerView.setScrollOffset(DisplayHelper.dip2px(48))
-        binding.autoScrollRecyclerView.start()
+        mBinding.autoScrollRecyclerView.setScrollOffset(DisplayHelper.dip2px(48))
+        mBinding.autoScrollRecyclerView.start()
 
         //标签换行TextView
         val text = TextAndPictureUtil.getText(
-            this,
+            context,
             "面对同事的请求从来不拒绝，自己却总是在夜晚懊悔,为什么现在的年轻,人都不愿意社交了？",
             R.drawable.default_tag,
             DisplayHelper.dip2px(26),
             DisplayHelper.dip2px(15)
         )
-        binding.tvTagAutoChangeLine.text = text
+        mBinding.tvTagAutoChangeLine.text = text
 
         //折叠RecyclerViewItem
-        binding.recyclerView2.layoutManager = OverlapManager()
-        binding.recyclerView2.adapter = object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.rv_image, listData) {
+        mBinding.recyclerView2.layoutManager = OverlapManager()
+        mBinding.recyclerView2.adapter = object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.rv_image, listData) {
             override fun convert(holder: BaseViewHolder, item: String) {}
         }
 
@@ -68,13 +66,13 @@ class UIMainActivity : BaseActivity<ActivityUiMainBinding, UIMainViewModel>() {
 
     override fun onDestroy() {
         super.onDestroy()
-        binding.autoScrollRecyclerView.stop()
+        mBinding.autoScrollRecyclerView.stop()
     }
 
-    override fun getContentMvvmConfig() = MvvmConfig(R.layout.activity_ui_main, BR.uiMainVM)
+    override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_ui, BR.uiMainVM)
 }
 
-class UIMainViewModel : BaseViewModel() {
+class UIViewModel : BaseViewModel() {
     override fun init() {
 
     }

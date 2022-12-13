@@ -1,6 +1,5 @@
 package app.allever.android.lib.demo
 
-import androidx.fragment.app.Fragment
 import app.allever.android.lib.common.FragmentActivity
 import app.allever.android.lib.common.ListFragment
 import app.allever.android.lib.common.ListViewModel
@@ -8,12 +7,12 @@ import app.allever.android.lib.common.adapter.TextAdapter
 import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.ui.*
-import app.allever.android.lib.demo.ui.UIMainActivity
+import app.allever.android.lib.demo.ui.UIFragment
 import app.allever.android.lib.demo.ui.autoscroll.AutoScrollMainFragment
 import app.allever.android.lib.demo.ui.sticktop.StickyTopMainFragment
 import com.chad.library.adapter.base.BaseQuickAdapter
 
-class DemoMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>() {
+class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>() {
     override fun getAdapter(): BaseQuickAdapter<String, *> = TextAdapter()
 
     override fun getList() =
@@ -31,7 +30,7 @@ class DemoMainFragment : ListFragment<FragmentListBinding, ListViewModel, String
     override fun onItemClick(position: Int, item: String) {
         when (position) {
             0 -> {
-                ActivityHelper.startActivity<UIMainActivity>()
+                FragmentActivity.start<UIFragment>("UI交互")
             }
             1 -> {
                 FragmentActivity.start<StickyTopMainFragment>("吸顶Demo")
@@ -44,7 +43,6 @@ class DemoMainFragment : ListFragment<FragmentListBinding, ListViewModel, String
             }
             4 -> {
                 FragmentActivity.start<AutoScrollMainFragment>("自动滚动效果")
-//                ActivityHelper.startActivity<AutoScrollActivity>()
             }
             5 -> {
                 ActivityHelper.startActivity<TanTanActivity>()

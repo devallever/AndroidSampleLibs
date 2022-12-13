@@ -5,7 +5,7 @@ import app.allever.android.lib.common.ListFragment
 import app.allever.android.lib.common.ListViewModel
 import app.allever.android.lib.common.adapter.TextAdapter
 import app.allever.android.lib.common.databinding.FragmentListBinding
-import app.allever.android.lib.demo.DemoMainFragment
+import app.allever.android.lib.demo.UIMainFragment
 import app.allever.android.sample.function.FunctionMainFragment
 import app.allever.android.sample.jetpack.JetpackMainFragment
 import app.allever.android.sample.kotlin.KotlinMainFragment
@@ -21,7 +21,7 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, String
     override fun onItemClick(position: Int, item: String) {
         when (position) {
             0 -> {
-                FragmentActivity.start<DemoMainFragment>("UI交互")
+                FragmentActivity.start<UIMainFragment>("UI交互")
             }
             1 -> {
                 FragmentActivity.start<JetpackMainFragment>("JetPack")
