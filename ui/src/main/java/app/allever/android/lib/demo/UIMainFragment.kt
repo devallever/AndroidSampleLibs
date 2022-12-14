@@ -21,28 +21,29 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>(
             "吸顶效果",
             "个人主页折叠效果",
             "回弹效果",
-            "自动滚动效果且随时设置间隔",
+            "自动滚动效果",
             "探探-交互效果",
             "Soul-交互效果",
             "分组联系人列表"
         )
 
     override fun onItemClick(position: Int, item: String) {
+        val title = getList()[position]
         when (position) {
             0 -> {
-                FragmentActivity.start<UIFragment>("UI交互")
+                FragmentActivity.start<UIFragment>(title)
             }
             1 -> {
-                FragmentActivity.start<StickyTopMainFragment>("吸顶Demo")
+                FragmentActivity.start<StickyTopMainFragment>(title)
             }
             2 -> {
                 ActivityHelper.startActivity<UserCenterActivity>()
             }
             3 -> {
-                ActivityHelper.startActivity<FlingScrollTabActivity>()
+                FragmentActivity.start<FlingScrollTabFragment>(title)
             }
             4 -> {
-                FragmentActivity.start<AutoScrollMainFragment>("自动滚动效果")
+                FragmentActivity.start<AutoScrollMainFragment>(title)
             }
             5 -> {
                 ActivityHelper.startActivity<TanTanActivity>()
@@ -51,7 +52,7 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>(
                 ActivityHelper.startActivity<SoulActivity>()
             }
             7 -> {
-                FragmentActivity.start<ContactListFragment>("分组联系人列表")
+                FragmentActivity.start<ContactListFragment>(title)
             }
         }
     }
