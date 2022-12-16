@@ -9,6 +9,5 @@
         <activity android:name=".ui.sticktop.CoordinatorStickyTopActivity" />
         <activity android:name=".ui.BlurActivity" />
         <activity android:name=".UserCenterActivity" />
-        <activity android:name=".ui.SoulActivity" />
     </application>
 </manifest>

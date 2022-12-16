@@ -11,5 +11,9 @@ class TanTanFragment : TabFragment<FragmentTabBinding, TabViewModel>() {
     override fun getTabTitles() = mutableListOf("广场泡泡", "消息-又来看我卡", "卡片滑动")
 
     override fun getFragments(): MutableList<Fragment> =
-        mutableListOf(EmptyFragment("广场泡泡"), EmptyFragment("消息-又来看我卡"), EmptyFragment("卡片滑动"))
+        mutableListOf(
+            EmptyFragment("广场泡泡"),
+            EmptyFragment("消息-又来看我卡"),
+            EmptyFragment("卡片滑动")
+        )
 }

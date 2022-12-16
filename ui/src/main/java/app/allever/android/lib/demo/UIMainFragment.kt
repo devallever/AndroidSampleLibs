@@ -48,7 +48,7 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>(
                 FragmentActivity.start<TanTanFragment>(item)
             }
             6 -> {
-                ActivityHelper.startActivity<SoulActivity>()
+                FragmentActivity.start<SoulFragment>(item)
             }
             7 -> {
                 FragmentActivity.start<ContactListFragment>(item)
