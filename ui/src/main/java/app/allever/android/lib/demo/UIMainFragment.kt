@@ -28,31 +28,30 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>(
         )
 
     override fun onItemClick(position: Int, item: String) {
-        val title = getList()[position]
         when (position) {
             0 -> {
-                FragmentActivity.start<UIFragment>(title)
+                FragmentActivity.start<UIFragment>(item)
             }
             1 -> {
-                FragmentActivity.start<StickyTopMainFragment>(title)
+                FragmentActivity.start<StickyTopMainFragment>(item)
             }
             2 -> {
                 ActivityHelper.startActivity<UserCenterActivity>()
             }
             3 -> {
-                FragmentActivity.start<FlingScrollTabFragment>(title)
+                FragmentActivity.start<FlingScrollTabFragment>(item)
             }
             4 -> {
-                FragmentActivity.start<AutoScrollMainFragment>(title)
+                FragmentActivity.start<AutoScrollMainFragment>(item)
             }
             5 -> {
-                ActivityHelper.startActivity<TanTanActivity>()
+                FragmentActivity.start<TanTanFragment>(item)
             }
             6 -> {
                 ActivityHelper.startActivity<SoulActivity>()
             }
             7 -> {
-                FragmentActivity.start<ContactListFragment>(title)
+                FragmentActivity.start<ContactListFragment>(item)
             }
         }
     }

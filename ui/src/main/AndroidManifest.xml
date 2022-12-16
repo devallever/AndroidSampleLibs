@@ -3,17 +3,12 @@
     package="app.allever.android.lib.demo">
 
     <application>
-        <activity android:name=".ui.sticktop.StickyTopMainActivity" />
-        <activity android:name=".UIMainActivity" />
         <activity android:name=".ui.sticktop.BaseTwoViewStickyTopActivity" />
         <activity android:name=".ui.sticktop.RemoveAddViewStickyTopActivity" />
         <activity android:name=".ui.sticktop.RecyclerViewHeaderStickyTopActivity" />
         <activity android:name=".ui.sticktop.CoordinatorStickyTopActivity" />
         <activity android:name=".ui.BlurActivity" />
         <activity android:name=".UserCenterActivity" />
-        <activity android:name=".ui.FlingScrollTabFragment" />
-        <activity android:name=".ui.AutoScrollActivity" />
-        <activity android:name=".ui.TanTanActivity" />
         <activity android:name=".ui.SoulActivity" />
     </application>
 </manifest>
