@@ -9,6 +9,7 @@ import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.ui.*
 import app.allever.android.lib.demo.ui.UIFragment
 import app.allever.android.lib.demo.ui.autoscroll.AutoScrollMainFragment
+import app.allever.android.lib.demo.ui.dialog.DialogMainFragment
 import app.allever.android.lib.demo.ui.sticktop.StickyTopMainFragment
 import com.chad.library.adapter.base.BaseQuickAdapter
 
@@ -24,7 +25,8 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>(
             "自动滚动效果",
             "探探-交互效果",
             "Soul-交互效果",
-            "分组联系人列表"
+            "分组联系人列表",
+            "弹窗"
         )
 
     override fun onItemClick(position: Int, item: String) {
@@ -52,6 +54,9 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>(
             }
             7 -> {
                 FragmentActivity.start<ContactListFragment>(item)
+            }
+            8 -> {
+                FragmentActivity.start<DialogMainFragment>(item)
             }
         }
     }

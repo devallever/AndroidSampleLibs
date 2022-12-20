@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 
 abstract class ListFragment<DB : ViewDataBinding, VM : BaseViewModel, T> :
     BaseFragment<FragmentListBinding, ListViewModel>() {
+
     private var mAdapter: BaseQuickAdapter<T, *>? = null
     override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_list, BR.listVM)
 

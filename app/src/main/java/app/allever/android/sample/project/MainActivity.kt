@@ -1,5 +1,8 @@
 package app.allever.android.sample.project
 
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import app.allever.android.lib.common.BaseActivity
 import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.helper.FragmentHelper
@@ -27,6 +30,16 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     }
 
     override fun getContentMvvmConfig() = MvvmConfig(R.layout.activity_main, BR.mainVM)
+
+    private fun test() {
+        Looper.prepare()
+        Looper.loop()
+        val handler = Handler()
+        handler.sendEmptyMessage(0)
+        handler.post {
+
+        }
+    }
 }
 
 class MainViewModel : BaseViewModel() {
