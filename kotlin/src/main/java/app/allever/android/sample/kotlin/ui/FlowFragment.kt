@@ -1,23 +1,25 @@
 package app.allever.android.sample.kotlin.ui
 
-import app.allever.android.lib.core.helper.ActivityHelper
-import app.allever.android.lib.mvvm.base.BaseMvvmFragment
-import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
-import app.allever.android.lib.widget.ripple.RippleHelper
-import app.allever.android.sample.kotlin.BR
-import app.allever.android.sample.kotlin.R
-import app.allever.android.sample.kotlin.databinding.FragmentFlowBinding
-import app.allever.android.sample.kotlin.function.flow.FlowMainActivity
+import app.allever.android.lib.common.FragmentActivity
+import app.allever.android.lib.common.ListFragment
+import app.allever.android.lib.common.ListViewModel
+import app.allever.android.lib.common.adapter.TextAdapter
+import app.allever.android.lib.common.databinding.FragmentListBinding
+import app.allever.android.sample.kotlin.function.flow.FlowMainFragment
 
-class FlowFragment : BaseMvvmFragment<FragmentFlowBinding, BaseViewModel>() {
-    override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_flow, BR.flowVM)
+class FlowFragment : ListFragment<FragmentListBinding, ListViewModel, String>() {
 
-    override fun init() {
-        RippleHelper.addRippleView(mBinding.tvFlow)
+    override fun getAdapter() = TextAdapter()
 
-        mBinding.tvFlow.setOnClickListener {
-            ActivityHelper.startActivity<FlowMainActivity> { }
+    override fun getList() = mutableListOf(
+        "Flow"
+    )
+
+    override fun onItemClick(position: Int, item: String) {
+        when(position) {
+            0 -> {
+                FragmentActivity.start<FlowMainFragment>(item)
+            }
         }
     }
 }
