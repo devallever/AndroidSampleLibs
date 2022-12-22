@@ -6,11 +6,12 @@ import app.allever.android.lib.common.TabViewModel
 import app.allever.android.lib.common.databinding.FragmentTabBinding
 
 class DialogMainFragment : TabFragment<FragmentTabBinding, TabViewModel>() {
-    override fun getTabTitles() = mutableListOf("Dialog", "DialogFragment", "BottomSheetDialog")
+    override fun getTabTitles() = mutableListOf("Dialog", "DialogFragment", "BottomSheetDialog","ActivityDialog")
 
     override fun getFragments(): MutableList<Fragment> = mutableListOf(
         CommonDialogListFragment(),
         DialogFragmentListFragment(),
-        BottomSlideDialogListFragment()
+        BottomSlideDialogListFragment(),
+        ActivityDialogListFragment()
     )
 }

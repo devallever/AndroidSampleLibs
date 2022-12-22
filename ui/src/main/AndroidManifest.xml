@@ -9,5 +9,7 @@
         <activity android:name=".ui.sticktop.CoordinatorStickyTopActivity" />
         <activity android:name=".ui.BlurActivity" />
         <activity android:name=".UserCenterActivity" />
+        <activity android:name=".ui.dialog.activitydialog.BottomActivityDialog"
+            android:theme="@style/BottomActivityDialog"/>
     </application>
 </manifest>
