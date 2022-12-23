@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.allever.android.lib.demo">
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application>
         <activity android:name=".ui.sticktop.BaseTwoViewStickyTopActivity" />
         <activity android:name=".ui.sticktop.RemoveAddViewStickyTopActivity" />

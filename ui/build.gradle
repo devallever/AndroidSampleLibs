@@ -42,4 +42,5 @@ dependencies {
 
     api blurView
     api shapeBlurView
+    api floatWindow
 }
