@@ -7,9 +7,9 @@ import app.allever.android.lib.common.adapter.TextAdapter
 import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.ui.*
-import app.allever.android.lib.demo.ui.UIFragment
 import app.allever.android.lib.demo.ui.autoscroll.AutoScrollMainFragment
 import app.allever.android.lib.demo.ui.dialog.DialogMainFragment
+import app.allever.android.lib.demo.ui.notification.NotificationMainFragment
 import app.allever.android.lib.demo.ui.sticktop.StickyTopMainFragment
 import com.chad.library.adapter.base.BaseQuickAdapter
 
@@ -26,7 +26,8 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>(
             "探探-交互效果",
             "Soul-交互效果",
             "分组联系人列表",
-            "弹窗"
+            "弹窗",
+            "通知"
         )
 
     override fun onItemClick(position: Int, item: String) {
@@ -58,6 +59,7 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>(
             8 -> {
                 FragmentActivity.start<DialogMainFragment>(item)
             }
+            9 -> FragmentActivity.start<NotificationMainFragment>(item)
         }
     }
 }
