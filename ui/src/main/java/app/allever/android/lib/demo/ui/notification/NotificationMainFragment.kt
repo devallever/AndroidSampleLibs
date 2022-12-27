@@ -1,6 +1,9 @@
 package app.allever.android.lib.demo.ui.notification
 
 import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
@@ -20,7 +23,9 @@ class NotificationMainFragment : ListFragment<FragmentListBinding, ListViewModel
         "创建通知渠道(8.0)",
         "判断通知权限",
         "打开通知设置",
-        "基础通知"
+        "基础通知",
+        "超长文本通知",
+        "大图通知"
     )
 
     override fun onItemClick(position: Int, item: String) {
@@ -37,6 +42,12 @@ class NotificationMainFragment : ListFragment<FragmentListBinding, ListViewModel
             3 -> {
                 showBaseNotification(position)
             }
+            4 -> {
+                showLongTextNotification(position)
+            }
+            5 -> {
+                showBigImageNotification(position)
+            }
         }
     }
 
@@ -52,11 +63,65 @@ class NotificationMainFragment : ListFragment<FragmentListBinding, ListViewModel
     }
 
     private fun showBaseNotification(notificationId: Int) {
+        val intent = Intent(requireContext(), NotificationActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(requireContext(), 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
         val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
-            .setSmallIcon(R.drawable.icon_album_video_preview_play)
+            .setSmallIcon(R.drawable.default_avatar)//状态栏用到
+            .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.default_avatar)) //右边
             .setContentTitle("通知标题")
             .setContentText("通知内容")
+            .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+        NotificationHelper.manager.notify(notificationId, builder.build())
+    }
+
+    private fun showLongTextNotification(notificationId: Int) {
+        val intent = Intent(requireContext(), NotificationActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(requireContext(), 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
+        val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+            .setSmallIcon(R.drawable.default_avatar)//状态栏用到
+            .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.default_avatar)) //右边
+            .setContentTitle("基础通知标题")
+            .setContentText("基础通知内容")
+            .setContentIntent(pendingIntent)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+            .setStyle(NotificationCompat.BigTextStyle()
+                .setSummaryText("超长文本通知标题摘要")
+                .setBigContentTitle("超长文本通知标题")
+                .bigText("超长文本通知内容: \uD83D\uDD25\uD83D\uDD25\uD83D\uDD25Android基础组件库\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25 打造一个简单易用的基础组件库，封装架构组件，网络组件，数据存储组件，图片加载组件，媒体库组件，运行时权限组件，全局捕获异常组件， 业务流程组件，日志组件，广告组件"))
+        NotificationHelper.manager.notify(notificationId, builder.build())
+    }
+
+    private fun showBigImageNotification(notificationId: Int) {
+        val intent = Intent(requireContext(), NotificationActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(requireContext(), 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
+        val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+            .setSmallIcon(R.drawable.default_avatar)//状态栏用到
+            .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.default_avatar)) //右边
+            .setContentTitle("基础通知标题")
+            .setContentText("基础通知内容")
+            .setContentIntent(pendingIntent)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+            .setStyle(NotificationCompat.BigPictureStyle()
+                .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.default_avatar))
+                .setBigContentTitle("大图通知标题")
+                .bigLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.default_avatar))
+                .setSummaryText("大图通知摘要"))
         NotificationHelper.manager.notify(notificationId, builder.build())
     }
 }
