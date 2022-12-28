@@ -1,16 +1,22 @@
 package app.allever.android.lib.demo.ui.notification
 
+import android.annotation.SuppressLint
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Build
+import android.widget.RemoteViews
+import android.widget.RemoteViewsService
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
+import androidx.core.app.Person
 import app.allever.android.lib.common.ListFragment
 import app.allever.android.lib.common.ListViewModel
 import app.allever.android.lib.common.adapter.TextAdapter
 import app.allever.android.lib.common.databinding.FragmentListBinding
+import app.allever.android.lib.core.app.App
+import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.helper.NotificationHelper
 import app.allever.android.lib.demo.R
@@ -25,7 +31,10 @@ class NotificationMainFragment : ListFragment<FragmentListBinding, ListViewModel
         "打开通知设置",
         "基础通知",
         "超长文本通知",
-        "大图通知"
+        "大图通知",
+        "媒体通知",
+        "通信消息通知",
+        "自定义通知界面"
     )
 
     override fun onItemClick(position: Int, item: String) {
@@ -47,6 +56,15 @@ class NotificationMainFragment : ListFragment<FragmentListBinding, ListViewModel
             }
             5 -> {
                 showBigImageNotification(position)
+            }
+            6 -> {
+                toast(item)
+            }
+            7 -> {
+                toast(item)
+            }
+            8 -> {
+                showCustomDisplayNotification(position)
             }
         }
     }
@@ -90,7 +108,7 @@ class NotificationMainFragment : ListFragment<FragmentListBinding, ListViewModel
         val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
             .setSmallIcon(R.drawable.default_avatar)//状态栏用到
             .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.default_avatar)) //右边
-            .setContentTitle("基础通知标题")
+            .setContentTitle("长文本通知")
             .setContentText("基础通知内容")
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -112,7 +130,7 @@ class NotificationMainFragment : ListFragment<FragmentListBinding, ListViewModel
         val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
             .setSmallIcon(R.drawable.default_avatar)//状态栏用到
             .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.default_avatar)) //右边
-            .setContentTitle("基础通知标题")
+            .setContentTitle("大图通知")
             .setContentText("基础通知内容")
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
@@ -122,6 +140,39 @@ class NotificationMainFragment : ListFragment<FragmentListBinding, ListViewModel
                 .setBigContentTitle("大图通知标题")
                 .bigLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.default_avatar))
                 .setSummaryText("大图通知摘要"))
+        NotificationHelper.manager.notify(notificationId, builder.build())
+    }
+
+    private fun showMessagingNotification(notificationId: Int) {
+    }
+
+    @SuppressLint("RemoteViewLayout")
+    private fun showCustomDisplayNotification(notificationId: Int) {
+        val notificationView = layoutInflater.inflate(R.layout.layout_notification, null, false)
+
+        // Get the layouts to use in the custom notification
+        log("pkg = ${requireContext().packageName}")
+        val notificationLayout = RemoteViews(requireContext().packageName, R.layout.layout_notification)
+//        val notificationLayoutExpanded = RemoteViews(requireContext().packageName, R.layout.layout_notification)
+
+        val intent = Intent(requireContext(), NotificationActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent: PendingIntent =
+            PendingIntent.getActivity(requireContext(), 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
+        val builder = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+            .setSmallIcon(R.drawable.default_avatar)//状态栏用到
+//            .setLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.default_avatar)) //右边
+            .setContentTitle("自定义界面通知")
+//            .setContentText("通知内容")
+//            .setContent(notificationLayout)//兼容旧版
+//            .setContentIntent(pendingIntent)
+//            .setPriority(NotificationCompat.PRIORITY_HIGH)
+//            .setAutoCancel(true)
+//            .setStyle(NotificationCompat.DecoratedCustomViewStyle())
+            .setCustomContentView(notificationLayout)// android 12
+//            .setCustomBigContentView(notificationLayoutExpanded)
         NotificationHelper.manager.notify(notificationId, builder.build())
     }
 }
