@@ -6,5 +6,9 @@
         <activity
             android:name=".AudioVideoMainActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".videoviewplayer.VideoViewPlayerActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SelectMediaActivity"
+            android:screenOrientation="portrait"/>
     </application>
 </manifest>
