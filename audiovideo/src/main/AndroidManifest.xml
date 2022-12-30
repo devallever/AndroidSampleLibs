@@ -7,7 +7,9 @@
             android:name=".AudioVideoMainActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".videoviewplayer.VideoViewPlayerActivity"
-            android:screenOrientation="portrait"/>
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreenStyle"/>
         <activity android:name=".SelectMediaActivity"
             android:screenOrientation="portrait"/>
     </application>
