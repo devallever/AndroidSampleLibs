@@ -1,9 +1,9 @@
-package app.allever.android.learning.audiovideo.videoviewplayer
+package app.allever.android.learning.audiovideo.textureviewplayer
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.pm.ActivityInfo
+import android.graphics.Matrix
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -13,7 +13,8 @@ import android.widget.SeekBar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import app.allever.android.learning.audiovideo.R
-import app.allever.android.learning.audiovideo.databinding.VideoPlayerViewBinding
+import app.allever.android.learning.audiovideo.databinding.TexturePlayerViewBinding
+import app.allever.android.learning.audiovideo.videoviewplayer.VideoViewHandler
 import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.function.media.MediaBean
@@ -22,22 +23,19 @@ import app.allever.android.lib.core.helper.ViewHelper
 import app.allever.android.lib.core.util.TimeUtils
 import kotlin.math.abs
 
-class VideoPlayerView @JvmOverloads constructor(
+class TexturePlayerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
-) : ConstraintLayout(context, attrs), VideoViewHandler.StatusListener {
-
-    private val videoViewHandler: VideoViewHandler by lazy {
-        VideoViewHandler()
+) : ConstraintLayout(context, attrs), TextureViewHandler.StatusListener {
+    private var binding: TexturePlayerViewBinding
+    private lateinit var mMediaBean: MediaBean
+    private val mTextureViewHandler: TextureViewHandler by lazy {
+        TextureViewHandler()
     }
-
-    private var binding: VideoPlayerViewBinding
-
-    private var mMediaBean: MediaBean? = null
 
     init {
         binding = DataBindingUtil.inflate(
             LayoutInflater.from(context),
-            R.layout.video_player_view,
+            R.layout.texture_player_view,
             this,
             true
         )
@@ -45,24 +43,22 @@ class VideoPlayerView @JvmOverloads constructor(
         initListener()
     }
 
-    @SuppressLint("ClickableViewAccessibility")
     private fun initListener() {
         binding.ivBack.setOnClickListener {
             toast("finish")
             (context as? Activity)?.finish()
-//            finish()
         }
         binding.ivPlayPause.setOnClickListener {
-            if (videoViewHandler.isPlaying()) {
-                videoViewHandler.pause()
+            if (mTextureViewHandler.isPlaying()) {
+                mTextureViewHandler.pause()
             } else {
-                videoViewHandler.play()
+                mTextureViewHandler.play()
             }
         }
         binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 if (p2) {
-                    videoViewHandler.seekTo(p1)
+                    mTextureViewHandler.seekTo(p1)
                 }
                 binding.tvProgress.text = TimeUtils.formatTime(p1.toLong(), TimeUtils.FORMAT_mm_ss)
             }
@@ -116,7 +112,7 @@ class VideoPlayerView @JvmOverloads constructor(
                         binding.controlView.performClick()
                     } else {
 //                        toast("移动了")
-                        videoViewHandler.play()
+                        mTextureViewHandler.play()
                     }
                     moved = false
                 }
@@ -143,12 +139,12 @@ class VideoPlayerView @JvmOverloads constructor(
                             log("下边滑动")
 
                             if (moved) {
-                                videoViewHandler.pause()
+                                mTextureViewHandler.pause()
                                 val currentPosition =
                                     binding.seekBar.max * realOffsetX / screenWidth.toFloat()
                                 val progress = binding.seekBar.progress + currentPosition.toInt()
                                 binding.seekBar.progress = progress
-                                videoViewHandler.seekTo(progress)
+                                mTextureViewHandler.seekTo(progress)
                                 log(" progress = $progress")
                             }
                         }
@@ -167,20 +163,16 @@ class VideoPlayerView @JvmOverloads constructor(
         }
     }
 
+
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        videoViewHandler.stop()
+        mTextureViewHandler.stop()
     }
 
     fun setData(mediaBean: MediaBean) {
         mMediaBean = mediaBean
-        videoViewHandler.initVideoView(
-            binding.videoView,
-            mMediaBean!!,
-            null,
-            this
-        )
-        binding.tvTitle.text = mMediaBean?.name
+        mTextureViewHandler.initVideoView(binding.videoView, mediaBean, this)
+        binding.tvTitle.text = mMediaBean.name
     }
 
     override fun onPrepare(duration: Int) {
@@ -208,23 +200,47 @@ class VideoPlayerView @JvmOverloads constructor(
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-        binding.videoView.post {
-            val screenWidth = DisplayHelper.getScreenWidth()
-            val screenHeight = DisplayHelper.getScreenHeight()
-            val isWidthMode = screenWidth > screenHeight
+        stretching(w.toFloat(), h.toFloat())
+    }
 
-            if (isWidthMode) {
-                val lp = binding.videoView.layoutParams
-                lp.width = ViewGroup.LayoutParams.WRAP_CONTENT
-                lp.height = ViewGroup.LayoutParams.MATCH_PARENT
-                binding.videoView.layoutParams = lp
+
+    private var mVideoHeight = 0f
+    private var mVideoWidth = 0f
+
+    //设置避免视频播放时拉伸，复制可直接使用
+    private fun stretching(mtextureViewWidth: Float, mtextureViewHeight: Float) {
+        log("视频拉伸: $mtextureViewWidth x $mtextureViewHeight")
+        binding.videoView.post {
+            //mtextureViewWidth为textureView宽，mtextureViewHeight为textureView高
+            //mtextureViewWidth宽高，为什么需要用传入的，因为全屏显示时宽高不会及时更新
+            val matrix = Matrix();
+            //videoView为new MediaPlayer()
+            val mVideoWidth = mTextureViewHandler.getMediaPlayer().videoWidth.toFloat()
+            val mVideoHeight = mTextureViewHandler.getMediaPlayer().videoHeight.toFloat()
+
+            //得到缩放比，从而获得最佳缩放比
+            val sx = mtextureViewWidth / mVideoWidth;
+            val sy = mtextureViewHeight / mVideoHeight;
+            //先将视频变回原来的大小
+            val sx1 = mVideoWidth / mtextureViewWidth;
+            val sy1 = mVideoHeight / mtextureViewHeight;
+            matrix.preScale(sx1, sy1);
+            log("mat", matrix.toString());
+            //然后判断最佳比例，满足一边能够填满
+            if (sx >= sy) {
+                matrix.preScale(sy, sy);
+                //然后判断出左右偏移，实现居中，进入到这个判断，证明y轴是填满了的
+                val leftX = (mtextureViewWidth - mVideoWidth * sy) / 2;
+                matrix.postTranslate(leftX, 0f);
             } else {
-                val lp = binding.videoView.layoutParams
-                lp.width = ViewGroup.LayoutParams.MATCH_PARENT
-                lp.height = ViewGroup.LayoutParams.WRAP_CONTENT
-                binding.videoView.layoutParams = lp
+                matrix.preScale(sx, sx);
+                val leftY = (mtextureViewHeight - mVideoHeight * sx) / 2;
+                matrix.postTranslate(0f, leftY);
             }
+
+            binding.videoView.setTransform(matrix);//将矩阵添加到textureView
+            binding.videoView.postInvalidate();//重绘视图
         }
+
     }
 }

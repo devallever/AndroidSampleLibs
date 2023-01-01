@@ -1,6 +1,8 @@
 package app.allever.android.learning.audiovideo
 
+import android.content.Intent
 import app.allever.android.learning.audiovideo.databinding.ActivitySelectMediaBinding
+import app.allever.android.learning.audiovideo.textureviewplayer.TextureViewPlayerActivity
 import app.allever.android.learning.audiovideo.videoviewplayer.VideoViewPlayerActivity
 import app.allever.android.lib.common.BaseActivity
 import app.allever.android.lib.core.ext.log
@@ -11,11 +13,11 @@ import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.mvvm.base.MvvmConfig
 import app.allever.android.lib.widget.mediapicker.MediaPicker
 import app.allever.android.lib.widget.mediapicker.MediaPickerListener
-import app.allever.android.lib.widget.mediapicker.ui.PreviewActivity
 
 class SelectMediaActivity : BaseActivity<ActivitySelectMediaBinding, SelectMediaViewModel>() {
     override fun init() {
         initTopBar("选择视频")
+        mViewModel.initExtra(intent)
         binding.btnSelectMedia.setOnClickListener {
             MediaPicker.launchPickerActivity(
                 MediaHelper.TYPE_VIDEO,
@@ -29,9 +31,19 @@ class SelectMediaActivity : BaseActivity<ActivitySelectMediaBinding, SelectMedia
                         log("path = ${videoList[0]}")
                         if (videoList.isNotEmpty()) {
                             videoList[0].date
-                            ActivityHelper.startActivity<VideoViewPlayerActivity> {
-                                putExtra("MEDIA_BEAN", videoList[0])
+                            when (mViewModel.type) {
+                                0 -> {
+                                    ActivityHelper.startActivity<VideoViewPlayerActivity> {
+                                        putExtra("MEDIA_BEAN", videoList[0])
+                                    }
+                                }
+                                1 -> {
+                                    ActivityHelper.startActivity<TextureViewPlayerActivity> {
+                                        putExtra("MEDIA_BEAN", videoList[0])
+                                    }
+                                }
                             }
+
                         }
                     }
 
@@ -44,7 +56,12 @@ class SelectMediaActivity : BaseActivity<ActivitySelectMediaBinding, SelectMedia
 }
 
 class SelectMediaViewModel : BaseViewModel() {
+    var type: Int = 0
     override fun init() {
 
+    }
+
+    fun initExtra(intent: Intent?) {
+        type = intent?.getIntExtra("TYPE", 0) ?: 0
     }
 }

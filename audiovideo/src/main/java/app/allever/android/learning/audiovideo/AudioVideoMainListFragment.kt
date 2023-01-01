@@ -10,13 +10,20 @@ class AudioVideoMainListFragment : ListFragment<FragmentListBinding, ListViewMod
     override fun getAdapter() = TextAdapter()
 
     override fun getList() = mutableListOf(
-        "VideoView播放器"
+        "VideoView播放器", "TextureView播放器"
     )
 
     override fun onItemClick(position: Int, item: String) {
         when(position) {
             0 -> {
-                ActivityHelper.startActivity(SelectMediaActivity::class.java)
+                ActivityHelper.startActivity(SelectMediaActivity::class.java) {
+                    putExtra("TYPE", 0)
+                }
+            }
+            1 -> {
+                ActivityHelper.startActivity(SelectMediaActivity::class.java) {
+                    putExtra("TYPE", 1)
+                }
             }
         }
     }
