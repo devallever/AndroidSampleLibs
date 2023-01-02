@@ -13,6 +13,7 @@ import android.widget.SeekBar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import app.allever.android.learning.audiovideo.R
+import app.allever.android.learning.audiovideo.StatusListener
 import app.allever.android.learning.audiovideo.databinding.TexturePlayerViewBinding
 import app.allever.android.learning.audiovideo.videoviewplayer.VideoViewHandler
 import app.allever.android.lib.core.ext.log
@@ -25,7 +26,7 @@ import kotlin.math.abs
 
 class TexturePlayerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
-) : ConstraintLayout(context, attrs), TextureViewHandler.StatusListener {
+) : ConstraintLayout(context, attrs), StatusListener {
     private var binding: TexturePlayerViewBinding
     private lateinit var mMediaBean: MediaBean
     private val mTextureViewHandler: TextureViewHandler by lazy {
@@ -203,10 +204,6 @@ class TexturePlayerView @JvmOverloads constructor(
         stretching(w.toFloat(), h.toFloat())
     }
 
-
-    private var mVideoHeight = 0f
-    private var mVideoWidth = 0f
-
     //设置避免视频播放时拉伸，复制可直接使用
     private fun stretching(mtextureViewWidth: Float, mtextureViewHeight: Float) {
         log("视频拉伸: $mtextureViewWidth x $mtextureViewHeight")
@@ -215,8 +212,8 @@ class TexturePlayerView @JvmOverloads constructor(
             //mtextureViewWidth宽高，为什么需要用传入的，因为全屏显示时宽高不会及时更新
             val matrix = Matrix();
             //videoView为new MediaPlayer()
-            val mVideoWidth = mTextureViewHandler.getMediaPlayer().videoWidth.toFloat()
-            val mVideoHeight = mTextureViewHandler.getMediaPlayer().videoHeight.toFloat()
+            val mVideoWidth = mTextureViewHandler.getMediaPlayer()?.videoWidth?.toFloat()?:0f
+            val mVideoHeight = mTextureViewHandler.getMediaPlayer()?.videoHeight?.toFloat()?:0f
 
             //得到缩放比，从而获得最佳缩放比
             val sx = mtextureViewWidth / mVideoWidth;

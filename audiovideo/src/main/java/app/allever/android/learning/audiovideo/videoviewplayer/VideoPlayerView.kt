@@ -13,6 +13,7 @@ import android.widget.SeekBar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import app.allever.android.learning.audiovideo.R
+import app.allever.android.learning.audiovideo.StatusListener
 import app.allever.android.learning.audiovideo.databinding.VideoPlayerViewBinding
 import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.ext.toast
@@ -24,7 +25,7 @@ import kotlin.math.abs
 
 class VideoPlayerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
-) : ConstraintLayout(context, attrs), VideoViewHandler.StatusListener {
+) : ConstraintLayout(context, attrs), StatusListener {
 
     private val videoViewHandler: VideoViewHandler by lazy {
         VideoViewHandler()

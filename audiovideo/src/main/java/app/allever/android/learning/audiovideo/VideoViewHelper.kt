@@ -1,4 +1,4 @@
-package app.allever.android.learning.audiovideo.videoviewplayer
+package app.allever.android.learning.audiovideo
 
 import android.database.Cursor
 import android.provider.MediaStore
