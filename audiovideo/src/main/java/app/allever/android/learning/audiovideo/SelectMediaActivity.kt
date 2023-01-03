@@ -2,6 +2,7 @@ package app.allever.android.learning.audiovideo
 
 import android.content.Intent
 import app.allever.android.learning.audiovideo.databinding.ActivitySelectMediaBinding
+import app.allever.android.learning.audiovideo.surfaceviewplayer.SurfaceViewPlayerActivity
 import app.allever.android.learning.audiovideo.textureviewplayer.TextureViewPlayerActivity
 import app.allever.android.learning.audiovideo.videoviewplayer.VideoViewPlayerActivity
 import app.allever.android.lib.common.BaseActivity
@@ -39,6 +40,12 @@ class SelectMediaActivity : BaseActivity<ActivitySelectMediaBinding, SelectMedia
                                 }
                                 1 -> {
                                     ActivityHelper.startActivity<TextureViewPlayerActivity> {
+                                        putExtra("MEDIA_BEAN", videoList[0])
+                                    }
+                                }
+
+                                2 -> {
+                                    ActivityHelper.startActivity<SurfaceViewPlayerActivity> {
                                         putExtra("MEDIA_BEAN", videoList[0])
                                     }
                                 }

@@ -16,5 +16,9 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenStyle"/>
+        <activity android:name=".surfaceviewplayer.SurfaceViewPlayerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreenStyle"/>
     </application>
 </manifest>
