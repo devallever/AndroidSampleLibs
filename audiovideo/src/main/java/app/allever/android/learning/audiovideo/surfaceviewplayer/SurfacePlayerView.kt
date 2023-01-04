@@ -3,7 +3,6 @@ package app.allever.android.learning.audiovideo.surfaceviewplayer
 import android.app.Activity
 import android.content.Context
 import android.content.pm.ActivityInfo
-import android.graphics.Matrix
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -172,6 +171,7 @@ class SurfacePlayerView @JvmOverloads constructor(
         mMediaBean = mediaBean
         playerHandler.initVideoView(binding.videoView, mediaBean, this)
         binding.tvTitle.text = mMediaBean.name
+        changeVideoSize()
     }
 
     override fun onPrepare(duration: Int) {
@@ -202,43 +202,62 @@ class SurfacePlayerView @JvmOverloads constructor(
         changeVideoSize()
     }
 
-    //改变视频的尺寸自适应。算法有点点问题，1.被拉伸，2.没全屏占满
+    //改变视频的尺寸自适应。
     private fun changeVideoSize() {
-        binding.videoView.post {
-            var videoWidth = playerHandler.getMediaPlayer()?.videoWidth ?: 0
-            var videoHeight = playerHandler.getMediaPlayer()?.videoHeight ?: 0
+        binding.controlView.post {
+            val w: Float = mMediaBean.width.toFloat()
+            val h: Float = mMediaBean.height.toFloat()
+            val sw: Float = binding.controlView.width.toFloat()
+            val sh: Float = binding.controlView.height.toFloat()
 
-            log("video size = $videoWidth x $videoHeight")
+            var displayW = 0
+            var displayH = 0
 
-            val surfaceWidth = binding.videoView.width
-            val surfaceHeight = binding.videoView.height
+            log("video size = $w x $h")
+            log("surface size = $sw x $sh")
 
-            log("surface size = $surfaceWidth x $surfaceHeight")
+            if (resources.configuration.orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+                log("竖屏")
+                if (w > h) {
+                    //横向视频
+                    displayW = sw.toInt()
+                    displayH = (h * sw / w).toInt()
+                } else {
+                    //纵向视频
+                    if (h > sh) {
+                        // 超高视频
+                    } else {
+                        //
+                        displayW = sw.toInt()
+                        displayH = (h * sw / w).toInt()
+                    }
+                }
 
-            //根据视频尺寸去计算->视频可以在sufaceView中放大的最大倍数。
-            var max = 0f
-            max = if (resources.configuration.orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
-                //竖屏模式下按视频宽度计算放大倍数值
-                Math.max(
-                    videoWidth / surfaceWidth,
-                    videoHeight / surfaceHeight
-                ).toFloat();
             } else {
-                //横屏模式下按视频高度计算放大倍数值
-                Math.max(
-                    (videoWidth / surfaceHeight),
-                    videoHeight / surfaceWidth
-                ).toFloat();
+                log("横屏")
+                if (w > h) {
+                    //横向视频
+                    if (w > sw) {
+                        //超宽视频
+                    } else {
+                        //
+                        displayH = sh.toInt()
+                        displayW = (w * sh / h).toInt()
+                    }
+                } else {
+                    //纵向视频
+                    displayH = sh.toInt()
+                    displayW = (w * sh / h).toInt()
+                }
             }
 
-            //视频宽高分别/最大倍数值 计算出放大后的视频尺寸
-            videoWidth = ceil(videoWidth / max).toInt();
-            videoHeight = ceil(videoHeight / max).toInt();
+
+            log("surface size = $displayW x $displayH")
 
             //无法直接设置视频尺寸，将计算出的视频尺寸设置到surfaceView 让视频自动填充。
             val params = binding.videoView.layoutParams
-            params.width = videoWidth
-            params.height = videoHeight
+            params.width = displayW
+            params.height = displayH
             binding.videoView.layoutParams = params
         }
 
