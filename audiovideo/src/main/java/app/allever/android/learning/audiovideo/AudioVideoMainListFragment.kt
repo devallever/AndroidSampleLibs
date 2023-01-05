@@ -1,5 +1,6 @@
 package app.allever.android.learning.audiovideo
 
+import app.allever.android.learning.audiovideo.audio.AudioRecordActivity
 import app.allever.android.lib.common.ListFragment
 import app.allever.android.lib.common.ListViewModel
 import app.allever.android.lib.common.adapter.TextAdapter
@@ -10,7 +11,7 @@ class AudioVideoMainListFragment : ListFragment<FragmentListBinding, ListViewMod
     override fun getAdapter() = TextAdapter()
 
     override fun getList() = mutableListOf(
-        "VideoView播放器", "TextureView播放器", "SurfaceView播放器"
+        "VideoView播放器", "TextureView播放器", "SurfaceView播放器", "AudioRecord录制音频"
     )
 
     override fun onItemClick(position: Int, item: String) {
@@ -29,6 +30,9 @@ class AudioVideoMainListFragment : ListFragment<FragmentListBinding, ListViewMod
                 ActivityHelper.startActivity(SelectMediaActivity::class.java) {
                     putExtra("TYPE", 2)
                 }
+            }
+            3 -> {
+                ActivityHelper.startActivity(AudioRecordActivity::class.java) { }
             }
         }
     }

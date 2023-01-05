@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.allever.android.learning.audiovideo">
 
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
     <application>
         <activity
             android:name=".AudioVideoMainActivity"
@@ -20,5 +22,6 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenStyle"/>
+        <activity android:name=".audio.AudioRecordActivity" />
     </application>
 </manifest>
