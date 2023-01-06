@@ -8,7 +8,7 @@ import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.mvvm.base.MvvmConfig
 
 class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding, AudioRecordViewModel>() {
-    private lateinit var audioRecord: BaseAudioRecordThread
+    private var audioRecord: BaseAudioRecordThread? = null
 
     override fun getContentMvvmConfig() =
         MvvmConfig(R.layout.activity_audio_record, BR.audioRecordVM)
@@ -28,18 +28,19 @@ class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding, AudioRecord
             }
         }
         binding.btnStartRecord.setOnClickListener {
+            audioRecord?.stopRecord()
             audioRecord = AudioRecordThread(audioRecordCallback)
-            audioRecord.start()
+            audioRecord?.start()
         }
 
         binding.btnStopRecord.setOnClickListener {
-            audioRecord.stopRecord()
+            audioRecord?.stopRecord()
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        audioRecord.stopRecord()
+        audioRecord?.stopRecord()
     }
 }
 
