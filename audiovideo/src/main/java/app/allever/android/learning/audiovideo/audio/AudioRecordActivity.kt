@@ -9,6 +9,8 @@ import app.allever.android.lib.mvvm.base.MvvmConfig
 
 class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding, AudioRecordViewModel>() {
     private var audioRecord: BaseAudioRecordThread? = null
+    private var audioTrack: BaseAudioPlayThread? = null
+    private var mPath: String = ""
 
     override fun getContentMvvmConfig() =
         MvvmConfig(R.layout.activity_audio_record, BR.audioRecordVM)
@@ -20,6 +22,7 @@ class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding, AudioRecord
             override fun onFinish(path: String) {
                 runOnUiThread {
                     binding.tvSavePath.text = "保存到：$path"
+                    mPath = path
                 }
             }
 
@@ -35,6 +38,16 @@ class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding, AudioRecord
 
         binding.btnStopRecord.setOnClickListener {
             audioRecord?.stopRecord()
+        }
+
+        binding.btnStartPlay.setOnClickListener {
+            audioTrack?.startPlay()
+            audioTrack = AudioTrackPlayThread(mPath)
+            audioTrack?.start()
+        }
+
+        binding.btnStopPlay.setOnClickListener {
+            audioTrack?.stopPlay()
         }
     }
 
