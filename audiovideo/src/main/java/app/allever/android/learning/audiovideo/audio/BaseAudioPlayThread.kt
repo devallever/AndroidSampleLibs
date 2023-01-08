@@ -29,7 +29,7 @@ abstract class BaseAudioPlayThread(val path: String): Thread() {
     /**
      * 声道设置，比如单声道CHANNEL_IN_MONO，双声道CHANNEL_IN_STEREO
      */
-    protected var channelConfig = AudioFormat.CHANNEL_IN_STEREO
+    protected var channelConfig = AudioFormat.CHANNEL_OUT_STEREO
 
     /**
      * 编码格式，通常可以选择ENCODING_PCM_8BIT，也可以选择ENCODING_PCM_16BIT
@@ -81,12 +81,8 @@ abstract class BaseAudioPlayThread(val path: String): Thread() {
         if (TextUtils.isEmpty(path)) {
             return
         }
-        val file = File(path)
-        if (file.exists()) {
-            file.delete()
-        }
         fileInputStream = try {
-            FileInputStream(file)
+            FileInputStream(path)
         } catch (e: Exception) {
             e.printStackTrace()
             null

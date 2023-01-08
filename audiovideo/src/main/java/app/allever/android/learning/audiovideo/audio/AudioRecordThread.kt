@@ -39,6 +39,7 @@ class AudioRecordThread(audioRecordCallback: AudioRecordCallback?) : BaseAudioRe
                 continue
             }
             try {
+                log("正在录音")
                 fileOutputStream?.write(data)
             } catch (e: Exception) {
                 e.printStackTrace()

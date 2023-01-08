@@ -41,7 +41,7 @@ class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding, AudioRecord
         }
 
         binding.btnStartPlay.setOnClickListener {
-            audioTrack?.startPlay()
+            audioTrack?.stopPlay()
             audioTrack = AudioTrackPlayThread(mPath)
             audioTrack?.start()
         }

@@ -2,6 +2,7 @@ package app.allever.android.learning.audiovideo.audio
 
 import android.media.AudioManager
 import android.media.AudioTrack
+import app.allever.android.lib.core.ext.log
 
 class AudioTrackPlayThread(path: String) : BaseAudioPlayThread(path) {
 
@@ -45,12 +46,13 @@ class AudioTrackPlayThread(path: String) : BaseAudioPlayThread(path) {
             }
             var readSize = -1
             try {
+                log("正在播放")
                 readSize = fileInputStream?.read(data) ?: 0
             } catch (e: Exception) {
                 e.printStackTrace()
             }
 
-            if (readSize > 0) {
+            if (readSize <= 0) {
                 isStopRecord = true
                 continue
             }
