@@ -49,6 +49,21 @@
             android:layout_margin="5dp"
             android:text="停止播放" />
 
+
+        <Button
+            android:id="@+id/btnEncodePcm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="编码PCM" />
+
+        <TextView
+            android:id="@+id/tvAacPath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="AAC保存路径：" />
+
     </LinearLayout>
 
 </layout>

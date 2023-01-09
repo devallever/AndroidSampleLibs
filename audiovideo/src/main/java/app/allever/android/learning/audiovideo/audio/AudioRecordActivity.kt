@@ -10,6 +10,7 @@ import app.allever.android.lib.mvvm.base.MvvmConfig
 class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding, AudioRecordViewModel>() {
     private var audioRecord: BaseAudioRecordThread? = null
     private var audioTrack: BaseAudioPlayThread? = null
+    private var audioEncoderThread: BaseCodecPcmThread? = null
     private var mPath: String = ""
 
     override fun getContentMvvmConfig() =
@@ -48,6 +49,18 @@ class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding, AudioRecord
 
         binding.btnStopPlay.setOnClickListener {
             audioTrack?.stopPlay()
+        }
+
+        val encodeCallback = object : BaseCodecPcmThread.EncodePcmCallback {
+            override fun onFinish(path: String) {
+                binding.tvAacPath.text = "AAC保存路径：$path"
+            }
+        }
+
+        binding.btnEncodePcm.setOnClickListener {
+            audioEncoderThread?.stopEncoding()
+            audioEncoderThread = MediaCodecAacThread(mPath, encodeCallback)
+            audioEncoderThread?.start()
         }
     }
 
