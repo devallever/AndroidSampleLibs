@@ -1,9 +1,11 @@
 package app.allever.android.learning.audiovideo.audio
 
+import android.text.TextUtils
 import app.allever.android.learning.audiovideo.BR
 import app.allever.android.learning.audiovideo.R
 import app.allever.android.learning.audiovideo.databinding.ActivityAudioRecordBinding
 import app.allever.android.lib.common.BaseActivity
+import app.allever.android.lib.core.function.media.SongMediaPlayer
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.mvvm.base.MvvmConfig
 
@@ -12,6 +14,8 @@ class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding, AudioRecord
     private var audioTrack: BaseAudioPlayThread? = null
     private var audioEncoderThread: BaseCodecPcmThread? = null
     private var mPath: String = ""
+    private var mAacPath = ""
+    private val songMediaPlayer = SongMediaPlayer()
 
     override fun getContentMvvmConfig() =
         MvvmConfig(R.layout.activity_audio_record, BR.audioRecordVM)
@@ -54,6 +58,7 @@ class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding, AudioRecord
         val encodeCallback = object : BaseCodecPcmThread.EncodePcmCallback {
             override fun onFinish(path: String) {
                 binding.tvAacPath.text = "AAC保存路径：$path"
+                mAacPath = path
             }
         }
 
@@ -61,6 +66,20 @@ class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding, AudioRecord
             audioEncoderThread?.stopEncoding()
             audioEncoderThread = MediaCodecAacThread(mPath, encodeCallback)
             audioEncoderThread?.start()
+        }
+
+        binding.btnPlayAac.setOnClickListener {
+            if (TextUtils.isEmpty(mAacPath)) {
+                return@setOnClickListener
+            }
+
+            if (songMediaPlayer.isPlaying()) {
+                songMediaPlayer.pause()
+                return@setOnClickListener
+            }
+
+            songMediaPlayer.load(mAacPath)
+            songMediaPlayer.play()
         }
     }
 
