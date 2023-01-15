@@ -1,10 +1,8 @@
 package app.allever.android.lib.demo.ui
 
 import androidx.fragment.app.Fragment
-import app.allever.android.lib.common.TabActivity
 import app.allever.android.lib.common.TabFragment
 import app.allever.android.lib.common.TabViewModel
-import app.allever.android.lib.common.databinding.ActivityTabBinding
 import app.allever.android.lib.common.databinding.FragmentTabBinding
 import app.allever.android.lib.demo.ui.rebound.ReboundScrollViewFragment
 import app.allever.android.lib.demo.ui.rebound.ReboundViewDragHelperFragment

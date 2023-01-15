@@ -9,16 +9,14 @@ import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.function.mediapicker.MediaPickerHelper
 import app.allever.android.lib.core.function.paging.BasePagingSource
 import app.allever.android.lib.mvvm.base.BaseMvvmFragment
-import app.allever.android.lib.mvvm.base.MvvmConfig
-import app.allever.android.sample.function.BR
-import app.allever.android.sample.function.R
 import app.allever.android.sample.function.databinding.FragmentUserManageBinding
 import app.allever.android.sample.function.im.user.UserInfo
 import app.allever.android.sample.function.im.viewmodel.UserManageViewModel
 import kotlinx.coroutines.launch
 
 class UserManageFragment : BaseMvvmFragment<FragmentUserManageBinding, UserManageViewModel>() {
-    override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_user_manage, BR.userManageVM)
+
+    override fun inflate() = FragmentUserManageBinding.inflate(layoutInflater)
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun init() {

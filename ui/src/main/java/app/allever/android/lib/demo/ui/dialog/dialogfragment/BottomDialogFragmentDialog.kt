@@ -5,7 +5,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import app.allever.android.lib.core.helper.DisplayHelper
 import app.allever.android.lib.demo.R
@@ -30,12 +29,7 @@ class BottomDialogFragmentDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        mBinding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.dialog_bottom,
-            null,
-            false
-        )
+        mBinding = DialogBottomBinding.inflate(layoutInflater)
         return mBinding.root
     }
 }

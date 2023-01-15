@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import app.allever.android.lib.core.helper.DisplayHelper
-import app.allever.android.lib.demo.R
 import app.allever.android.lib.demo.databinding.DialogBottomBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -29,7 +27,7 @@ class BottomSlideDialog : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        mBinding = DataBindingUtil.inflate(layoutInflater, R.layout.dialog_bottom, null, false)
+        mBinding = DialogBottomBinding.inflate(layoutInflater)
         return mBinding.root
     }
 

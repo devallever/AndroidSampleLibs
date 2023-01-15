@@ -3,13 +3,12 @@ package app.allever.android.lib.common
 import androidx.fragment.app.Fragment
 import app.allever.android.lib.common.databinding.FragmentTabBinding
 import app.allever.android.lib.core.base.adapter.Pager2Adapter
-import app.allever.android.lib.mvvm.base.MvvmConfig
 import app.allever.android.lib.widget.ext.modifyTouchSlop
 
 abstract class TabFragment<DB, VM> : BaseFragment<FragmentTabBinding, TabViewModel>() {
     abstract fun getTabTitles(): MutableList<String>
     abstract fun getFragments(): MutableList<Fragment>
-    override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_tab, BR.tabViewModel)
+    override fun inflate() = FragmentTabBinding.inflate(layoutInflater)
     override fun init() {
         mBinding.viewPager.adapter = Pager2Adapter(this, getFragments())
         mBinding.viewPager.modifyTouchSlop()

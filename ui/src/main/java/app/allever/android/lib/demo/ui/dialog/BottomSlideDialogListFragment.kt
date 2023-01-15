@@ -14,7 +14,7 @@ class BottomSlideDialogListFragment : ListFragment<FragmentListBinding, ListView
     )
 
     override fun onItemClick(position: Int, item: String) {
-        when(position) {
+        when (position) {
             0 -> {
                 BottomSlideDialog().show(childFragmentManager)
             }

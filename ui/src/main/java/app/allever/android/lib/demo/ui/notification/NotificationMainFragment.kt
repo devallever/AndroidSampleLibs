@@ -7,15 +7,12 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.widget.RemoteViews
-import android.widget.RemoteViewsService
 import androidx.core.app.NotificationChannelCompat
 import androidx.core.app.NotificationCompat
-import androidx.core.app.Person
 import app.allever.android.lib.common.ListFragment
 import app.allever.android.lib.common.ListViewModel
 import app.allever.android.lib.common.adapter.TextAdapter
 import app.allever.android.lib.common.databinding.FragmentListBinding
-import app.allever.android.lib.core.app.App
 import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.helper.NotificationHelper
@@ -113,10 +110,12 @@ class NotificationMainFragment : ListFragment<FragmentListBinding, ListViewModel
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
-            .setStyle(NotificationCompat.BigTextStyle()
-                .setSummaryText("超长文本通知标题摘要")
-                .setBigContentTitle("超长文本通知标题")
-                .bigText("超长文本通知内容: \uD83D\uDD25\uD83D\uDD25\uD83D\uDD25Android基础组件库\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25 打造一个简单易用的基础组件库，封装架构组件，网络组件，数据存储组件，图片加载组件，媒体库组件，运行时权限组件，全局捕获异常组件， 业务流程组件，日志组件，广告组件"))
+            .setStyle(
+                NotificationCompat.BigTextStyle()
+                    .setSummaryText("超长文本通知标题摘要")
+                    .setBigContentTitle("超长文本通知标题")
+                    .bigText("超长文本通知内容: \uD83D\uDD25\uD83D\uDD25\uD83D\uDD25Android基础组件库\uD83D\uDD25\uD83D\uDD25\uD83D\uDD25 打造一个简单易用的基础组件库，封装架构组件，网络组件，数据存储组件，图片加载组件，媒体库组件，运行时权限组件，全局捕获异常组件， 业务流程组件，日志组件，广告组件")
+            )
         NotificationHelper.manager.notify(notificationId, builder.build())
     }
 
@@ -135,11 +134,18 @@ class NotificationMainFragment : ListFragment<FragmentListBinding, ListViewModel
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
-            .setStyle(NotificationCompat.BigPictureStyle()
-                .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.default_avatar))
-                .setBigContentTitle("大图通知标题")
-                .bigLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.default_avatar))
-                .setSummaryText("大图通知摘要"))
+            .setStyle(
+                NotificationCompat.BigPictureStyle()
+                    .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.default_avatar))
+                    .setBigContentTitle("大图通知标题")
+                    .bigLargeIcon(
+                        BitmapFactory.decodeResource(
+                            resources,
+                            R.drawable.default_avatar
+                        )
+                    )
+                    .setSummaryText("大图通知摘要")
+            )
         NotificationHelper.manager.notify(notificationId, builder.build())
     }
 
@@ -152,7 +158,8 @@ class NotificationMainFragment : ListFragment<FragmentListBinding, ListViewModel
 
         // Get the layouts to use in the custom notification
         log("pkg = ${requireContext().packageName}")
-        val notificationLayout = RemoteViews(requireContext().packageName, R.layout.layout_notification)
+        val notificationLayout =
+            RemoteViews(requireContext().packageName, R.layout.layout_notification)
 //        val notificationLayoutExpanded = RemoteViews(requireContext().packageName, R.layout.layout_notification)
 
         val intent = Intent(requireContext(), NotificationActivity::class.java).apply {

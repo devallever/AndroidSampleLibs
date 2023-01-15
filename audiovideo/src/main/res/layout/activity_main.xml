@@ -1,40 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-    <data>
-
-        <variable
-            name="mainVM"
-            type="app.allever.android.learning.audiovideo.MainViewModel" />
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ScrollView
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent">
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/btnVideoViewPlayer"
+                style="@style/main_menu_item_style"
+                android:text="VideoView播放器" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+        </LinearLayout>
 
-                <TextView
-                    android:text="VideoView播放器"
-                    android:id="@+id/btnVideoViewPlayer"
-                    style="@style/main_menu_item_style" />
+    </ScrollView>
 
-            </LinearLayout>
-
-        </ScrollView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>

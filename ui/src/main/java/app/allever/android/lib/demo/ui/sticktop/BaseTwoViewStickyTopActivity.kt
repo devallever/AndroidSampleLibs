@@ -4,16 +4,13 @@ import android.os.Build
 import android.view.View
 import androidx.annotation.RequiresApi
 import app.allever.android.lib.common.BaseActivity
-import app.allever.android.lib.demo.BR
-import app.allever.android.lib.demo.R
 import app.allever.android.lib.demo.databinding.ActivityBaseTwoViewStickyTopBinding
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
 
 class BaseTwoViewStickyTopActivity :
     BaseActivity<ActivityBaseTwoViewStickyTopBinding, BaseTwoViewStickyTopViewModel>() {
-    override fun getContentMvvmConfig() =
-        MvvmConfig(R.layout.activity_base_two_view_sticky_top, BR.baseTwoViewStickyTopVM)
+
+    override fun inflateChildBinding() = ActivityBaseTwoViewStickyTopBinding.inflate(layoutInflater)
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun init() {

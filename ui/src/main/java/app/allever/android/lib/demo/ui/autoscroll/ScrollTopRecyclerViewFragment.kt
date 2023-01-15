@@ -3,17 +3,14 @@ package app.allever.android.lib.demo.ui.autoscroll
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.allever.android.lib.common.BaseFragment
 import app.allever.android.lib.common.adapter.TextAdapter
-import app.allever.android.lib.demo.BR
-import app.allever.android.lib.demo.R
 import app.allever.android.lib.demo.databinding.FragmentScrollTopRecyclerViewBinding
 import app.allever.android.lib.demo.ui.widget.SmartAutoScrollRecyclerView
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
 
 class ScrollTopRecyclerViewFragment :
     BaseFragment<FragmentScrollTopRecyclerViewBinding, BaseViewModel>() {
-    override fun getMvvmConfig() =
-        MvvmConfig(R.layout.fragment_scroll_top_recycler_view, BR.scrollTopRvVm)
+
+    override fun inflate() = FragmentScrollTopRecyclerViewBinding.inflate(layoutInflater)
 
     private val mAdapter = TextAdapter()
 

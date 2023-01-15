@@ -1,23 +1,24 @@
 package app.allever.android.sample.jetpack.ui
 
+import android.view.LayoutInflater
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.allever.android.lib.common.function.network.AppRepository
 import app.allever.android.lib.common.function.network.reponse.ArticleData
+import app.allever.android.lib.core.app.App
 import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.function.paging.BasePagingSource
 import app.allever.android.lib.core.function.paging.PagingHelper.createPagingDiffCallback
 import app.allever.android.lib.core.util.TimeUtils
 import app.allever.android.lib.mvvm.base.BaseMvvmFragment
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
 import app.allever.android.lib.widget.recycler.binding.BaseBindingViewHolder
 import app.allever.android.lib.widget.recycler.binding.BasePagingBindingAdapter
-import app.allever.android.sample.jetpack.BR
 import app.allever.android.sample.jetpack.R
 import app.allever.android.sample.jetpack.databinding.FragmentPagingBinding
 import app.allever.android.sample.jetpack.databinding.RvArticleItemBinding
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import kotlinx.coroutines.launch
 
 /**
@@ -29,7 +30,8 @@ class PagingFragment : BaseMvvmFragment<FragmentPagingBinding, PagingViewModel>(
 
     private val articleAdapter = ArticleBindingAdapter()
 
-    override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_paging, BR.pagingVM)
+
+    override fun inflate() = FragmentPagingBinding.inflate(layoutInflater)
 
     override fun init() {
         mBinding.recyclerView.layoutManager = LinearLayoutManager(requireActivity())
@@ -75,6 +77,11 @@ class ArticleBindingAdapter :
         createPagingDiffCallback { old, new ->
             old.id == new.id
         }) {
+
+    override fun inflate(): RvArticleItemBinding {
+        return RvArticleItemBinding.inflate(LayoutInflater.from(App.context))
+    }
+
     override fun convert(
         holder: BaseBindingViewHolder<RvArticleItemBinding>,
         position: Int,

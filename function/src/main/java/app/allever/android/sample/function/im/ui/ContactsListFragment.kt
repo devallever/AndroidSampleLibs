@@ -2,18 +2,15 @@ package app.allever.android.sample.function.im.ui
 
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.mvvm.base.BaseMvvmFragment
-import app.allever.android.lib.mvvm.base.MvvmConfig
 import app.allever.android.lib.widget.recycler.RefreshRecyclerView
-import app.allever.android.sample.function.BR
-import app.allever.android.sample.function.R
 import app.allever.android.sample.function.databinding.FragmentContactsListBinding
 import app.allever.android.sample.function.im.message.BaseMessage
 import app.allever.android.sample.function.im.viewmodel.ContactsListViewModel
 
 class ContactsListFragment :
     BaseMvvmFragment<FragmentContactsListBinding, ContactsListViewModel>() {
-    override fun getMvvmConfig() =
-        MvvmConfig(R.layout.fragment_contacts_list, BR.conversationListVM)
+
+    override fun inflate() = FragmentContactsListBinding.inflate(layoutInflater)
 
     override fun init() {
         mBinding.refreshRV.setAdapter(

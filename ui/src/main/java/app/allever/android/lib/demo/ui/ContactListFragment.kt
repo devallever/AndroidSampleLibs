@@ -5,13 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import app.allever.android.lib.common.BaseFragment
 import app.allever.android.lib.core.function.imageloader.load
-import app.allever.android.lib.demo.BR
 import app.allever.android.lib.demo.R
 import app.allever.android.lib.demo.databinding.FragmentContactListBinding
 import app.allever.android.lib.demo.ui.ContactItem.Companion.TYPE_CONTACT
 import app.allever.android.lib.demo.ui.ContactItem.Companion.TYPE_GROUP
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
 import com.chad.library.adapter.base.BaseProviderMultiAdapter
 import com.chad.library.adapter.base.provider.BaseItemProvider
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
@@ -49,7 +47,7 @@ class ContactListFragment : BaseFragment<FragmentContactListBinding, BaseViewMod
         "#"
     )
 
-    override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_contact_list, BR.contactListVM)
+    override fun inflate() = FragmentContactListBinding.inflate(layoutInflater)
 
     override fun init() {
         val smoothScroller = object : LinearSmoothScroller(context) {

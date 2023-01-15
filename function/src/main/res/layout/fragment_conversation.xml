@@ -1,172 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="conversationVM"
-            type="app.allever.android.sample.function.im.viewmodel.ConversationViewModel" />
-
-    </data>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/inputViewContainer"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srlEnableAutoLoadMore="false"
+        app:srlEnableNestedScrolling="false"
+        app:srlEnableRefresh="false">
 
-        <com.scwang.smart.refresh.layout.SmartRefreshLayout
-            android:id="@+id/refreshLayout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/inputViewContainer"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srlEnableAutoLoadMore="false"
-            app:srlEnableNestedScrolling="false"
-            app:srlEnableRefresh="false">
-
-            <com.scwang.smart.refresh.header.ClassicsHeader
-                android:id="@+id/headerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srlDrawableArrowSize="0dp"
-                app:srlEnableLastTime="false"
-                app:srlTextFinish="完成"
-                app:srlTextLoading=""
-                app:srlTextPulling=""
-                app:srlTextRefreshing="正在加载"
-                app:srlTextRelease="加载更多" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fadeScrollbars="false"
-                android:overScrollMode="never"
-                android:paddingHorizontal="14dp"
-                android:scrollbars="none"
-                tools:itemCount="3"
-                tools:listitem="@layout/rv_text_msg_receive" />
-
-        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/inputViewContainer"
+        <com.scwang.smart.refresh.header.ClassicsHeader
+            android:id="@+id/headerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            app:srlDrawableArrowSize="0dp"
+            app:srlEnableLastTime="false"
+            app:srlTextFinish="完成"
+            app:srlTextLoading=""
+            app:srlTextPulling=""
+            app:srlTextRefreshing="正在加载"
+            app:srlTextRelease="加载更多" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            tools:itemCount="3"
+            tools:listitem="@layout/rv_text_msg_receive"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadeScrollbars="false"
+            android:overScrollMode="never"
+            android:paddingHorizontal="14dp"
+            android:scrollbars="none" />
+
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/inputViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/inputView"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/expandContainer"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bottom_chat_input_bg"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:hint="一起聊..."
+                    android:imeOptions="actionSend"
+                    android:maxLength="200"
+                    android:maxLines="8"
+                    android:minHeight="40dp"
+                    android:paddingStart="15dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="40dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="#ff999999"
+                    android:textSize="15sp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivEmoji"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignEnd="@id/etInput"
+                    android:layout_centerVertical="true"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_input_panel_emoji" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvSend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/btn_send_bg"
+                    android:gravity="center"
+                    android:paddingHorizontal="14dp"
+                    android:text="发送"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivAdd"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:padding="8dp"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/input_bar_add" />
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/expandContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/inputView"
+            <!-- 扩展功能 -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvExpand"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingHorizontal="10dp"
-                android:visibility="visible"
-                app:layout_constraintBottom_toTopOf="@+id/expandContainer"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent">
+                android:layout_height="200dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintTop_toTopOf="parent"
+                app:spanCount="3" />
 
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.0">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/etInput"
-                        android:layout_width="match_parent"
-                        android:layout_height="42dp"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/bottom_chat_input_bg"
-                        android:focusable="true"
-                        android:gravity="center_vertical"
-                        android:hint="一起聊..."
-                        android:imeOptions="actionSend"
-                        android:maxLength="200"
-                        android:maxLines="8"
-                        android:minHeight="40dp"
-                        android:paddingStart="15dp"
-                        android:paddingTop="5dp"
-                        android:paddingEnd="40dp"
-                        android:paddingBottom="5dp"
-                        android:textColor="@android:color/black"
-                        android:textColorHint="#ff999999"
-                        android:textSize="15sp" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ivEmoji"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_alignEnd="@id/etInput"
-                        android:layout_centerVertical="true"
-                        android:padding="4dp"
-                        android:src="@drawable/ic_input_panel_emoji" />
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tvSend"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/btn_send_bg"
-                        android:gravity="center"
-                        android:paddingHorizontal="14dp"
-                        android:text="发送"
-                        android:textColor="@color/white"
-                        android:textSize="14sp"
-                        android:visibility="gone" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ivAdd"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:padding="8dp"
-                        android:visibility="visible"
-                        app:srcCompat="@drawable/input_bar_add" />
-
-                </LinearLayout>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/expandContainer"
+            <FrameLayout
+                android:id="@+id/emojiContainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
+                android:background="#50ffff00"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent">
-
-                <!-- 扩展功能 -->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvExpand"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:spanCount="3" />
-
-                <FrameLayout
-                    android:id="@+id/emojiContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#50ffff00"
-                    android:visibility="gone"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</layout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

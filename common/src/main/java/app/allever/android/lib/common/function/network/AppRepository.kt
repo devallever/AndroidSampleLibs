@@ -1,9 +1,5 @@
 package app.allever.android.lib.common.function.network
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.PagingSource
 import app.allever.android.lib.common.function.network.reponse.BannerData
 import app.allever.android.lib.core.function.network.HttpHelper
 import app.allever.android.lib.core.function.network.ResponseCallback
@@ -11,7 +7,6 @@ import app.allever.android.lib.core.function.network.cache.ResponseCache
 import app.allever.android.lib.network.ApiService
 import app.allever.android.lib.network.RetrofitCallback
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
 
 object AppRepository {
     private val wanAndroidApi by lazy {

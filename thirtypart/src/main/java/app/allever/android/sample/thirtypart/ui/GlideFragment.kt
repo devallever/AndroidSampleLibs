@@ -1,11 +1,7 @@
 package app.allever.android.sample.thirtypart.ui
 
 import app.allever.android.lib.common.BaseFragment
-import app.allever.android.lib.mvvm.base.BaseMvvmFragment
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
-import app.allever.android.sample.thirtypart.BR
-import app.allever.android.sample.thirtypart.R
 import app.allever.android.sample.thirtypart.databinding.FragmentGlideBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -13,7 +9,8 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withC
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 
 class GlideFragment : BaseFragment<FragmentGlideBinding, BaseViewModel>() {
-    override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_glide, BR.glideVM)
+
+    override fun inflate() = FragmentGlideBinding.inflate(layoutInflater)
 
     override fun init() {
 

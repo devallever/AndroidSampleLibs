@@ -8,14 +8,13 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import app.allever.android.learning.audiovideo.R
 import app.allever.android.learning.audiovideo.StatusListener
 import app.allever.android.learning.audiovideo.databinding.TexturePlayerViewBinding
-import app.allever.android.learning.audiovideo.videoviewplayer.VideoViewHandler
+import app.allever.android.lib.core.app.App
 import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.function.media.MediaBean
@@ -34,12 +33,7 @@ class TexturePlayerView @JvmOverloads constructor(
     }
 
     init {
-        binding = DataBindingUtil.inflate(
-            LayoutInflater.from(context),
-            R.layout.texture_player_view,
-            this,
-            true
-        )
+        binding = TexturePlayerViewBinding.inflate(LayoutInflater.from(App.context), this, true)
 
         initListener()
     }
@@ -212,8 +206,8 @@ class TexturePlayerView @JvmOverloads constructor(
             //mtextureViewWidth宽高，为什么需要用传入的，因为全屏显示时宽高不会及时更新
             val matrix = Matrix();
             //videoView为new MediaPlayer()
-            val mVideoWidth = mTextureViewHandler.getMediaPlayer()?.videoWidth?.toFloat()?:0f
-            val mVideoHeight = mTextureViewHandler.getMediaPlayer()?.videoHeight?.toFloat()?:0f
+            val mVideoWidth = mTextureViewHandler.getMediaPlayer()?.videoWidth?.toFloat() ?: 0f
+            val mVideoHeight = mTextureViewHandler.getMediaPlayer()?.videoHeight?.toFloat() ?: 0f
 
             //得到缩放比，从而获得最佳缩放比
             val sx = mtextureViewWidth / mVideoWidth;

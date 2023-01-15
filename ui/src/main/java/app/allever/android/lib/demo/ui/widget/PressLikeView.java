@@ -39,6 +39,10 @@ public class PressLikeView extends ViewGroup {
         initData();
     }
 
+    public PressLikeView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
     //初始化数据
     private void initData() {
         defaultSize = DisplayHelper.INSTANCE.dip2px(30);
@@ -52,10 +56,6 @@ public class PressLikeView extends ViewGroup {
 //        inters.add(new AccelerateDecelerateInterpolator());
 //        inters.add(new DecelerateInterpolator());
         //....
-    }
-
-    public PressLikeView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
     }
 
     @Override

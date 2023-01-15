@@ -1,77 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <data>
 
-        <variable
-            name="audioRecordVM"
-            type="app.allever.android.learning.audiovideo.audio.AudioRecordViewModel" />
-    </data>
-
-    <LinearLayout
+    <Button
+        android:id="@+id/btnStartRecord"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="开始录制" />
+
+    <Button
+        android:id="@+id/btnStopRecord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="停止录制" />
+
+    <TextView
+        android:id="@+id/tvSavePath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="保存路径：" />
+
+    <Button
+        android:id="@+id/btnStartPlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="开始播放" />
+
+    <Button
+        android:id="@+id/btnStopPlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="停止播放" />
 
 
-        <Button
-            android:id="@+id/btnStartRecord"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="开始录制" />
+    <Button
+        android:id="@+id/btnEncodePcm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="编码PCM" />
 
-        <Button
-            android:id="@+id/btnStopRecord"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="停止录制" />
+    <Button
+        android:id="@+id/btnPlayAac"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="播放AAC" />
 
-        <TextView
-            android:id="@+id/tvSavePath"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="保存路径：" />
-
-        <Button
-            android:id="@+id/btnStartPlay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="开始播放" />
-
-        <Button
-            android:id="@+id/btnStopPlay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="停止播放" />
+    <TextView
+        android:id="@+id/tvAacPath"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="AAC保存路径：" />
 
 
-        <Button
-            android:id="@+id/btnEncodePcm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="编码PCM" />
-
-        <Button
-            android:id="@+id/btnPlayAac"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="播放AAC" />
-
-        <TextView
-            android:id="@+id/tvAacPath"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="AAC保存路径：" />
-
-
-    </LinearLayout>
-
-</layout>
+</LinearLayout>

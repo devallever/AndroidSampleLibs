@@ -1,20 +1,16 @@
-
 import android.text.TextUtils
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.allever.android.lib.common.BaseFragment
 import app.allever.android.lib.core.ext.log
-import app.allever.android.lib.demo.BR
-import app.allever.android.lib.demo.R
 import app.allever.android.lib.demo.databinding.FragmentAutoScrollLoopBinding
 import app.allever.android.lib.demo.ui.AutoScrollAdapter
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
 
 class AutoScrollLoopFragment : BaseFragment<FragmentAutoScrollLoopBinding, BaseViewModel>() {
 
     private val adapter = AutoScrollAdapter(true)
 
-    override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_auto_scroll_loop, BR.autoScrollLoopVM)
+    override fun inflate() = FragmentAutoScrollLoopBinding.inflate(layoutInflater)
 
     override fun init() {
         mBinding.autoScrollRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -36,7 +32,7 @@ class AutoScrollLoopFragment : BaseFragment<FragmentAutoScrollLoopBinding, BaseV
             val lastPosition = mBinding.autoScrollRecyclerView.getChildLayoutPosition(
                 mBinding.autoScrollRecyclerView.getChildAt(mBinding.autoScrollRecyclerView.childCount - 1)
             )
-            val insertIndex  = lastPosition % adapter.data.size
+            val insertIndex = lastPosition % adapter.data.size
             log("插入位置 = $insertIndex")
             adapter.addData(insertIndex, content)
         }

@@ -55,7 +55,7 @@ class SmartAutoScrollRecyclerView(context: Context, attrs: AttributeSet?) :
                         lastPageListener?.invoke()
                     }
                     val lastItemValue = lastVisibleItem
-                    val totalItem = (adapter?.itemCount?:0 - 1)
+                    val totalItem = (adapter?.itemCount ?: 0 - 1)
                     val lastIndex = totalItem - 1
                     if (lastItemValue == lastIndex) {
                         nextPageListener?.invoke()

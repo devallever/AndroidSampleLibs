@@ -4,7 +4,6 @@ import app.allever.android.learning.audiovideo.databinding.ActivityAudioVideoMai
 import app.allever.android.lib.common.BaseActivity
 import app.allever.android.lib.core.helper.FragmentHelper
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
 
 class AudioVideoMainActivity :
     BaseActivity<ActivityAudioVideoMainBinding, AudioVideoMainViewModel>() {
@@ -17,8 +16,7 @@ class AudioVideoMainActivity :
         )
     }
 
-    override fun getContentMvvmConfig() =
-        MvvmConfig(R.layout.activity_audio_video_main, BR.audioVideoMainViewModel)
+    override fun inflateChildBinding() = ActivityAudioVideoMainBinding.inflate(layoutInflater)
 }
 
 class AudioVideoMainViewModel : BaseViewModel() {

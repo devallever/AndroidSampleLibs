@@ -10,7 +10,7 @@ import app.allever.android.learning.audiovideo.BasePlayerHandler
 import app.allever.android.learning.audiovideo.StatusListener
 import app.allever.android.lib.core.function.media.MediaBean
 
-class SurfaceViewHandler: BasePlayerHandler(), SurfaceHolder.Callback {
+class SurfaceViewHandler : BasePlayerHandler(), SurfaceHolder.Callback {
     private lateinit var mSurfaceView: SurfaceView
     private lateinit var mSurface: Surface
     private lateinit var mSurfaceHolder: SurfaceHolder

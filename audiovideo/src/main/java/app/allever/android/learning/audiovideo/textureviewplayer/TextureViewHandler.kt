@@ -9,7 +9,7 @@ import app.allever.android.learning.audiovideo.BasePlayerHandler
 import app.allever.android.learning.audiovideo.StatusListener
 import app.allever.android.lib.core.function.media.MediaBean
 
-class TextureViewHandler : BasePlayerHandler(),  TextureView.SurfaceTextureListener{
+class TextureViewHandler : BasePlayerHandler(), TextureView.SurfaceTextureListener {
 
     private lateinit var mTextureView: TextureView
     private lateinit var mSurface: Surface
@@ -73,6 +73,6 @@ class TextureViewHandler : BasePlayerHandler(),  TextureView.SurfaceTextureListe
         return true
     }
 
-    override fun onSurfaceTextureUpdated(surface: SurfaceTexture) { }
+    override fun onSurfaceTextureUpdated(surface: SurfaceTexture) {}
 
 }

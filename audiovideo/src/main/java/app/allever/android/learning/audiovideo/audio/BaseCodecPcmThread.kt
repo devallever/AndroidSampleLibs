@@ -51,7 +51,7 @@ abstract class BaseCodecPcmThread(val pcmPath: String, val callback: EncodePcmCa
 
     interface EncodePcmCallback {
         fun onFinish(path: String)
-        fun onError(msg: String){}
+        fun onError(msg: String) {}
     }
 
     /**

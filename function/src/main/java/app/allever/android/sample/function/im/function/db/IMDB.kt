@@ -2,7 +2,6 @@ package app.allever.android.sample.function.im.function.db
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Messenger
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase

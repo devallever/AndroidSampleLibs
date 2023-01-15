@@ -29,7 +29,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         log("时间间隔 = $interval")
     }
 
-    override fun getContentMvvmConfig() = MvvmConfig(R.layout.activity_main, BR.mainVM)
+    override fun inflateChildBinding() = ActivityMainBinding.inflate(layoutInflater)
 
     private fun test() {
         Looper.prepare()

@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.allever.android.lib.common.BaseActivity
 import app.allever.android.lib.demo.databinding.ActivityUserCenterBinding
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.google.android.material.appbar.AppBarLayout
@@ -15,7 +14,7 @@ import com.scwang.smart.refresh.layout.simple.SimpleMultiListener
 import com.scwang.smart.refresh.layout.util.SmartUtil
 import kotlin.math.absoluteValue
 
-class UserCenterActivity: BaseActivity<ActivityUserCenterBinding, UserCenterViewModel>() {
+class UserCenterActivity : BaseActivity<ActivityUserCenterBinding, UserCenterViewModel>() {
 
     val maxHeight = SmartUtil.dp2px(506F)
     var isRefreshIng = false
@@ -78,20 +77,21 @@ class UserCenterActivity: BaseActivity<ActivityUserCenterBinding, UserCenterView
 
 
         val listData = mutableListOf<String>()
-        for(i in 0..100) {
-            listData.add("主播你好啵${i+1}")
+        for (i in 0..100) {
+            listData.add("主播你好啵${i + 1}")
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.rv_item_text, listData) {
-            override fun convert(holder: BaseViewHolder, item: String) {}
-        }
+        binding.recyclerView.adapter =
+            object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.rv_item_text, listData) {
+                override fun convert(holder: BaseViewHolder, item: String) {}
+            }
 
     }
 
-    override fun getContentMvvmConfig() = MvvmConfig(R.layout.activity_user_center, BR.userCenterVM)
+    override fun inflateChildBinding() = ActivityUserCenterBinding.inflate(layoutInflater)
 }
 
-class UserCenterViewModel: BaseViewModel() {
+class UserCenterViewModel : BaseViewModel() {
     override fun init() {
 
     }

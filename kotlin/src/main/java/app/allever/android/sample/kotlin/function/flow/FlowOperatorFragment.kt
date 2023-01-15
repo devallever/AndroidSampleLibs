@@ -4,9 +4,6 @@ import androidx.lifecycle.lifecycleScope
 import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.mvvm.base.BaseMvvmFragment
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
-import app.allever.android.sample.kotlin.BR
-import app.allever.android.sample.kotlin.R
 import app.allever.android.sample.kotlin.databinding.FragmentFlowOperatorBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
@@ -16,7 +13,8 @@ import kotlinx.coroutines.launch
 
 class FlowOperatorFragment :
     BaseMvvmFragment<FragmentFlowOperatorBinding, FlowOperatorViewModel>() {
-    override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_flow_operator, BR.flowOperatorVM)
+
+    override fun inflate() = FragmentFlowOperatorBinding.inflate(layoutInflater)
 
     override fun init() {
         lifecycleScope.launch {

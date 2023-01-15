@@ -36,12 +36,12 @@ import java.util.Set;
  */
 
 public class PermissionCheckUtil {
-    private static final String TAG = PermissionCheckUtil.class.getSimpleName();
     public static final int REQUEST_CODE_ASK_PERMISSIONS = 100;
     public static final int REQUEST_CODE_LOCATION_SHARE = 101;
-    private static IRequestPermissionListListener listener;
+    private static final String TAG = PermissionCheckUtil.class.getSimpleName();
     private static final String PROMPT = "prompt";
     private static final String IS_PROMPT = "isPrompt";
+    private static IRequestPermissionListListener listener;
 
     public static boolean requestPermissions(Fragment fragment, String[] permissions) {
         return requestPermissions(fragment, permissions, 0);
@@ -216,7 +216,7 @@ public class PermissionCheckUtil {
 
     // KNOTE: 2021/8/25 修复权限提示窗权限提示name重复问题
     private static String getNotGrantedPermissionMsg(Context context, String[] permissions, int[] grantResults) {
-        if(checkPermissionResultIncompatible(permissions,grantResults)){
+        if (checkPermissionResultIncompatible(permissions, grantResults)) {
             return "";
         }
 
@@ -421,11 +421,11 @@ public class PermissionCheckUtil {
         }
         PermissionCheckUtil.listener = listener;
     }
-    
+
     private static void log(String tag, String msg) {
         Log.d(tag, msg);
     }
-    
+
 
     /**
      * SDK申请权限前,用户可以设置此监听，在{@code onRequestPermissionList}方法实现中创建Dialog弹窗,用于向用户解释权限申请的原因.

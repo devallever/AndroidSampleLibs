@@ -2,30 +2,34 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.allever.android.learning.audiovideo">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 
     <application>
         <activity
             android:name=".AudioVideoMainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".videoviewplayer.VideoViewPlayerActivity"
+        <activity
+            android:name=".videoviewplayer.VideoViewPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/FullScreenStyle"/>
-        <activity android:name=".SelectMediaActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".textureviewplayer.TextureViewPlayerActivity"
+            android:theme="@style/FullScreenStyle" />
+        <activity
+            android:name=".SelectMediaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".textureviewplayer.TextureViewPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/FullScreenStyle"/>
-        <activity android:name=".surfaceviewplayer.SurfaceViewPlayerActivity"
+            android:theme="@style/FullScreenStyle" />
+        <activity
+            android:name=".surfaceviewplayer.SurfaceViewPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/FullScreenStyle"/>
+            android:theme="@style/FullScreenStyle" />
         <activity android:name=".audio.AudioRecordActivity" />
     </application>
 </manifest>

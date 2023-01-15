@@ -3,12 +3,12 @@ package app.allever.android.sample.function.im.ui.adapter
 import app.allever.android.sample.function.R
 import app.allever.android.sample.function.databinding.RvExpandItemBinding
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 
 class ExpandAdapter :
-    BaseQuickAdapter<ExpandItem, BaseDataBindingHolder<RvExpandItemBinding>>(R.layout.rv_expand_item) {
-    override fun convert(holder: BaseDataBindingHolder<RvExpandItemBinding>, item: ExpandItem) {
-        val binding = holder.dataBinding ?: return
+    BaseQuickAdapter<ExpandItem, BaseViewHolder>(R.layout.rv_expand_item) {
+    override fun convert(holder: BaseViewHolder, item: ExpandItem) {
+        val binding = RvExpandItemBinding.bind(holder.itemView)
         binding.ivFun.setImageResource(item.icon)
         binding.tvTitle.text = item.title
     }

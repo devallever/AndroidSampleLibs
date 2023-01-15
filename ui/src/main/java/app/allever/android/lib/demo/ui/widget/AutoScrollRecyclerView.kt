@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
-import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.function.work.TimerTask2
 import app.allever.android.lib.core.helper.DisplayHelper
 
@@ -92,10 +91,10 @@ class AutoScrollRecyclerView(context: Context, attrs: AttributeSet?) :
         if (movePosition in 0 until childCount) {
             val top = getChildAt(movePosition).top
             if (!mIsTouching) {
-                val itemCount = adapter?.itemCount?:0
+                val itemCount = adapter?.itemCount ?: 0
 //                log("测试滚动到底部 itemCount = $itemCount")
 //                log("测试滚动到底部 最后可见Position = ${getLastVisiblePosition()}")
-                if (itemCount <=  getLastVisiblePosition() + 1) {
+                if (itemCount <= getLastVisiblePosition() + 1) {
                     if (!mIsAlreadyScrollToBottom) {
                         smoothScrollBy(0, top)
                     }

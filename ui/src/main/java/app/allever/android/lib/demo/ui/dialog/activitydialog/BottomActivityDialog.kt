@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup
 import android.view.WindowManager
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import app.allever.android.lib.demo.R
 

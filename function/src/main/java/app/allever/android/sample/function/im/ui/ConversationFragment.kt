@@ -17,8 +17,6 @@ import app.allever.android.lib.core.helper.ViewHelper
 import app.allever.android.lib.core.util.KeyboardUtils
 import app.allever.android.lib.core.util.SoftKeyboardUtils
 import app.allever.android.lib.mvvm.base.BaseMvvmFragment
-import app.allever.android.lib.mvvm.base.MvvmConfig
-import app.allever.android.sample.function.BR
 import app.allever.android.sample.function.R
 import app.allever.android.sample.function.databinding.FragmentConversationBinding
 import app.allever.android.sample.function.im.ui.adapter.ExpandItem
@@ -38,7 +36,7 @@ class ConversationFragment :
     BaseMvvmFragment<FragmentConversationBinding, ConversationViewModel>() {
 
     companion object {
-        fun newInstance(otherUserId: Long):  ConversationFragment{
+        fun newInstance(otherUserId: Long): ConversationFragment {
             val fragment = ConversationFragment()
             val bundle = Bundle()
             bundle.putLong(ConversationActivity.EXTRA_OTHER_USER_ID, otherUserId)
@@ -54,7 +52,7 @@ class ConversationFragment :
      */
     private var mEmojiPopup: EmojiPopup? = null
 
-    override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_conversation, BR.conversationVM)
+    override fun inflate() = FragmentConversationBinding.inflate(layoutInflater)
 
     override fun init() {
         mViewModel.initExtra(requireActivity().intent)

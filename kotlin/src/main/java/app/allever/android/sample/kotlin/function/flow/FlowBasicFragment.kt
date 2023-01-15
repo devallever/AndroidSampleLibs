@@ -1,20 +1,16 @@
 package app.allever.android.sample.kotlin.function.flow
 
 import androidx.lifecycle.lifecycleScope
-import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.mvvm.base.BaseMvvmFragment
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
-import app.allever.android.sample.kotlin.BR
-import app.allever.android.sample.kotlin.R
 import app.allever.android.sample.kotlin.databinding.FragmentFlowBasicBinding
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
 class FlowBasicFragment : BaseMvvmFragment<FragmentFlowBasicBinding, FlowBasicViewModel>() {
-    override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_flow_basic, BR.flowBasicVM)
+
+    override fun inflate() = FragmentFlowBasicBinding.inflate(layoutInflater)
 
     override fun init() {
         lifecycleScope.launch {

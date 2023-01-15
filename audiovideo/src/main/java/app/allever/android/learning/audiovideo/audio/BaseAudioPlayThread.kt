@@ -9,7 +9,7 @@ import app.allever.android.lib.core.helper.ExecutorHelper
 import java.io.File
 import java.io.FileInputStream
 
-abstract class BaseAudioPlayThread(val path: String): Thread() {
+abstract class BaseAudioPlayThread(val path: String) : Thread() {
 
     /**
      * 文件输出

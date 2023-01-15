@@ -1,13 +1,10 @@
 package app.allever.android.learning.audiovideo.audio
 
 import android.text.TextUtils
-import app.allever.android.learning.audiovideo.BR
-import app.allever.android.learning.audiovideo.R
 import app.allever.android.learning.audiovideo.databinding.ActivityAudioRecordBinding
 import app.allever.android.lib.common.BaseActivity
 import app.allever.android.lib.core.function.media.SongMediaPlayer
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
 
 class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding, AudioRecordViewModel>() {
     private var audioRecord: BaseAudioRecordThread? = null
@@ -17,8 +14,7 @@ class AudioRecordActivity : BaseActivity<ActivityAudioRecordBinding, AudioRecord
     private var mAacPath = ""
     private val songMediaPlayer = SongMediaPlayer()
 
-    override fun getContentMvvmConfig() =
-        MvvmConfig(R.layout.activity_audio_record, BR.audioRecordVM)
+    override fun inflateChildBinding() = ActivityAudioRecordBinding.inflate(layoutInflater)
 
     override fun init() {
         initTopBar("AudioRecord录制音频")

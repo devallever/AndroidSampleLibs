@@ -3,26 +3,24 @@ package app.allever.android.lib.demo.ui.sticktop
 import android.os.Build
 import android.view.View
 import androidx.annotation.RequiresApi
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.allever.android.lib.common.BaseActivity
-import app.allever.android.lib.demo.BR
 import app.allever.android.lib.demo.R
 import app.allever.android.lib.demo.databinding.ActivityRecyclerViewHeaderStickyTopBinding
 import app.allever.android.lib.demo.databinding.RvHeaderBinding
 import app.allever.android.lib.demo.databinding.RvHeaderStickyBinding
 import app.allever.android.lib.demo.databinding.RvItemTextBinding
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 
 class RecyclerViewHeaderStickyTopActivity :
     BaseActivity<ActivityRecyclerViewHeaderStickyTopBinding, RecyclerViewHeaderStickyTopViewModel>() {
     private val adapter = RvAdapter()
-    override fun getContentMvvmConfig() =
-        MvvmConfig(R.layout.activity_recycler_view_header_sticky_top, BR.baseTwoViewStickyTopVM)
+
+    override fun inflateChildBinding() =
+        ActivityRecyclerViewHeaderStickyTopBinding.inflate(layoutInflater)
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun init() {
@@ -30,14 +28,8 @@ class RecyclerViewHeaderStickyTopActivity :
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
-        val rvHeaderSticky = DataBindingUtil.inflate<RvHeaderStickyBinding>(layoutInflater,
-            R.layout.rv_header_sticky,
-            null,
-            false)
-        val rvHeader = DataBindingUtil.inflate<RvHeaderBinding>(layoutInflater,
-            R.layout.rv_header,
-            null,
-            false)
+        val rvHeaderSticky = RvHeaderStickyBinding.inflate(layoutInflater)
+        val rvHeader = RvHeaderBinding.inflate(layoutInflater)
 
 //        initData()
         adapter.addHeaderView(rvHeader.rvHeader)
@@ -73,9 +65,9 @@ class RecyclerViewHeaderStickyTopViewModel : BaseViewModel() {
 }
 
 class RvAdapter() :
-    BaseQuickAdapter<String, BaseDataBindingHolder<RvItemTextBinding>>(R.layout.rv_item_text) {
-    override fun convert(holder: BaseDataBindingHolder<RvItemTextBinding>, item: String) {
-        holder.dataBinding?.tvText?.text = item
+    BaseQuickAdapter<String, BaseViewHolder>(R.layout.rv_item_text) {
+    override fun convert(holder: BaseViewHolder, item: String) {
+        val binding = RvItemTextBinding.bind(holder.itemView)
+        binding.tvText.text = item
     }
-
 }

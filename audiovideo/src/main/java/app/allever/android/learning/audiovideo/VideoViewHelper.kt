@@ -17,9 +17,14 @@ object VideoViewHelper {
         try {
             cursor = cr.query(
                 MediaStore.Video.Media.EXTERNAL_CONTENT_URI,
-                arrayOf(MediaStore.Video.VideoColumns._ID, MediaStore.Video.VideoColumns.DATA, MediaStore.Video.VideoColumns.DURATION),
+                arrayOf(
+                    MediaStore.Video.VideoColumns._ID,
+                    MediaStore.Video.VideoColumns.DATA,
+                    MediaStore.Video.VideoColumns.DURATION
+                ),
                 MediaStore.Video.VideoColumns.DATA + " = ? ", arrayOf(path),
-                MediaStore.Video.VideoColumns.DATE_TAKEN + " DESC" + ", " + MediaStore.Video.VideoColumns._ID + " ASC")
+                MediaStore.Video.VideoColumns.DATE_TAKEN + " DESC" + ", " + MediaStore.Video.VideoColumns._ID + " ASC"
+            )
 
             if (cursor == null) {
                 return false

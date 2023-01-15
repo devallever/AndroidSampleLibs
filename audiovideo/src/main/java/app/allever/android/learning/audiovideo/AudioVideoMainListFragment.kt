@@ -15,7 +15,7 @@ class AudioVideoMainListFragment : ListFragment<FragmentListBinding, ListViewMod
     )
 
     override fun onItemClick(position: Int, item: String) {
-        when(position) {
+        when (position) {
             0 -> {
                 ActivityHelper.startActivity(SelectMediaActivity::class.java) {
                     putExtra("TYPE", 0)

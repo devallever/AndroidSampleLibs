@@ -1,17 +1,17 @@
 package app.allever.android.lib.common
 
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewbinding.ViewBinding
 import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
 import com.chad.library.adapter.base.BaseQuickAdapter
 
-abstract class ListFragment<DB : ViewDataBinding, VM : BaseViewModel, T> :
+abstract class ListFragment<DB : ViewBinding, VM : BaseViewModel, T> :
     BaseFragment<FragmentListBinding, ListViewModel>() {
 
     private var mAdapter: BaseQuickAdapter<T, *>? = null
-    override fun getMvvmConfig() = MvvmConfig(R.layout.fragment_list, BR.listVM)
+
+    override fun inflate() = FragmentListBinding.inflate(layoutInflater)
 
     override fun init() {
 

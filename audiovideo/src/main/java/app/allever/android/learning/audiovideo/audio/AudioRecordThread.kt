@@ -4,7 +4,8 @@ import android.media.AudioRecord
 import app.allever.android.lib.core.app.App
 import app.allever.android.lib.core.ext.log
 
-class AudioRecordThread(audioRecordCallback: AudioRecordCallback?) : BaseAudioRecordThread(audioRecordCallback) {
+class AudioRecordThread(audioRecordCallback: AudioRecordCallback?) :
+    BaseAudioRecordThread(audioRecordCallback) {
 
     /**
      * 音频录制工具

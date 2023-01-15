@@ -13,6 +13,7 @@ import app.allever.android.learning.audiovideo.BasePlayerView
 import app.allever.android.learning.audiovideo.R
 import app.allever.android.learning.audiovideo.StatusListener
 import app.allever.android.learning.audiovideo.databinding.SurfacePlayerViewBinding
+import app.allever.android.lib.core.app.App
 import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.function.media.MediaBean
@@ -20,7 +21,6 @@ import app.allever.android.lib.core.helper.DisplayHelper
 import app.allever.android.lib.core.helper.ViewHelper
 import app.allever.android.lib.core.util.TimeUtils
 import kotlin.math.abs
-import kotlin.math.ceil
 
 class SurfacePlayerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -31,12 +31,7 @@ class SurfacePlayerView @JvmOverloads constructor(
     }
 
     init {
-        binding = DataBindingUtil.inflate(
-            LayoutInflater.from(context),
-            R.layout.surface_player_view,
-            this,
-            true
-        )
+        binding = SurfacePlayerViewBinding.inflate(LayoutInflater.from(App.context), this, true)
 
         initListener()
     }

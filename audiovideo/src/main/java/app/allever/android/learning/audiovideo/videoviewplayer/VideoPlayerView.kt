@@ -15,6 +15,7 @@ import androidx.databinding.DataBindingUtil
 import app.allever.android.learning.audiovideo.R
 import app.allever.android.learning.audiovideo.StatusListener
 import app.allever.android.learning.audiovideo.databinding.VideoPlayerViewBinding
+import app.allever.android.lib.core.app.App
 import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.function.media.MediaBean
@@ -36,12 +37,7 @@ class VideoPlayerView @JvmOverloads constructor(
     private var mMediaBean: MediaBean? = null
 
     init {
-        binding = DataBindingUtil.inflate(
-            LayoutInflater.from(context),
-            R.layout.video_player_view,
-            this,
-            true
-        )
+        binding = VideoPlayerViewBinding.inflate(LayoutInflater.from(App.context), this, true)
 
         initListener()
     }

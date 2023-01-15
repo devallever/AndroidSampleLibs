@@ -11,7 +11,6 @@ import app.allever.android.lib.core.function.media.MediaBean
 import app.allever.android.lib.core.function.media.MediaHelper
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
 import app.allever.android.lib.widget.mediapicker.MediaPicker
 import app.allever.android.lib.widget.mediapicker.MediaPickerListener
 
@@ -58,8 +57,7 @@ class SelectMediaActivity : BaseActivity<ActivitySelectMediaBinding, SelectMedia
         }
     }
 
-    override fun getContentMvvmConfig() =
-        MvvmConfig(R.layout.activity_select_media, BR.selectMediaVM)
+    override fun inflateChildBinding() = ActivitySelectMediaBinding.inflate(layoutInflater)
 }
 
 class SelectMediaViewModel : BaseViewModel() {

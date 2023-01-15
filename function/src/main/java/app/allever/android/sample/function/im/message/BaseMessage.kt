@@ -36,8 +36,8 @@ open class BaseMessage {
         return messageEntity
     }
 
-    fun <T: BaseMessage> generateMessage(messageEntity: MessageEntity): T {
-        val message = when(messageEntity.type) {
+    fun <T : BaseMessage> generateMessage(messageEntity: MessageEntity): T {
+        val message = when (messageEntity.type) {
             MessageType.TEXT -> TextMessage()
             MessageType.IMAGE -> ImageMessage()
             MessageType.AUDIO -> AudioMessage()

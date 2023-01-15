@@ -16,7 +16,7 @@ class FlowFragment : ListFragment<FragmentListBinding, ListViewModel, String>() 
     )
 
     override fun onItemClick(position: Int, item: String) {
-        when(position) {
+        when (position) {
             0 -> {
                 FragmentActivity.start<FlowMainFragment>(item)
             }

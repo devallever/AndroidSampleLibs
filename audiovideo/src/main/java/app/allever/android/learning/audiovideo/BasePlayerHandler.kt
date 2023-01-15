@@ -5,17 +5,18 @@ import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.function.media.MediaBean
 import app.allever.android.lib.core.function.work.TimerTask2
 
-abstract class BasePlayerHandler:  MediaPlayer.OnCompletionListener, MediaPlayer.OnPreparedListener{
+abstract class BasePlayerHandler : MediaPlayer.OnCompletionListener,
+    MediaPlayer.OnPreparedListener {
 
     protected var mMediaPlayer: MediaPlayer? = null
     protected lateinit var mMediaBean: MediaBean
     protected var mStatusListener: StatusListener? = null
 
     private val timerTask = TimerTask2(null, 1000L, true) {
-        mStatusListener?.onVideoPlaying(mMediaPlayer?.currentPosition?:0)
+        mStatusListener?.onVideoPlaying(mMediaPlayer?.currentPosition ?: 0)
     }
 
-    fun isPlaying() : Boolean =  mMediaPlayer?.isPlaying?:false
+    fun isPlaying(): Boolean = mMediaPlayer?.isPlaying ?: false
 
     fun getMediaPlayer() = mMediaPlayer
 

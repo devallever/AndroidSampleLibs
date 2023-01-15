@@ -1,38 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<app.allever.android.lib.widget.ReboundLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <data>
-
-        <variable
-            name="reboundViewDragHelper"
-            type="app.allever.android.lib.demo.ui.rebound.ReboundViewDragHelperViewViewModel" />
-    </data>
-
-    <app.allever.android.lib.widget.ReboundLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="160dp"
+            android:background="#80ff0000" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:background="#80ff0000" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="#8000ff00" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:background="#8000ff00" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="#800000ff" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:background="#800000ff" />
-
-        </LinearLayout>
-    </app.allever.android.lib.widget.ReboundLayout>
-
-</layout>
+    </LinearLayout>
+</app.allever.android.lib.widget.ReboundLayout>

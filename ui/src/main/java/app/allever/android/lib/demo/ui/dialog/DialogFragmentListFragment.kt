@@ -24,7 +24,10 @@ class DialogFragmentListFragment : ListFragment<FragmentListBinding, ListViewMod
             0 -> {
             }
             1 -> {
-                CenterDialogFragmentDialog().show(childFragmentManager, "CenterDialogFragmentDialog")
+                CenterDialogFragmentDialog().show(
+                    childFragmentManager,
+                    "CenterDialogFragmentDialog"
+                )
             }
             2 -> {
                 BottomDialogFragmentDialog().show(childFragmentManager, "BottomDialogFragment")

@@ -1,11 +1,11 @@
 package app.allever.android.lib.common
 
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
+import app.allever.android.lib.common.databinding.ActivityBaseFragmentBinding
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
 
-abstract class BaseFragmentActivity<DB : ViewDataBinding, VM : BaseViewModel> :
+abstract class BaseFragmentActivity<DB : ViewBinding, VM : BaseViewModel> :
     BaseActivity<DB, VM>() {
 
     protected lateinit var mFragment: Fragment
@@ -16,8 +16,7 @@ abstract class BaseFragmentActivity<DB : ViewDataBinding, VM : BaseViewModel> :
             .commit()
     }
 
-    override fun getContentMvvmConfig() =
-        MvvmConfig(R.layout.activity_base_fragment, BR.baseFragmentVM)
+    override fun inflateChildBinding() = ActivityBaseFragmentBinding.inflate(layoutInflater) as DB
 
     abstract fun attachFragment(): Fragment
 }

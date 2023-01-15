@@ -27,34 +27,20 @@ import app.allever.android.lib.demo.R;
  */
 public class ContactSideBar extends View {
 
-    // 触摸事件
-    private OnTouchingLetterChangedListener onTouchingLetterChangedListener;
-
+    public static String[] defaultData = {
+            "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
+            "S", "T", "U", "V", "W", "X", "Y", "Z", "#"
+    };
     // 26个字母
     private final List<String> data = new ArrayList<>();
-    public static String[] defaultData = {
-        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
-        "S", "T", "U", "V", "W", "X", "Y", "Z", "#"
-    };
+    private final Paint mPaint = new Paint();
+    private final int mItemHeight = DisplayHelper.INSTANCE.dip2px(20);
+    // 触摸事件
+    private OnTouchingLetterChangedListener onTouchingLetterChangedListener;
     // 选中
     private int mChoose = -1;
-
-    private final Paint mPaint = new Paint();
-
     private TextView mTextDialog;
-
     private String mCurrentData = "";
-
-    private final int mItemHeight = DisplayHelper.INSTANCE.dip2px(20);
-
-    /**
-     * 为SideBar显示字母的TextView
-     *
-     * @param mTextDialog
-     */
-    public void setTextView(TextView mTextDialog) {
-        this.mTextDialog = mTextDialog;
-    }
 
     public ContactSideBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -67,6 +53,15 @@ public class ContactSideBar extends View {
 
     public ContactSideBar(Context context) {
         this(context, null);
+    }
+
+    /**
+     * 为SideBar显示字母的TextView
+     *
+     * @param mTextDialog
+     */
+    public void setTextView(TextView mTextDialog) {
+        this.mTextDialog = mTextDialog;
     }
 
     private void init() {
@@ -85,7 +80,9 @@ public class ContactSideBar extends View {
         setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), data.size() * mItemHeight);
     }
 
-    /** 重写的onDraw的方法 */
+    /**
+     * 重写的onDraw的方法
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -162,6 +159,7 @@ public class ContactSideBar extends View {
 
         return true;
     }
+
     /**
      * 向外松开的方法
      *

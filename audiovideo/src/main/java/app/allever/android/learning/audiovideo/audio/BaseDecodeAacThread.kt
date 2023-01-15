@@ -1,6 +1,6 @@
 package app.allever.android.learning.audiovideo.audio
 
-abstract class BaseDecodeAacThread(val aacPath: String):Thread() {
+abstract class BaseDecodeAacThread(val aacPath: String) : Thread() {
 
     init {
         initIo()

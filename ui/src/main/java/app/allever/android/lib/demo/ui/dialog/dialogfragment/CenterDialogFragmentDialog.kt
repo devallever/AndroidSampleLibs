@@ -5,7 +5,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import app.allever.android.lib.core.helper.DisplayHelper
 import app.allever.android.lib.demo.R
@@ -31,12 +30,7 @@ class CenterDialogFragmentDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        mBinding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.dialog_center,
-            null,
-            false
-        )
+        mBinding = DialogCenterBinding.inflate(layoutInflater)
         return mBinding.root
     }
 }

@@ -1,86 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <data>
-
-        <variable
-            name="coordinatorStickyTopVM"
-            type="app.allever.android.lib.demo.ui.sticktop.CoordinatorStickyTopViewModel" />
-    </data>
-
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/coordinatorLayout"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#80ff0000"
+                android:gravity="center"
+                android:text="头部" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <TextView
+            android:id="@+id/tvHeaderSticky"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="吸顶Header" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="#80ff0000"
-                    android:gravity="center"
-                    android:text="头部" />
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
+                android:layout_height="1000dp"
+                android:gravity="center_horizontal"
+                android:text="RecyclerView" />
 
             <TextView
-                android:id="@+id/tvHeaderSticky"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@color/white"
-                android:gravity="center"
-                android:text="吸顶Header" />
+                android:gravity="center_horizontal"
+                android:text="RecyclerView" />
 
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="48dp"
+                android:gravity="center_horizontal"
+                android:text="RecyclerView" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="1000dp"
-                    android:gravity="center_horizontal"
-                    android:text="RecyclerView" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:gravity="center_horizontal"
-                    android:text="RecyclerView" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:gravity="center_horizontal"
-                    android:text="RecyclerView" />
-
-            </LinearLayout>
+        </LinearLayout>
 
 
-
-        </androidx.core.widget.NestedScrollView>
-
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.core.widget.NestedScrollView>
 
 
-</layout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

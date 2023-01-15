@@ -1,24 +1,23 @@
 package app.allever.android.lib.demo.ui
 
 import android.view.View
-import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.recyclerview.widget.RecyclerView
 import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.demo.R
 import app.allever.android.lib.demo.databinding.RvItemTextBinding
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 
 class AutoScrollAdapter(private val mLoop: Boolean = true) :
-    BaseQuickAdapter<String, BaseDataBindingHolder<RvItemTextBinding>>(R.layout.rv_item_text) {
-    override fun convert(holder: BaseDataBindingHolder<RvItemTextBinding>, item: String) {
-        val binding = holder.dataBinding ?: return
+    BaseQuickAdapter<String, BaseViewHolder>(R.layout.rv_item_text) {
+    override fun convert(holder: BaseViewHolder, item: String) {
+        val binding = RvItemTextBinding.bind(holder.itemView)
         binding.tvText.text = item
         log("AutoScrollRecyclerView: position = ${getItemPosition(item)}")
         log("itemH = ${binding.root.height}")
+        //binding.root.animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.example_anims)
 
-//        binding.root.animation = AnimationUtils.loadAnimation(holder.itemView.context, R.anim.example_anims)
     }
 
     override fun getItem(position: Int): String {

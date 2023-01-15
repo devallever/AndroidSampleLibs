@@ -7,11 +7,16 @@ import app.allever.android.learning.audiovideo.BasePlayerHandler
 import app.allever.android.learning.audiovideo.StatusListener
 import app.allever.android.lib.core.function.media.MediaBean
 
-class VideoViewHandler : BasePlayerHandler(),  MediaPlayer.OnPreparedListener {
+class VideoViewHandler : BasePlayerHandler(), MediaPlayer.OnPreparedListener {
 
     private lateinit var mVideoView: VideoView
 
-    fun initVideoView(videoView: VideoView, mediaBean: MediaBean, mediaController: MediaController? = null,  statusListener: StatusListener? = null) {
+    fun initVideoView(
+        videoView: VideoView,
+        mediaBean: MediaBean,
+        mediaController: MediaController? = null,
+        statusListener: StatusListener? = null
+    ) {
         this.mVideoView = videoView
         mMediaBean = mediaBean
         videoView.setOnCompletionListener(this)

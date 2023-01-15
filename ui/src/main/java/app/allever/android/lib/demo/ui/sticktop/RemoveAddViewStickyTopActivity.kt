@@ -3,16 +3,14 @@ package app.allever.android.lib.demo.ui.sticktop
 import android.os.Build
 import androidx.annotation.RequiresApi
 import app.allever.android.lib.common.BaseActivity
-import app.allever.android.lib.demo.BR
-import app.allever.android.lib.demo.R
 import app.allever.android.lib.demo.databinding.ActivityRemoveAddViewStickyTopBinding
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
 
 class RemoveAddViewStickyTopActivity :
     BaseActivity<ActivityRemoveAddViewStickyTopBinding, RemoveAddViewStickyTopViewModel>() {
-    override fun getContentMvvmConfig() =
-        MvvmConfig(R.layout.activity_remove_add_view_sticky_top, BR.removeAddViewStickyTopVM)
+
+    override fun inflateChildBinding() =
+        ActivityRemoveAddViewStickyTopBinding.inflate(layoutInflater)
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun init() {
@@ -44,7 +42,7 @@ class RemoveAddViewStickyTopActivity :
     }
 }
 
-class RemoveAddViewStickyTopViewModel(): BaseViewModel() {
+class RemoveAddViewStickyTopViewModel() : BaseViewModel() {
     override fun init() {
 
     }

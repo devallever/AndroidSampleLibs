@@ -3,7 +3,6 @@ package app.allever.android.lib.demo.ui.widget
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
-import androidx.core.view.get
 import androidx.core.view.marginBottom
 import androidx.core.view.marginTop
 import androidx.lifecycle.LifecycleOwner
@@ -13,7 +12,6 @@ import app.allever.android.lib.core.function.work.TimerTask2
 import app.allever.android.lib.core.helper.DisplayHelper
 import app.allever.android.lib.core.helper.ViewHelper
 import app.allever.android.lib.demo.ui.getRecyclerViewItem
-import com.chad.library.adapter.base.BaseQuickAdapter
 
 /**
  * RecyclerView 自动循环滚动， 已底部item为边界
@@ -124,12 +122,14 @@ class AutoScrollBottomRecyclerView(context: Context, attrs: AttributeSet?) :
 
 
             var offsetY = lastView.height -
-                (DisplayHelper.getFullScreenHeight(context) - arr?.get(1)!! - DisplayHelper.getNavigationBarHeight(context)) + lastView.marginBottom + 1
+                    (DisplayHelper.getFullScreenHeight(context) - arr?.get(1)!! - DisplayHelper.getNavigationBarHeight(
+                        context
+                    )) + lastView.marginBottom + 1
 
             log("offsetY = $offsetY")
 
             if (offsetY == 0) {
-                    val adapterPosition = getChildAdapterPosition(lastView) + 1
+                val adapterPosition = getChildAdapterPosition(lastView) + 1
                 val nextView = adapter?.getRecyclerViewItem(this, adapterPosition)
                 nextView?.post {
                     offsetY = nextView.height
