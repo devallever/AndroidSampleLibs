@@ -30,3 +30,4 @@ project(':network').projectDir = new File(settingsDir, '../../allever-projects/A
 include ':kotlin'
 include ':thirtypart'
 include ':audiovideo'
+include ':jni'

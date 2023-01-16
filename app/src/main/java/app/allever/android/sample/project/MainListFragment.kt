@@ -10,6 +10,7 @@ import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.UIMainFragment
 import app.allever.android.sample.function.FunctionMainFragment
 import app.allever.android.sample.jetpack.JetpackMainFragment
+import app.allever.android.sample.jni.JniMainActivity
 import app.allever.android.sample.kotlin.KotlinMainFragment
 import app.allever.android.sample.thirtypart.ThirtyPartMainFragment
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -18,7 +19,8 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, String
 
     override fun getAdapter(): BaseQuickAdapter<String, *> = TextAdapter()
 
-    override fun getList() = mutableListOf("UI交互效果", "Jetpack", "Kotlin", "ThirtyPart", "功能实现", "音视频")
+    override fun getList() =
+        mutableListOf("UI交互效果", "Jetpack", "Kotlin", "ThirtyPart", "功能实现", "音视频", "JNI")
 
     override fun onItemClick(position: Int, item: String) {
         when (position) {
@@ -38,7 +40,10 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, String
                 FragmentActivity.start<FunctionMainFragment>("功能列表")
             }
             5 -> {
-                ActivityHelper.startActivity<AudioVideoMainActivity> {  }
+                ActivityHelper.startActivity<AudioVideoMainActivity> { }
+            }
+            6 -> {
+                ActivityHelper.startActivity<JniMainActivity> { }
             }
             else -> {
 
