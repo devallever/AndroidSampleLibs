@@ -8,5 +8,9 @@ object Jni {
 
     external fun stringFromJni(): String
 
+    external fun intFromJni(intValue: Int): Int
+
+    external fun intArrayFromJni(intArray: IntArray): IntArray
+
 
 }

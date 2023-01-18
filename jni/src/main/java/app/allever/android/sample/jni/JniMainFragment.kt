@@ -12,7 +12,7 @@ class JniMainFragment : TabFragment<FragmentTabBinding, TabViewModel>() {
     )
 
     override fun getFragments(): MutableList<Fragment> = mutableListOf(
-        EmptyFragment("Java调用C"),
+        Java2CFragment(),
         EmptyFragment("C调用Java")
     )
 }

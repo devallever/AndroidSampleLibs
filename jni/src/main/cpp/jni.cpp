@@ -207,3 +207,38 @@ Java_app_allever_android_sample_jni_Jni_stringFromJni(JNIEnv *env, jobject thiz)
     std::string hello = "Hello from C++";
     return env->NewStringUTF(hello.c_str());
 }
+extern "C"
+JNIEXPORT jint JNICALL
+Java_app_allever_android_sample_jni_Jni_intFromJni(JNIEnv *env, jobject thiz, jint int_value) {
+    LOGD("%d", int_value);
+    jint newValue = int_value + 1;
+    return newValue;
+}
+extern "C"
+JNIEXPORT jintArray JNICALL
+Java_app_allever_android_sample_jni_Jni_intArrayFromJni(JNIEnv *env, jobject thiz,
+                                                        jintArray int_array) {
+
+    //jni中获取array长度需要使用JNIEnv对象方法GetArrayLength(env, array)来获取
+    int arraySize = env->GetArrayLength(int_array);
+    LOGD("intArrayFromJni 数组长度 = %d\n", arraySize);
+    int cIntArray[] = {};
+    env->GetIntArrayRegion(int_array, 0, arraySize, cIntArray);
+    //将jintArray的值复制到array数组指针
+    int *array = env->GetIntArrayElements(int_array, NULL);
+    for (int i = 0; i < arraySize; i++) {
+        int old = cIntArray[i];
+        LOGD("intArrayFromJni 遍历 int array %d -> %d\n", i, old);
+        cIntArray[i] = old + 1;
+        *(array + i) += 1;
+    }
+
+    //直接创建整形数组
+    int newIntArray[] = {10, 9, 8, 7};
+
+    //创建jintArray对象
+    jintArray newJIntArray = env->NewIntArray(arraySize);
+    //将array数组内容复制到newJIntArray
+    env->SetIntArrayRegion(newJIntArray, 0, arraySize, array);
+    return newJIntArray;
+}
