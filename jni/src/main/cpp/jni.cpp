@@ -242,3 +242,39 @@ Java_app_allever_android_sample_jni_Jni_intArrayFromJni(JNIEnv *env, jobject thi
     env->SetIntArrayRegion(newJIntArray, 0, arraySize, array);
     return newJIntArray;
 }
+
+extern "C"
+JNIEXPORT jfloat JNICALL
+Java_app_allever_android_sample_jni_Jni_floatFromJni(JNIEnv *env, jobject thiz, jfloat float_value) {
+    LOGD("%f", float_value);
+    jfloat newValue = float_value + 1;
+    return newValue;
+}
+
+extern "C"
+JNIEXPORT jfloatArray JNICALL
+Java_app_allever_android_sample_jni_Jni_floatArrayFromJni(JNIEnv *env, jobject thiz,
+                                                          jfloatArray float_array) {
+    //jni中获取array长度需要使用JNIEnv对象方法GetArrayLength(env, array)来获取
+    int arraySize = env->GetArrayLength(float_array);
+    LOGD("floatArrayFromJni 数组长度 = %d\n", arraySize);
+    float cFloatArray[] = {};
+    env->GetFloatArrayRegion(float_array, 0, arraySize, cFloatArray);
+    //将float_array的值复制到array数组指针
+    float *array = env->GetFloatArrayElements(float_array, NULL);
+    for (int i = 0; i < arraySize; i++) {
+        float old = cFloatArray[i];
+        LOGD("floatArrayFromJni 遍历 int array %i -> %f\n", i, old);
+        cFloatArray[i] = old + 0.1;
+        *(array + i) += 0.1;
+    }
+
+    //直接创建整形数组
+    float newFloatArray[] = {10.1, 9.1, 8.1, 7.1};
+
+    //创建jintArray对象
+    jfloatArray newJFloatArray = env->NewFloatArray(arraySize);
+    //将array数组内容复制到newJIntArray
+    env->SetFloatArrayRegion(newJFloatArray, 0, arraySize, array);
+    return newJFloatArray;
+}

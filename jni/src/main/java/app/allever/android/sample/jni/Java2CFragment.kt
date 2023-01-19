@@ -17,7 +17,9 @@ class Java2CFragment: ListFragment<FragmentListBinding, ListViewModel, String>()
 
     override fun getList() = mutableListOf(
         "Int <-> jint",
-        "IntArray <-> jintArray"
+        "IntArray <-> jintArray",
+        "Float <-> jfloat",
+        "FloatArray <-> jfloatArray"
     )
 
     override fun onItemClick(position: Int, item: String) {
@@ -30,6 +32,16 @@ class Java2CFragment: ListFragment<FragmentListBinding, ListViewModel, String>()
                 toast(result.toJson())
                 result.map {
                     log("获取C的intArray: $it")
+                }
+            }
+            2 -> {
+                toast("${Jni.intFromJni(5)}")
+            }
+            3 -> {
+                val result = Jni.floatArrayFromJni(floatArrayOf(5f, 6f, 7f))
+                toast(result.toJson())
+                result.map {
+                    log("获取C的floatArray: $it")
                 }
             }
         }
