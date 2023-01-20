@@ -247,7 +247,7 @@ extern "C"
 JNIEXPORT jfloat JNICALL
 Java_app_allever_android_sample_jni_Jni_floatFromJni(JNIEnv *env, jobject thiz, jfloat float_value) {
     LOGD("%f", float_value);
-    jfloat newValue = float_value + 1;
+    jfloat newValue = float_value + 0.1;
     return newValue;
 }
 
@@ -264,7 +264,7 @@ Java_app_allever_android_sample_jni_Jni_floatArrayFromJni(JNIEnv *env, jobject t
     float *array = env->GetFloatArrayElements(float_array, NULL);
     for (int i = 0; i < arraySize; i++) {
         float old = cFloatArray[i];
-        LOGD("floatArrayFromJni 遍历 int array %i -> %f\n", i, old);
+        LOGD("floatArrayFromJni 遍历 float array %i -> %f\n", i, old);
         cFloatArray[i] = old + 0.1;
         *(array + i) += 0.1;
     }
@@ -277,4 +277,40 @@ Java_app_allever_android_sample_jni_Jni_floatArrayFromJni(JNIEnv *env, jobject t
     //将array数组内容复制到newJIntArray
     env->SetFloatArrayRegion(newJFloatArray, 0, arraySize, array);
     return newJFloatArray;
+}
+
+extern "C"
+JNIEXPORT jdouble JNICALL
+Java_app_allever_android_sample_jni_Jni_doubleFromJni(JNIEnv *env, jobject thiz, jdouble double_value) {
+    LOGD("%f", double_value);
+    jdouble newValue = double_value + 0.1;
+    return newValue;
+}
+
+extern "C"
+JNIEXPORT jdoubleArray JNICALL
+Java_app_allever_android_sample_jni_Jni_doubleArrayFromJni(JNIEnv *env, jobject thiz,
+                                                           jdoubleArray double_array) {
+    //jni中获取array长度需要使用JNIEnv对象方法GetArrayLength(env, array)来获取
+    int arraySize = env->GetArrayLength(double_array);
+    LOGD("doubleArrayFromJni 数组长度 = %d\n", arraySize);
+    double newArray[] = {};
+    env->GetDoubleArrayRegion(double_array, 0, arraySize, newArray);
+    //将double_array的值复制到array数组指针
+    double *array = env->GetDoubleArrayElements(double_array, NULL);
+    for (int i = 0; i < arraySize; i++) {
+        double old = newArray[i];
+        LOGD("doubleArrayFromJni 遍历 double array %i -> %f\n", i, old);
+        newArray[i] = old + 0.1;
+        *(array + i) += 0.1;
+    }
+
+    //直接创建整形数组
+    float newFloatArray[] = {10.1, 9.1, 8.1, 7.1};
+
+    //创建jdoubleArray对象
+    jdoubleArray newJDoubleArray = env->NewDoubleArray(arraySize);
+    //将array数组内容复制到newJDoubleArray
+    env->SetDoubleArrayRegion(newJDoubleArray, 0, arraySize, array);
+    return newJDoubleArray;
 }

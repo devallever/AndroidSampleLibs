@@ -16,5 +16,9 @@ object Jni {
 
     external fun floatArrayFromJni(floatArray: FloatArray): FloatArray
 
+    external fun doubleFromJni(double: Double): Double
+
+    external fun doubleArrayFromJni(doubleArray: DoubleArray): DoubleArray
+
 
 }

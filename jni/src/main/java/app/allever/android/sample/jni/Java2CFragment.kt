@@ -19,13 +19,15 @@ class Java2CFragment: ListFragment<FragmentListBinding, ListViewModel, String>()
         "Int <-> jint",
         "IntArray <-> jintArray",
         "Float <-> jfloat",
-        "FloatArray <-> jfloatArray"
+        "FloatArray <-> jfloatArray",
+        "Double <-> jdouble",
+        "DoubleArray <-> jdoubleArray"
     )
 
     override fun onItemClick(position: Int, item: String) {
         when(position) {
             0 -> {
-                toast("${Jni.intFromJni(3)}")
+                toast("${Jni.intFromJni(position)}")
             }
             1 -> {
                 val result = Jni.intArrayFromJni(intArrayOf(10, 20, 30))
@@ -35,13 +37,23 @@ class Java2CFragment: ListFragment<FragmentListBinding, ListViewModel, String>()
                 }
             }
             2 -> {
-                toast("${Jni.intFromJni(5)}")
+                toast("${Jni.floatFromJni(position.toFloat())}")
             }
             3 -> {
                 val result = Jni.floatArrayFromJni(floatArrayOf(5f, 6f, 7f))
                 toast(result.toJson())
                 result.map {
                     log("获取C的floatArray: $it")
+                }
+            }
+            4 -> {
+                toast("${Jni.doubleFromJni(position.toDouble())}")
+            }
+            5 -> {
+                val result = Jni.doubleArrayFromJni(doubleArrayOf(8.toDouble(), 9.toDouble(), 10.toDouble()))
+                toast(result.toJson())
+                result.map {
+                    log("获取C的doubleArray: $it")
                 }
             }
         }
