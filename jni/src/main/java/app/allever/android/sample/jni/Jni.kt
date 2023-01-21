@@ -20,5 +20,9 @@ object Jni {
 
     external fun doubleArrayFromJni(doubleArray: DoubleArray): DoubleArray
 
+    external fun byteFromJni(byte: Byte): Byte
+
+    external fun byteArrayFromJni(byteArray: ByteArray): ByteArray
+
 
 }

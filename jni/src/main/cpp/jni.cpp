@@ -207,6 +207,7 @@ Java_app_allever_android_sample_jni_Jni_stringFromJni(JNIEnv *env, jobject thiz)
     std::string hello = "Hello from C++";
     return env->NewStringUTF(hello.c_str());
 }
+
 extern "C"
 JNIEXPORT jint JNICALL
 Java_app_allever_android_sample_jni_Jni_intFromJni(JNIEnv *env, jobject thiz, jint int_value) {
@@ -214,6 +215,7 @@ Java_app_allever_android_sample_jni_Jni_intFromJni(JNIEnv *env, jobject thiz, ji
     jint newValue = int_value + 1;
     return newValue;
 }
+
 extern "C"
 JNIEXPORT jintArray JNICALL
 Java_app_allever_android_sample_jni_Jni_intArrayFromJni(JNIEnv *env, jobject thiz,
@@ -312,5 +314,39 @@ Java_app_allever_android_sample_jni_Jni_doubleArrayFromJni(JNIEnv *env, jobject 
     jdoubleArray newJDoubleArray = env->NewDoubleArray(arraySize);
     //将array数组内容复制到newJDoubleArray
     env->SetDoubleArrayRegion(newJDoubleArray, 0, arraySize, array);
+    return newJDoubleArray;
+}
+extern "C"
+JNIEXPORT jbyte JNICALL
+Java_app_allever_android_sample_jni_Jni_byteFromJni(JNIEnv *env, jobject thiz, jbyte byte_value) {
+    LOGD("%d", byte_value);
+    jbyte newValue = ++byte_value;
+    return newValue;
+}
+
+extern "C"
+JNIEXPORT jbyteArray JNICALL
+Java_app_allever_android_sample_jni_Jni_byteArrayFromJni(JNIEnv *env, jobject thiz,
+                                                         jbyteArray byte_array) {
+    //jni中获取array长度需要使用JNIEnv对象方法GetArrayLength(env, array)来获取
+    int arraySize = env->GetArrayLength(byte_array);
+    LOGD("byteArrayFromJni 数组长度 = %d\n", arraySize);
+
+    jbyte newArray[] = {};
+    env->GetByteArrayRegion(byte_array, 0, arraySize, newArray);
+
+    //将double_array的值复制到array数组指针
+    jbyte *array = env->GetByteArrayElements(byte_array, NULL);
+    for (int i = 0; i < arraySize; i++) {
+        LOGD("byteArrayFromJni 遍历 byte array %i -> %d\n", i, (newArray[i]));
+    }
+
+    //直接创建整形数组
+    float newFloatArray[] = {10.1, 9.1, 8.1, 7.1};
+
+    //创建jdoubleArray对象
+    jbyteArray newJDoubleArray = env->NewByteArray(arraySize);
+    //将array数组内容复制到newJDoubleArray
+    env->SetByteArrayRegion(newJDoubleArray, 0, arraySize, array);
     return newJDoubleArray;
 }

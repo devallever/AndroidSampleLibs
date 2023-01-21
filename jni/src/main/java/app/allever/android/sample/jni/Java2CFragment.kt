@@ -21,7 +21,9 @@ class Java2CFragment: ListFragment<FragmentListBinding, ListViewModel, String>()
         "Float <-> jfloat",
         "FloatArray <-> jfloatArray",
         "Double <-> jdouble",
-        "DoubleArray <-> jdoubleArray"
+        "DoubleArray <-> jdoubleArray",
+        "Byte <-> jbyte",
+        "ByteArray <-> jbyteArray"
     )
 
     override fun onItemClick(position: Int, item: String) {
@@ -54,6 +56,16 @@ class Java2CFragment: ListFragment<FragmentListBinding, ListViewModel, String>()
                 toast(result.toJson())
                 result.map {
                     log("获取C的doubleArray: $it")
+                }
+            }
+            6 -> {
+                toast("${Jni.byteFromJni(0.toByte())}")
+            }
+            7 -> {
+                val result = Jni.byteArrayFromJni(byteArrayOf(0, 1, 0))
+                toast(result.toJson())
+                result.map {
+                    log("获取C的byteArray: $it")
                 }
             }
         }
