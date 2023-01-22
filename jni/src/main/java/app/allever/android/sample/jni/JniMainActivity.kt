@@ -14,7 +14,6 @@ class JniMainActivity : BaseActivity<ActivityJniMainBinding, BaseViewModel>() {
             JniMainFragment(),
             R.id.fragmentContainer
         )
-        toast(Jni.stringFromJni())
     }
 
     override fun inflateChildBinding() = ActivityJniMainBinding.inflate(layoutInflater)

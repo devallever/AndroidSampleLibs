@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <string>
 #include "jni.h"
+#include "jni.c"
 
 //extern "C"
 //JNIEXPORT jstring JNICALL
@@ -201,18 +202,12 @@
 //    int arraySize = sizeof(int_list);
 //    LOGD("ArraySize = %d\n", arraySize);
 //}
-extern "C"
-JNIEXPORT jstring JNICALL
-Java_app_allever_android_sample_jni_Jni_stringFromJni(JNIEnv *env, jobject thiz) {
-    std::string hello = "Hello from C++";
-    return env->NewStringUTF(hello.c_str());
-}
 
 extern "C"
 JNIEXPORT jint JNICALL
 Java_app_allever_android_sample_jni_Jni_intFromJni(JNIEnv *env, jobject thiz, jint int_value) {
     LOGD("%d", int_value);
-    jint newValue = int_value + 1;
+    jint newValue = getIntFromC();
     return newValue;
 }
 
@@ -349,4 +344,41 @@ Java_app_allever_android_sample_jni_Jni_byteArrayFromJni(JNIEnv *env, jobject th
     //将array数组内容复制到newJDoubleArray
     env->SetByteArrayRegion(newJDoubleArray, 0, arraySize, array);
     return newJDoubleArray;
+}
+
+
+//extern "C"
+//JNIEXPORT jobject JNICALL
+//Java_app_allever_android_sample_jni_Jni_stringListFromJni(JNIEnv *env, jobject thiz) {
+//    jstring
+//}
+
+extern "C"
+JNIEXPORT jstring JNICALL
+Java_app_allever_android_sample_jni_Jni_stringFromJni(JNIEnv *env, jobject thiz, jstring string_value) {
+    //获取jstring
+    char *stringParams = const_cast<char *>(env->GetStringUTFChars(string_value, nullptr));
+    LOGD("%s", stringParams);
+    //C++语法
+    std::string hello = "String from C++";
+    //C语法
+    char *hello2 = "String from C";
+    //创建jstring
+    jstring result = env->NewStringUTF(hello2);
+    return result;
+}
+
+extern "C"
+JNIEXPORT jobjectArray JNICALL
+Java_app_allever_android_sample_jni_Jni_stringArrayFromJni(JNIEnv *env, jobject thiz,
+                                                           jobjectArray string_array) {
+
+    return nullptr;
+}
+
+extern "C"
+JNIEXPORT jobject JNICALL
+Java_app_allever_android_sample_jni_Jni_stringListFromJni(JNIEnv *env, jobject thiz,
+                                                          jobject string_list) {
+    return nullptr;
 }
