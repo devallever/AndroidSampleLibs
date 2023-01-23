@@ -3,12 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    tools:ignore="MissingDefaultResource"
-    app:startDestination="@id/aFragment">
+    app:startDestination="@id/aFragment"
+    tools:ignore="MissingDefaultResource">
 
     <fragment
         android:id="@+id/aFragment"
         android:name="app.allever.android.sample.jetpack.navigation.AFragment"
-        tools:layout="@layout/fragment_empty" />
+        tools:layout="@layout/fragment_a">
+        <action
+            android:id="@+id/action2B"
+            app:destination="@id/bFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bFragment"
+        android:name="app.allever.android.sample.jetpack.navigation.BFragment"
+        tools:layout="@layout/fragment_b" />
 
 </navigation>
