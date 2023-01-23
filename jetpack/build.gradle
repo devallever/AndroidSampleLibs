@@ -42,4 +42,7 @@ android {
 
 dependencies {
     api project(path: ':common')
+    api navigationFragmentKtx
+    api navigationUIKtx
+    api navigationFeatures
 }

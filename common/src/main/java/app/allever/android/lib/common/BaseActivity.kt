@@ -47,11 +47,12 @@ abstract class BaseActivity<DB : ViewBinding, VM : BaseViewModel> :
         setVisibility(mBinding.statusBar, showTopBar())
     }
 
+    abstract fun inflateChildBinding(): DB
+
     override fun inflate() = ActivityBaseBinding.inflate(layoutInflater)
 
     protected fun parentBinding(): ActivityBaseBinding = mBinding
 
-    abstract fun inflateChildBinding(): DB
 
     protected open fun enableAdaptStatusBar(): Boolean = true
 
