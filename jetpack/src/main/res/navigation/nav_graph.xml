@@ -18,6 +18,7 @@
     <fragment
         android:id="@+id/bFragment"
         android:name="app.allever.android.sample.jetpack.navigation.BFragment"
-        tools:layout="@layout/fragment_b" />
+        tools:layout="@layout/fragment_b">
+    </fragment>
 
 </navigation>
