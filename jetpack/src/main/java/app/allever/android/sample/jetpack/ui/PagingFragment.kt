@@ -1,6 +1,7 @@
 package app.allever.android.sample.jetpack.ui
 
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -78,8 +79,8 @@ class ArticleBindingAdapter :
             old.id == new.id
         }) {
 
-    override fun inflate(): RvArticleItemBinding {
-        return RvArticleItemBinding.inflate(LayoutInflater.from(App.context))
+    override fun inflate(parent: ViewGroup?): RvArticleItemBinding {
+        return RvArticleItemBinding.inflate(LayoutInflater.from(App.context), parent, false)
     }
 
     override fun convert(
