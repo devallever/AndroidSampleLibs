@@ -9,6 +9,12 @@ import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.sample.jetpack.R
 import app.allever.android.sample.jetpack.databinding.ActivityNavigationMainBinding
 
+/**
+ * Android Navigation 过渡动画
+ * https://blog.csdn.net/mp624183768/article/details/126338041
+ *
+ *
+ */
 class NavigationMainActivity : BaseMvvmActivity<ActivityNavigationMainBinding, BaseViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
