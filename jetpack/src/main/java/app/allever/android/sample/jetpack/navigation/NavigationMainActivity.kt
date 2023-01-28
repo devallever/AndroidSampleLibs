@@ -1,5 +1,6 @@
 package app.allever.android.sample.jetpack.navigation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.findNavController
@@ -27,6 +28,12 @@ class NavigationMainActivity : BaseMvvmActivity<ActivityNavigationMainBinding, B
     override fun inflate() = ActivityNavigationMainBinding.inflate(layoutInflater)
 
     override fun init() {
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        findNavController(mBinding.root.id).handleDeepLink(intent)
+//        findNavController().handleDeepLink(intent)
     }
 
     override fun onBackPressed() {

@@ -3,6 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
-        <activity android:name=".navigation.NavigationMainActivity" />
+        <activity android:name=".navigation.NavigationMainActivity"
+            android:exported="false">
+            <nav-graph android:value="@navigation/nav_graph" />
+        </activity>
     </application>
 </manifest>

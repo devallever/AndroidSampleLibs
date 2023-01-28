@@ -16,13 +16,18 @@
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
-            app:popExitAnim="@anim/to_right"/>
+            app:popExitAnim="@anim/to_right" />
     </fragment>
 
     <fragment
         android:id="@+id/bFragment"
         android:name="app.allever.android.sample.jetpack.navigation.BFragment"
         tools:layout="@layout/fragment_b">
+
+        <deepLink
+            app:action="app.allever.android.sample.jetpack.navigation.actionB"
+            app:mimeType="type/subtype"
+            app:uri="app.allever.android.sample" />
     </fragment>
 
 </navigation>
