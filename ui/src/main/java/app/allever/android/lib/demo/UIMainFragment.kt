@@ -9,8 +9,10 @@ import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.ui.*
 import app.allever.android.lib.demo.ui.autoscroll.AutoScrollMainFragment
 import app.allever.android.lib.demo.ui.dialog.DialogMainFragment
+import app.allever.android.lib.demo.ui.dragclose.DragCloseMainFragment
 import app.allever.android.lib.demo.ui.notification.NotificationMainFragment
 import app.allever.android.lib.demo.ui.sticktop.StickyTopMainFragment
+import app.allever.android.lib.widget.fragment.EmptyFragment
 import com.chad.library.adapter.base.BaseQuickAdapter
 
 class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>() {
@@ -27,7 +29,8 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>(
             "Soul-交互效果",
             "分组联系人列表",
             "弹窗",
-            "通知"
+            "通知",
+            "拖拽关闭页面效果"
         )
 
     override fun onItemClick(position: Int, item: String) {
@@ -60,6 +63,9 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>(
                 FragmentActivity.start<DialogMainFragment>(item)
             }
             9 -> FragmentActivity.start<NotificationMainFragment>(item)
+            10 -> {
+                FragmentActivity.start<DragCloseMainFragment>(item)
+            }
         }
     }
 }

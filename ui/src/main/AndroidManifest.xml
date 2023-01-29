@@ -15,5 +15,8 @@
             android:name=".ui.dialog.activitydialog.BottomActivityDialog"
             android:theme="@style/BottomActivityDialog" />
         <activity android:name=".ui.notification.NotificationActivity" />
+        <activity android:name=".ui.dragclose.PreviewPhotoActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"/>
     </application>
 </manifest>

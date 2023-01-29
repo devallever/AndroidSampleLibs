@@ -1,5 +1,6 @@
 package app.allever.android.lib.common
 
+import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
 import app.allever.android.lib.common.databinding.ActivityBaseFragmentBinding
@@ -22,6 +23,16 @@ class FragmentActivity :
                 putExtra("title", title)
             }
         }
+
+        inline fun <reified T> start(title: String, block:(fragmentArgs: Bundle) -> Unit) {
+            val bundle = Bundle()
+            block.invoke(bundle)
+            ActivityHelper.startActivity<FragmentActivity> {
+                putExtra("fragmentName", T::class.java.name)
+                putExtra("title", title)
+                putExtra("fragmentArgs", bundle)
+            }
+        }
     }
 
     override fun init() {
@@ -30,13 +41,15 @@ class FragmentActivity :
     }
 
     override fun attachFragment(): Fragment {
+        val fragmentArgs = intent?.getBundleExtra("fragmentArgs")
         try {
             val clzName = intent.getStringExtra("fragmentName")
             if (TextUtils.isEmpty(clzName)) {
                 return EmptyFragment()
             }
-            val fragment = Class.forName(clzName!!).getConstructor().newInstance()
-            return fragment as Fragment
+            val fragment = Class.forName(clzName!!).getConstructor().newInstance() as Fragment
+            fragment.arguments = fragmentArgs
+            return fragment
         } catch (e: Exception) {
             e.printStackTrace()
         }
