@@ -7,16 +7,17 @@ import app.allever.android.lib.common.databinding.FragmentTabBinding
 import app.allever.android.lib.widget.fragment.EmptyFragment
 import app.allever.android.sample.jetpack.ui.NavigationFragment
 import app.allever.android.sample.jetpack.ui.PagingFragment
+import app.allever.android.sample.jetpack.viewmodel.ViewModelMainFragment
 
 class JetpackMainFragment : TabFragment<FragmentTabBinding, TabViewModel>() {
     override fun getTabTitles() = mutableListOf(
         "Paging",
         "Navigation",
+        "ViewModel",
         "DataStore",
         "Room",
         "LifeCycle",
         "LiveData",
-        "ViewModel",
         "DataBinding",
         "ViewBinding"
     )
@@ -24,11 +25,11 @@ class JetpackMainFragment : TabFragment<FragmentTabBinding, TabViewModel>() {
     override fun getFragments(): MutableList<Fragment> = mutableListOf(
         PagingFragment(),
         NavigationFragment(),
+        ViewModelMainFragment(),
         EmptyFragment("DataStore"),
         EmptyFragment("Room"),
         EmptyFragment("Lifecycle"),
         EmptyFragment("LiveData"),
-        EmptyFragment("ViewModel"),
         EmptyFragment("DataBinding"),
         EmptyFragment("ViewBinding"),
     )
