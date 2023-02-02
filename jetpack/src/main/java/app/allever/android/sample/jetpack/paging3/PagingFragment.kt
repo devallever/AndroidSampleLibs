@@ -1,4 +1,4 @@
-package app.allever.android.sample.jetpack.ui
+package app.allever.android.sample.jetpack.paging3
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

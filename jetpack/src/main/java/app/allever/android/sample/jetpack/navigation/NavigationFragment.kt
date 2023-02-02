@@ -1,4 +1,4 @@
-package app.allever.android.sample.jetpack.ui
+package app.allever.android.sample.jetpack.navigation
 
 import app.allever.android.lib.common.BaseFragment
 import app.allever.android.lib.core.helper.ActivityHelper
