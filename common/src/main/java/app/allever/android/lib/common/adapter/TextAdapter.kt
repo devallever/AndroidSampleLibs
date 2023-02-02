@@ -3,7 +3,6 @@ package app.allever.android.lib.common.adapter
 import app.allever.android.lib.common.R
 import app.allever.android.lib.common.databinding.RvTextItemBinding
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 
 class TextAdapter :
