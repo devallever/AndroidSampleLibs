@@ -53,15 +53,19 @@ class PreferenceStoreFragment : ListFragment<FragmentListBinding, ListViewModel,
         val KEY_BOOLEAN = booleanPreferencesKey("KEY_BOOLEAN")
 
         lifecycleScope.launch(Dispatchers.IO) {
-            dataStore.edit {
-                it[KEY_INT] = 1
-            }
-            val intValue = dataStore.data.map {
-                it[KEY_INT] ?: 0
-            }
-            intValue.collect {
+            DataStoreHelper.putInt("KEY_INT", 100)
+            DataStoreHelper.getInt("KEY_INT") {
                 log("$it")
             }
+//            dataStore.edit {
+//                it[KEY_INT] = 1
+//            }
+//            val intValue = dataStore.data.map {
+//                it[KEY_INT] ?: 0
+//            }
+//            intValue.collect {
+//                log("$it")
+//            }
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
