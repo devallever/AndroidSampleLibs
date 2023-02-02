@@ -28,7 +28,7 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, String
                 FragmentActivity.start<UIMainFragment>("UI交互")
             }
             1 -> {
-                FragmentActivity.start<JetpackMainFragment>("JetPack")
+                FragmentActivity.start<JetpackMainFragment>("Android JetPack")
             }
             2 -> {
                 FragmentActivity.start<KotlinMainFragment>("Kotlin")

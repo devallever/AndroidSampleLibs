@@ -10,6 +10,7 @@ import app.allever.android.lib.common.ListViewModel
 import app.allever.android.lib.common.adapter.TextAdapter
 import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.core.ext.log
+import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.mvvm.demo.MainViewModel
 import kotlinx.coroutines.launch
 
@@ -38,14 +39,14 @@ class ViewModelMainFragment : ListFragment<FragmentListBinding, ListViewModel, S
         log("viewModel1 hashCode = ${viewModel1.hashCode()}")
         log("viewModel2 hashCode = ${viewModel2.hashCode()}")
 
-        val parentFragmentViewModel: ListViewModel by viewModels(
-            ownerProducer = { requireParentFragment() }
-        )
+        //没有父Fragment则不能用
+//        val parentFragmentViewModel: BaseViewModel by viewModels(
+//            ownerProducer = { requireParentFragment() }
+//        )
+//
+//        log("parentViewModel = ${parentFragmentViewModel.javaClass.simpleName}")
 
-
-        log("parentViewModel = ${parentFragmentViewModel.javaClass.simpleName}")
-
-        val activityViewModel: MainViewModel by activityViewModels()
+        val activityViewModel: BaseViewModel by activityViewModels()
         log("activityViewModel = ${activityViewModel.javaClass.simpleName}")
     }
 }
