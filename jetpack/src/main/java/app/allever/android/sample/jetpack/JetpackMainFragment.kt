@@ -7,6 +7,7 @@ import app.allever.android.lib.common.adapter.TextDetailAdapter
 import app.allever.android.lib.common.adapter.bean.TextDetailItem
 import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.widget.fragment.EmptyFragment
+import app.allever.android.sample.jetpack.datastore.DataStoreMainFragment
 import app.allever.android.sample.jetpack.lifecycle.LifeCycleMainFragment
 import app.allever.android.sample.jetpack.livedata.LiveDataMainFragment
 import app.allever.android.sample.jetpack.navigation.NavigationFragment
@@ -92,7 +93,7 @@ class JetpackMainFragment : ListFragment<FragmentListBinding, ListViewModel, Tex
                 FragmentActivity.start<LiveDataMainFragment>(item.title)
             }
             ITEM_ID_DATA_STORE -> {
-                FragmentActivity.start<EmptyFragment>(item.title)
+                FragmentActivity.start<DataStoreMainFragment>(item.title)
             }
             ITEM_ID_ROOM -> {
                 FragmentActivity.start<EmptyFragment>(item.title)

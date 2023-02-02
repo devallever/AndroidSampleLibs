@@ -45,4 +45,6 @@ dependencies {
     api navigationFragmentKtx
     api navigationUIKtx
     api navigationFeatures
+    api dataStoreCore
+    api dataStore
 }

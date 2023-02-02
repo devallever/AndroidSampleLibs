@@ -66,6 +66,10 @@ ext {
     navigationUIKtx = "androidx.navigation:navigation-ui-ktx:$nav_version"
     //Navigation -  Feature module Support
     navigationFeatures = "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+
+    //DataStore
+    dataStoreCore = "androidx.datastore:datastore-core:1.0.0"
+    dataStore = "androidx.datastore:datastore:1.0.0"
 //Android-------------------------------------------------------------------------------------------
 
 
