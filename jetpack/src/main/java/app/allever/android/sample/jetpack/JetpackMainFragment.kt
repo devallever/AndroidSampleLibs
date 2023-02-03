@@ -12,6 +12,7 @@ import app.allever.android.sample.jetpack.lifecycle.LifeCycleMainFragment
 import app.allever.android.sample.jetpack.livedata.LiveDataMainFragment
 import app.allever.android.sample.jetpack.navigation.NavigationFragment
 import app.allever.android.sample.jetpack.paging3.PagingFragment
+import app.allever.android.sample.jetpack.room.RoomMainFragment
 import app.allever.android.sample.jetpack.viewmodel.ViewModelMainFragment
 
 class JetpackMainFragment : ListFragment<FragmentListBinding, ListViewModel, TextDetailItem>() {
@@ -96,7 +97,7 @@ class JetpackMainFragment : ListFragment<FragmentListBinding, ListViewModel, Tex
                 FragmentActivity.start<DataStoreMainFragment>(item.title)
             }
             ITEM_ID_ROOM -> {
-                FragmentActivity.start<EmptyFragment>(item.title)
+                FragmentActivity.start<RoomMainFragment>(item.title)
             }
             ITEM_ID_DATA_BINDING -> {
                 FragmentActivity.start<EmptyFragment>(item.title)
