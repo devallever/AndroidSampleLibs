@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import app.allever.android.lib.core.app.App
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 
@@ -14,21 +15,20 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "co
 
 object DataStoreHelper {
     private val mDatsStore = App.context.dataStore
+
     suspend fun putInt(key: String, value: Int) {
-        val KEY = intPreferencesKey(key)
         mDatsStore.edit {
-            it[KEY] = value
+            it[intPreferencesKey(key)] = value
         }
     }
 
-    suspend fun getInt(key: String, block: (value: Int) -> Unit) {
-        val KEY = intPreferencesKey(key)
-        val value = mDatsStore.data.map {
-            it[KEY] ?: 0
-        }
-
-        value.collect {
-            block(it)
-        }
+    suspend fun getInt(key: String): Int {
+        return mDatsStore.data.map {
+            it[intPreferencesKey(key)] ?: 0
+        }.first()
     }
+//
+//    private fun getPreferenceKey(key: String, value: Any): Preferences.Key<*>? {
+//
+//    }
 }

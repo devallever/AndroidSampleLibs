@@ -54,18 +54,8 @@ class PreferenceStoreFragment : ListFragment<FragmentListBinding, ListViewModel,
 
         lifecycleScope.launch(Dispatchers.IO) {
             DataStoreHelper.putInt("KEY_INT", 100)
-            DataStoreHelper.getInt("KEY_INT") {
-                log("$it")
-            }
-//            dataStore.edit {
-//                it[KEY_INT] = 1
-//            }
-//            val intValue = dataStore.data.map {
-//                it[KEY_INT] ?: 0
-//            }
-//            intValue.collect {
-//                log("$it")
-//            }
+            val value = DataStoreHelper.getInt("KEY_INT")
+            log("$value")
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
