@@ -1,6 +1,5 @@
 package app.allever.android.sample.jetpack.datastore
 
-import androidx.datastore.preferences.core.*
 import androidx.lifecycle.lifecycleScope
 import app.allever.android.lib.common.ListFragment
 import app.allever.android.lib.common.ListViewModel
@@ -9,7 +8,6 @@ import app.allever.android.lib.common.adapter.bean.TextDetailItem
 import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.core.ext.log
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class PreferenceStoreFragment : ListFragment<FragmentListBinding, ListViewModel, TextDetailItem>() {
@@ -42,81 +40,47 @@ class PreferenceStoreFragment : ListFragment<FragmentListBinding, ListViewModel,
 
     override fun init() {
         super.init()
-
-        val dataStore = requireContext().dataStore
-
-        val KEY_INT = intPreferencesKey("KEY_INT")
-        val KEY_FLOAT = floatPreferencesKey("KEY_FLOAT")
-        val KEY_DOUBLE = doublePreferencesKey("KEY_DOUBLE")
-        val KEY_LONG = longPreferencesKey("KEY_LONG")
-        val KEY_STRING = stringPreferencesKey("KEY_STRING")
-        val KEY_BOOLEAN = booleanPreferencesKey("KEY_BOOLEAN")
+        val KEY_INT = ("KEY_INT")
+        val KEY_FLOAT = ("KEY_FLOAT")
+        val KEY_DOUBLE = ("KEY_DOUBLE")
+        val KEY_LONG = ("KEY_LONG")
+        val KEY_STRING = ("KEY_STRING")
+        val KEY_BOOLEAN = ("KEY_BOOLEAN")
 
         lifecycleScope.launch(Dispatchers.IO) {
-            DataStoreHelper.putInt("KEY_INT", 100)
-            val value = DataStoreHelper.getInt("KEY_INT")
+            DataStoreHelper.putInt(KEY_INT, 1)
+            val value = DataStoreHelper.getInt(KEY_INT)
             log("$value")
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            dataStore.edit {
-                it[KEY_FLOAT] = 2F
-            }
-            val value = dataStore.data.map {
-                it[KEY_FLOAT] ?: 0F
-            }
-
-            value.collect {
-                log("$it")
-            }
+            DataStoreHelper.putFloat(KEY_FLOAT, 2F)
+            val value = DataStoreHelper.getFloat(KEY_FLOAT)
+            log("$value")
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            dataStore.edit {
-                it[KEY_DOUBLE] = 3.0
-            }
-            val value = dataStore.data.map {
-                it[KEY_DOUBLE] ?: 0.0
-            }
-            value.collect {
-                log("$it")
-            }
+            DataStoreHelper.putDouble(KEY_DOUBLE, 3.0)
+            val value = DataStoreHelper.getDouble(KEY_DOUBLE)
+            log("$value")
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            dataStore.edit {
-                it[KEY_LONG] = 1000L
-            }
-            val value = dataStore.data.map {
-                it[KEY_LONG] ?: 0L
-            }
-            value.collect {
-                log("$it")
-            }
+            DataStoreHelper.putLong(KEY_LONG, 4L)
+            val value = DataStoreHelper.getLong(KEY_LONG)
+            log("$value")
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            dataStore.edit {
-                it[KEY_STRING] = "Hello World"
-            }
-            val stringValue = dataStore.data.map {
-                it[KEY_STRING] ?: "Empty"
-            }
-            stringValue.collect {
-                log(it)
-            }
+            DataStoreHelper.putBoolean(KEY_BOOLEAN, true)
+            val value = DataStoreHelper.getBoolean(KEY_BOOLEAN)
+            log("$value")
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            dataStore.edit {
-                it[KEY_BOOLEAN] = true
-            }
-            val booleanValue = dataStore.data.map {
-                it[KEY_BOOLEAN] ?: false
-            }
-            booleanValue.collect {
-                log("$it")
-            }
+            DataStoreHelper.putString(KEY_STRING, "Hello")
+            val value = DataStoreHelper.getString(KEY_STRING)
+            log(value)
         }
 
     }
