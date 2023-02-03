@@ -1,59 +1,72 @@
 package app.allever.android.sample.jetpack.datastore
 
 import android.content.Context
+import android.os.Parcelable
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
 import app.allever.android.lib.core.app.App
+import app.allever.android.lib.core.function.datastore.IDataStore
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "config")
 
-object DataStoreHelper {
+object PreferenceStore: IDataStore {
     private val mDatsStore = App.context.dataStore
 
-    suspend fun putInt(key: String, value: Int) {
+    override suspend fun putInt(key: String, value: Int) {
         putValue(intPreferencesKey(key), value)
     }
 
-    suspend fun getInt(key: String) = getValue(intPreferencesKey(key), 0)
+    override suspend fun getInt(key: String) = getValue(intPreferencesKey(key), 0)
 
-    suspend fun putFloat(key: String, value: Float) {
+    override suspend fun putFloat(key: String, value: Float) {
         putValue(floatPreferencesKey(key), value)
     }
 
-    suspend fun getFloat(key: String) = getValue(floatPreferencesKey(key), 0F)
+    override suspend fun getFloat(key: String) = getValue(floatPreferencesKey(key), 0F)
 
-    suspend fun putDouble(key: String, value: Double) {
+    override suspend fun putDouble(key: String, value: Double) {
         putValue(doublePreferencesKey(key), value)
     }
 
-    suspend fun getDouble(key: String) = getValue(doublePreferencesKey(key), 0.0)
+    override suspend fun getDouble(key: String) = getValue(doublePreferencesKey(key), 0.0)
 
-    suspend fun putLong(key: String, value: Long) {
+    override suspend fun putLong(key: String, value: Long) {
         putValue(longPreferencesKey(key), value)
     }
 
-    suspend fun getLong(key: String) = getValue(longPreferencesKey(key), 0L)
+    override suspend fun getLong(key: String) = getValue(longPreferencesKey(key), 0L)
 
-    suspend fun putBoolean(key: String, value: Boolean) {
+    override suspend fun putBoolean(key: String, value: Boolean) {
         putValue(booleanPreferencesKey(key), value)
     }
 
-    suspend fun getBoolean(key: String) = getValue(booleanPreferencesKey(key), false)
+    override suspend fun getBoolean(key: String) = getBoolean(key, false)
 
-    suspend fun putString(key: String, value: String) {
+    override suspend fun getBoolean(key: String, default: Boolean): Boolean {
+        return getValue(booleanPreferencesKey(key), default)
+    }
+
+    override suspend fun putString(key: String, value: String) {
         putValue(stringPreferencesKey(key), value)
     }
 
-    suspend fun getString(key: String) = getValue(stringPreferencesKey(key), "")
+    override suspend fun getString(key: String) = getValue(stringPreferencesKey(key), "")
 
     private suspend fun <T> getValue(key: Preferences.Key<T>, default: T): T {
         return mDatsStore.data.map {
             it[key] ?: default
         }.first()
+    }
+
+    override suspend fun putParcelable(key: String, value: Parcelable) {
+    }
+
+    override suspend fun <T : Parcelable> getParcelable(key: String, clz: Class<T>): T? {
+        return null
     }
 
     private suspend fun <T> putValue(key: Preferences.Key<T>, value: T) {

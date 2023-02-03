@@ -57,8 +57,10 @@ class UserManageViewModel : BaseViewModel() {
 
     fun loginCurrentUser() {
         currentUserLiveData.value?.let {
-            DataStore.putLong("login_user", it.id)
-            IMViewModel.loginUserId = it.id
+            viewModelScope.launch {
+                DataStore.putLong("login_user", it.id)
+                IMViewModel.loginUserId = it.id
+            }
         }
     }
 }

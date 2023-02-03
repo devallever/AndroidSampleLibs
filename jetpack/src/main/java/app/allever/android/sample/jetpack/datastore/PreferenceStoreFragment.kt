@@ -48,38 +48,38 @@ class PreferenceStoreFragment : ListFragment<FragmentListBinding, ListViewModel,
         val KEY_BOOLEAN = ("KEY_BOOLEAN")
 
         lifecycleScope.launch(Dispatchers.IO) {
-            DataStoreHelper.putInt(KEY_INT, 1)
-            val value = DataStoreHelper.getInt(KEY_INT)
+            PreferenceStore.putInt(KEY_INT, 1)
+            val value = PreferenceStore.getInt(KEY_INT)
             log("$value")
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            DataStoreHelper.putFloat(KEY_FLOAT, 2F)
-            val value = DataStoreHelper.getFloat(KEY_FLOAT)
+            PreferenceStore.putFloat(KEY_FLOAT, 2F)
+            val value = PreferenceStore.getFloat(KEY_FLOAT)
             log("$value")
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            DataStoreHelper.putDouble(KEY_DOUBLE, 3.0)
-            val value = DataStoreHelper.getDouble(KEY_DOUBLE)
+            PreferenceStore.putDouble(KEY_DOUBLE, 3.0)
+            val value = PreferenceStore.getDouble(KEY_DOUBLE)
             log("$value")
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            DataStoreHelper.putLong(KEY_LONG, 4L)
-            val value = DataStoreHelper.getLong(KEY_LONG)
+            PreferenceStore.putLong(KEY_LONG, 4L)
+            val value = PreferenceStore.getLong(KEY_LONG)
             log("$value")
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            DataStoreHelper.putBoolean(KEY_BOOLEAN, true)
-            val value = DataStoreHelper.getBoolean(KEY_BOOLEAN)
+            PreferenceStore.putBoolean(KEY_BOOLEAN, true)
+            val value = PreferenceStore.getBoolean(KEY_BOOLEAN)
             log("$value")
         }
 
         lifecycleScope.launch(Dispatchers.IO) {
-            DataStoreHelper.putString(KEY_STRING, "Hello")
-            val value = DataStoreHelper.getString(KEY_STRING)
+            PreferenceStore.putString(KEY_STRING, "Hello")
+            val value = PreferenceStore.getString(KEY_STRING)
             log(value)
         }
 
