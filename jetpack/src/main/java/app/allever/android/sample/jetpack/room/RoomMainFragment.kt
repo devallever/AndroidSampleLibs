@@ -47,7 +47,19 @@ class RoomMainFragment : ListFragment<FragmentListBinding, ListViewModel, TextDe
             }
 
 
+            var allBook = DBController.getAllBook()
+            if (allBook.isEmpty()) {
+                for (i in 1..4) {
+                    val book = Book()
+                    book.name = "书名${i}号"
+                    DBController.addBook(book)
+                }
+            }
 
+            allBook = DBController.getAllBook()
+            allBook.map {
+                log("book = ${it.toJson()}")
+            }
         }
     }
 }
