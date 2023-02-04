@@ -20,7 +20,8 @@ class RoomMainFragment : ListFragment<FragmentListBinding, ListViewModel, TextDe
             "@Dao",
             "数据库操作接口：提供您的应用可用于查询(@Query)、更新(@Update)、新增(@Insert)和删除(@Delete)数据库中的数据的方法。"
         ),
-        TextDetailItem("@Database", "数据库类：用于保存数据库并作为应用持久性数据底层连接的主要访问点。")
+        TextDetailItem("@Database", "数据库类：用于保存数据库并作为应用持久性数据底层连接的主要访问点。"),
+        TextDetailItem("Migration升级数据库", "addMigrations(migrationObject)")
     )
 
     override fun init() {

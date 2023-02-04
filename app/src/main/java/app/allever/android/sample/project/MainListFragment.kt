@@ -12,6 +12,7 @@ import app.allever.android.sample.function.FunctionMainFragment
 import app.allever.android.sample.jetpack.JetpackMainFragment
 import app.allever.android.sample.jni.JniMainActivity
 import app.allever.android.sample.kotlin.KotlinMainFragment
+import app.allever.android.sample.performance.PerformanceMainFragment
 import app.allever.android.sample.thirtypart.ThirtyPartMainFragment
 import com.chad.library.adapter.base.BaseQuickAdapter
 
@@ -20,7 +21,7 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, String
     override fun getAdapter(): BaseQuickAdapter<String, *> = TextAdapter()
 
     override fun getList() =
-        mutableListOf("UI交互效果", "Jetpack", "Kotlin", "ThirtyPart", "功能实现", "音视频", "JNI")
+        mutableListOf("UI交互效果", "Jetpack", "Kotlin", "ThirtyPart", "功能实现", "音视频", "JNI", "性能优化")
 
     override fun onItemClick(position: Int, item: String) {
         when (position) {
@@ -44,6 +45,9 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, String
             }
             6 -> {
                 ActivityHelper.startActivity<JniMainActivity> { }
+            }
+            7 -> {
+                FragmentActivity.start<PerformanceMainFragment>(item)
             }
             else -> {
 
