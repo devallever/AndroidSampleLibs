@@ -43,4 +43,6 @@ android {
 
 dependencies {
     api project(path: ':common')
+    //AsyncLayoutInflater
+    api androidXAsyncLayoutInflater
 }

@@ -35,6 +35,9 @@ ext {
     androidXActivityKtx = "androidx.activity:activity-ktx:1.4.0"
     androidXFragmentKtx = "androidx.fragment:fragment-ktx:1.4.0"
 
+    //AsyncLayoutInflater
+    androidXAsyncLayoutInflater = "androidx.asynclayoutinflater:asynclayoutinflater:1.0.0"
+
     androidXConstraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
     androidXCoordinatorLayout = "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
     androidXRecyclerView = "androidx.recyclerview:recyclerview:1.2.1"
