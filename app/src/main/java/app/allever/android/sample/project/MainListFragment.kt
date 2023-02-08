@@ -1,6 +1,7 @@
 package app.allever.android.sample.project
 
 import app.allever.android.learning.audiovideo.AudioVideoMainActivity
+import app.allever.android.lib.common.CommonFragment
 import app.allever.android.lib.common.FragmentActivity
 import app.allever.android.lib.common.ListFragment
 import app.allever.android.lib.common.ListViewModel
@@ -21,7 +22,7 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, String
     override fun getAdapter(): BaseQuickAdapter<String, *> = TextAdapter()
 
     override fun getList() =
-        mutableListOf("UI交互效果", "Jetpack", "Kotlin", "ThirtyPart", "功能实现", "音视频", "JNI", "性能优化")
+        mutableListOf("UI交互效果", "Jetpack", "Kotlin", "ThirtyPart", "功能实现", "音视频", "JNI", "性能优化", "页面样式")
 
     override fun onItemClick(position: Int, item: String) {
         when (position) {
@@ -48,6 +49,9 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, String
             }
             7 -> {
                 FragmentActivity.start<PerformanceMainFragment>(item)
+            }
+            8 -> {
+                FragmentActivity.start<CommonFragment>(item)
             }
             else -> {
 

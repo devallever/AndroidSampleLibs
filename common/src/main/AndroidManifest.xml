@@ -7,6 +7,9 @@
             android:name=".TabActivity"
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity android:name=".FragmentActivity" />
+        <activity android:name=".FullScreenActivity" />
+        <activity android:name=".TitleActivity" />
+        <activity android:name=".FullScreenDarkActivity" />
     </application>
 
 </manifest>

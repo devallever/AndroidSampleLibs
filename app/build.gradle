@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'me.ele.lancet'
+//    id 'me.ele.lancet'
 }
 
 android {
@@ -58,5 +58,5 @@ dependencies {
     api project(path: ':audiovideo')
     api project(path: ':jni')
     api project(path: ':performance')
-    api project(path: ':aop')
+//    api project(path: ':aop')
 }

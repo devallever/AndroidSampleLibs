@@ -17,19 +17,19 @@ abstract class BaseActivity<DB : ViewBinding, VM : BaseViewModel> :
     protected lateinit var binding: DB
     override fun onCreate(savedInstanceState: Bundle?) {
         //透明状态栏
-        if (showTopBar()) {
+//        if (showTopBar()) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-        }
+//        }
 
-        if (showTopBar())
+//        if (showTopBar())
             StatusBarCompat.translucentStatusBar(this, true)
         //状态栏颜色
         if (isDarkMode()) {
-            if (showTopBar())
+//            if (showTopBar())
                 StatusBarCompat.cancelLightStatusBar(this)
         } else {
-            if (showTopBar())
+//            if (showTopBar())
                 StatusBarCompat.changeToLightStatusBar(this)
         }
 
