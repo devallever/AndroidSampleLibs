@@ -16,23 +16,6 @@ abstract class BaseActivity<DB : ViewBinding, VM : BaseViewModel> :
     BaseMvvmActivity<ActivityBaseBinding, VM>() {
     protected lateinit var binding: DB
     override fun onCreate(savedInstanceState: Bundle?) {
-        //透明状态栏
-//        if (showTopBar()) {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-//        }
-
-//        if (showTopBar())
-            StatusBarCompat.translucentStatusBar(this, true)
-        //状态栏颜色
-        if (isDarkMode()) {
-//            if (showTopBar())
-                StatusBarCompat.cancelLightStatusBar(this)
-        } else {
-//            if (showTopBar())
-                StatusBarCompat.changeToLightStatusBar(this)
-        }
-
         binding = inflateChildBinding()
         super.onCreate(savedInstanceState)
         parentBinding().contentContainer.addView(binding.root)
@@ -55,8 +38,6 @@ abstract class BaseActivity<DB : ViewBinding, VM : BaseViewModel> :
 
 
     protected open fun enableAdaptStatusBar(): Boolean = true
-
-    protected open fun showTopBar(): Boolean = true
 
     protected open fun initTopBar(
         title: String?,
@@ -82,15 +63,5 @@ abstract class BaseActivity<DB : ViewBinding, VM : BaseViewModel> :
 
     protected open fun adaptStatusBarView(statusBarView: View?, statusBarColor: Int) {
         ViewHelper.adaptStatusBarView(statusBarView, statusBarColor)
-    }
-
-    /**
-     * true: 黑夜模式，白色字体
-     * false：白光模式，黑色字体
-     *
-     * @return isDarkMode
-     */
-    protected open fun isDarkMode(): Boolean {
-        return false
     }
 }

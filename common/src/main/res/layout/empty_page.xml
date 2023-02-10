@@ -10,4 +10,11 @@
         android:background="#80ffff00"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btnTopView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Top View"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
