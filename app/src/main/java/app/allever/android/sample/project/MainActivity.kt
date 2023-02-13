@@ -10,6 +10,7 @@ import app.allever.android.lib.core.util.TimeUtils
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.mvvm.base.MvvmConfig
 import app.allever.android.sample.project.databinding.ActivityMainBinding
+import kotlin.concurrent.thread
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
@@ -32,13 +33,21 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override fun inflateChildBinding() = ActivityMainBinding.inflate(layoutInflater)
 
     private fun test() {
-        Looper.prepare()
-        Looper.loop()
-        val handler = Handler()
-        handler.sendEmptyMessage(0)
-        handler.post {
+        val t = thread {
+            Looper.myLooper()
+            Looper.prepare()
+            Looper.loop()
+            val handler = Handler()
+            handler.sendEmptyMessage(0)
+            handler.post {
 
+            }
+            Looper.myLooper()?.quit()
         }
+
+        t.start()
+
+
     }
 }
 

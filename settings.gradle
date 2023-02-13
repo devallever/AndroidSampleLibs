@@ -27,9 +27,15 @@ project(':imageloader-glide').projectDir = new File(settingsDir, '../../allever-
 
 include ':network'
 project(':network').projectDir = new File(settingsDir, '../../allever-projects/AndroidBaseLibs/network')
+
+include ':login-google'
+project(':login-google').projectDir = new File(settingsDir, '../../allever-projects/AndroidBaseLibs/login-google')
+
+
 include ':kotlin'
 include ':thirtypart'
 include ':audiovideo'
 include ':jni'
 include ':performance'
 include ':aop'
+include ':login'

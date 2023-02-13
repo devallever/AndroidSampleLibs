@@ -13,6 +13,7 @@ import app.allever.android.sample.function.FunctionMainFragment
 import app.allever.android.sample.jetpack.JetpackMainFragment
 import app.allever.android.sample.jni.JniMainActivity
 import app.allever.android.sample.kotlin.KotlinMainFragment
+import app.allever.android.sample.login.LoginMainFragment
 import app.allever.android.sample.performance.PerformanceMainFragment
 import app.allever.android.sample.thirtypart.ThirtyPartMainFragment
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -22,7 +23,7 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, String
     override fun getAdapter(): BaseQuickAdapter<String, *> = TextAdapter()
 
     override fun getList() =
-        mutableListOf("UI交互效果", "Jetpack", "Kotlin", "ThirtyPart", "功能实现", "音视频", "JNI", "性能优化", "页面样式")
+        mutableListOf("UI交互效果", "Jetpack", "Kotlin", "ThirtyPart", "功能实现", "音视频", "JNI", "性能优化", "页面样式", "第三方登录/分享")
 
     override fun onItemClick(position: Int, item: String) {
         when (position) {
@@ -52,6 +53,9 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, String
             }
             8 -> {
                 FragmentActivity.start<CommonFragment>(item)
+            }
+            9 -> {
+                FragmentActivity.start<LoginMainFragment>(item)
             }
             else -> {
 
