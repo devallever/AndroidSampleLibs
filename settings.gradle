@@ -31,6 +31,8 @@ project(':network').projectDir = new File(settingsDir, '../../allever-projects/A
 include ':login-google'
 project(':login-google').projectDir = new File(settingsDir, '../../allever-projects/AndroidBaseLibs/login-google')
 
+include ':login-facebook'
+project(':login-facebook').projectDir = new File(settingsDir, '../../allever-projects/AndroidBaseLibs/login-facebook')
 
 include ':kotlin'
 include ':thirtypart'

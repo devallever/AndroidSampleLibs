@@ -7,10 +7,11 @@ import app.allever.android.lib.common.databinding.FragmentTabBinding
 
 class LoginMainFragment : TabFragment<FragmentTabBinding, TabViewModel>() {
     override fun getTabTitles() = mutableListOf(
-        "Google"
+        "Google", "Facebook"
     )
 
     override fun getFragments(): MutableList<Fragment> = mutableListOf(
-        GoogleLoginFragment()
+        GoogleLoginFragment(),
+        FacebookLoginFragment()
     )
 }
