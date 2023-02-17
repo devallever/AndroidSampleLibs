@@ -30,6 +30,5 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenStyle" />
-        <activity android:name=".audio.AudioRecordActivity" />
     </application>
 </manifest>
