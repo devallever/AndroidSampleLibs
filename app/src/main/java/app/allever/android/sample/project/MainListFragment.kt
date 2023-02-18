@@ -5,7 +5,8 @@ import app.allever.android.lib.common.CommonFragment
 import app.allever.android.lib.common.FragmentActivity
 import app.allever.android.lib.common.ListFragment
 import app.allever.android.lib.common.ListViewModel
-import app.allever.android.lib.common.adapter.TextAdapter
+import app.allever.android.lib.common.adapter.TextClickAdapter
+import app.allever.android.lib.common.adapter.bean.TextClickItem
 import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.UIMainFragment
@@ -13,53 +14,48 @@ import app.allever.android.sample.function.FunctionMainFragment
 import app.allever.android.sample.jetpack.JetpackMainFragment
 import app.allever.android.sample.jni.JniMainActivity
 import app.allever.android.sample.kotlin.KotlinMainFragment
+import app.allever.android.sample.learning.android.LearningAndroidMainActivity
 import app.allever.android.sample.login.LoginMainFragment
 import app.allever.android.sample.performance.PerformanceMainFragment
 import app.allever.android.sample.thirtypart.ThirtyPartMainFragment
-import com.chad.library.adapter.base.BaseQuickAdapter
 
-class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, String>() {
+class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextClickItem>() {
 
-    override fun getAdapter(): BaseQuickAdapter<String, *> = TextAdapter()
+    override fun getAdapter() = TextClickAdapter()
 
-    override fun getList() =
-        mutableListOf("UI交互效果", "Jetpack", "Kotlin", "ThirtyPart", "功能实现", "音视频", "JNI", "性能优化", "页面样式", "第三方登录/分享")
-
-    override fun onItemClick(position: Int, item: String) {
-        when (position) {
-            0 -> {
-                FragmentActivity.start<UIMainFragment>("UI交互")
-            }
-            1 -> {
-                FragmentActivity.start<JetpackMainFragment>("Android JetPack")
-            }
-            2 -> {
-                FragmentActivity.start<KotlinMainFragment>("Kotlin")
-            }
-            3 -> {
-                FragmentActivity.start<ThirtyPartMainFragment>("ThirtyPart")
-            }
-            4 -> {
-                FragmentActivity.start<FunctionMainFragment>("功能列表")
-            }
-            5 -> {
-                ActivityHelper.startActivity<AudioVideoMainActivity> { }
-            }
-            6 -> {
-                ActivityHelper.startActivity<JniMainActivity> { }
-            }
-            7 -> {
-                FragmentActivity.start<PerformanceMainFragment>(item)
-            }
-            8 -> {
-                FragmentActivity.start<CommonFragment>(item)
-            }
-            9 -> {
-                FragmentActivity.start<LoginMainFragment>(item)
-            }
-            else -> {
-
-            }
-        }
-    }
+    override fun getList() = mutableListOf(
+        TextClickItem("LearningAndroid") {
+            ActivityHelper.startActivity<LearningAndroidMainActivity> { }
+        },
+        TextClickItem("UI交互效果") {
+            FragmentActivity.start<UIMainFragment>(it.title)
+        },
+        TextClickItem("Jetpack") {
+            FragmentActivity.start<JetpackMainFragment>(it.title)
+        },
+        TextClickItem("Kotlin") {
+            FragmentActivity.start<KotlinMainFragment>(it.title)
+        },
+        TextClickItem("ThirtyPart") {
+            FragmentActivity.start<ThirtyPartMainFragment>(it.title)
+        },
+        TextClickItem("功能实现") {
+            FragmentActivity.start<FunctionMainFragment>(it.title)
+        },
+        TextClickItem("音视频") {
+            ActivityHelper.startActivity<AudioVideoMainActivity> { }
+        },
+        TextClickItem("JNI") {
+            ActivityHelper.startActivity<JniMainActivity> { }
+        },
+        TextClickItem("性能优化") {
+            FragmentActivity.start<PerformanceMainFragment>(it.title)
+        },
+        TextClickItem("页面样式") {
+            FragmentActivity.start<CommonFragment>(it.title)
+        },
+        TextClickItem("第三方登录/分享") {
+            FragmentActivity.start<LoginMainFragment>(it.title)
+        },
+    )
 }
