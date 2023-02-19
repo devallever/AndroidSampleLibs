@@ -5,6 +5,8 @@ import app.allever.android.learning.audiovideo.databinding.ActivityAudioRecordBi
 import app.allever.android.learning.audiovideo.databinding.FragmentAudioRecordBinding
 import app.allever.android.lib.common.BaseActivity
 import app.allever.android.lib.common.BaseFragment
+import app.allever.android.lib.core.ext.logE
+import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.function.media.SongMediaPlayer
 import app.allever.android.lib.core.util.UIKit.runOnUiThread
 import app.allever.android.lib.mvvm.base.BaseViewModel
@@ -30,7 +32,8 @@ class AudioRecordFragment : BaseFragment<FragmentAudioRecordBinding, AudioRecord
             }
 
             override fun onError(msg: String) {
-
+                toast(msg)
+                logE(msg)
             }
         }
         mBinding.btnStartRecord.setOnClickListener {

@@ -9,6 +9,9 @@ import app.allever.android.lib.core.helper.ExecutorHelper
 import java.io.File
 import java.io.FileOutputStream
 
+/**
+ * 录制音频
+ */
 abstract class BaseAudioRecordThread(val mRecordCallback: AudioRecordCallback?) : Thread() {
 
     /**

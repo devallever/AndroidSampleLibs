@@ -1,6 +1,7 @@
 package app.allever.android.learning.audiovideo
 
 import app.allever.android.learning.audiovideo.audio.AudioRecordFragment
+import app.allever.android.learning.audiovideo.extractormuxer.ExtractorMuxerFragment
 import app.allever.android.lib.common.FragmentActivity
 import app.allever.android.lib.common.ListFragment
 import app.allever.android.lib.common.ListViewModel
@@ -14,6 +15,7 @@ class AudioVideoMainListFragment :
     override fun getAdapter() = TextClickAdapter()
 
     override fun getList() = mutableListOf(
+        TextClickItem("音视频基础知识"),
         TextClickItem("VideoView播放器") {
             ActivityHelper.startActivity(SelectMediaActivity::class.java) {
                 putExtra("TYPE", 0)
@@ -31,6 +33,9 @@ class AudioVideoMainListFragment :
         },
         TextClickItem("AudioRecord录制音频") {
             FragmentActivity.start<AudioRecordFragment>(it.title)
+        },
+        TextClickItem("MediaExtractor/MediaMuxer提取分离音视频并重新合成") {
+            FragmentActivity.start<ExtractorMuxerFragment>("提取分离音视频并重新合成")
         }
     )
 }

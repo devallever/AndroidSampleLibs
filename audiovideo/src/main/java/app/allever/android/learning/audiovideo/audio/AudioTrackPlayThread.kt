@@ -4,6 +4,9 @@ import android.media.AudioManager
 import android.media.AudioTrack
 import app.allever.android.lib.core.ext.log
 
+/**
+ * AudioTrack 播放pcm(流模式)
+ */
 class AudioTrackPlayThread(path: String) : BaseAudioPlayThread(path) {
 
     private lateinit var audioTrack: AudioTrack
@@ -37,6 +40,7 @@ class AudioTrackPlayThread(path: String) : BaseAudioPlayThread(path) {
         }
 
         val data = ByteArray(bufferSizeInBytes)
+        //将开始播放AudioTrack
         audioTrack.play()
         while (true) {
             if (isStopRecord) {
@@ -57,6 +61,7 @@ class AudioTrackPlayThread(path: String) : BaseAudioPlayThread(path) {
                 continue
             }
 
+            //将音频数据写入音频接收器以供播放（流模式）
             audioTrack.write(data, 0, readSize)
 
         }

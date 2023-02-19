@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smart.refresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:srlEnableLoadMore="false"
+    app:srlEnableOverScrollDrag="true"
+    app:srlEnableRefresh="false">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    android:id="@+id/btnSelectMedia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="选择视频" />
+
+                <TextView
+                    android:id="@+id/tvSelectMediaPath"
+                    style="@style/extractor_muxer_path_text_item_style"
+                    android:text="选中视频路径:" />
+
+                <Button
+                    android:id="@+id/btnExtraAudio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="提取音频" />
+
+                <TextView
+                    android:id="@+id/tvExtraAudioPath"
+                    style="@style/extractor_muxer_path_text_item_style"
+                    android:text="提取音频路径:" />
+
+                <Button
+                    android:id="@+id/btnPlayExtraAudio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="播放提取音频" />
+
+                <Button
+                    android:id="@+id/btnStopPlayExtraAudio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="停止播放提取音频" />
+
+
+                <Button
+                    android:id="@+id/btnExtraVideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="提取视频" />
+
+                <TextView
+                    android:id="@+id/tvExtraVideoPath"
+                    style="@style/extractor_muxer_path_text_item_style"
+                    android:text="提取视频路径:" />
+
+                <Button
+                    android:id="@+id/btnPlayExtraVideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="播放提取视频" />
+
+                <Button
+                    android:id="@+id/btnStopPlayExtraVideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="停止播放提取视频" />
+
+                <app.allever.android.learning.audiovideo.textureviewplayer.TexturePlayerView
+                    android:id="@+id/videoViewExtra"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:background="@color/black" />
+
+                <Button
+                    android:id="@+id/btnMuxerAudioVideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="合并音视频" />
+
+                <Button
+                    android:id="@+id/btnPlayMuxerVideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="播放合并视频" />
+
+                <TextView
+                    android:id="@+id/tvMuxerVideoPath"
+                    style="@style/extractor_muxer_path_text_item_style"
+                    android:text="合成视频路径:" />
+
+                <Button
+                    android:id="@+id/btnStopPlayMuxerVideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="停止播放合并视频" />
+
+                <app.allever.android.learning.audiovideo.textureviewplayer.TexturePlayerView
+                    android:id="@+id/videoViewMuxer"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:background="@color/black" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</com.scwang.smart.refresh.layout.SmartRefreshLayout>
