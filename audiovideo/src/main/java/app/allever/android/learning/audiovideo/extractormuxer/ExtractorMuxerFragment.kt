@@ -75,7 +75,7 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
                 return@setOnClickListener
             }
             lifecycleScope.launch {
-                mExtraVideoPath = extraVideo()
+                mExtraVideoPath = extractorVideo()
                 mBinding.tvExtraVideoPath.text = "提取视频路径：${mExtraVideoPath}"
             }
         }
@@ -221,6 +221,7 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
         return@withContext path
     }
 
+    @Deprecated("有问题")
     @SuppressLint("WrongConstant")
     private suspend fun extraVideo() = withContext(Dispatchers.IO) {
         var path = ""
@@ -320,6 +321,108 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
         return@withContext path
     }
 
+    /**
+     * 分离视频
+     */
+    @SuppressLint("WrongConstant")
+    private suspend fun extractorVideo() = withContext(Dispatchers.IO) {
+        var path = ""
+        // 创建MediaExtractor实例
+        val mediaExtractor = MediaExtractor()
+
+        // 初始化MediaMuxer
+        var mediaMuxer: MediaMuxer? = null
+
+        // 轨道索引
+        var videoIndex = -1
+        try {
+            // 设置数据源
+            mediaExtractor.setDataSource(mSelectMediaPath)
+            // 数据源的轨道数
+            val trackCount = mediaExtractor.trackCount
+            for (i in 0 until trackCount) {
+                // 视频轨道格式信息
+                val trackFormat = mediaExtractor.getTrackFormat(i)
+                val mimeType = trackFormat.getString(MediaFormat.KEY_MIME)
+                if (mimeType!!.startsWith("video/")) {
+                    // 该轨道是视频轨道
+                    videoIndex = i
+                }
+            }
+
+            // 切换到想要的轨道
+            mediaExtractor.selectTrack(videoIndex)
+
+            // 视频轨道格式信息
+            val trackFormat = mediaExtractor.getTrackFormat(videoIndex)
+
+            // 创建MediaMuxer实例，通过new MediaMuxer(String path, int format)指定视频文件输出路径和文件格式
+            path = "${mDir}${File.separator}${mOriginFileName}_video.mp4"
+            mediaMuxer = MediaMuxer(
+                path,
+                MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4
+            )
+
+            // 添加媒体通道
+            val trackIndex = mediaMuxer.addTrack(trackFormat)
+            val byteBuffer = ByteBuffer.allocate(1024 * 500)
+            val bufferInfo = MediaCodec.BufferInfo()
+
+            // 添加完所有track后调用start方法，开始音视频合成
+            mediaMuxer.start()
+
+            // 获取帧之间的间隔时间
+            var videoSampleTime: Long
+
+
+            // 将样本数据存储到字节缓存区
+            mediaExtractor.readSampleData(byteBuffer, 0)
+            // skip first I frame
+            if (mediaExtractor.sampleFlags == MediaExtractor.SAMPLE_FLAG_SYNC) // 读取下一帧数据
+                mediaExtractor.advance()
+            mediaExtractor.readSampleData(byteBuffer, 0)
+            val firstVideoPTS = mediaExtractor.sampleTime
+            mediaExtractor.advance()
+            mediaExtractor.readSampleData(byteBuffer, 0)
+            val SecondVideoPTS = mediaExtractor.sampleTime
+            videoSampleTime = Math.abs(SecondVideoPTS - firstVideoPTS)
+            log("videoSampleTime is $videoSampleTime")
+
+            mediaExtractor.unselectTrack(videoIndex)
+            mediaExtractor.selectTrack(videoIndex)
+            while (true) {
+                // 将样本数据存储到字节缓存区
+                val readSampleSize = mediaExtractor.readSampleData(byteBuffer, 0)
+
+                // 将样本数据存储到字节缓存区
+                if (readSampleSize < 0) {
+                    break
+                }
+
+                // 读取下一帧数据
+                mediaExtractor.advance()
+                bufferInfo.size = readSampleSize
+                bufferInfo.offset = 0
+                bufferInfo.flags = mediaExtractor.sampleFlags
+                bufferInfo.presentationTimeUs += videoSampleTime
+
+                // 调用MediaMuxer.writeSampleData()向mp4文件中写入数据了
+                mediaMuxer.writeSampleData(trackIndex, byteBuffer, bufferInfo)
+            }
+            mediaMuxer.stop()
+            mediaExtractor.release()
+            mediaMuxer.release()
+            toast("分离视频完成")
+            Log.i("info", "分离视频finish++++++++++++++++++++++++++++++++++++++")
+        } catch (e: IOException) {
+            e.printStackTrace()
+            toast("分离视频失败")
+            Log.i("info", "分离视频失败++++++++++++++++++++++++++++++++++++++$e")
+        }
+
+        return@withContext path
+    }
+
 
     /**
      * 合成音视频
@@ -375,7 +478,7 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
             val writeAudioTrackIndex = mediaMuxer.addTrack(audioFormat!!)
             // 开始音视频合成
             mediaMuxer.start()
-            val byteBuffer = ByteBuffer.allocate(500 * 1024)
+            var byteBuffer = ByteBuffer.allocate(500 * 1024)
             var sampleTime: Long = 0
 
             videoExtractor.readSampleData(byteBuffer, 0)
@@ -383,9 +486,9 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
                 videoExtractor.advance()
             }
             videoExtractor.readSampleData(byteBuffer, 0)
-            val secondTime = videoExtractor.sampleTime
+            var secondTime = videoExtractor.sampleTime
             videoExtractor.advance()
-            val thirdTime = videoExtractor.sampleTime
+            var thirdTime = videoExtractor.sampleTime
             sampleTime = Math.abs(thirdTime - secondTime)
 
             videoExtractor.unselectTrack(videoTrackIndex)
@@ -402,6 +505,24 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
                 mediaMuxer.writeSampleData(writeVideoTrackIndex, byteBuffer, videoBufferInfo)
                 videoExtractor.advance()
             }
+
+            byteBuffer = ByteBuffer.allocate(  500 * 1024)
+
+
+            audioExtractor.readSampleData(byteBuffer, 0);
+            if (audioExtractor.sampleFlags == MediaExtractor.SAMPLE_FLAG_SYNC) {
+                audioExtractor.advance();
+            }
+
+            audioExtractor.readSampleData(byteBuffer, 0)
+            secondTime = audioExtractor.sampleTime
+            audioExtractor.advance();
+
+            audioExtractor.readSampleData(byteBuffer, 0)
+            thirdTime = audioExtractor.sampleTime
+            sampleTime = abs(thirdTime - secondTime)
+            log("时间间隔：${sampleTime}")
+
             while (true) {
                 val readAudioSampleSize = audioExtractor.readSampleData(byteBuffer, 0)
                 if (readAudioSampleSize < 0) {
@@ -410,7 +531,7 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
                 audioBufferInfo.size = readAudioSampleSize
                 audioBufferInfo.presentationTimeUs += sampleTime
                 audioBufferInfo.offset = 0
-                audioBufferInfo.flags = videoExtractor.sampleFlags
+                audioBufferInfo.flags = audioExtractor.sampleFlags
                 mediaMuxer.writeSampleData(writeAudioTrackIndex, byteBuffer, audioBufferInfo)
                 audioExtractor.advance()
             }
@@ -420,7 +541,7 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
             audioExtractor.release()
             toast( "合成音视频完成")
             Log.i("info", "合成音视频完成++++++++++++++++++++++++++++++++++++++")
-        } catch (e: IOException) {
+        } catch (e: Exception) {
             e.printStackTrace()
             toast("合成音视频失败")
             Log.i("info", "合成音视频失败++++++++++++++++++++++++++++++++++++++$e")
