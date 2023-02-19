@@ -236,10 +236,9 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
             mediaExtractor.setDataSource(mSelectMediaPath)
             //轨道数
             val trackCount = mediaExtractor.trackCount
-            var trackFormat: MediaFormat? = null
             for (i in 0 until trackCount) {
                 //获取轨道
-                trackFormat = mediaExtractor.getTrackFormat(i)
+                val trackFormat = mediaExtractor.getTrackFormat(i)
                 //判断视频轨道
                 if (trackFormat.getString(MediaFormat.KEY_MIME)?.startsWith("video/") == true) {
                     targetTrackIndex = i
@@ -256,7 +255,8 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
                 MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4
             )
 
-            val trackIndex = mediaMuxer.addTrack(trackFormat!!)
+            val trackFormat = mediaExtractor.getTrackFormat(targetTrackIndex)
+            val trackIndex = mediaMuxer.addTrack(trackFormat)
             //开始合成
             mediaMuxer.start()
 
@@ -434,11 +434,10 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
             // 以下过程是找到output_video.mp4中视频轨道
             val videoExtractor = MediaExtractor()
             videoExtractor.setDataSource(mExtraVideoPath)
-            var videoFormat: MediaFormat? = null
             var videoTrackIndex = -1
             val videoTrackCount = videoExtractor.trackCount
             for (i in 0 until videoTrackCount) {
-                videoFormat = videoExtractor.getTrackFormat(i)
+                var videoFormat = videoExtractor.getTrackFormat(i)
                 val mimeType = videoFormat.getString(MediaFormat.KEY_MIME)
                 if (mimeType!!.startsWith("video/")) {
                     videoTrackIndex = i
@@ -449,11 +448,10 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
             // 以下过程是找到output_audio.mp3中音频轨道
             val audioExtractor = MediaExtractor()
             audioExtractor.setDataSource(mExtraAudioPath)
-            var audioFormat: MediaFormat? = null
             var audioTrackIndex = -1
             val audioTrackCount = audioExtractor.trackCount
             for (i in 0 until audioTrackCount) {
-                audioFormat = audioExtractor.getTrackFormat(i)
+                val audioFormat = audioExtractor.getTrackFormat(i)
                 val mimeType = audioFormat.getString(MediaFormat.KEY_MIME)
                 if (mimeType!!.startsWith("audio/")) {
                     audioTrackIndex = i
@@ -473,9 +471,11 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
                 MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4
             )
             // MediaMuxer添加媒体通道(视频)
-            val writeVideoTrackIndex = mediaMuxer.addTrack(videoFormat!!)
+            val videoFormat = videoExtractor.getTrackFormat(videoTrackIndex)
+            val writeVideoTrackIndex = mediaMuxer.addTrack(videoFormat)
             // MediaMuxer添加媒体通道(音频)
-            val writeAudioTrackIndex = mediaMuxer.addTrack(audioFormat!!)
+            val audioFormat = audioExtractor.getTrackFormat(audioTrackIndex)
+            val writeAudioTrackIndex = mediaMuxer.addTrack(audioFormat)
             // 开始音视频合成
             mediaMuxer.start()
             var byteBuffer = ByteBuffer.allocate(500 * 1024)
