@@ -5,14 +5,17 @@ import android.media.MediaCodec
 import android.media.MediaExtractor
 import android.media.MediaFormat
 import android.media.MediaMuxer
+import android.os.Build
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import app.allever.android.learning.audiovideo.databinding.FragmentExtractorMuxerBinding
 import app.allever.android.learning.audiovideo.textureviewplayer.TextureViewPlayerActivity
+import app.allever.android.learning.audiovideo.util.isAudio
+import app.allever.android.learning.audiovideo.util.isVideo
 import app.allever.android.lib.common.BaseFragment
 import app.allever.android.lib.core.app.App
 import app.allever.android.lib.core.ext.log
+import app.allever.android.lib.core.ext.logE
 import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.function.media.MediaBean
 import app.allever.android.lib.core.function.media.MediaHelper
@@ -122,10 +125,58 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
                     mOriginFileName = FileUtils.getFileName(mSelectMediaPath)
                     log("path = $mSelectMediaPath")
                     if (videoList.isNotEmpty()) {
-                        mBinding.tvSelectMediaPath.text = "选中视频路径：$mSelectMediaPath"
+                        lifecycleScope.launch {
+                            mBinding.tvSelectMediaPath.text = getSelectMediaInfo()
+                        }
                     }
                 }
             })
+    }
+
+    private suspend fun getSelectMediaInfo() = withContext(Dispatchers.IO) {
+        val stringBuilder = StringBuilder()
+        try {
+            stringBuilder.append("选中视频路径：$mSelectMediaPath\n")
+            val mediaExtractor = MediaExtractor()
+            mediaExtractor.setDataSource(mSelectMediaPath)
+            //轨道数
+            val trackCount = mediaExtractor.trackCount
+            var videoFormat: MediaFormat? = null
+            var audioFormat: MediaFormat? = null
+            for (i in 0 until trackCount) {
+                val trackFormat = mediaExtractor.getTrackFormat(i)
+                if (trackFormat.isVideo()) {
+                    videoFormat = trackFormat
+                } else if (trackFormat.isAudio()) {
+                    audioFormat = trackFormat
+                }
+            }
+
+            //时长:
+            val duration = videoFormat?.getLong(MediaFormat.KEY_DURATION) ?: 0L
+            stringBuilder.append("时长：$duration\n")
+            //分辨率：
+            val width: Int = videoFormat?.getInteger(MediaFormat.KEY_WIDTH) ?: 0
+            val height: Int = videoFormat?.getInteger(MediaFormat.KEY_HEIGHT) ?: 0
+            stringBuilder.append("分辨率：${width}x${height}\n")
+            //帧率
+            val frameRate = videoFormat?.getInteger(MediaFormat.KEY_FRAME_RATE) ?: 0
+            stringBuilder.append("帧率：$frameRate\n")
+            //比特率(码率) - 拿不到
+//            val bitRate = videoFormat?.getInteger(MediaFormat.KEY_BIT_RATE) ?: 0
+//            stringBuilder.append("比特率(码率)：$bitRate\n")
+            //格式 - 拿不到
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//                val formatType = videoFormat?.getString(MediaFormat.KEY_CODECS_STRING) ?: ""
+//                stringBuilder.append("格式：$formatType\n")
+//            }
+
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return@withContext stringBuilder.toString()
     }
 
     @SuppressLint("WrongConstant")
@@ -465,7 +516,7 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
 
 
             // 通过new MediaMuxer(String path, int format)指定视频文件输出路径和文件格式
-              path = "${mDir}${File.separator}${mOriginFileName}_merge.mp4"
+            path = "${mDir}${File.separator}${mOriginFileName}_merge.mp4"
             val mediaMuxer = MediaMuxer(
                 path,
                 MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4
@@ -506,7 +557,7 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
                 videoExtractor.advance()
             }
 
-            byteBuffer = ByteBuffer.allocate(  500 * 1024)
+            byteBuffer = ByteBuffer.allocate(500 * 1024)
 
 
             audioExtractor.readSampleData(byteBuffer, 0);
@@ -539,7 +590,7 @@ class ExtractorMuxerFragment : BaseFragment<FragmentExtractorMuxerBinding, BaseV
             mediaMuxer.release()
             videoExtractor.release()
             audioExtractor.release()
-            toast( "合成音视频完成")
+            toast("合成音视频完成")
             Log.i("info", "合成音视频完成++++++++++++++++++++++++++++++++++++++")
         } catch (e: Exception) {
             e.printStackTrace()
