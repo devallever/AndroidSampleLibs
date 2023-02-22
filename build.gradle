@@ -82,6 +82,9 @@ ext {
     room = "androidx.room:room-runtime:2.4.3"
     roomKtx = "androidx.room:room-ktx:2.4.3"
     roomCompiler = "androidx.room:room-compiler:2.4.3"
+
+    //谷歌内购
+    googleBillingKtx = "com.android.billingclient:billing-ktx:5.1.0"
 //Android-------------------------------------------------------------------------------------------
 
 

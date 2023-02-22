@@ -10,6 +10,7 @@ import app.allever.android.lib.common.adapter.bean.TextClickItem
 import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.UIMainFragment
+import app.allever.android.sample.billing.BillingMainActivity
 import app.allever.android.sample.function.FunctionMainFragment
 import app.allever.android.sample.jetpack.JetpackMainFragment
 import app.allever.android.sample.jni.JniMainActivity
@@ -56,6 +57,9 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
         },
         TextClickItem("第三方登录/分享") {
             FragmentActivity.start<LoginMainFragment>(it.title)
+        },
+        TextClickItem("谷歌内购/订阅/支付") {
+            ActivityHelper.startActivity<BillingMainActivity> { }
         },
     )
 }
