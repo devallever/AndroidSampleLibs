@@ -14,10 +14,10 @@ import app.allever.android.lib.network.ApiService
 import app.allever.android.lib.widget.Widget
 import app.allever.android.lib.widget.mediapicker.MediaPicker
 import app.allever.android.sample.billing.helper.BillingHelper
-import app.allever.android.sample.billing.helper.BillingV5
+import app.allever.android.sample.billing.helper.BillionV5
+//import app.allever.android.sample.billing.helper.BillingV4
 import app.allever.android.sample.function.im.function.MyEmojiProvider
 import app.allever.android.sample.function.im.function.db.IMDB
-import com.tencent.mmkv.MMKV
 import com.vanniktech.emoji.EmojiManager
 import skin.support.SkinCompatManager
 import skin.support.app.SkinAppCompatViewInflater
@@ -44,7 +44,8 @@ class MyApp : App() {
 
         DataStore.init(DefaultStore())
 
-        BillingHelper.initBilling(BillingV5())
+        BillingHelper.init(BillionV5())
+
     }
 
     private fun initSkin() {

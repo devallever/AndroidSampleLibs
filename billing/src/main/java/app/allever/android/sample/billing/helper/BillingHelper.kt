@@ -1,43 +1,43 @@
 package app.allever.android.sample.billing.helper
 
 import android.app.Activity
-import com.android.billingclient.api.ProductDetails
 
+/**
+ * 包名要和gp上传的一致
+ * 要用非中国地区账号
+ * 要梯子
+ */
 object BillingHelper : IBilling {
-    lateinit var mBillingProxy: IBilling
-    fun initBilling(billingProxy: IBilling) {
-        mBillingProxy = billingProxy
-    }
+    private var mBinning: IBilling? = null
 
-    override fun init() {
-        mBillingProxy.init()
+    fun init(billing: BaseBilling) {
+        mBinning = billing
     }
 
     override fun connect() {
-        mBillingProxy.connect()
+        mBinning?.connect()
     }
 
     override fun disConnect() {
-        mBillingProxy.disConnect()
+        mBinning?.disConnect()
     }
 
-    override fun getProductDetails(productId: String, block: () -> Unit?) {
-        mBillingProxy.getProductDetails(productId, block)
+    override fun getProductDetails(
+        productIdList: MutableList<String>,
+        finish: ((success: Boolean, code: Int, message: String) -> Unit)?
+    ) {
+        mBinning?.getProductDetails(productIdList, finish)
     }
 
-    override suspend fun getProductDetailsSuspend(productId: String): ProductDetails? {
-        return mBillingProxy.getProductDetailsSuspend(productId)
+    override fun subScribe(
+        activity: Activity,
+        productId: String,
+        finish: (success: Boolean, code: Int, message: String) -> Unit
+    ) {
+        mBinning?.subScribe(activity, productId, finish)
     }
 
-    override suspend fun checkSubscribe(productId: String): Boolean {
-        return mBillingProxy.checkSubscribe(productId)
-    }
-
-    override suspend fun subscribe(activity: Activity, productDetails: ProductDetails) {
-        mBillingProxy.subscribe(activity, productDetails)
-    }
-
-    override fun reconnectIfNeed() {
-        mBillingProxy.reconnectIfNeed()
+    override fun checkScribeStatus(finish: (success: Boolean, code: Int, message: String) -> Unit) {
+        mBinning?.checkScribeStatus(finish)
     }
 }

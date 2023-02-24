@@ -44,4 +44,6 @@ dependencies {
     api project(path: ':common')
 
     api googleBillingKtx
+
+//    api "com.android.billingclient:billing:4.1.0"
 }

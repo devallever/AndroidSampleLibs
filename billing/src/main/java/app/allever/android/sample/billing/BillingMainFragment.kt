@@ -13,8 +13,8 @@ class BillingMainFragment : ListFragment<FragmentListBinding, ListViewModel, Tex
 
     override fun init() {
         super.init()
-
     }
+
     override fun getAdapter() = TextClickAdapter()
 
     override fun getList() = mutableListOf(
@@ -24,19 +24,26 @@ class BillingMainFragment : ListFragment<FragmentListBinding, ListViewModel, Tex
         TextClickItem("断开连接") {
             BillingHelper.disConnect()
         },
-        TextClickItem("获取单个商品详情") {
+        TextClickItem("获取商品详情") {
             lifecycleScope.launch {
-                BillingHelper.getProductDetailsSuspend("1_week_member_premium")
+                BillingHelper.getProductDetails(mutableListOf("weekly_pro_access"), null)
             }
         },
-        TextClickItem("获取全部商品详情") {
+        TextClickItem("获取商品订阅状态") {
             lifecycleScope.launch {
-                BillingHelper.getProductDetailsSuspend("1_week_member_premium")
+                BillingHelper.checkScribeStatus { success, code, message ->
+
+                }
             }
         },
         TextClickItem("订阅商品") {
             lifecycleScope.launch {
-//                BillingHelper.subscribe(requireActivity(), null)
+                BillingHelper.subScribe(
+                    requireActivity(),
+                    "weekly_pro_access"
+                ) { success, code, message ->
+
+                }
             }
         },
     )
