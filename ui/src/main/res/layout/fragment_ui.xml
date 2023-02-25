@@ -96,6 +96,16 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginBottom="10dp" />
+
+        <TextView
+            style="@style/uiItemTitleStyle"
+            android:text="自动换行布局" />
+
+        <app.allever.android.lib.demo.ui.autolayout.AutoLayout
+            android:id="@+id/autoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp" />
     </LinearLayout>
 
 </app.allever.android.lib.widget.ReboundNestedScrollView>
