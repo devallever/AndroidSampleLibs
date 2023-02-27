@@ -6,7 +6,7 @@ import app.allever.android.lib.core.app.App
 import app.allever.android.lib.core.ext.toJson
 import com.android.billingclient.api.*
 
-class BillionV5 : BaseBilling() {
+class BillingV5 : BaseBilling() {
 
     private var mProduceDetailsMap = mutableMapOf<String, ProductDetails>()
     private var mPurchaseCallback: ((success: Boolean, code: Int, message: String) -> Unit)? = null

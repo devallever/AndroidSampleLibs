@@ -30,5 +30,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenStyle" />
+
+        <service android:name=".ijkplayer.services.MediaPlayerService" />
     </application>
 </manifest>
