@@ -61,6 +61,10 @@ abstract class ListFragment<DB : ViewBinding, VM : BaseViewModel, T> :
     open fun getTitle(): String {
         return ""
     }
+
+    protected fun updateList(list: MutableList<T>) {
+        mAdapter?.setList(list)
+    }
 }
 
 class ListViewModel : BaseViewModel() {

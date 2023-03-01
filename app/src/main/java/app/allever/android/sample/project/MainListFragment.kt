@@ -11,6 +11,7 @@ import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.UIMainFragment
 import app.allever.android.sample.billing.BillingMainActivity
+import app.allever.android.sample.cleaner.CleanerMainActivity
 import app.allever.android.sample.function.FunctionMainFragment
 import app.allever.android.sample.jetpack.JetpackMainFragment
 import app.allever.android.sample.jni.JniMainActivity
@@ -25,6 +26,9 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
     override fun getAdapter() = TextClickAdapter()
 
     override fun getList() = mutableListOf(
+        TextClickItem("清理大师(Demo)") {
+            ActivityHelper.startActivity<CleanerMainActivity> { }
+        },
         TextClickItem("LearningAndroid") {
             ActivityHelper.startActivity<LearningAndroidMainActivity> { }
         },
