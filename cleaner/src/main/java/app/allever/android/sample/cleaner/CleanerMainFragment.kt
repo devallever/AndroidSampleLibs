@@ -14,6 +14,8 @@ import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.ext.toJson
 import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.helper.AppHelper
+import app.allever.android.sample.cleaner.function.ApkFileScanner
+import app.allever.android.sample.cleaner.function.LogFileScanner
 import app.allever.android.sample.cleaner.function.RubInfoProvider
 import app.allever.android.sample.cleaner.ui.DeviceStatusFragment
 import kotlinx.coroutines.launch
@@ -51,16 +53,26 @@ class CleanerMainFragment : ListFragment<FragmentListBinding, ListViewModel, Tex
         },
         TextClickItem("清理安装包") {
             lifecycleScope.launch {
-                val result = RubInfoProvider.getApkFiles(requireContext())
+                val result = ApkFileScanner.scan(requireContext()) {
+                    log("正在扫描：${it}")
+                }
                 result.map {
                     log("${it.name}")
                 }
             }
-            toast(it.title)
         },
         TextClickItem("卸载程序") {
             toast(it.title)
         },
-
+        TextClickItem("清理日志") {
+            lifecycleScope.launch {
+                val result = LogFileScanner.scan(requireContext()) {
+                    log("正在扫描：${it}")
+                }
+                result.map {
+                    log(it.name)
+                }
+            }
+        },
     )
 }
