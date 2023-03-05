@@ -13,6 +13,7 @@ import java.io.File
 object RubInfoProvider {
     // 扫描sd卡目录中的log【应用日志】
     suspend fun getLogFiles(): List<File> = withContext(Dispatchers.IO) {
+        fileList.clear()
         val rubList = ArrayList<File>()
 
         // 扫描sd卡目录中的log【应用日志】
@@ -27,6 +28,7 @@ object RubInfoProvider {
     }
 
     suspend fun getApkFiles(context: Context): List<ApkInfo> = withContext(Dispatchers.IO) {
+        fileList.clear()
         val apkInfoList: MutableList<ApkInfo> = ArrayList()
 
         //扫描APK【扫描sd卡所有目录】

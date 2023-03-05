@@ -11,6 +11,7 @@ import app.allever.android.lib.common.adapter.bean.TextClickItem
 import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.core.app.App
 import app.allever.android.lib.core.ext.log
+import app.allever.android.lib.core.ext.toJson
 import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.helper.AppHelper
 import app.allever.android.sample.cleaner.function.RubInfoProvider
@@ -49,6 +50,12 @@ class CleanerMainFragment : ListFragment<FragmentListBinding, ListViewModel, Tex
             }
         },
         TextClickItem("清理安装包") {
+            lifecycleScope.launch {
+                val result = RubInfoProvider.getApkFiles(requireContext())
+                result.map {
+                    log("${it.name}")
+                }
+            }
             toast(it.title)
         },
         TextClickItem("卸载程序") {
