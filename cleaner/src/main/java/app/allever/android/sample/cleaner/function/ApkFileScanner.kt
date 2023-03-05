@@ -23,7 +23,7 @@ object ApkFileScanner : FileScanner<ApkInfo>() {
 
             //扫描APK【扫描sd卡所有目录】
             val sdCard = Environment.getExternalStorageDirectory()
-            val apkFiles = scanFiles(sdCard, ".apk", block)
+            val apkFiles = scanFiles(sdCard, mutableListOf(".apk"), block)
             for (file in apkFiles) {
                 val apkInfo = ApkInfo()
                 val apkPath = file.absolutePath

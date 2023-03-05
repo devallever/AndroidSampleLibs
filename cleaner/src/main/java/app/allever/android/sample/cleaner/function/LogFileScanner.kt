@@ -14,12 +14,15 @@ object LogFileScanner : FileScanner<File>() {
 
             // 扫描sd卡目录中的log【应用日志】
             val sdCard = Environment.getExternalStorageDirectory()
-            val logFiles = scanFiles(sdCard, ".log", block)
-            val tempFiles = scanFiles(sdCard, ".temp", block)
-            val tmpFiles = scanFiles(sdCard, ".tmp", block)
+            val logFiles = scanFiles(sdCard, mutableListOf(".log", ".temp", ".tmp"), block)
             rubList.addAll(logFiles)
-            rubList.addAll(tempFiles)
-            rubList.addAll(tmpFiles)
+
+//            val logFiles = scanFiles(sdCard, ".log", block)
+//            val tempFiles = scanFiles(sdCard, ".temp", block)
+//            val tmpFiles = scanFiles(sdCard, ".tmp", block)
+//            rubList.addAll(logFiles)
+//            rubList.addAll(tempFiles)
+//            rubList.addAll(tmpFiles)
             return@withContext rubList
         }
 }
