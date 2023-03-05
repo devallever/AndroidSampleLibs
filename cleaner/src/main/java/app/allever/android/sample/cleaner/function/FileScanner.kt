@@ -1,6 +1,7 @@
 package app.allever.android.sample.cleaner.function
 
 import android.content.Context
+import app.allever.android.lib.core.util.FileUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File

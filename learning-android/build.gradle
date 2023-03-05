@@ -43,4 +43,6 @@ android {
 
 dependencies {
     api project(path: ':common')
+    api 'androidx.documentfile:documentfile:1.0.1'
+
 }
