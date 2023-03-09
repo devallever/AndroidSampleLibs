@@ -1,6 +1,7 @@
 package app.allever.android.learning.audiovideo.kernel
 
 import android.content.res.AssetFileDescriptor
+import android.net.Uri
 import android.view.Surface
 import android.view.SurfaceHolder
 
@@ -18,6 +19,10 @@ class IJKPlayer : AbsPlayer() {
     }
 
     override fun setDataSource(accessFileDescriptor: AssetFileDescriptor) {
+
+    }
+
+    override fun setDataSource(uri: Uri, headers: Map<String, String>?) {
 
     }
 

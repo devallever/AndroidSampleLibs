@@ -66,6 +66,15 @@ class AndroidPlayer : AbsPlayer() {
         }
     }
 
+    override fun setDataSource(uri: Uri, headers: Map<String, String>?) {
+        try {
+            mMediaPlayer?.setDataSource(mContext, uri)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            playerStatusListener?.onError(PlayerConstant.ErrorType.TYPE_PARSE, e.message)
+        }
+    }
+
     override fun prepareAsync() {
         try {
             mIsPreparing = true

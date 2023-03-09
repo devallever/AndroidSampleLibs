@@ -1,6 +1,7 @@
 package app.allever.android.learning.audiovideo.kernel
 
 import android.content.res.AssetFileDescriptor
+import android.net.Uri
 import android.view.Surface
 import android.view.SurfaceHolder
 
@@ -25,6 +26,11 @@ interface IInitPlayer {
      * 用于播放raw和asset里面的视频文件
      */
     fun setDataSource(accessFileDescriptor: AssetFileDescriptor)
+
+    /**
+     * @param path url或本地路径
+     */
+    fun setDataSource(uri: Uri, headers: Map<String, String>? = null)
 
     /**
      * 设置渲染视频的View,主要用于TextureView
