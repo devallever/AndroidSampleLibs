@@ -89,6 +89,36 @@ class RenderKernelFragment : BaseFragment<FragmentRenderKernelBinding, BaseViewM
 
             override fun onVideoSizeChanged(width: Int, height: Int) {
                 log("width = $width x height = $height")
+
+                val w: Float = width.toFloat()
+                val h: Float = height.toFloat()
+                val sw: Float = mBinding.renderViewContainer.width.toFloat()
+                val sh: Float = mBinding.renderViewContainer.height.toFloat()
+                var displayW = 0
+                var displayH = 0
+
+                if (w > h) {
+                    //横向视频
+                    if (w > sw) {
+                        //超宽视频
+                    } else {
+                        //
+                        displayH = sh.toInt()
+                        displayW = (w * sh / h).toInt()
+                    }
+                } else {
+                    //纵向视频
+                    displayH = sh.toInt()
+                    displayW = (w * sh / h).toInt()
+                }
+
+                log("surface size = $displayW x $displayH")
+
+                //无法直接设置视频尺寸，将计算出的视频尺寸设置到surfaceView 让视频自动填充。
+                val params = mBinding.surfaceView.layoutParams
+                params.width = displayW
+                params.height = displayH
+                mBinding.surfaceView.layoutParams = params
             }
 
         }
