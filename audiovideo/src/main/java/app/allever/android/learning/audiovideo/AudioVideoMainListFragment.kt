@@ -4,6 +4,7 @@ import app.allever.android.learning.audiovideo.audio.AudioRecordFragment
 import app.allever.android.learning.audiovideo.extractormuxer.ExtractorMuxerFragment
 import app.allever.android.learning.audiovideo.ijkplayer.IJKPlayerMainFragment
 import app.allever.android.learning.audiovideo.kernel.demo.MediaKernelFragment
+import app.allever.android.learning.audiovideo.render.demo.MediaRenderFragment
 import app.allever.android.lib.common.FragmentActivity
 import app.allever.android.lib.common.ListFragment
 import app.allever.android.lib.common.ListViewModel
@@ -38,6 +39,9 @@ class AudioVideoMainListFragment :
         },
         TextClickItem("切换播放器内核") {
             FragmentActivity.start<MediaKernelFragment>(it.title)
+        },
+        TextClickItem("切换播放器渲染") {
+            FragmentActivity.start<MediaRenderFragment>(it.title)
         },
         TextClickItem("AudioRecord录制音频") {
             FragmentActivity.start<AudioRecordFragment>(it.title)

@@ -5,7 +5,7 @@ package app.allever.android.learning.audiovideo.kernel
  */
 abstract class AbsPlayerFactory {
     companion object {
-        inline fun <reified F> createFactory(): F = F::class.java.newInstance()
+        inline fun <reified F> create(): F = F::class.java.newInstance()
     }
 
     abstract fun createPlayer(): AbsPlayer

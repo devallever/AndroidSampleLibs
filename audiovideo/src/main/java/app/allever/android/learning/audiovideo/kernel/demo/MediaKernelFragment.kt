@@ -17,11 +17,11 @@ class MediaKernelFragment : ListFragment<FragmentListBinding, ListViewModel, Tex
 
     override fun getList() = mutableListOf(
         TextClickItem("Android内核") {
-            player = AbsPlayerFactory.createFactory<AndroidPlayerFactory>().createPlayer()
+            player = AbsPlayerFactory.create<AndroidPlayerFactory>().createPlayer()
             toast(it.title)
         },
         TextClickItem("IJKPlayer内核") {
-            player = AbsPlayerFactory.createFactory<IJKPlayerFactory>().createPlayer()
+            player = AbsPlayerFactory.create<IJKPlayerFactory>().createPlayer()
             toast(it.title)
         },
         TextClickItem("播放") {
