@@ -13,6 +13,9 @@ import app.allever.android.lib.demo.UIMainFragment
 import app.allever.android.sample.billing.BillingMainActivity
 import app.allever.android.sample.cleaner.CleanerMainActivity
 import app.allever.android.sample.function.FunctionMainFragment
+import app.allever.android.sample.function.interceptor.FirstInterceptor
+import app.allever.android.sample.function.interceptor.RealChain
+import app.allever.android.sample.function.interceptor.SecondInterceptor
 import app.allever.android.sample.jetpack.JetpackMainFragment
 import app.allever.android.sample.jni.JniMainActivity
 import app.allever.android.sample.kotlin.KotlinMainFragment
@@ -66,4 +69,13 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
             ActivityHelper.startActivity<BillingMainActivity> { }
         },
     )
+
+    override fun init() {
+        super.init()
+        RealChain.Builder.create()
+            .addInterceptor(FirstInterceptor())
+            .addInterceptor(SecondInterceptor())
+            .build()
+            .process()
+    }
 }
