@@ -28,7 +28,7 @@ class MediaRenderFragment : ListFragment<FragmentListBinding, ListViewModel, Tex
                 AbsRenderFactory.create<IJKRenderFactory>().createRender(requireContext())
         },
         TextClickItem("绑定播放器") {
-            renderView?.attachPlayer(player)
+            renderView?.attachToPlayer(player)
         }
     )
 }

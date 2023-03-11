@@ -37,6 +37,7 @@ class AndroidPlayer : AbsPlayer() {
             }
             try {
                 val uri = Uri.parse(path)
+                mMediaPlayer?.reset()
                 mMediaPlayer?.setDataSource(mContext, uri, headers)
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -45,6 +46,7 @@ class AndroidPlayer : AbsPlayer() {
         } else {
             //本地视频
             try {
+                mMediaPlayer?.reset()
                 mMediaPlayer?.setDataSource(path)
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -55,6 +57,7 @@ class AndroidPlayer : AbsPlayer() {
 
     override fun setDataSource(accessFileDescriptor: AssetFileDescriptor) {
         try {
+            mMediaPlayer?.reset()
             mMediaPlayer?.setDataSource(
                 accessFileDescriptor.fileDescriptor,
                 accessFileDescriptor.startOffset,
@@ -68,6 +71,7 @@ class AndroidPlayer : AbsPlayer() {
 
     override fun setDataSource(uri: Uri, headers: Map<String, String>?) {
         try {
+            mMediaPlayer?.reset()
             mMediaPlayer?.setDataSource(mContext, uri)
         } catch (e: Exception) {
             e.printStackTrace()

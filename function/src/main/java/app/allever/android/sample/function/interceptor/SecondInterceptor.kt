@@ -9,6 +9,7 @@ class SecondInterceptor: Interceptor {
             log("条件成立，不在执行")
         } else {
             log("条件不成立，继续执行下一个拦截器")
+            chain.process()
         }
     }
 }
