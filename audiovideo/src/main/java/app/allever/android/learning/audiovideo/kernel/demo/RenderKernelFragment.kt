@@ -9,6 +9,10 @@ import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.function.media.MediaBean
 import app.allever.android.lib.core.function.media.MediaHelper
+import app.allever.android.lib.core.function.player.kernel.AndroidPlayerFactory
+import app.allever.android.lib.core.function.player.kernel.internal.AbsPlayer
+import app.allever.android.lib.core.function.player.kernel.internal.AbsPlayerFactory
+import app.allever.android.lib.core.function.player.kernel.internal.PlayerStatusListener
 import app.allever.android.lib.core.helper.FragmentHelper
 import app.allever.android.lib.core.util.FileUtils
 import app.allever.android.lib.mvvm.base.BaseViewModel

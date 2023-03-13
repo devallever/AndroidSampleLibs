@@ -1,13 +1,13 @@
 package app.allever.android.learning.audiovideo.render.demo
 
-import app.allever.android.learning.audiovideo.kernel.AbsPlayerFactory
-import app.allever.android.learning.audiovideo.kernel.AndroidPlayerFactory
 import app.allever.android.learning.audiovideo.render.*
 import app.allever.android.lib.common.ListFragment
 import app.allever.android.lib.common.ListViewModel
 import app.allever.android.lib.common.adapter.TextClickAdapter
 import app.allever.android.lib.common.adapter.bean.TextClickItem
 import app.allever.android.lib.common.databinding.FragmentListBinding
+import app.allever.android.lib.core.function.player.kernel.AndroidPlayerFactory
+import app.allever.android.lib.core.function.player.kernel.internal.AbsPlayerFactory
 
 class MediaRenderFragment : ListFragment<FragmentListBinding, ListViewModel, TextClickItem>() {
     private var renderView: IRenderView? = null

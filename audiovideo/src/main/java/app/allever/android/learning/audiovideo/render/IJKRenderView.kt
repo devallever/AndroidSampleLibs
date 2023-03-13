@@ -5,8 +5,7 @@ import android.graphics.Bitmap
 import android.util.AttributeSet
 import android.view.View
 import app.allever.android.learning.audiovideo.ijkplayer.widget.media.IjkVideoView
-import app.allever.android.learning.audiovideo.kernel.AbsPlayer
-import app.allever.android.lib.core.ext.toast
+import app.allever.android.lib.core.function.player.kernel.internal.AbsPlayer
 
 class IJKRenderView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null

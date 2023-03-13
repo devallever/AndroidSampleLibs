@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import android.view.View
-import app.allever.android.learning.audiovideo.kernel.AbsPlayer
+import app.allever.android.lib.core.function.player.kernel.internal.AbsPlayer
 
 class SurfaceRenderView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
