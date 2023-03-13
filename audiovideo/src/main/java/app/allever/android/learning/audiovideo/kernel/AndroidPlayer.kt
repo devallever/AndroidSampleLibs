@@ -238,24 +238,23 @@ class AndroidPlayer : AbsPlayer() {
         return 0
     }
 
-    private fun initListener() {
-        //完成监听器
-        mMediaPlayer?.setOnCompletionListener {
-            playerStatusListener?.onCompletion()
-        }
 
-        //错误监听器
-        mMediaPlayer?.setOnErrorListener { mp, what, extra ->
-            playerStatusListener?.onError(
-                PlayerConstant.ErrorType.TYPE_UNEXPECTED,
-                "监听异常$what, extra: $extra"
-            )
-            return@setOnErrorListener true
-        }
+    //完成监听器
+    private val onCompletionListener =
+        MediaPlayer.OnCompletionListener { playerStatusListener?.onCompletion() }
 
-        //信息监听器
-        mMediaPlayer?.setOnInfoListener { mp, what, extra ->
-            //解决MEDIA_INFO_VIDEO_RENDERING_START多次回调问题
+    //错误监听器
+    private val mOnErrorListener = MediaPlayer.OnErrorListener { mp, what, extra ->
+        playerStatusListener?.onError(
+            PlayerConstant.ErrorType.TYPE_UNEXPECTED,
+            "监听异常$what, extra: $extra"
+        )
+        true
+    }
+
+    //信息监听器
+    private val mOnInfoListener =
+        MediaPlayer.OnInfoListener { mp, what, extra -> //解决MEDIA_INFO_VIDEO_RENDERING_START多次回调问题
             if (what == PlayerConstant.MEDIA_INFO_VIDEO_RENDERING_START) {
                 if (mIsPreparing) {
                     playerStatusListener?.onInfo(what, extra)
@@ -264,28 +263,36 @@ class AndroidPlayer : AbsPlayer() {
             } else {
                 playerStatusListener?.onInfo(what, extra)
             }
-            return@setOnInfoListener true
+            true
         }
 
-        //缓冲监听器
-        mMediaPlayer?.setOnBufferingUpdateListener { mp, percent ->
-            mBufferedPercent = percent
-        }
+    //缓冲监听器
+    private val mOnBufferingUpdateListener =
+        MediaPlayer.OnBufferingUpdateListener { mp, percent -> mBufferedPercent = percent }
 
-        //准备监听器
-        mMediaPlayer?.setOnPreparedListener {
-            playerStatusListener?.onPrepared()
-            start()
-        }
+    //准备监听器
+    private val mOnPreparedListener = MediaPlayer.OnPreparedListener {
+        playerStatusListener?.onPrepared()
+        start()
+    }
 
-        //视频大小监听器
-        mMediaPlayer?.setOnVideoSizeChangedListener { mp, width, height ->
+    //视频大小监听器
+    private val mOnVideoSizeChangedListener =
+        MediaPlayer.OnVideoSizeChangedListener { mp, width, height ->
             val videoWidth = mp.videoWidth
             val videoHeight = mp.videoHeight
             if (videoWidth != 0 && videoHeight != 0) {
                 playerStatusListener?.onVideoSizeChanged(videoWidth, videoHeight)
             }
         }
+
+    private fun initListener() {
+        mMediaPlayer?.setOnCompletionListener(onCompletionListener)
+        mMediaPlayer?.setOnErrorListener(mOnErrorListener)
+        mMediaPlayer?.setOnInfoListener(mOnInfoListener)
+        mMediaPlayer?.setOnBufferingUpdateListener(mOnBufferingUpdateListener)
+        mMediaPlayer?.setOnPreparedListener(mOnPreparedListener)
+        mMediaPlayer?.setOnVideoSizeChangedListener(mOnVideoSizeChangedListener)
     }
 
     private fun clearListener() {
