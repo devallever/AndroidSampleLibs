@@ -1,8 +1,7 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
-//    id 'me.ele.lancet'
 }
 
 android {
@@ -13,15 +12,9 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    configurations.all {
-        resolutionStrategy {
-            force 'androidx.appcompat:appcompat:1.1.0'
-        }
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -50,19 +43,4 @@ android {
 
 dependencies {
     api project(path: ':common')
-    api project(path: ':ui')
-    api project(path: ':jetpack')
-    api project(path: ':function')
-    api project(path: ':kotlin')
-    api project(path: ':thirtypart')
-    api project(path: ':audiovideo')
-    api project(path: ':jni')
-    api project(path: ':performance')
-    api project(path: ':login')
-    api project(path: ':learning-android')
-    api project(path: ':billing')
-    api project(path: ':cleaner')
-    api project(path: ':designpattern')
-
-//    api project(path: ':aop')
 }

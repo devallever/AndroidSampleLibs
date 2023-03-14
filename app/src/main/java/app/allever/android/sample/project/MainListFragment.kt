@@ -12,6 +12,7 @@ import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.UIMainFragment
 import app.allever.android.sample.billing.BillingMainActivity
 import app.allever.android.sample.cleaner.CleanerMainActivity
+import app.allever.android.sample.designpattern.DesignPatternMainActivity
 import app.allever.android.sample.function.FunctionMainFragment
 import app.allever.android.sample.function.interceptor.FirstInterceptor
 import app.allever.android.sample.function.interceptor.RealChain
@@ -67,6 +68,9 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
         },
         TextClickItem("谷歌内购/订阅/支付") {
             ActivityHelper.startActivity<BillingMainActivity> { }
+        },
+        TextClickItem("设计模式") {
+            ActivityHelper.startActivity<DesignPatternMainActivity> { }
         },
     )
 
