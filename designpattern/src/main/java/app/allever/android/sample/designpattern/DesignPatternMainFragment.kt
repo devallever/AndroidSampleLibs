@@ -14,6 +14,7 @@ class DesignPatternMainFragment :
     override fun getList() = mutableListOf(
         TextClickItem("（行为型）命令模式") {
             CommandClient().execute()
+            CommandClient().executeRussiaBlockGame()
         }
     )
 }
