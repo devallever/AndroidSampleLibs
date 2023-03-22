@@ -21,11 +21,12 @@ import app.allever.android.sample.jetpack.JetpackMainFragment
 import app.allever.android.sample.jni.JniMainActivity
 import app.allever.android.sample.kotlin.KotlinMainFragment
 import app.allever.android.sample.learning.android.LearningAndroidMainActivity
-import app.allever.android.sample.login.LoginMainFragment
+//import app.allever.android.sample.login.LoginMainFragment
 import app.allever.android.sample.performance.PerformanceMainFragment
 import app.allever.android.sample.project.app.GuideActivity
 import app.allever.android.sample.project.app.LogoFragment
 import app.allever.android.sample.thirtypart.ThirtyPartMainFragment
+import app.allever.android.sample.videoeditor.VideoEditorMainActivity
 
 class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextClickItem>() {
 
@@ -72,13 +73,16 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
             FragmentActivity.start<CommonFragment>(it.title)
         },
         TextClickItem("第三方登录/分享") {
-            FragmentActivity.start<LoginMainFragment>(it.title)
+//            FragmentActivity.start<LoginMainFragment>(it.title)
         },
         TextClickItem("谷歌内购/订阅/支付") {
             ActivityHelper.startActivity<BillingMainActivity> { }
         },
         TextClickItem("设计模式") {
             ActivityHelper.startActivity<DesignPatternMainActivity> { }
+        },
+        TextClickItem("视频编辑") {
+            ActivityHelper.startActivity<VideoEditorMainActivity> { }
         },
     )
 
