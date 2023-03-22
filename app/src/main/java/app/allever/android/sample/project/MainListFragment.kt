@@ -23,6 +23,8 @@ import app.allever.android.sample.kotlin.KotlinMainFragment
 import app.allever.android.sample.learning.android.LearningAndroidMainActivity
 import app.allever.android.sample.login.LoginMainFragment
 import app.allever.android.sample.performance.PerformanceMainFragment
+import app.allever.android.sample.project.app.GuideActivity
+import app.allever.android.sample.project.app.LogoFragment
 import app.allever.android.sample.thirtypart.ThirtyPartMainFragment
 
 class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextClickItem>() {
@@ -30,6 +32,12 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
     override fun getAdapter() = TextClickAdapter()
 
     override fun getList() = mutableListOf(
+        TextClickItem("设计Logo") {
+            FragmentActivity.start<LogoFragment>(it.title)
+        },
+        TextClickItem("设计宣传图") {
+            ActivityHelper.startActivity<GuideActivity> { }
+        },
         TextClickItem("清理大师(Demo)") {
             ActivityHelper.startActivity<CleanerMainActivity> { }
         },
