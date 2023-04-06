@@ -25,18 +25,18 @@ class GuideFragment : BaseFragment<FragmentGuideBinding, BaseViewModel>() {
         val title = "GIF Memes"
         list.add(
             GuideItem(
-                R.color.googleRed,
+                R.color.googleBleu,
                 title,
                 "The hot gif memes",
-                app.allever.android.sample.project.R.drawable.default_image
+                app.allever.android.sample.project.R.drawable.p01
             )
         )
         list.add(
             GuideItem(
-                R.color.googleGreen,
+                R.color.googleBleu,
                 title,
                 "Search all gif memes",
-                app.allever.android.sample.project.R.drawable.default_image
+                app.allever.android.sample.project.R.drawable.p02
             )
         )
         list.add(
@@ -44,15 +44,42 @@ class GuideFragment : BaseFragment<FragmentGuideBinding, BaseViewModel>() {
                 R.color.googleBleu,
                 title,
                 "Collect favorite gif memes",
-                app.allever.android.sample.project.R.drawable.default_image
+                app.allever.android.sample.project.R.drawable.p03
             )
         )
         list.add(
             GuideItem(
-                R.color.googleYellow,
+                R.color.googleBleu,
                 title,
-                "Backup and restore",
-                app.allever.android.sample.project.R.drawable.default_image
+                "Share the gif memes",
+                app.allever.android.sample.project.R.drawable.p06
+            )
+        )
+
+        list.add(
+            GuideItem(
+                R.color.googleBleu,
+                title,
+                "Save gif memes local",
+                app.allever.android.sample.project.R.drawable.p07
+            )
+        )
+
+        list.add(
+            GuideItem(
+                R.color.googleBleu,
+                title,
+                "Video to Gif Memes",
+                app.allever.android.sample.project.R.drawable.p05
+            )
+        )
+
+        list.add(
+            GuideItem(
+                R.color.googleBleu,
+                title,
+                "Manage your Gif Memes",
+                app.allever.android.sample.project.R.drawable.p04
             )
         )
         mAdapter.setList(list)
