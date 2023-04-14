@@ -37,6 +37,18 @@ class SurfaceRenderView @JvmOverloads constructor(
         setMeasuredDimension(measuredSize!![0], measuredSize[1])
     }
 
+    /**
+     * 记得一定要重新写这个方法，如果角度发生了变化，就重新绘制布局
+     * 设置视频旋转角度
+     * @param rotation                  角度
+     */
+    override fun setRotation(rotation: Float) {
+        if (rotation != getRotation()) {
+            super.setRotation(rotation)
+            requestLayout()
+        }
+    }
+
     override fun attachToPlayer(player: AbsPlayer) {
         mPlayer = player
     }

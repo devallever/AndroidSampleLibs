@@ -3,6 +3,7 @@ package app.allever.android.learning.audiovideo.kernel.demo
 import app.allever.android.learning.audiovideo.databinding.FragmentRenderKernelBinding
 import app.allever.android.learning.audiovideo.kernel.*
 import app.allever.android.learning.audiovideo.render.ConstantKeys
+import app.allever.android.learning.audiovideo.render.IRenderView
 import app.allever.android.lib.common.BaseFragment
 import app.allever.android.lib.common.adapter.bean.TextClickItem
 import app.allever.android.lib.core.ext.log
@@ -14,29 +15,45 @@ import app.allever.android.lib.core.function.player.kernel.internal.AbsPlayer
 import app.allever.android.lib.core.function.player.kernel.internal.AbsPlayerFactory
 import app.allever.android.lib.core.function.player.kernel.internal.PlayerStatusListener
 import app.allever.android.lib.core.helper.FragmentHelper
+import app.allever.android.lib.core.helper.ViewHelper
 import app.allever.android.lib.core.util.FileUtils
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.lib.widget.mediapicker.MediaPicker
 import app.allever.android.lib.widget.mediapicker.MediaPickerListener
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class RenderKernelFragment : BaseFragment<FragmentRenderKernelBinding, BaseViewModel>() {
 
     private var player: AbsPlayer? = AbsPlayerFactory.create<AndroidPlayerFactory>().createPlayer()
 
+    private var mRender: IRenderView? = null
+
     override fun inflate() = FragmentRenderKernelBinding.inflate(layoutInflater)
 
     override fun init() {
         val list = mutableListOf(
+            TextClickItem("渲染(Texture)") {
+                mRender = mBinding.textureRenderView
+                ViewHelper.setVisible(mBinding.surfaceRenderView, false)
+                ViewHelper.setVisible(mBinding.textureRenderView, true)
+            },
+            TextClickItem("渲染(Surface)") {
+                mRender = mBinding.surfaceRenderView
+                ViewHelper.setVisible(mBinding.surfaceRenderView, true)
+                ViewHelper.setVisible(mBinding.textureRenderView, false)
+            },
             TextClickItem("Android内核") {
                 player = AbsPlayerFactory.create<AndroidPlayerFactory>().createPlayer()
                 setPlayerListener()
-                mBinding.surfaceRenderView.attachToPlayer(player!!)
+                mRender?.attachToPlayer(player!!)
                 toast(it.title)
             },
             TextClickItem("IJKPlayer内核") {
                 player = AbsPlayerFactory.create<IJKPlayerFactory>().createPlayer()
                 setPlayerListener()
-                mBinding.surfaceRenderView.attachToPlayer(player!!)
+                mRender?.attachToPlayer(player!!)
                 toast(it.title)
             },
             TextClickItem("1.初始化播放器") {
@@ -44,9 +61,6 @@ class RenderKernelFragment : BaseFragment<FragmentRenderKernelBinding, BaseViewM
             },
             TextClickItem("2.选择视频") {
                 selectVideo()
-            },
-            TextClickItem("3.设置渲染") {
-//                player?.setDisplay(mBinding.surfaceView.holder)
             },
             TextClickItem("4.准备") {
                 player?.prepareAsync()

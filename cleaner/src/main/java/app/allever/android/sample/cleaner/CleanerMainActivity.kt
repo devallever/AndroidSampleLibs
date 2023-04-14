@@ -5,6 +5,9 @@ import app.allever.android.lib.core.helper.FragmentHelper
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.sample.cleaner.databinding.ActivityCleanerMainBinding
 
+/**
+ * https://gitee.com/antonyhuang/DeepCleanProject
+ */
 class CleanerMainActivity : BaseActivity<ActivityCleanerMainBinding, BaseViewModel>() {
     override fun init() {
         initTopBar("清理大师(Demo)")

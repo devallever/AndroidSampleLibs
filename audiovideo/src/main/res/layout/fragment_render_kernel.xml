@@ -41,6 +41,16 @@
         app:layout_constraintRight_toRightOf="@+id/renderViewContainer"
         app:layout_constraintTop_toTopOf="@id/renderViewContainer" />
 
+    <app.allever.android.learning.audiovideo.render.TextureRenderView
+        android:id="@+id/textureRenderView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/renderViewContainer"
+        app:layout_constraintLeft_toLeftOf="@+id/renderViewContainer"
+        app:layout_constraintRight_toRightOf="@+id/renderViewContainer"
+        app:layout_constraintTop_toTopOf="@id/renderViewContainer" />
+
+
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
