@@ -88,6 +88,9 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
         TextClickItem("Material Design") {
             FragmentActivity.start<MaterialDesignMainListFragment>(it.title)
         },
+        TextClickItem("H5 交互") {
+            FragmentActivity.start<H5Fragment>(it.title)
+        },
     )
 
     override fun init() {
