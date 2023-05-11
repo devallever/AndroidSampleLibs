@@ -1,5 +1,6 @@
 package app.allever.android.sample.project
 
+//import app.allever.android.sample.login.LoginMainFragment
 import app.allever.android.learning.audiovideo.AudioVideoMainActivity
 import app.allever.android.lib.common.CommonFragment
 import app.allever.android.lib.common.FragmentActivity
@@ -21,7 +22,7 @@ import app.allever.android.sample.jetpack.JetpackMainFragment
 import app.allever.android.sample.jni.JniMainActivity
 import app.allever.android.sample.kotlin.KotlinMainFragment
 import app.allever.android.sample.learning.android.LearningAndroidMainActivity
-//import app.allever.android.sample.login.LoginMainFragment
+import app.allever.android.sample.material.design.MaterialDesignMainListFragment
 import app.allever.android.sample.performance.PerformanceMainFragment
 import app.allever.android.sample.project.app.GuideActivity
 import app.allever.android.sample.project.app.LogoFragment
@@ -83,6 +84,9 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
         },
         TextClickItem("视频编辑") {
             ActivityHelper.startActivity<VideoEditorMainActivity> { }
+        },
+        TextClickItem("Material Design") {
+            FragmentActivity.start<MaterialDesignMainListFragment>(it.title)
         },
     )
 
