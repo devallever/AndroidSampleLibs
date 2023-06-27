@@ -1,8 +1,10 @@
 package app.allever.android.sample.project
 
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
+import android.view.WindowManager
 import app.allever.android.lib.common.BaseActivity
 import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.helper.FragmentHelper
@@ -13,6 +15,10 @@ import app.allever.android.sample.project.databinding.ActivityMainBinding
 import kotlin.concurrent.thread
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun init() {
         initTopBar(getString(R.string.app_name), showBackIcon = false)
