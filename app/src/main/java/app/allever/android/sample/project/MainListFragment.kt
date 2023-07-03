@@ -11,6 +11,7 @@ import app.allever.android.lib.common.adapter.bean.TextClickItem
 import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.UIMainFragment
+import app.allever.android.lib.widget.fragment.EmptyFragment
 import app.allever.android.sample.billing.BillingMainActivity
 import app.allever.android.sample.cleaner.CleanerMainActivity
 import app.allever.android.sample.designpattern.DesignPatternMainActivity
@@ -26,7 +27,7 @@ import app.allever.android.sample.material.design.MaterialDesignMainListFragment
 import app.allever.android.sample.performance.PerformanceMainFragment
 import app.allever.android.sample.project.app.GuideActivity
 import app.allever.android.sample.project.app.LogoFragment
-import app.allever.android.sample.thirtypart.ThirtyPartMainFragment
+import app.allever.android.sample.toolbox.ToolBoxMainFragment
 import app.allever.android.sample.videoeditor.VideoEditorMainActivity
 
 class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextClickItem>() {
@@ -56,7 +57,7 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
             FragmentActivity.start<KotlinMainFragment>(it.title)
         },
         TextClickItem("ThirtyPart") {
-            FragmentActivity.start<ThirtyPartMainFragment>(it.title)
+            FragmentActivity.start<EmptyFragment>(it.title)
         },
         TextClickItem("功能实现") {
             FragmentActivity.start<FunctionMainFragment>(it.title)
@@ -90,6 +91,9 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
         },
         TextClickItem("H5 交互") {
             FragmentActivity.start<H5Fragment>(it.title)
+        },
+        TextClickItem("工具箱") {
+            FragmentActivity.start<ToolBoxMainFragment>(it.title)
         },
     )
 
