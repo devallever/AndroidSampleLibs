@@ -1,95 +1,69 @@
-package app.allever.android.sample.toolbox.dailytools;
+package app.allever.android.sample.toolbox.dailytools
 
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
+import android.annotation.SuppressLint
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
+import app.allever.android.lib.common.BaseActivity
+import app.allever.android.lib.mvvm.base.BaseViewModel
+import app.allever.android.sample.toolbox.databinding.ActivityLevelBinding
 
-import androidx.annotation.NonNull;
+class LevelActivity : BaseActivity<ActivityLevelBinding, BaseViewModel>(), SensorEventListener {
+    private lateinit var mSensorManager: SensorManager
+    private lateinit var accSensor: Sensor
+    private lateinit var magSensor: Sensor
+    private var accValues = FloatArray(3)
+    private var magValues = FloatArray(3)
+    private val r = FloatArray(9)
+    private val values = FloatArray(3)
+    override fun inflateChildBinding() = ActivityLevelBinding.inflate(layoutInflater)
 
-import app.allever.android.lib.common.BaseActivity;
-import app.allever.android.lib.mvvm.base.BaseViewModel;
-import app.allever.android.sample.toolbox.databinding.ActivityLevelBinding;
-
-public class LevelActivity extends BaseActivity<ActivityLevelBinding, BaseViewModel> implements SensorEventListener {
-
-    private SensorManager mSensorManager;
-    private Sensor acc_sensor;
-    private Sensor mag_sensor;
-
-    private float[] accValues = new float[3];
-    private float[] magValues = new float[3];
-    private float r[] = new float[9];
-    private float values[] = new float[3];
-
-    @NonNull
-    @Override
-    public ActivityLevelBinding inflateChildBinding() {
-        return ActivityLevelBinding.inflate(getLayoutInflater());
+    override fun init() {
+        initTopBar("水平仪")
+        mSensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
     }
 
-    @Override
-    public void init() {
-        initTopBar("水平仪", true, null);
-        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+    public override fun onResume() {
+        super.onResume()
+        accSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        magSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
+        mSensorManager.registerListener(this, accSensor, SensorManager.SENSOR_DELAY_NORMAL)
+        mSensorManager.registerListener(this, magSensor, SensorManager.SENSOR_DELAY_NORMAL)
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        acc_sensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        mag_sensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        mSensorManager.registerListener(this, acc_sensor, SensorManager.SENSOR_DELAY_NORMAL);
-        mSensorManager.registerListener(this, mag_sensor, SensorManager.SENSOR_DELAY_NORMAL);
-    }
-
-    @Override
-    protected void onPause() {
+    override fun onPause() {
         // 取消方向传感器的监听
-        mSensorManager.unregisterListener(this);
-        super.onPause();
+        mSensorManager.unregisterListener(this)
+        super.onPause()
     }
 
-    @Override
-    protected void onStop() {
+    override fun onStop() {
         // 取消方向传感器的监听
-        mSensorManager.unregisterListener(this);
-        super.onStop();
+        mSensorManager.unregisterListener(this)
+        super.onStop()
     }
 
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-    }
-
-    @Override
-    public void onSensorChanged(SensorEvent event) {
+    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
+    override fun onSensorChanged(event: SensorEvent) {
         // 获取手机触发event的传感器的类型
-        int sensorType = event.sensor.getType();
-        switch (sensorType) {
-            case Sensor.TYPE_ACCELEROMETER:
-                accValues = event.values.clone();
-                break;
-            case Sensor.TYPE_MAGNETIC_FIELD:
-                magValues = event.values.clone();
-                break;
-
+        when (event.sensor.type) {
+            Sensor.TYPE_ACCELEROMETER -> accValues = event.values.clone()
+            Sensor.TYPE_MAGNETIC_FIELD -> magValues = event.values.clone()
         }
-
-        SensorManager.getRotationMatrix(r, null, accValues, magValues);
-        SensorManager.getOrientation(r, values);
+        SensorManager.getRotationMatrix(r, null, accValues, magValues)
+        SensorManager.getOrientation(r, values)
 
         // 获取　沿着Z轴转过的角度
-        float azimuth = values[0];
+        val azimuth = values[0]
 
         // 获取　沿着X轴倾斜时　与Y轴的夹角
-        float pitchAngle = values[1];
+        val pitchAngle = values[1]
 
         // 获取　沿着Y轴的滚动时　与X轴的角度
         //此处与官方文档描述不一致，所在加了符号（https://developer.android.google.cn/reference/android/hardware/SensorManager.html#getOrientation(float[], float[])）
-        float rollAngle = -values[2];
-
-        onAngleChanged(rollAngle, pitchAngle, azimuth);
-
+        val rollAngle = -values[2]
+        onAngleChanged(rollAngle, pitchAngle, azimuth)
     }
 
     /**
@@ -99,13 +73,10 @@ public class LevelActivity extends BaseActivity<ActivityLevelBinding, BaseViewMo
      * @param pitchAngle
      * @param azimuth
      */
-    private void onAngleChanged(float rollAngle, float pitchAngle, float azimuth) {
-
-        binding.levelView.setAngle(rollAngle, pitchAngle);
-
-        binding.tvvHorz.setText((int) Math.toDegrees(rollAngle) + "°");
-        binding.tvvVertical.setText((int) Math.toDegrees(pitchAngle) + "°");
+    @SuppressLint("SetTextI18n")
+    private fun onAngleChanged(rollAngle: Float, pitchAngle: Float, azimuth: Float) {
+        binding.levelView.setAngle(rollAngle.toDouble(), pitchAngle.toDouble())
+        binding.tvvHorz.text = (Math.toDegrees(rollAngle.toDouble()).toInt().toString()) + "°"
+        binding.tvvVertical.text = (Math.toDegrees(pitchAngle.toDouble()).toInt().toString()) + "°"
     }
-
-
 }

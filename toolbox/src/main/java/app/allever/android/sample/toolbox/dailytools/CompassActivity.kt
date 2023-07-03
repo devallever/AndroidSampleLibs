@@ -1,116 +1,104 @@
-package app.allever.android.sample.toolbox.dailytools;
+package app.allever.android.sample.toolbox.dailytools
 
-import android.content.Context;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.os.Vibrator;
-import android.widget.LinearLayout;
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
+import android.os.Vibrator
+import android.widget.LinearLayout
+import app.allever.android.lib.common.BaseActivity
+import app.allever.android.lib.mvvm.base.BaseViewModel
+import app.allever.android.sample.toolbox.databinding.ActivityCompassBinding
 
-import androidx.annotation.NonNull;
-
-import app.allever.android.lib.common.BaseActivity;
-import app.allever.android.lib.mvvm.base.BaseViewModel;
-import app.allever.android.sample.toolbox.databinding.ActivityCompassBinding;
-
-
-public class CompassActivity extends BaseActivity<ActivityCompassBinding, BaseViewModel> {
-
-    private String directiona = "UNKNOWN";
-    private SensorManager mSensorManager;
-    private final String[] mDirectionText = new String[]{"北", "东北", "东", "东南", "南", "西南", "西", "西北"};
-
-    @NonNull
-    @Override
-    public ActivityCompassBinding inflateChildBinding() {
-        return ActivityCompassBinding.inflate(getLayoutInflater());
+class CompassActivity : BaseActivity<ActivityCompassBinding, BaseViewModel>() {
+    private var directiona = "UNKNOWN"
+    private lateinit var mSensorManager: SensorManager
+    private val mDirectionText = arrayOf("北", "东北", "东", "东南", "南", "西南", "西", "西北")
+    override fun inflateChildBinding(): ActivityCompassBinding {
+        return ActivityCompassBinding.inflate(
+            layoutInflater
+        )
     }
 
-
-    @Override
-    public void init() {
-        initTopBar("指南针", true, null);
-        binding.compass.setLayoutParams(new LinearLayout.LayoutParams(this.getResources().getDisplayMetrics().widthPixels, this.getResources().getDisplayMetrics().widthPixels));
-
-        mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+    override fun init() {
+        initTopBar("指南针", true, null)
+        binding.compass.layoutParams = LinearLayout.LayoutParams(
+            this.resources.displayMetrics.widthPixels,
+            this.resources.displayMetrics.widthPixels
+        )
+        mSensorManager = this.getSystemService(SENSOR_SERVICE) as SensorManager
         if (mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) == null) {
             //Toast.makeText(this,"你的设备不支持陀螺仪",Toast.LENGTH_SHORT).show();
         }
-        Vibrator mVibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
-
-        SensorEventListener sensorListener = new SensorEventListener() {
-            @Override
-            public void onSensorChanged(SensorEvent event) {
-                float[] _rotationMatrix = new float[16];
-                SensorManager.getRotationMatrixFromVector(_rotationMatrix, event.values);
-                float[] _remappedRotationMatrix = new float[16];
-                SensorManager.remapCoordinateSystem(_rotationMatrix, SensorManager.AXIS_X, SensorManager.AXIS_Z, _remappedRotationMatrix);
-                float[] _orientations = new float[3];
-                SensorManager.getOrientation(_remappedRotationMatrix, _orientations);
-                for (int _i = 0; _i < 3; _i++) {
-                    _orientations[_i] = (float) (Math.toDegrees(_orientations[_i]));
+        val mVibrator = this.getSystemService(VIBRATOR_SERVICE) as Vibrator
+        val sensorListener: SensorEventListener = object : SensorEventListener {
+            override fun onSensorChanged(event: SensorEvent) {
+                val _rotationMatrix = FloatArray(16)
+                SensorManager.getRotationMatrixFromVector(_rotationMatrix, event.values)
+                val _remappedRotationMatrix = FloatArray(16)
+                SensorManager.remapCoordinateSystem(
+                    _rotationMatrix,
+                    SensorManager.AXIS_X,
+                    SensorManager.AXIS_Z,
+                    _remappedRotationMatrix
+                )
+                val _orientations = FloatArray(3)
+                SensorManager.getOrientation(_remappedRotationMatrix, _orientations)
+                for (_i in 0..2) {
+                    _orientations[_i] = Math.toDegrees(
+                        _orientations[_i].toDouble()
+                    ).toFloat()
                 }
-                final double _x = _orientations[0];
-                final double _y = _orientations[1];
-                final double _z = _orientations[2];
+                val _x = _orientations[0].toDouble()
+                val _y = _orientations[1].toDouble()
+                val _z = _orientations[2].toDouble()
             }
 
-            @Override
-            public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-            }
-        };
-        mSensorManager.registerListener(sensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR), SensorManager.SENSOR_DELAY_NORMAL);
+            override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
+        }
+        mSensorManager.registerListener(
+            sensorListener,
+            mSensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR),
+            SensorManager.SENSOR_DELAY_NORMAL
+        )
     }
 
-    @Override
-    protected boolean isFullScreen() {
-        return true;
-    }
-
-    @Override
-    protected boolean showTopBar() {
-        return true;
-    }
-
-    @SuppressWarnings("deprecation")
-    private void initSensor() {
-        mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+    private fun initSensor() {
+        mSensorManager = this.getSystemService(SENSOR_SERVICE) as SensorManager
         if (mSensorManager != null) {
-            Sensor sensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+            val sensor = mSensorManager!!.getDefaultSensor(Sensor.TYPE_ORIENTATION)
             //注册监听
-            mSensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_FASTEST);
+            mSensorManager!!.registerListener(
+                sensorEventListener,
+                sensor,
+                SensorManager.SENSOR_DELAY_FASTEST
+            )
         }
     }
 
-    private final SensorEventListener sensorEventListener = new SensorEventListener() {
-        @Override
-        public void onSensorChanged(SensorEvent event) {
-            float dirAngel = event.values[0];
-
-            binding.compass.setDirectionAngle(dirAngel);
-            directiona = mDirectionText[((int) (dirAngel + 22.5f) % 360) / 45];
-            binding.direction.setText(directiona);
+    private val sensorEventListener: SensorEventListener = object : SensorEventListener {
+        override fun onSensorChanged(event: SensorEvent) {
+            val dirAngel = event.values[0]
+            binding.compass.setDirectionAngle(dirAngel)
+            directiona = mDirectionText[(dirAngel + 22.5f).toInt() % 360 / 45]
+            binding.direction.text = directiona
         }
 
-        @Override
-        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
             if (accuracy != SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM
-                    && accuracy != SensorManager.SENSOR_STATUS_ACCURACY_HIGH) {
+                && accuracy != SensorManager.SENSOR_STATUS_ACCURACY_HIGH
+            ) {
             }
         }
-    };
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        initSensor();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        mSensorManager.unregisterListener(sensorEventListener);
+    public override fun onResume() {
+        super.onResume()
+        initSensor()
+    }
+
+    public override fun onPause() {
+        super.onPause()
+        mSensorManager.unregisterListener(sensorEventListener)
     }
 }
