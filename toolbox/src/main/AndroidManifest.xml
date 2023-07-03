@@ -2,11 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.allever.android.sample.toolbox">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
     <application>
         <activity
             android:name=".dailytools.RulerActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
             android:hardwareAccelerated="true" />
         <activity android:name=".dailytools.CompassActivity" />
+        <activity android:name=".dailytools.LevelActivity" />
     </application>
 </manifest>
