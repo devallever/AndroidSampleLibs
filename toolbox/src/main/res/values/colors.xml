@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="zts">#FF5187F4</color>
+    <color name="hui">#FF757575</color>
+    <color name="appbarColor">#FFFFFFFF</color>
+    <color name="backgroundColor">#FFFFFFFF</color>
+    <color name="rippleColor">#FFBDBDBD</color>
+    <color name="editTextColor">#FF000000</color>
+    <color name="itemBackColor">#FFEEEEEE</color>
+    <color name="SelectedBackColor">#FFEEEEEE</color>
+    <color name="line">#FFE0E0E0</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="success">#FF4CAF50</color>
+    <color name="error">#FFF44336</color>
+
+    <color name="dkplayer_theme_color">#FF5187F4</color>
+    <color name="dkplayer_theme_color_translucent">#995187F4</color>
+    <color name="dkplayer_background_color">#4D000000</color>
+
+    <color name="bgColor">@color/itemBackColor</color>
+    <color name="color1">#FE645A</color>
+    <color name="color2">#169C2D</color>
+    <color name="color3">#FEB043</color>
+</resources>

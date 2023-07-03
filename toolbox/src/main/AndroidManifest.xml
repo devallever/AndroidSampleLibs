@@ -7,5 +7,6 @@
             android:name=".dailytools.RulerActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
             android:hardwareAccelerated="true" />
+        <activity android:name=".dailytools.CompassActivity" />
     </application>
 </manifest>
