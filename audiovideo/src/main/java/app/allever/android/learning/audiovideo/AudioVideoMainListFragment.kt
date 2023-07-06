@@ -3,7 +3,6 @@ package app.allever.android.learning.audiovideo
 import app.allever.android.learning.audiovideo.audio.AudioRecordFragment
 import app.allever.android.learning.audiovideo.extractormuxer.ExtractorMuxerFragment
 import app.allever.android.learning.audiovideo.ijkplayer.IJKPlayerMainFragment
-import app.allever.android.learning.audiovideo.kernel.demo.MediaKernelFragment
 import app.allever.android.learning.audiovideo.kernel.demo.RenderKernelFragment
 import app.allever.android.learning.audiovideo.render.demo.MediaRenderFragment
 import app.allever.android.lib.common.FragmentActivity
@@ -49,6 +48,9 @@ class AudioVideoMainListFragment :
         },
         TextClickItem("MediaExtractor/MediaMuxer提取分离音视频并重新合成") {
             FragmentActivity.start<ExtractorMuxerFragment>("提取分离音视频并重新合成")
-        }
+        },
+        TextClickItem("抖音视频列表") {
+            FragmentActivity.start<TiktokMainFragment>(it.title)
+        },
     )
 }
