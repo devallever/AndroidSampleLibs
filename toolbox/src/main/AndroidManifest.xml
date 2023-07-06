@@ -10,5 +10,6 @@
             android:hardwareAccelerated="true" />
         <activity android:name=".dailytools.CompassActivity" />
         <activity android:name=".dailytools.LevelActivity" />
+        <activity android:name=".dailytools.DrawActivity" />
     </application>
 </manifest>

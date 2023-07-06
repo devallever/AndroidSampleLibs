@@ -43,4 +43,8 @@ android {
 
 dependencies {
     api project(path: ':common')
+    api colorPicker
+    api discreteSeekbar
+    api alerter
+    api lottie
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Tools.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.ActionBar" />
+
+    <style name="Theme.Tools.PopupOverlay" parent="Widget.AppCompat.PopupMenu.Overflow" />
+</resources>

@@ -243,6 +243,15 @@ ext {
     blurView =  "com.github.Dimezis:BlurView:version-2.0.2"
 
     shapeBlurView = "com.github.centerzx:ShapeBlurView:1.0.5"
+
+    //colorPicker
+    colorPicker = "com.github.QuadFlask:colorpicker:0.0.15"
+
+    //
+    discreteSeekbar = 'org.adw.library:discrete-seekbar:1.0.1'
+
+    //
+    alerter =  'com.tapadoo.android:alerter:7.0.1'
 //Other---------------------------------------------------------------------------------------------
 }
 

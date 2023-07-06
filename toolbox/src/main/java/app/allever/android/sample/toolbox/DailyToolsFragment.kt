@@ -8,6 +8,7 @@ import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.sample.toolbox.dailytools.CompassActivity
+import app.allever.android.sample.toolbox.dailytools.DrawActivity
 import app.allever.android.sample.toolbox.dailytools.LevelActivity
 import app.allever.android.sample.toolbox.dailytools.RulerActivity
 
@@ -31,7 +32,9 @@ class DailyToolsFragment : ListFragment<FragmentListBinding, ListViewModel, Text
             toast(it.title)
         },
         TextClickItem("画板") {
-            toast(it.title)
+            ActivityHelper.startActivity<DrawActivity> {
+
+            }
         },
         TextClickItem("LED字幕") {
             toast(it.title)
