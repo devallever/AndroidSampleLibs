@@ -9,11 +9,14 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "AndroidSampleLibs"
-include ':app', ':common', ':ui', 'jetpack', ':function'
+include ':app', ':ui', 'jetpack', ':function'
 
 
 include ':core'
 project(':core').projectDir = new File(settingsDir, '../../allever-projects/AndroidBaseLibs/core')
+
+include ':common'
+project(':common').projectDir = new File(settingsDir, '../../allever-projects/AndroidBaseLibs/common')
 
 include ':widget'
 project(':widget').projectDir = new File(settingsDir, '../../allever-projects/AndroidBaseLibs/widget')
