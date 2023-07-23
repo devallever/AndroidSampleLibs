@@ -22,12 +22,12 @@ class GuideFragment : BaseFragment<FragmentGuideBinding, BaseViewModel>() {
 
     private fun initData() {
         val list = mutableListOf<GuideItem>()
-        val title = "Device Detector"
+        val title = "Matching Game"
         list.add(
             GuideItem(
                 R.color.googleBleu,
                 title,
-                "Device Fonder Tools",
+                "",
                 app.allever.android.sample.project.R.drawable.p01
             )
         )
@@ -35,7 +35,7 @@ class GuideFragment : BaseFragment<FragmentGuideBinding, BaseViewModel>() {
             GuideItem(
                 R.color.googleBleu,
                 title,
-                "Bluetooth device finder",
+                "Many Level",
                 app.allever.android.sample.project.R.drawable.p02
             )
         )
@@ -43,7 +43,7 @@ class GuideFragment : BaseFragment<FragmentGuideBinding, BaseViewModel>() {
             GuideItem(
                 R.color.googleBleu,
                 title,
-                "Device distance",
+                "Guide",
                 app.allever.android.sample.project.R.drawable.p03
             )
         )
@@ -51,8 +51,32 @@ class GuideFragment : BaseFragment<FragmentGuideBinding, BaseViewModel>() {
             GuideItem(
                 R.color.googleBleu,
                 title,
-                "Metal detector",
+                "Easy",
                 app.allever.android.sample.project.R.drawable.p04
+            )
+        )
+        list.add(
+            GuideItem(
+                R.color.googleBleu,
+                title,
+                "Normal",
+                app.allever.android.sample.project.R.drawable.p05
+            )
+        )
+        list.add(
+            GuideItem(
+                R.color.googleBleu,
+                title,
+                "Hard",
+                app.allever.android.sample.project.R.drawable.p06
+            )
+        )
+        list.add(
+            GuideItem(
+                R.color.googleBleu,
+                title,
+                "Game store",
+                app.allever.android.sample.project.R.drawable.p07
             )
         )
         mAdapter.setList(list)
