@@ -13,6 +13,7 @@ import app.allever.android.lib.demo.ui.*
 import app.allever.android.lib.demo.ui.autoscroll.AutoScrollMainFragment
 import app.allever.android.lib.demo.ui.dialog.DialogMainFragment
 import app.allever.android.lib.demo.ui.dragclose.DragCloseMainFragment
+import app.allever.android.lib.demo.ui.dragrecycler.ManageFriendGroupFragment
 import app.allever.android.lib.demo.ui.expandrecycler.ContactExpandListFragment
 import app.allever.android.lib.demo.ui.notification.NotificationMainFragment
 import app.allever.android.lib.demo.ui.sticktop.StickyTopMainFragment
@@ -49,6 +50,9 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, TextClic
         },
         TextClickItem("分组联系人列表-折叠") {
             FragmentActivity.start<ContactExpandListFragment>(it.title)
+        },
+        TextClickItem("分组管理") {
+            FragmentActivity.start<ManageFriendGroupFragment>(it.title)
         },
         TextClickItem("弹窗") {
             FragmentActivity.start<DialogMainFragment>(it.title)

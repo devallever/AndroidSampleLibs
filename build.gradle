@@ -258,6 +258,9 @@ ext {
 
     //https://github.com/Xigong93/ExpandableRecyclerView
     expandableRecyclerView = 'com.github.pokercc:ExpandableRecyclerView:0.9.3'
+
+    //https://github.com/ernestoyaquello/DragDropSwipeRecyclerview
+    dragSwipeRecyclerView = 'com.ernestoyaquello.dragdropswiperecyclerview:drag-drop-swipe-recyclerview:1.1.1'
 //Other---------------------------------------------------------------------------------------------
 }
 
