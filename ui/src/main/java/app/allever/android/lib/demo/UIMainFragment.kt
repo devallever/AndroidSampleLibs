@@ -10,6 +10,7 @@ import app.allever.android.lib.demo.ui.*
 import app.allever.android.lib.demo.ui.autoscroll.AutoScrollMainFragment
 import app.allever.android.lib.demo.ui.dialog.DialogMainFragment
 import app.allever.android.lib.demo.ui.dragclose.DragCloseMainFragment
+import app.allever.android.lib.demo.ui.expandrecycler.ContactExpandListFragment
 import app.allever.android.lib.demo.ui.notification.NotificationMainFragment
 import app.allever.android.lib.demo.ui.sticktop.StickyTopMainFragment
 import app.allever.android.lib.widget.fragment.EmptyFragment
@@ -30,7 +31,8 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>(
             "分组联系人列表",
             "弹窗",
             "通知",
-            "拖拽关闭页面效果"
+            "拖拽关闭页面效果",
+            "分组联系人列表-折叠"
         )
 
     override fun onItemClick(position: Int, item: String) {
@@ -65,6 +67,9 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, String>(
             9 -> FragmentActivity.start<NotificationMainFragment>(item)
             10 -> {
                 FragmentActivity.start<DragCloseMainFragment>(item)
+            }
+            11 -> {
+                FragmentActivity.start<ContactExpandListFragment>(item)
             }
         }
     }

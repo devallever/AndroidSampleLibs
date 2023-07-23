@@ -255,6 +255,9 @@ ext {
 
     //https://github.com/Jzvd/JZVideo/
     jzPlayer = 'cn.jzvd:jiaozivideoplayer:7.7.0'
+
+    //https://github.com/Xigong93/ExpandableRecyclerView
+    expandableRecyclerView = 'com.github.pokercc:ExpandableRecyclerView:0.9.3'
 //Other---------------------------------------------------------------------------------------------
 }
 

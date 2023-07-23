@@ -47,4 +47,5 @@ dependencies {
     api blurView
     api shapeBlurView
     api floatWindow
+    api expandableRecyclerView
 }
