@@ -22,63 +22,63 @@ class GuideFragment : BaseFragment<FragmentGuideBinding, BaseViewModel>() {
 
     private fun initData() {
         val list = mutableListOf<GuideItem>()
-        val title = "Matching Game"
+        val title = "Quick PE"
         list.add(
             GuideItem(
-                R.color.googleBleu,
+                R.color.white,
                 title,
-                "",
+                "Simple Photo Editor",
                 app.allever.android.sample.project.R.drawable.p01
             )
         )
         list.add(
             GuideItem(
-                R.color.googleBleu,
+                R.color.white,
                 title,
-                "Many Level",
+                "Add Text Description",
                 app.allever.android.sample.project.R.drawable.p02
             )
         )
         list.add(
             GuideItem(
-                R.color.googleBleu,
+                R.color.white,
                 title,
-                "Guide",
+                "Colorful Filters",
                 app.allever.android.sample.project.R.drawable.p03
             )
         )
         list.add(
             GuideItem(
-                R.color.googleBleu,
+                R.color.white,
                 title,
-                "Easy",
+                "Funny Emoji",
                 app.allever.android.sample.project.R.drawable.p04
             )
         )
         list.add(
             GuideItem(
-                R.color.googleBleu,
+                R.color.white,
                 title,
-                "Normal",
+                "Cute Sticker",
                 app.allever.android.sample.project.R.drawable.p05
             )
         )
-        list.add(
-            GuideItem(
-                R.color.googleBleu,
-                title,
-                "Hard",
-                app.allever.android.sample.project.R.drawable.p06
-            )
-        )
-        list.add(
-            GuideItem(
-                R.color.googleBleu,
-                title,
-                "Game store",
-                app.allever.android.sample.project.R.drawable.p07
-            )
-        )
+//        list.add(
+//            GuideItem(
+//                R.color.googleBleu,
+//                title,
+//                "Hard",
+//                app.allever.android.sample.project.R.drawable.p06
+//            )
+//        )
+//        list.add(
+//            GuideItem(
+//                R.color.googleBleu,
+//                title,
+//                "Game store",
+//                app.allever.android.sample.project.R.drawable.p07
+//            )
+//        )
         mAdapter.setList(list)
     }
 }
