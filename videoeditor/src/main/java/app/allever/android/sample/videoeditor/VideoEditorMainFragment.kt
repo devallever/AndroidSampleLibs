@@ -14,6 +14,9 @@ class VideoEditorMainFragment : ListFragment<FragmentListBinding, ListViewModel,
     override fun getList() = mutableListOf(
         TextClickItem("Gesture") {
             FragmentActivity.start<GestureFragment>(it.title)
+        },
+        TextClickItem("基础编辑") {
+            FragmentActivity.start<BaseEditFragment>(it.title)
         }
     )
 }

@@ -8,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.widget.SeekBar
-import androidx.databinding.DataBindingUtil
 import app.allever.android.learning.audiovideo.BasePlayerView
-import app.allever.android.learning.audiovideo.R
 import app.allever.android.learning.audiovideo.StatusListener
 import app.allever.android.learning.audiovideo.databinding.SurfacePlayerViewBinding
 import app.allever.android.lib.core.app.App

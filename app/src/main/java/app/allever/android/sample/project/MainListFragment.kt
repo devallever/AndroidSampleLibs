@@ -19,6 +19,7 @@ import app.allever.android.sample.function.FunctionMainFragment
 import app.allever.android.sample.function.interceptor.FirstInterceptor
 import app.allever.android.sample.function.interceptor.RealChain
 import app.allever.android.sample.function.interceptor.SecondInterceptor
+import app.allever.android.sample.gaodemap.GaoDeMapMainListFragment
 import app.allever.android.sample.jetpack.JetpackMainFragment
 import app.allever.android.sample.jni.JniMainActivity
 import app.allever.android.sample.kotlin.KotlinMainFragment
@@ -94,6 +95,10 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
         },
         TextClickItem("工具箱") {
             FragmentActivity.start<ToolBoxMainFragment>(it.title)
+        },
+
+        TextClickItem("高德地图") {
+            FragmentActivity.start<GaoDeMapMainListFragment>(it.title)
         },
     )
 
