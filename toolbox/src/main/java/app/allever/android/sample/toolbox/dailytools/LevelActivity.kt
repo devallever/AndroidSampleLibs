@@ -26,8 +26,8 @@ class LevelActivity : BaseActivity<ActivityLevelBinding, BaseViewModel>(), Senso
 
     public override fun onResume() {
         super.onResume()
-        accSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-        magSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
+        accSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)!!
+        magSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)!!
         mSensorManager.registerListener(this, accSensor, SensorManager.SENSOR_DELAY_NORMAL)
         mSensorManager.registerListener(this, magSensor, SensorManager.SENSOR_DELAY_NORMAL)
     }

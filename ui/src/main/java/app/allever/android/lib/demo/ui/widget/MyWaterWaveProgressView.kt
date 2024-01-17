@@ -37,7 +37,7 @@ class MyWaterWaveProgressView @JvmOverloads constructor(
         log("measuredWidth = $measuredWidth")
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
         drawOneBlizerLine(canvas)

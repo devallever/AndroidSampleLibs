@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.allever.android.sample.function">
 
+
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <!-- Required to maintain app compatibility. -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
     <application>
         <activity android:name=".theme.ThemeMainActivity" />
         <activity android:name=".im.ui.ConversationActivity" />
