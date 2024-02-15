@@ -11,9 +11,11 @@ import app.allever.android.sample.function.apps.AppHelper
 import app.allever.android.sample.function.apps.ChangeIconListFragment
 import app.allever.android.sample.function.apps.InstallAppListFragment
 import app.allever.android.sample.function.download.DownloadMainFragment
+import app.allever.android.sample.function.emoji.EmojiPickerFragment
 import app.allever.android.sample.function.im.IMMainFragment
 import app.allever.android.sample.function.theme.ThemeMainActivity
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.vdurmont.emoji.Emoji
 
 class FunctionMainFragment : ListFragment<FragmentListBinding, ListViewModel, TextClickItem>() {
     override fun init() {
@@ -37,6 +39,9 @@ class FunctionMainFragment : ListFragment<FragmentListBinding, ListViewModel, Te
         },
         TextClickItem("更改图标") {
             FragmentActivity.start<ChangeIconListFragment>(it.title)
+        },
+        TextClickItem("Emoji选择器") {
+            FragmentActivity.start<EmojiPickerFragment>(it.title)
         },
     )
 }
