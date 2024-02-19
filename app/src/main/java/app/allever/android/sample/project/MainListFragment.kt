@@ -9,6 +9,7 @@ import app.allever.android.lib.common.ListViewModel
 import app.allever.android.lib.common.adapter.TextClickAdapter
 import app.allever.android.lib.common.adapter.bean.TextClickItem
 import app.allever.android.lib.common.databinding.FragmentListBinding
+import app.allever.android.lib.core.function.media.SongMediaPlayer
 import app.allever.android.lib.core.helper.ActivityHelper
 import app.allever.android.lib.demo.UIMainFragment
 import app.allever.android.lib.widget.fragment.EmptyFragment
@@ -100,7 +101,15 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
         TextClickItem("高德地图") {
             FragmentActivity.start<GaoDeMapMainListFragment>(it.title)
         },
+        TextClickItem("播放assets.mp3") {
+            val fd = requireActivity().assets.openFd("Gallery/Animals/bird.mp3")
+            songMediaPlayer.loadAssets(fd)
+            songMediaPlayer.play()
+        }
     )
+
+    private val songMediaPlayer = SongMediaPlayer()
+
 
     override fun init() {
         super.init()
