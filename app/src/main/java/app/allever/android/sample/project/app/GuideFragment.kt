@@ -22,47 +22,47 @@ class GuideFragment : BaseFragment<FragmentGuideBinding, BaseViewModel>() {
 
     private fun initData() {
         val list = mutableListOf<GuideItem>()
-        val title = "Memory Kitties"
+        val title = "BP Recorder"
         list.add(
             GuideItem(
-                R.color.googleBleu,
+                R.color.googleRed,
                 title,
-                "Challenge the Brain",
-                app.allever.android.sample.project.R.drawable.p01
-            )
-        )
-        list.add(
-            GuideItem(
-                R.color.googleBleu,
-                title,
-                "Easy",
-                app.allever.android.sample.project.R.drawable.p02
-            )
-        )
-        list.add(
-            GuideItem(
-                R.color.googleBleu,
-                title,
-                "Middle",
-                app.allever.android.sample.project.R.drawable.p03
-            )
-        )
-        list.add(
-            GuideItem(
-                R.color.googleBleu,
-                title,
-                "Hard",
+                "Record your Blood Pressure",
                 app.allever.android.sample.project.R.drawable.p04
             )
         )
         list.add(
             GuideItem(
-                R.color.googleBleu,
+                R.color.googleRed,
                 title,
-                "challenge",
-                app.allever.android.sample.project.R.drawable.p05
+                "Record BP",
+                app.allever.android.sample.project.R.drawable.p01
             )
         )
+        list.add(
+            GuideItem(
+                R.color.googleRed,
+                title,
+                "Report Weekly",
+                app.allever.android.sample.project.R.drawable.p02
+            )
+        )
+        list.add(
+            GuideItem(
+                R.color.googleRed,
+                title,
+                "Healthy tips",
+                app.allever.android.sample.project.R.drawable.p03
+            )
+        )
+//        list.add(
+//            GuideItem(
+//                R.color.googleBleu,
+//                title,
+//                "challenge",
+//                app.allever.android.sample.project.R.drawable.p05
+//            )
+//        )
 //        list.add(
 //            GuideItem(
 //                R.color.googleBleu,
