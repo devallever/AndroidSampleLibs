@@ -8,7 +8,7 @@ import app.allever.android.sample.jni.databinding.ActivityJniMainBinding
 
 class JniMainActivity : BaseActivity<ActivityJniMainBinding, BaseViewModel>() {
     override fun init() {
-        initTopBar("JNI")
+        initTopBar("JNI-CMake")
         FragmentHelper.addToContainer(
             supportFragmentManager,
             JniMainFragment(),

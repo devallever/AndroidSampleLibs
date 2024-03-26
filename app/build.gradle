@@ -76,6 +76,7 @@ dependencies {
     api project(path: ':thirtypart')
     api project(path: ':audiovideo')
     api project(path: ':jni')
+    api project(path: ':jni-mk')
     api project(path: ':performance')
 //    api project(path: ':login')
     api project(path: ':learning-android')

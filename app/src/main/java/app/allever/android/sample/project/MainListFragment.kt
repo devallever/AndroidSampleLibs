@@ -23,6 +23,7 @@ import app.allever.android.sample.function.interceptor.SecondInterceptor
 import app.allever.android.sample.gaodemap.GaoDeMapMainListFragment
 import app.allever.android.sample.jetpack.JetpackMainFragment
 import app.allever.android.sample.jni.JniMainActivity
+import app.allever.android.sample.jni.mk.JniMkMainActivity
 import app.allever.android.sample.kotlin.KotlinMainFragment
 import app.allever.android.sample.learning.android.LearningAndroidMainActivity
 import app.allever.android.sample.material.design.MaterialDesignMainListFragment
@@ -67,8 +68,11 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
         TextClickItem("音视频") {
             ActivityHelper.startActivity<AudioVideoMainActivity> { }
         },
-        TextClickItem("JNI") {
+        TextClickItem("JNI-CMake") {
             ActivityHelper.startActivity<JniMainActivity> { }
+        },
+        TextClickItem("NDK-JNI-Android.mk & Application.mk") {
+            ActivityHelper.startActivity<JniMkMainActivity> { }
         },
         TextClickItem("性能优化") {
             FragmentActivity.start<PerformanceMainFragment>(it.title)
@@ -102,9 +106,9 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
             FragmentActivity.start<GaoDeMapMainListFragment>(it.title)
         },
         TextClickItem("播放assets.mp3") {
-            val fd = requireActivity().assets.openFd("Gallery/Animals/bird.mp3")
-            songMediaPlayer.loadAssets(fd)
-            songMediaPlayer.play()
+//            val fd = requireActivity().assets.openFd("Gallery/Animals/bird.mp3")
+//            songMediaPlayer.loadAssets(fd)
+//            songMediaPlayer.play()
         }
     )
 

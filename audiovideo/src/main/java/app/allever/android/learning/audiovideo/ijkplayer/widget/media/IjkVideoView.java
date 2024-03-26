@@ -47,7 +47,7 @@ import java.util.Map;
 import app.allever.android.learning.audiovideo.R;
 import app.allever.android.learning.audiovideo.ijkplayer.Settings;
 import app.allever.android.learning.audiovideo.ijkplayer.services.MediaPlayerService;
-import tv.danmaku.ijk.media.exo.IjkExoMediaPlayer;
+//import tv.danmaku.ijk.media.exo.IjkExoMediaPlayer;
 import tv.danmaku.ijk.media.player.AndroidMediaPlayer;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
@@ -532,9 +532,9 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
                                 .setPositiveButton(R.string.VideoView_error_button,
                                         new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int whichButton) {
-                                            /* If we get here, there is no onError listener, so
-                                             * at least inform them that the video is over.
-                                             */
+                                                /* If we get here, there is no onError listener, so
+                                                 * at least inform them that the video is over.
+                                                 */
                                                 if (mOnCompletionListener != null) {
                                                     mOnCompletionListener.onCompletion(mMediaPlayer);
                                                 }
@@ -547,7 +547,7 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
                 }
             };
 
-    private IMediaPlayer.OnBufferingUpdateListener mBufferingUpdateListener =
+    private final IMediaPlayer.OnBufferingUpdateListener mBufferingUpdateListener =
             new IMediaPlayer.OnBufferingUpdateListener() {
                 public void onBufferingUpdate(IMediaPlayer mp, int percent) {
                     mCurrentBufferPercentage = percent;
@@ -968,8 +968,8 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
 
         switch (playerType) {
             case Settings.PV_PLAYER__IjkExoMediaPlayer: {
-                IjkExoMediaPlayer IjkExoMediaPlayer = new IjkExoMediaPlayer(mAppContext);
-                mediaPlayer = IjkExoMediaPlayer;
+//                IjkExoMediaPlayer IjkExoMediaPlayer = new IjkExoMediaPlayer(mAppContext);
+//                mediaPlayer = IjkExoMediaPlayer;
             }
             break;
             case Settings.PV_PLAYER__AndroidMediaPlayer: {
