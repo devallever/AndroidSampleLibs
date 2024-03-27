@@ -8,10 +8,11 @@ import app.allever.android.lib.widget.fragment.EmptyFragment
 
 class JniMainFragment : TabFragment<FragmentTabBinding, TabViewModel>() {
     override fun getTabTitles() = mutableListOf(
-        "Java调用C", "C调用Java"
+        "CMakeLists.txt", "Java调用C", "C调用Java"
     )
 
     override fun getFragments(): MutableList<Fragment> = mutableListOf(
+        CMakeFragment(),
         Java2CFragment(),
         EmptyFragment("C调用Java")
     )

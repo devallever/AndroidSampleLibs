@@ -68,7 +68,7 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
         TextClickItem("音视频") {
             ActivityHelper.startActivity<AudioVideoMainActivity> { }
         },
-        TextClickItem("JNI-CMake") {
+        TextClickItem("NDK-JNI-CMake") {
             ActivityHelper.startActivity<JniMainActivity> { }
         },
         TextClickItem("NDK-JNI-Android.mk & Application.mk") {
