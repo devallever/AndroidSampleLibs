@@ -10,7 +10,7 @@ include $(CLEAR_VARS)
 # 构建系统在生成最终的so库文件时，会参考该模块名生成最终的so库，如：libjniMk.so；
 LOCAL_MODULE    := jniMk
 # 译该模块时所需的C/C++源文件，如果有多个文件需要用空格分离，如果想换行则需要在每个源文件末尾加上反斜杠"\" ,类似于C语言中的多行宏定义；
-LOCAL_SRC_FILES := hello-jni.c
+LOCAL_SRC_FILES := hello-jni.c ../cpp/jnimk.cpp
 
 # 确定要构建的内容及其操作方法。
 # BUILD_SHARED_LIBRARY  表示要编译为动态库，构建系统会生成后缀名为.so的库文件；

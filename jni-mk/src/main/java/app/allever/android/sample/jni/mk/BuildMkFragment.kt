@@ -5,7 +5,6 @@ import app.allever.android.lib.common.adapter.TextDetailClickAdapter
 import app.allever.android.lib.common.adapter.bean.TextDetailClickItem
 import app.allever.android.lib.common.databinding.FragmentListBinding
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import com.chad.library.adapter.base.BaseQuickAdapter
 
 class BuildMkFragment : ListFragment<FragmentListBinding, BaseViewModel, TextDetailClickItem>() {
     override fun getAdapter() = TextDetailClickAdapter()
@@ -26,6 +25,15 @@ class BuildMkFragment : ListFragment<FragmentListBinding, BaseViewModel, TextDet
                             "        jniLibs.setSrcDirs(jniLibs.srcDirs + files(\"\$projectDir/libs\"))\n" +
                             "    }"
                 )
+            )
+            add(
+                TextDetailClickItem(
+                    "打包自动构建", "    externalNativeBuild {\n" +
+                            "        //使用Android.mk 方式，打包时自动构建\n" +
+                            "        ndkBuild {\n" +
+                            "            path file('src/main/jni/Android.mk')\n" +
+                            "        }\n"+
+ "    }")
             )
         }
 }

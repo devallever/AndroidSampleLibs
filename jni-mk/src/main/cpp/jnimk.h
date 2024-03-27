@@ -1,0 +1,8 @@
+//
+// Created by allever on 2024/3/27.
+//
+
+#ifndef ANDROIDSAMPLELIBS_JNIMK_H
+#define ANDROIDSAMPLELIBS_JNIMK_H
+
+#endif //ANDROIDSAMPLELIBS_JNIMK_H

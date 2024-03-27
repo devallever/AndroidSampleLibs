@@ -52,12 +52,18 @@ android {
     }
 
     externalNativeBuild {
+        //使用cmake方式
 //        cmake {
 //            path file('src/main/cpp/CMakeLists.txt')
 //            version '3.18.1'
 //        }
+        //使用Android.mk 方式，打包时自动构建
+        ndkBuild {
+            path file('src/main/jni/Android.mk')
+        }
     }
 
+    //打包包含libs目录的so
     sourceSets.getByName("main") {
         jniLibs.setSrcDirs(jniLibs.srcDirs + files("$projectDir/libs"))
     }

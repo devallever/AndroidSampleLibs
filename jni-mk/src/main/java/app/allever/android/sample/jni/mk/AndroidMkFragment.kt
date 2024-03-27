@@ -11,6 +11,8 @@ class AndroidMkFragment : ListFragment<FragmentListBinding, BaseViewModel, TextD
 
     override fun getList(): MutableList<TextDetailClickItem> =
         mutableListOf<TextDetailClickItem>().apply {
+            add(TextDetailClickItem("getIntFromC()", "int form c ${NdkBuild.intFromCpp()}"))
+            add(TextDetailClickItem("getStringFromC()", NdkBuild.stringFromCpp()))
             add(
                 TextDetailClickItem(
                     "LOCAL_PATH := \$(call my-dir)",
