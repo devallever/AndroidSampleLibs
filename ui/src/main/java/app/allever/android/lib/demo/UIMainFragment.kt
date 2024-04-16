@@ -66,7 +66,9 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, TextClic
         TextClickItem("多区间速度进度条") {
             FragmentActivity.start<MultiSpeedProgressFragment>(it.title)
         },
-
+        TextClickItem("居中Item的RecyclerView") {
+            FragmentActivity.start<CenterRvFragment>(it.title)
+        },
 
 
         )
