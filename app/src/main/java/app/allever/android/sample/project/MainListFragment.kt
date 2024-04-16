@@ -30,6 +30,7 @@ import app.allever.android.sample.material.design.MaterialDesignMainListFragment
 import app.allever.android.sample.performance.PerformanceMainFragment
 import app.allever.android.sample.project.app.GuideActivity
 import app.allever.android.sample.project.app.LogoFragment
+import app.allever.android.sample.safe.SafeMainFragment
 import app.allever.android.sample.toolbox.ToolBoxMainFragment
 import app.allever.android.sample.videoeditor.VideoEditorMainActivity
 
@@ -106,10 +107,13 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
             FragmentActivity.start<GaoDeMapMainListFragment>(it.title)
         },
         TextClickItem("播放assets.mp3") {
-//            val fd = requireActivity().assets.openFd("Gallery/Animals/bird.mp3")
-//            songMediaPlayer.loadAssets(fd)
-//            songMediaPlayer.play()
-        }
+            val fd = requireActivity().assets.openFd("Gallery/Animals/bird.mp3")
+            songMediaPlayer.loadAssets(fd)
+            songMediaPlayer.play()
+        },
+        TextClickItem("安全/加解密") {
+            FragmentActivity.start<SafeMainFragment>(it.title)
+        },
     )
 
     private val songMediaPlayer = SongMediaPlayer()

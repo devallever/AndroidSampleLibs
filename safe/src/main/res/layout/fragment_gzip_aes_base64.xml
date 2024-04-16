@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvOrigin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="原字符串：Hello world!" />
+
+        <Button
+            android:id="@+id/btnGzipYaSuo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gzip压缩"/>
+
+        <TextView
+            android:id="@+id/tvGzipJieYaResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="压缩后：" />
+
+        <Button
+            android:id="@+id/btnAesEncodeGzip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AES加密压缩后数据"/>
+
+        <TextView
+            android:id="@+id/tvAesEncodeGzipResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="加密后：" />
+
+        <Button
+            android:id="@+id/btnAesDecodeGzip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="AES解密数据"/>
+
+        <TextView
+            android:id="@+id/tvAesDecodeGzipResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="解密后：" />
+
+        <Button
+            android:id="@+id/btnUnGzip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="解压缩解密后数据"/>
+
+        <TextView
+            android:id="@+id/tvUnGzipResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="解压缩后：" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.core.widget.NestedScrollView>
