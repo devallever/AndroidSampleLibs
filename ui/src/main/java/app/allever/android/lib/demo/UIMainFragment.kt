@@ -63,6 +63,9 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, TextClic
         TextClickItem("拖拽关闭页面效果") {
             FragmentActivity.start<DragCloseMainFragment>(it.title)
         },
+        TextClickItem("多区间速度进度条") {
+            FragmentActivity.start<MultiSpeedProgressFragment>(it.title)
+        },
 
 
 
