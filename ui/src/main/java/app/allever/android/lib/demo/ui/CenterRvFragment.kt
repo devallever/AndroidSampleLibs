@@ -2,16 +2,12 @@ package app.allever.android.lib.demo.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.allever.android.lib.common.BaseFragment
-import app.allever.android.lib.core.function.imageloader.loadCircle
-import app.allever.android.lib.demo.R
 import app.allever.android.lib.demo.databinding.FragmentCenterRvBinding
 import app.allever.android.lib.demo.databinding.ItemRvCenterBinding
-import app.allever.android.lib.demo.ui.widget.centerrv.CenterLayoutManager
+import app.allever.android.lib.demo.ui.widget.CenterLayoutManager
 import app.allever.android.lib.demo.ui.widget.centerrv.FlingOneLinearSnapHelper
-import app.allever.android.lib.demo.ui.widget.centerrv.RecyclerItemCenterDecoration
 import app.allever.android.lib.mvvm.base.BaseViewModel
 
 class CenterRvFragment: BaseFragment<FragmentCenterRvBinding, BaseViewModel>() {
@@ -21,8 +17,7 @@ class CenterRvFragment: BaseFragment<FragmentCenterRvBinding, BaseViewModel>() {
         mBinding.apply {
             FlingOneLinearSnapHelper().attachToRecyclerView(rvFlag)
 //            rvFlag.addItemDecoration(RecyclerItemCenterDecoration())
-            val layoutManager =
-                app.allever.android.lib.demo.ui.widget.CenterLayoutManager()
+            val layoutManager = CenterLayoutManager()
             rvFlag.layoutManager = layoutManager
             val adapter = RvAdapter(mutableListOf()).apply {
                 setOnItemClick(object : ItemClick {
