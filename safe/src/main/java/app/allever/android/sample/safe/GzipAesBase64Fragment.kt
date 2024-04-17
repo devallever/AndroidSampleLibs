@@ -100,8 +100,8 @@ class GzipAesBase64Fragment : BaseFragment<FragmentGzipAesBase64Binding, BaseVie
             }
 
             // 使用AES加密
-            val secretKeySpec = SecretKeySpec(secretKey.toByteArray(charset("utf-8")), "AES")
-            val ivSpec = IvParameterSpec(iv.toByteArray(charset("utf-8")))
+            val secretKeySpec = SecretKeySpec(secretKey.toByteArray(Charsets.UTF_8), "AES")
+            val ivSpec = IvParameterSpec(iv.toByteArray(Charsets.UTF_8))
             val cipher = Cipher.getInstance("AES")
             cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivSpec)
             val encryptedBytes = cipher.doFinal(compressedBytes)
@@ -120,8 +120,8 @@ class GzipAesBase64Fragment : BaseFragment<FragmentGzipAesBase64Binding, BaseVie
             val decodedBytes = Base64.decode(encryptedString, Base64.DEFAULT)
 
             // 创建AES解密密钥
-            val secretKeySpec = SecretKeySpec(secretKey.toByteArray(charset("utf-8")), "AES")
-            val ivSpec = IvParameterSpec(iv.toByteArray(charset("utf-8")))
+            val secretKeySpec = SecretKeySpec(secretKey.toByteArray(Charsets.UTF_8), "AES")
+            val ivSpec = IvParameterSpec(iv.toByteArray(Charsets.UTF_8))
 
             // 实例化Cipher
             val cipher = Cipher.getInstance("AES")
