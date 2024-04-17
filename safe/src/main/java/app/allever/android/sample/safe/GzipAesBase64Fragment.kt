@@ -85,7 +85,7 @@ class GzipAesBase64Fragment : BaseFragment<FragmentGzipAesBase64Binding, BaseVie
 
     }
 
-    suspend fun compressAndEncryptString(input: String, key: String) = withContext(Dispatchers.IO) {
+    suspend fun compressAndEncryptString(input: String, secretKey: String) = withContext(Dispatchers.IO) {
         try {
             // 压缩字符串
             val compressedBytes = ByteArrayOutputStream().use { byteOut ->
@@ -95,11 +95,8 @@ class GzipAesBase64Fragment : BaseFragment<FragmentGzipAesBase64Binding, BaseVie
                 byteOut.toByteArray()
             }
 
-            // 将压缩后的字节转换为Base64字符串
-            val compressedString = Base64.encodeToString(compressedBytes, Base64.DEFAULT)
-
             // 使用AES加密
-            val secretKeySpec = SecretKeySpec(key.toByteArray(charset("utf-8")), "AES")
+            val secretKeySpec = SecretKeySpec(secretKey.toByteArray(charset("utf-8")), "AES")
             val cipher = Cipher.getInstance("AES")
             cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec)
             val encryptedBytes = cipher.doFinal(compressedBytes)
@@ -112,13 +109,13 @@ class GzipAesBase64Fragment : BaseFragment<FragmentGzipAesBase64Binding, BaseVie
         return@withContext ""
     }
 
-    suspend fun decryptAndUnzipString(encryptedString: String, key: String) = withContext(Dispatchers.IO) {
+    suspend fun decryptAndUnzipString(encryptedString: String, secretKey: String) = withContext(Dispatchers.IO) {
         try {
             // 解码Base64编码的字符串
             val decodedBytes = Base64.decode(encryptedString, Base64.DEFAULT)
 
             // 创建AES解密密钥
-            val secretKeySpec = SecretKeySpec(key.toByteArray(charset("utf-8")), "AES")
+            val secretKeySpec = SecretKeySpec(secretKey.toByteArray(charset("utf-8")), "AES")
 
             // 实例化Cipher
             val cipher = Cipher.getInstance("AES")
