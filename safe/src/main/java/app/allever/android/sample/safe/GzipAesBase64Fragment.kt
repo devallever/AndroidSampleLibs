@@ -13,12 +13,16 @@ import java.io.ByteArrayOutputStream
 import java.util.zip.GZIPInputStream
 import java.util.zip.GZIPOutputStream
 import javax.crypto.Cipher
+import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
 class GzipAesBase64Fragment : BaseFragment<FragmentGzipAesBase64Binding, BaseViewModel>() {
     override fun inflate() = FragmentGzipAesBase64Binding.inflate(layoutInflater)
 
     override fun init() {
+        val secretKey = "1234567890123456"
+        val iv = "0987654321098765"
+
         val originContent = "Hello world!"
         mBinding.apply {
             tvOrigin.text = "原字符串：${originContent}"
@@ -27,14 +31,14 @@ class GzipAesBase64Fragment : BaseFragment<FragmentGzipAesBase64Binding, BaseVie
             var unGzipResult = ""
             btnGzipYaSuo.setOnClickListener {
                 lifecycleScope.launch {
-                    gzipResult = compressAndEncryptString(originContent,"1234567890123456")
+                    gzipResult = compressAndEncryptString(originContent,secretKey, iv)
                     tvGzipJieYaResult.text = "压缩后：$gzipResult"
                 }
             }
 
             btnUnGzip.setOnClickListener {
                 lifecycleScope.launch {
-                    unGzipResult = decryptAndUnzipString(gzipResult, "1234567890123456")
+                    unGzipResult = decryptAndUnzipString(gzipResult, secretKey, iv)
                     tvUnGzipResult.text = "解压缩后：$unGzipResult"
                 }
             }
@@ -85,7 +89,7 @@ class GzipAesBase64Fragment : BaseFragment<FragmentGzipAesBase64Binding, BaseVie
 
     }
 
-    suspend fun compressAndEncryptString(input: String, secretKey: String) = withContext(Dispatchers.IO) {
+    suspend fun compressAndEncryptString(input: String, secretKey: String, iv: String) = withContext(Dispatchers.IO) {
         try {
             // 压缩字符串
             val compressedBytes = ByteArrayOutputStream().use { byteOut ->
@@ -97,8 +101,9 @@ class GzipAesBase64Fragment : BaseFragment<FragmentGzipAesBase64Binding, BaseVie
 
             // 使用AES加密
             val secretKeySpec = SecretKeySpec(secretKey.toByteArray(charset("utf-8")), "AES")
+            val ivSpec = IvParameterSpec(iv.toByteArray(charset("utf-8")))
             val cipher = Cipher.getInstance("AES")
-            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec)
+            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivSpec)
             val encryptedBytes = cipher.doFinal(compressedBytes)
 
             // 加密后的字符串
@@ -109,17 +114,18 @@ class GzipAesBase64Fragment : BaseFragment<FragmentGzipAesBase64Binding, BaseVie
         return@withContext ""
     }
 
-    suspend fun decryptAndUnzipString(encryptedString: String, secretKey: String) = withContext(Dispatchers.IO) {
+    suspend fun decryptAndUnzipString(encryptedString: String, secretKey: String, iv: String) = withContext(Dispatchers.IO) {
         try {
             // 解码Base64编码的字符串
             val decodedBytes = Base64.decode(encryptedString, Base64.DEFAULT)
 
             // 创建AES解密密钥
             val secretKeySpec = SecretKeySpec(secretKey.toByteArray(charset("utf-8")), "AES")
+            val ivSpec = IvParameterSpec(iv.toByteArray(charset("utf-8")))
 
             // 实例化Cipher
             val cipher = Cipher.getInstance("AES")
-            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec)
+            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivSpec)
 
             // 解密数据
             val decryptedBytes = cipher.doFinal(decodedBytes)
