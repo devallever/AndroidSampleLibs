@@ -6,7 +6,9 @@ import app.allever.android.lib.common.BaseFragment
 import app.allever.android.lib.mvvm.base.BaseViewModel
 import app.allever.android.sample.safe.databinding.FragmentGzipAesBase64Binding
 import app.allever.android.sample.safe.util.AesUtil
+import app.allever.android.sample.safe.util.Base64Util
 import app.allever.android.sample.safe.util.GzipUtil
+import app.allever.android.sample.safe.util.decode2Base64ByteArray
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -14,9 +16,6 @@ import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.util.zip.GZIPInputStream
 import java.util.zip.GZIPOutputStream
-import javax.crypto.Cipher
-import javax.crypto.spec.IvParameterSpec
-import javax.crypto.spec.SecretKeySpec
 
 class GzipAesBase64Fragment : BaseFragment<FragmentGzipAesBase64Binding, BaseViewModel>() {
     override fun inflate() = FragmentGzipAesBase64Binding.inflate(layoutInflater)
@@ -100,17 +99,17 @@ class GzipAesBase64Fragment : BaseFragment<FragmentGzipAesBase64Binding, BaseVie
             val encryptedBytes = AesUtil.aesEncode(compressedBytes?: return@withContext null, secretKey, iv)
 
             // 加密后的字符串
-            return@withContext Base64.encodeToString(encryptedBytes, Base64.DEFAULT)
+            return@withContext Base64Util.encode2String(encryptedBytes?: return@withContext null)
         } catch (e: Exception) {
             e.printStackTrace()
         }
         return@withContext ""
     }
 
-    suspend fun decryptAndUnzipString(encryptedString: String, secretKey: String, iv: String) = withContext(Dispatchers.IO) {
+    suspend fun decryptAndUnzipString(content: String, secretKey: String, iv: String) = withContext(Dispatchers.IO) {
         try {
             // 解码Base64编码的字符串
-            val decodedBytes = Base64.decode(encryptedString, Base64.DEFAULT)
+            val decodedBytes = content.decode2Base64ByteArray()
 
             // 解密数据
             val decryptedBytes = AesUtil.aesDecode(decodedBytes, secretKey, iv)
