@@ -16,17 +16,24 @@ class CenterRvFragment: BaseFragment<FragmentCenterRvBinding, BaseViewModel>() {
     override fun init() {
         mBinding.apply {
             FlingOneLinearSnapHelper().attachToRecyclerView(rvFlag)
-//            rvFlag.addItemDecoration(RecyclerItemCenterDecoration())
             val layoutManager = CenterLayoutManager()
             rvFlag.layoutManager = layoutManager
             val adapter = RvAdapter(mutableListOf()).apply {
                 setOnItemClick(object : ItemClick {
                     override fun onClick(position: Int) {
-                        layoutManager.scrollToPosition(position)
+                        rvFlag.smoothScrollBy(layoutManager.getCenterOffset(position), 0)
                     }
                 })
             }
             rvFlag.adapter = adapter
+            
+            rvFlag.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+
+                    }
+                }
+            })
 
             val list = mutableListOf<String>()
             for (i in 1..20) {
