@@ -9,6 +9,7 @@ import kotlin.math.abs
 
 
 //暂未适配wrap_content,请使用固定宽度或match_parent
+//Bob代码
 class CenterLayoutManager : LayoutManager() {
     private var mDecoratedChildWidth: Int = 0
     private var mPendingScrollPosition = RecyclerView.NO_POSITION

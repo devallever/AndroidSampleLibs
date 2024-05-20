@@ -69,7 +69,9 @@ class UIMainFragment : ListFragment<FragmentListBinding, ListViewModel, TextClic
         TextClickItem("居中Item的RecyclerView") {
             FragmentActivity.start<CenterRvFragment>(it.title)
         },
-
+        TextClickItem("居中Item的RecyclerView2") {
+            FragmentActivity.start<CenterRvStyle2Fragment>(it.title)
+        },
 
         )
 }

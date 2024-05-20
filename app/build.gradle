@@ -27,12 +27,12 @@ android {
 
     signingConfigs {
 
-        debug {
-            keyAlias 'sampleproject'
-            keyPassword 'dixm5400'
-            storeFile file('../app.allever.android.sample.project.jks')
-            storePassword 'dixm5400'
-        }
+//        debug {
+//            keyAlias 'sampleproject'
+//            keyPassword 'dixm5400'
+//            storeFile file('../app.allever.android.sample.project.jks')
+//            storePassword 'dixm5400'
+//        }
         release {
             keyAlias 'sampleproject'
             keyPassword 'dixm5400'
@@ -87,6 +87,7 @@ dependencies {
     api project(path: ':materialdesign')
     api project(path: ':toolbox')
     api project(path: ':gaodemap')
+    api project(path: ':safe')
 
 
 //    api project(path: ':aop')
