@@ -11,7 +11,6 @@ object GzipUtil {
 
     suspend fun gzipString(content: String) = withContext(Dispatchers.IO) {
         try {
-            // 压缩字符串
             val compressedBytes = ByteArrayOutputStream().use { byteOut ->
                 GZIPOutputStream(byteOut).use { gzipOut ->
                     gzipOut.write(content.toByteArray(Charsets.UTF_8))
@@ -27,7 +26,6 @@ object GzipUtil {
 
     suspend fun unGzipString(contentByteArray: ByteArray) = withContext(Dispatchers.IO) {
         try {
-            // 解压缩数据
             val outputStream = ByteArrayOutputStream()
             val gzipInputStream = GZIPInputStream(ByteArrayInputStream(contentByteArray))
             val buffer = ByteArray(1024)
@@ -38,7 +36,6 @@ object GzipUtil {
             }
             gzipInputStream.close()
 
-            // 将字节转换为字符串
             return@withContext String(outputStream.toByteArray(), Charsets.UTF_8)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -46,5 +43,26 @@ object GzipUtil {
 
         return@withContext null
     }
+
+    fun unGzipStringSync(contentByteArray: ByteArray): String? {
+        try {
+            val outputStream = ByteArrayOutputStream()
+            val gzipInputStream = GZIPInputStream(ByteArrayInputStream(contentByteArray))
+            val buffer = ByteArray(1024)
+            var bytesRead = gzipInputStream.read(buffer)
+            while (bytesRead != -1) {
+                outputStream.write(buffer, 0, bytesRead)
+                bytesRead = gzipInputStream.read(buffer)
+            }
+            gzipInputStream.close()
+
+            return String(outputStream.toByteArray(), Charsets.UTF_8)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+
 
 }
