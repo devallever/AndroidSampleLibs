@@ -92,3 +92,29 @@ dependencies {
 
 //    api project(path: ':aop')
 }
+
+
+/**
+ * 生成字典Task
+ */
+task geneDictTask {
+    doFirst{
+        def dictPath = rootDir.getAbsolutePath()+'/app/dict.txt'
+        def random = new Random()
+        def lowercase = "abcdefghijklmnopqrstuvwxyz"
+        def wordList = new HashSet()
+        for (int i=0;i<10000;i++){
+            def word = new StringBuilder()
+            def wordLength = random.nextInt(5)+4
+            for (int j=0;j<wordLength;j++){
+                word.append(lowercase.charAt(random.nextInt(lowercase.length())))
+            }
+            wordList.add(word.toString())
+        }
+        def f = new File(dictPath)
+        f.getParentFile().mkdirs()
+        f.withWriter("UTF-8") {
+            it.write(wordList.join(System.lineSeparator()))
+        }
+    }
+}
