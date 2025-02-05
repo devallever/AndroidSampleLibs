@@ -114,6 +114,9 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
         TextClickItem("安全/加解密") {
             FragmentActivity.start<SafeMainFragment>(it.title)
         },
+        TextClickItem("SoundPool播放音频") {
+            FragmentActivity.start<SoundPoolListFragment>(it.title)
+        },
     )
 
     private val songMediaPlayer = SongMediaPlayer()

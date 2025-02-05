@@ -3,14 +3,12 @@ package app.allever.android.sample.project
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.os.Message
 import android.view.WindowManager
 import app.allever.android.lib.common.BaseActivity
 import app.allever.android.lib.core.ext.log
 import app.allever.android.lib.core.helper.FragmentHelper
 import app.allever.android.lib.core.util.TimeUtils
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.lib.mvvm.base.MvvmConfig
 import app.allever.android.sample.project.databinding.ActivityMainBinding
 import kotlin.concurrent.thread
 

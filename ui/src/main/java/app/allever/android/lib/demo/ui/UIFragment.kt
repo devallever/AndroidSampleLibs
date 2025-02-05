@@ -28,7 +28,7 @@ class UIFragment : BaseFragment<FragmentUiBinding, UIViewModel>() {
         //毛玻璃效果
         mBinding.blurView.setupWith(
             mBinding.blurBg,
-            RenderScriptBlur(context)
+            RenderScriptBlur(requireContext())
         ) // or RenderEffectBlur
             .setBlurRadius(20f)
         mBinding.blurView.outlineProvider = ViewOutlineProvider.BACKGROUND

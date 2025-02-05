@@ -102,6 +102,7 @@ task geneDictTask {
         def dictPath = rootDir.getAbsolutePath()+'/app/dict.txt'
         def random = new Random()
         def lowercase = "abcdefghijklmnopqrstuvwxyz"
+//        def lowercase = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_"
         def wordList = new HashSet()
         for (int i=0;i<10000;i++){
             def word = new StringBuilder()
