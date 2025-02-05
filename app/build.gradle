@@ -88,6 +88,7 @@ dependencies {
     api project(path: ':toolbox')
     api project(path: ':gaodemap')
     api project(path: ':safe')
+    api project(path: ':MicrosoftSpeech')
 
 
 //    api project(path: ':aop')

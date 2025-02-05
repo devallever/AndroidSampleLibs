@@ -27,6 +27,7 @@ import app.allever.android.sample.jni.mk.JniMkMainActivity
 import app.allever.android.sample.kotlin.KotlinMainFragment
 import app.allever.android.sample.learning.android.LearningAndroidMainActivity
 import app.allever.android.sample.material.design.MaterialDesignMainListFragment
+import app.allever.android.sample.microsoft.speech.MicrosoftSpeechFunListFragment
 import app.allever.android.sample.performance.PerformanceMainFragment
 import app.allever.android.sample.project.app.GuideActivity
 import app.allever.android.sample.project.app.LogoFragment
@@ -116,6 +117,9 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
         },
         TextClickItem("SoundPool播放音频") {
             FragmentActivity.start<SoundPoolListFragment>(it.title)
+        },
+        TextClickItem("MicrosoftSpeechSDK") {
+            FragmentActivity.start<MicrosoftSpeechFunListFragment>(it.title)
         },
     )
 
