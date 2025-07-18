@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="app.allever.android.sample.cleaner">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission
@@ -10,7 +9,7 @@
 
     <application>
         <activity
-            android:name=".CleanerMainActivity"
+            android:name="app.allever.android.sample.cleaner.CleanerMainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
     </application>

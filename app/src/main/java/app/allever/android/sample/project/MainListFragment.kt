@@ -109,7 +109,7 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
         },
         TextClickItem("播放assets.mp3") {
             val fd = requireActivity().assets.openFd("Gallery/Animals/bird.mp3")
-            songMediaPlayer.loadAssets(fd)
+//            songMediaPlayer.loadAssets(fd)
             songMediaPlayer.play()
         },
         TextClickItem("安全/加解密") {

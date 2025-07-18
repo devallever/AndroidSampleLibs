@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="app.allever.android.sample.function">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
 
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
@@ -12,7 +11,7 @@
         android:maxSdkVersion="32" />
 
     <application>
-        <activity android:name=".theme.ThemeMainActivity" />
-        <activity android:name=".im.ui.ConversationActivity" />
+        <activity android:name="app.allever.android.sample.function.theme.ThemeMainActivity" />
+        <activity android:name="app.allever.android.sample.function.im.ui.ConversationActivity" />
     </application>
 </manifest>

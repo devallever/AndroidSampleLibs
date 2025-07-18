@@ -4,7 +4,7 @@ import androidx.viewbinding.ViewBinding
 import app.allever.android.lib.common.ListFragment
 import app.allever.android.lib.core.ext.toast
 import app.allever.android.lib.mvvm.base.BaseViewModel
-import app.allever.android.sample.function.R
+import app.allever.android.lib.widget.R
 import com.chad.library.adapter.base.BaseQuickAdapter
 
 /**

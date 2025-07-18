@@ -7,6 +7,7 @@ plugins {
 
 android {
     compileSdk rootProject.ext.compileSdkVersion
+    namespace "app.allever.android.sample.project"
 
     defaultConfig {
         applicationId "app.allever.android.sample.project"
@@ -33,12 +34,12 @@ android {
 //            storeFile file('../app.allever.android.sample.project.jks')
 //            storePassword 'dixm5400'
 //        }
-        release {
-            keyAlias 'sampleproject'
-            keyPassword 'dixm5400'
-            storeFile file('../app.allever.android.sample.project.jks')
-            storePassword 'dixm5400'
-        }
+//        release {
+//            keyAlias 'sampleproject'
+//            keyPassword 'dixm5400'
+//            storeFile file('../app.allever.android.sample.project.jks')
+//            storePassword 'dixm5400'
+//        }
 
     }
 
@@ -49,12 +50,10 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = false
-    }
-
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding false
+        viewBinding true
+        buildConfig true
     }
 
     compileOptions {

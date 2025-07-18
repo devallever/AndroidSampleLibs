@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="app.allever.android.lib.demo">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application>
-        <activity android:name=".ui.sticktop.BaseTwoViewStickyTopActivity" />
-        <activity android:name=".ui.sticktop.RemoveAddViewStickyTopActivity" />
-        <activity android:name=".ui.sticktop.RecyclerViewHeaderStickyTopActivity" />
-        <activity android:name=".ui.sticktop.CoordinatorStickyTopActivity" />
-        <activity android:name=".ui.BlurActivity" />
-        <activity android:name=".UserCenterActivity" />
+        <activity android:name="app.allever.android.lib.demo.ui.sticktop.BaseTwoViewStickyTopActivity" />
+        <activity android:name="app.allever.android.lib.demo.ui.sticktop.RemoveAddViewStickyTopActivity" />
+        <activity android:name="app.allever.android.lib.demo.ui.sticktop.RecyclerViewHeaderStickyTopActivity" />
+        <activity android:name="app.allever.android.lib.demo.ui.sticktop.CoordinatorStickyTopActivity" />
+        <activity android:name="app.allever.android.lib.demo.ui.BlurActivity" />
+        <activity android:name="app.allever.android.lib.demo.UserCenterActivity" />
         <activity
-            android:name=".ui.dialog.activitydialog.BottomActivityDialog"
+            android:name="app.allever.android.lib.demo.ui.dialog.activitydialog.BottomActivityDialog"
             android:theme="@style/BottomActivityDialog" />
-        <activity android:name=".ui.notification.NotificationActivity" />
-        <activity android:name=".ui.dragclose.PreviewPhotoActivity"
+        <activity android:name="app.allever.android.lib.demo.ui.notification.NotificationActivity" />
+        <activity android:name="app.allever.android.lib.demo.ui.dragclose.PreviewPhotoActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"/>
     </application>

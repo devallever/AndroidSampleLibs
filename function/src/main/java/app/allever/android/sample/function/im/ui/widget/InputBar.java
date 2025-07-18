@@ -1,6 +1,7 @@
 package app.allever.android.sample.function.im.ui.widget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -52,7 +53,7 @@ public class InputBar extends LinearLayout {
 
     public void initView() {
         this.setOrientation(HORIZONTAL);
-        this.setBackgroundColor(ResUtils.getColor(R.color.white));
+        this.setBackgroundColor(Color.parseColor("#ffffff"));
         this.setMinimumHeight(DisplayHelper.INSTANCE.dip2px(50));
         this.setGravity(Gravity.CENTER_VERTICAL);
 //        this.setPadding(UiUtils.dp2px(12), UiUtils.dp2px(7), UiUtils.dp2px(12), UiUtils.dp2px(7));
@@ -65,7 +66,7 @@ public class InputBar extends LinearLayout {
         mEmojiPopup = EmojiPopup
                 .Builder
                 .fromRootView(this)
-                .setKeyboardAnimationStyle(R.style.emoji_fade_animation_style)
+//                .setKeyboardAnimationStyle(R.style.emoji_fade_animation_style)
                 .setOnEmojiPopupShownListener(() -> {
                     ivEmoji.setImageResource(R.drawable.ic_keybroad);
                 })

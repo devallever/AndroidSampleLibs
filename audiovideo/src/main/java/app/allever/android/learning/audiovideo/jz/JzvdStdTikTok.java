@@ -10,7 +10,6 @@ import android.widget.ImageView;
 
 import com.danikula.videocache.HttpProxyCacheServer;
 
-import app.allever.android.learning.audiovideo.R;
 import app.allever.android.learning.audiovideo.tiktok.MyFileNameGenerator;
 import app.allever.android.lib.core.app.App;
 import cn.jzvd.JZDataSource;
@@ -87,17 +86,17 @@ public class JzvdStdTikTok extends JzvdStd {
     public void updateStartImage() {
         if (state == STATE_PLAYING) {
             startButton.setVisibility(VISIBLE);
-            startButton.setImageResource(R.drawable.ic_play);
+            startButton.setImageResource(app.allever.android.lib.core.R.drawable.ic_play);
             replayTextView.setVisibility(GONE);
         } else if (state == STATE_ERROR) {
             startButton.setVisibility(INVISIBLE);
             replayTextView.setVisibility(GONE);
         } else if (state == STATE_AUTO_COMPLETE) {
             startButton.setVisibility(VISIBLE);
-            startButton.setImageResource(R.drawable.ic_play);
+            startButton.setImageResource(app.allever.android.lib.core.R.drawable.ic_play);
             replayTextView.setVisibility(VISIBLE);
         } else {
-            startButton.setImageResource(R.drawable.ic_play);
+            startButton.setImageResource(app.allever.android.lib.core.R.drawable.ic_play);
             replayTextView.setVisibility(GONE);
         }
     }

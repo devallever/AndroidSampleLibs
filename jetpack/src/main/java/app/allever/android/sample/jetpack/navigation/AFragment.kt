@@ -44,13 +44,14 @@ class AFragment : ListFragment<FragmentABinding, BaseViewModel, String>() {
                     .createPendingIntent()
 
                 NotificationHelper.notify(requireContext(), "通知渠道ID") {
-                    it.setSmallIcon(R.drawable.icon_edit_music_online_play)//状态栏用到
-                        .setLargeIcon(
-                            BitmapFactory.decodeResource(
-                                resources,
-                                R.drawable.icon_edit_music_online_play
-                            )
-                        ) //右边
+                    it
+//                        .setSmallIcon(R.drawable.icon_edit_music_online_play)//状态栏用到
+//                        .setLargeIcon(
+//                            BitmapFactory.decodeResource(
+//                                resources,
+//                                R.drawable.icon_edit_music_online_play
+//                            )
+//                        ) //右边
                         .setContentTitle("Navigation")
                         .setContentText("显式深链接")
                         .setContentIntent(pendingIntent)

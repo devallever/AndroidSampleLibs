@@ -30,37 +30,37 @@ class RoomMainFragment : ListFragment<FragmentListBinding, ListViewModel, TextDe
     }
 
     private fun testData() {
-        lifecycleScope.launch(Dispatchers.IO) {
-            var allUser = DBController.getAllUser()
-            if (allUser.isEmpty()) {
-                for (i in 1..4) {
-                    val user = User()
-                    user.name = "张三${i}号"
-                    user.age = 20 + i
-                    user.gender = i % 2
-                    DBController.addUser(user)
-                }
-            }
-
-            allUser = DBController.getAllUser()
-            allUser.map {
-                log("user = ${it.toJson()}")
-            }
-
-
-            var allBook = DBController.getAllBook()
-            if (allBook.isEmpty()) {
-                for (i in 1..4) {
-                    val book = Book()
-                    book.name = "书名${i}号"
-                    DBController.addBook(book)
-                }
-            }
-
-            allBook = DBController.getAllBook()
-            allBook.map {
-                log("book = ${it.toJson()}")
-            }
-        }
+//        lifecycleScope.launch(Dispatchers.IO) {
+//            var allUser = DBController.getAllUser()
+//            if (allUser.isEmpty()) {
+//                for (i in 1..4) {
+//                    val user = User()
+//                    user.name = "张三${i}号"
+//                    user.age = 20 + i
+//                    user.gender = i % 2
+//                    DBController.addUser(user)
+//                }
+//            }
+//
+//            allUser = DBController.getAllUser()
+//            allUser.map {
+//                log("user = ${it.toJson()}")
+//            }
+//
+//
+//            var allBook = DBController.getAllBook()
+//            if (allBook.isEmpty()) {
+//                for (i in 1..4) {
+//                    val book = Book()
+//                    book.name = "书名${i}号"
+//                    DBController.addBook(book)
+//                }
+//            }
+//
+//            allBook = DBController.getAllBook()
+//            allBook.map {
+//                log("book = ${it.toJson()}")
+//            }
+//        }
     }
 }

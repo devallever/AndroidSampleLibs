@@ -17,7 +17,7 @@ public class InputBarDialog extends Dialog {
     boolean showEmo;
 
     public InputBarDialog(Context context, boolean showEmo, String defaultContent, InputBar.InputBarListener inputBarListener) {
-        super(context, R.style.Theme_Design_BottomSheetDialog);
+        super(context, com.google.android.material.R.style.Theme_Design_BottomSheetDialog);
         this.showEmo = showEmo;
         inputBar = new InputBar(context);
         inputBar.setInputContent(defaultContent);

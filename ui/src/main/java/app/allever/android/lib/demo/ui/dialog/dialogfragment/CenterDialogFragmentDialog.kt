@@ -16,7 +16,7 @@ class CenterDialogFragmentDialog : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //底部上移弹出
-        setStyle(STYLE_NORMAL, R.style.Theme_Design_BottomSheetDialog)
+        setStyle(STYLE_NORMAL, com.google.android.material.R.style.Theme_Design_BottomSheetDialog)
     }
 
     override fun onStart() {

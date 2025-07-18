@@ -5,8 +5,8 @@ import android.app.ActivityManager
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import app.allever.android.lib.core.R
 import app.allever.android.lib.core.ext.log
-import app.allever.android.sample.cleaner.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.BufferedReader

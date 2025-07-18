@@ -10,7 +10,7 @@ import app.allever.android.lib.demo.R
 
 
 class BottomDialog(context: Context) :
-    Dialog(context, R.style.Theme_Design_BottomSheetDialog) {
+    Dialog(context, com.google.android.material.R.style.Theme_Design_BottomSheetDialog) {
     init {
         //宽度占满屏
         val window = window

@@ -6,7 +6,7 @@ import android.graphics.Color
 import android.view.Gravity
 import app.allever.android.lib.demo.R
 
-class CenterDialog(context: Context) : Dialog(context, R.style.Theme_Design_BottomSheetDialog) {
+class CenterDialog(context: Context) : Dialog(context, com.google.android.material.R.style.Theme_Design_BottomSheetDialog) {
     init {
         //宽度占满屏
         val window = window

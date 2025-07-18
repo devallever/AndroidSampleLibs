@@ -6,6 +6,7 @@ plugins {
 
 android {
     compileSdk rootProject.ext.compileSdkVersion
+    namespace 'app.allever.android.sample.aop'
 
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
@@ -24,14 +25,11 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = false
+    buildFeatures {
+        dataBinding false
+        viewBinding true
+        buildConfig true
     }
-
-    viewBinding {
-        enabled = true
-    }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

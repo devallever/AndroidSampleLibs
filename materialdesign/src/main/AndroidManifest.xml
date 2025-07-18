@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="app.allever.android.sample.material.design">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
         <activity
-            android:name=".MDMainActivity"
+            android:name="app.allever.android.sample.material.design.MDMainActivity"
             android:launchMode="singleTask" />
     </application>
 </manifest>

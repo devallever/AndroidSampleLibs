@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="app.allever.android.sample.performance">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
         <activity
-            android:name=".layout.AsyncInflateActivity"
+            android:name="app.allever.android.sample.performance.layout.AsyncInflateActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
     </application>

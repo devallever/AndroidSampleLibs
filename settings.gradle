@@ -23,7 +23,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "AndroidSampleLibs"
-include ':app', ':ui', 'jetpack', ':function'
+include ':app', ':ui', ':function'
 
 
 include ':core'
@@ -69,3 +69,4 @@ include ':gaodemap'
 include ':jni-mk'
 include ':safe'
 include ':MicrosoftSpeech'
+include ':jetpack'

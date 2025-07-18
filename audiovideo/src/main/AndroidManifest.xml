@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="app.allever.android.learning.audiovideo">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -11,27 +10,27 @@
 
     <application>
         <activity
-            android:name=".AudioVideoMainActivity"
+            android:name="app.allever.android.learning.audiovideo.AudioVideoMainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".videoviewplayer.VideoViewPlayerActivity"
+            android:name="app.allever.android.learning.audiovideo.videoviewplayer.VideoViewPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenStyle" />
         <activity
-            android:name=".SelectMediaActivity"
+            android:name="app.allever.android.learning.audiovideo.SelectMediaActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".textureviewplayer.TextureViewPlayerActivity"
+            android:name="app.allever.android.learning.audiovideo.textureviewplayer.TextureViewPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenStyle" />
         <activity
-            android:name=".surfaceviewplayer.SurfaceViewPlayerActivity"
+            android:name="app.allever.android.learning.audiovideo.surfaceviewplayer.SurfaceViewPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenStyle" />
 
-        <service android:name=".ijkplayer.services.MediaPlayerService" />
+        <service android:name="app.allever.android.learning.audiovideo.ijkplayer.services.MediaPlayerService" />
     </application>
 </manifest>
