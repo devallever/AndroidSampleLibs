@@ -26,6 +26,7 @@ import app.allever.android.sample.jni.JniMainActivity
 import app.allever.android.sample.jni.mk.JniMkMainActivity
 import app.allever.android.sample.kotlin.KotlinMainFragment
 import app.allever.android.sample.learning.android.LearningAndroidMainActivity
+import app.allever.android.sample.login.LoginMainFragment
 import app.allever.android.sample.material.design.MaterialDesignMainListFragment
 import app.allever.android.sample.microsoft.speech.MicrosoftSpeechFunListFragment
 import app.allever.android.sample.performance.PerformanceMainFragment
@@ -83,7 +84,7 @@ class MainListFragment : ListFragment<FragmentListBinding, ListViewModel, TextCl
             FragmentActivity.start<CommonFragment>(it.title)
         },
         TextClickItem("第三方登录/分享") {
-//            FragmentActivity.start<LoginMainFragment>(it.title)
+            FragmentActivity.start<LoginMainFragment>(it.title)
         },
         TextClickItem("谷歌内购/订阅/支付") {
             ActivityHelper.startActivity<BillingMainActivity> { }

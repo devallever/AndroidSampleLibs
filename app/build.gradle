@@ -77,7 +77,7 @@ dependencies {
     api project(path: ':jni')
     api project(path: ':jni-mk')
     api project(path: ':performance')
-//    api project(path: ':login')
+    api project(path: ':login')
     api project(path: ':learning-android')
     api project(path: ':billing')
     api project(path: ':cleaner')
